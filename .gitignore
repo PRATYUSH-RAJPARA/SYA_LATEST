@@ -1,0 +1,14 @@
+
+/SYA_CODE/.vs
+/SYA_CODE/obj
+/SYA_CODE/obj/Debug
+/SYA_CODE/obj/Debug/net6.0-windows8.0
+/SYA_CODE/.vs/ProjectEvaluation
+SYA_CODE/.vs/ProjectEvaluation/sya.metadata.v9.bin
+SYA_CODE/.vs/ProjectEvaluation/sya.projects.v9.bin
+SYA_CODE/.vs/SYA/DesignTimeBuild/.dtbcache.v2
+SYA_CODE/obj/Debug/net6.0-windows8.0/SYA.AssemblyInfo.cs
+*.json
+*.cache
+*.json
+*.props

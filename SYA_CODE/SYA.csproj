@@ -53,7 +53,7 @@
     <PackageReference Include="ZXing.Net" Version="0.16.9" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Update="AddItem\addgold - Copy.cs">
+    <Compile Update="CODE\AddItem\addgold - Copy.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="Properties\Resources.Designer.cs">
@@ -66,7 +66,7 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
-    <Compile Update="RTGS\ADDEDITRTGS.cs">
+    <Compile Update="CODE\RTGS\ADDEDITRTGS.cs">
       <SubType>Form</SubType>
     </Compile>
   </ItemGroup>

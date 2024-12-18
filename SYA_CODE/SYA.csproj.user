@@ -4,85 +4,85 @@
     <_LastSelectedProfileId>F:\SYA_NEW\SYA_CODE\Properties\PublishProfiles\SYA_NEW.pubxml</_LastSelectedProfileId>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Update="AddItem\addgold.cs">
+    <Compile Update="CODE\AddItem\addgold.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="AddItem\Silver\addSilver.cs">
+    <Compile Update="CODE\AddItem\Silver\addSilver.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="Contact\ContactDisplay.cs">
+    <Compile Update="CODE\Contact\ContactDisplay.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="Extra\PrintLabel.cs">
+    <Compile Update="CODE\Extra\PrintLabel.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="Helper\NotifyForm.cs">
+    <Compile Update="CODE\Helper\NotifyForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="Labour\Labour.cs">
+    <Compile Update="CODE\Labour\Labour.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="Login\login.cs">
+    <Compile Update="CODE\Login\login.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="main.cs">
+    <Compile Update="CODE\main.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="printLables.cs">
+    <Compile Update="CODE\printLables.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="RTGS\PrintRTGS.cs">
+    <Compile Update="CODE\RTGS\PrintRTGS.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="RTGS\RTGSList.cs">
+    <Compile Update="CODE\RTGS\RTGSList.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="SaleReportAutomation.cs">
+    <Compile Update="CODE\SaleReportAutomation.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="Sales\saleReport.cs">
+    <Compile Update="CODE\Sales\saleReport.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="Sales\SaleSummary.cs">
+    <Compile Update="CODE\Sales\SaleSummary.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="Search\Search.cs">
+    <Compile Update="CODE\Search\Search.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="Sell\sell.cs">
+    <Compile Update="CODE\Sell\sell.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="Settings\settings.cs">
+    <Compile Update="CODE\Settings\settings.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="ShowOnDisplay\ShowOnDisplayForm.cs">
+    <Compile Update="CODE\ShowOnDisplay\ShowOnDisplayForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="Stocks\goldStockDetailedSummary.cs">
+    <Compile Update="CODE\Stocks\goldStockDetailedSummary.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="Stocks\silverStockDetailedSummary.cs">
+    <Compile Update="CODE\Stocks\silverStockDetailedSummary.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="Stocks\STOCKSummary.cs">
+    <Compile Update="CODE\Stocks\STOCKSummary.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="Stocks\VerifyStock.cs">
+    <Compile Update="CODE\Stocks\VerifyStock.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="Testing Phase\SaleAuto.cs">
+    <Compile Update="CODE\Testing Phase\SaleAuto.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="Testing\ChartForm.cs">
+    <Compile Update="CODE\Testing\ChartForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="Testing\Fetchalldatafrommsaccess.cs">
+    <Compile Update="CODE\Testing\Fetchalldatafrommsaccess.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="Testing\Form1.cs">
+    <Compile Update="CODE\Testing\Form1.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="UpdateLogForm.cs">
+    <Compile Update="CODE\UpdateLogForm.cs">
       <SubType>Form</SubType>
     </Compile>
   </ItemGroup>
