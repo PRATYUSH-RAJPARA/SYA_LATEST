@@ -1,0 +1,89 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <_LastSelectedProfileId>F:\SYA_NEW\SYA_CODE\Properties\PublishProfiles\SYA_NEW.pubxml</_LastSelectedProfileId>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Update="AddItem\addgold.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="AddItem\Silver\addSilver.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Contact\ContactDisplay.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Extra\PrintLabel.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Helper\NotifyForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Labour\Labour.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Login\login.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="main.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="printLables.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="RTGS\PrintRTGS.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="RTGS\RTGSList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="SaleReportAutomation.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Sales\saleReport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Sales\SaleSummary.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Search\Search.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Sell\sell.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Settings\settings.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="ShowOnDisplay\ShowOnDisplayForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Stocks\goldStockDetailedSummary.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Stocks\silverStockDetailedSummary.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Stocks\STOCKSummary.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Stocks\VerifyStock.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Testing Phase\SaleAuto.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Testing\ChartForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Testing\Fetchalldatafrommsaccess.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Testing\Form1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="UpdateLogForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+  </ItemGroup>
+</Project>
