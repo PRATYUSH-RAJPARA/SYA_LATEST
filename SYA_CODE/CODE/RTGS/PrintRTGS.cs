@@ -24,17 +24,17 @@ namespace SYA
         {
             try
             {
-                //PrintDocument pd = new PrintDocument();
-                //pd.PrinterSettings.PrinterName = "HP LaserJet MFP M129-M134";
+             
+                PrintDocument pd = new PrintDocument();
+                pd.PrinterSettings.PrinterName = helper.NormalPrinterName;  
+              pd.PrintPage += new PrintPageEventHandler(Print);
+
                 //PrintPreviewDialog printPreviewDialog = new PrintPreviewDialog();
                 //printPreviewDialog.Document = pd;
                 //printPreviewDialog.WindowState = FormWindowState.Maximized;
                 //printPreviewDialog.PrintPreviewControl.Zoom = 1.0;
-                //pd.PrintPage += new PrintPageEventHandler(Print);
                 //printPreviewDialog.ShowDialog();
-                PrintDocument pd = new PrintDocument();
-                pd.PrinterSettings.PrinterName = helper.NormalPrinterName;
-                pd.PrintPage += new PrintPageEventHandler(Print);
+
                 pd.Print();
             }
             catch (Exception ex)

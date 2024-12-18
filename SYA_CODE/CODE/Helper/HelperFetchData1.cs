@@ -14,12 +14,29 @@ public class HelperFetchData1
         notifyForm.Show();
         Application.DoEvents();
     }
-
+    public void processSaleData()
+    {
+        accessData.Clear();
+        fetchAccessData("026");
+        foreach (DataRow row in accessData.Rows)
+        {
+            
+                if (RecordExists(row))
+                {
+                    ExecuteUpdateQueryForSales(row);
+                }
+                else
+                {
+                    ExecuteInsertQueryForSales(row);
+                }
+            
+        }
+    }
     // Process data with real-time count updates
     public void ProcessData()
     {
         InitializeNotifyForm();
-        fetchAccessData();
+        fetchAccessData("015");
         int totalRows = accessData.Rows.Count;
         int updatedRows = 0;
         int insertedRows = 0;
@@ -81,9 +98,9 @@ public class HelperFetchData1
         notifyForm.CloseNotifyFormAfterDelay(3000);
     }
 
-    public void fetchAccessData()
+    public void fetchAccessData(string cobook)
     {
-        string query = "SELECT CO_YEAR, CO_BOOK, VCH_NO, VCH_DATE, IT_CODE, PR_CODE, IT_TYPE, TAG_NO, DESIGN, ITM_SIZE, ITM_PCS, ITM_GWT, ITM_NWT, LBR_RATE, OTH_AMT, LBR_AMT, ITM_RAT, ITM_AMT, AC_CODE, IT_DESC FROM MAIN_TAG_DATA WHERE CO_BOOK = '015'";
+        string query = "SELECT CO_YEAR, CO_BOOK, VCH_NO, VCH_DATE, IT_CODE, PR_CODE, IT_TYPE, TAG_NO, DESIGN, ITM_SIZE, ITM_PCS, ITM_GWT, ITM_NWT, LBR_RATE, OTH_AMT, LBR_AMT, ITM_RAT, ITM_AMT, AC_CODE, IT_DESC FROM MAIN_TAG_DATA WHERE CO_BOOK = '" + cobook + "'";
         accessData.Clear();
         accessData = helper.FetchDataTableFromDataCareDataBase(query);
     }
@@ -167,7 +184,7 @@ public class HelperFetchData1
         string purity = " ";
         try
         {
-             purity = itCode.Replace(prCode, "");
+            purity = itCode.Replace(prCode, "");
         }
         catch { }
         sqliteParameters.Add(new SQLiteParameter("@PURITY", purity));
