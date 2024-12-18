@@ -1,5 +1,4 @@
 ﻿using Serilog;
-
 using System.Data;
 using System.Data.SQLite;
 using System.Drawing.Printing;
@@ -78,7 +77,6 @@ namespace SYA
             txtMessageBox.Text = string.Empty;
             messageBoxTimer.Stop();
         }
-
         //private void dataGridView1_KeyDown(object sender, KeyEventArgs e)
         // {
         //     MessageBox.Show("keydown----------");
@@ -149,7 +147,6 @@ namespace SYA
         {
             string currentColumnName1 = dataGridView1.Columns[dataGridView1.CurrentCell.ColumnIndex].Name;
             if (currentColumnName == "net" || currentColumnName == "gross" || currentColumnName == "labour" || currentColumnName == "wholeLabour" || currentColumnName == "other") { }
-
         }
         private void dataGridView1_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
         {
@@ -163,39 +160,29 @@ namespace SYA
                     tb.KeyPress += NumericTextBox_KeyPress;
                 }
             }
-
         }
-
         private void NumericTextBox_KeyPress(object sender, KeyPressEventArgs e)
         {
             TextBox tb = sender as TextBox;
-
             // Allow digits, backspace, delete, and one '.' (decimal point)
             if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && e.KeyChar != '.')
             {
                 e.Handled = true; // Block invalid input
             }
-
             // Allow only one '.' in the TextBox
             if (e.KeyChar == '.' && tb.Text.Contains("."))
             {
                 e.Handled = true; // Block additional decimal points
             }
         }
-
-
-
         // Validate cell value when editing is completed
         private void dataGridView1_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)
         {
-
-            
             string currentColumnName = getCurrentColumnName();
             DataGridViewRow selectedRow = dataGridView1.CurrentRow;
             if (currentColumnName == "net" || currentColumnName == "gross")
             {
                 selectedRow.Cells[currentColumnName].Value = addGoldHelper.correctWeight(selectedRow.Cells[currentColumnName].Value);
-
             }
             if (currentColumnName == "huid2")
             {
@@ -203,11 +190,9 @@ namespace SYA
                 string huid1 = selectedRow.Cells["huid1"]?.Value?.ToString() ?? "";
                 string huid2 = selectedRow.Cells["huid2"]?.Value?.ToString() ?? "";
                 string huid3 = selectedRow.Cells["huid2"]?.Value?.ToString() ?? "";
-
                 // addGoldHelper.validateHUID(huid1, huid2, huid3);
                 //   selectedRow.Cells["huid1"].Value = (selectedRow.Cells["huid1"].Value ?? "").ToString().ToUpper();
             }
-
             if (quickSaveAndPrint)
             {
                 dataGridView1.CommitEdit(DataGridViewDataErrorContexts.Commit);
@@ -237,7 +222,6 @@ namespace SYA
                 }
             }
         }
-
         private void dataGridView1_CellValidated(object sender, DataGridViewCellEventArgs e)
         {
             string currentColumnName = getCurrentColumnName();
@@ -247,7 +231,6 @@ namespace SYA
                 string huid1 = selectedRow1.Cells["huid1"]?.Value?.ToString() ?? "";
                 string huid2 = selectedRow1.Cells["huid2"]?.Value?.ToString() ?? "";
                 string huid3 = selectedRow1.Cells["huid2"]?.Value?.ToString() ?? "";
-
                 if (!addGoldHelper.validateHUID(huid1, huid2, huid3))
                 {
                     // Set focus on the current cell where the error occurred
@@ -256,10 +239,7 @@ namespace SYA
                 }
                 //   selectedRow.Cells["huid1"].Value = (selectedRow.Cells["huid1"].Value ?? "").ToString().ToUpper();
             }
-
-
             //MessageBox.Show("validated");
-
             //            MessageBox.Show("cellendedit");
             if (e.RowIndex >= 0 && e.ColumnIndex >= 0)
             {
@@ -295,8 +275,6 @@ namespace SYA
         }
         //private void dataGridView1_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
         //{
-
-
         //    MessageBox.Show("preview key down");
         //    DataGridView dataGridView10 = dataGridView1;
         //    string currentColumnName1 = dataGridView10.Columns[dataGridView10.CurrentCell.ColumnIndex].Name;
@@ -305,12 +283,10 @@ namespace SYA
         //    {
         //        MessageBox.Show("ss");
         //        selectedRow.Cells["net"].Value = Verification.correctWeight(selectedRow.Cells["net"].Value);
-
         //    }
         //    if (currentColumnName1 == "gross")
         //    {
         //        selectedRow.Cells["gross"].Value = Verification.correctWeight(selectedRow.Cells["gross"].Value);
-
         //    }
         //    if (currentColumnName1 == "huid1")
         //    {
@@ -358,7 +334,6 @@ namespace SYA
         //            }
         //        }
         //    }
-
         //}
         //private void dataGridView1_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         //{
@@ -870,12 +845,8 @@ namespace SYA
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
         }
-
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-
         }
-
-
     }
 }

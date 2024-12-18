@@ -711,10 +711,8 @@ namespace SYA
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
         }
-
         private void guna2DataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-
         }
     }
 }

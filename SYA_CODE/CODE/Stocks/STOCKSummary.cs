@@ -1,5 +1,4 @@
-﻿
-using System.Data;
+﻿using System.Data;
 using DataTable = System.Data.DataTable;
 namespace SYA
 {

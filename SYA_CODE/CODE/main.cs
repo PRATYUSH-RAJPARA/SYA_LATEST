@@ -1,5 +1,4 @@
-﻿
-using Timer = System.Windows.Forms.Timer;
+﻿using Timer = System.Windows.Forms.Timer;
 namespace SYA
 {
     public partial class main : Form
@@ -334,6 +333,12 @@ namespace SYA
         }
         private void btnProcessData_Click(object sender, EventArgs e)
         {
+            //            string query = @"
+            //    UPDATE MAIN_TAG_DATA
+            //    SET TAG_NO = 'OLD' + TAG_NO
+            //    WHERE CO_BOOK = '027';
+            //";
+            //    helper.RunQueryWithoutParametersDataCareDataBase(query, "ExecuteNonQuery");
             HelperFetchData1 obj = new HelperFetchData1();
             obj.ProcessData();
         }

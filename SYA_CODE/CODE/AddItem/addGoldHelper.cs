@@ -24,24 +24,19 @@
                 MessageBox.Show("HUID1, HUID2, and HUID3 lengths must be 6 characters if not null.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
-
             // Ensure HUID1 is provided if HUID2 or HUID3 are entered
             if (string.IsNullOrWhiteSpace(huid1) && (!string.IsNullOrWhiteSpace(huid2) || !string.IsNullOrWhiteSpace(huid3)))
             {
                 MessageBox.Show("Please insert HUID1 before HUID2 or HUID3.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
-
             // Ensure HUID2 is provided if HUID3 is entered
             if (string.IsNullOrWhiteSpace(huid2) && !string.IsNullOrWhiteSpace(huid3))
             {
                 MessageBox.Show("Please insert HUID2 before HUID3.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
-
             return true;
         }
-
-
     }
 }

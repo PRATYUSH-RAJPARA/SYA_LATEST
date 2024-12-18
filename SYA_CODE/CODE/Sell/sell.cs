@@ -1,7 +1,6 @@
 ﻿using System.IO.Ports;
 using System.Data;
 using System.Media;
-
 namespace SYA
 {
     public partial class sell : Form

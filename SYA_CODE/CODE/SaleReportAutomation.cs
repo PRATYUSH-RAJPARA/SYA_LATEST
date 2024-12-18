@@ -1,5 +1,4 @@
-﻿    
-using System.Data;
+﻿using System.Data;
 namespace SYA
 {
     public class SaleReportAutomation : Form

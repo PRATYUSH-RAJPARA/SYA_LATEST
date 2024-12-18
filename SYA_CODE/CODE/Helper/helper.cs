@@ -15,7 +15,7 @@ namespace SYA
                 if (_configuration == null)
                 {
                     _configuration = new ConfigurationBuilder()
-                        .SetBasePath(@"F:\\SYA_LATEST\\DATABASE\\SYA_DATA_NEW\\config")
+                        .SetBasePath(@"C:\\SYA_LATEST\\DATABASE\\SYA_DATA_NEW\\config")
                         .AddJsonFile("appsettings.json")
                         .Build();
                 }
@@ -137,6 +137,42 @@ namespace SYA
             return RunQueryWithoutParameters(SyaSettingsDataBase, query, commandType);
         }
         // DATACARE
+        public static object RunQueryWithoutParametersDataCareDataBase(string query, string commandType)
+        {
+            object result = null;
+            try
+            {
+                using (OleDbConnection connection = new OleDbConnection(accessConnectionString))
+                {
+                    connection.Open();
+                    try
+                    {
+                        using (OleDbCommand command = new OleDbCommand(query, connection))
+                        {
+                            if (commandType == "ExecuteNonQuery")
+                            {
+                                result = command.ExecuteNonQuery();
+                            }
+                            else if (commandType == "ExecuteScalar")
+                            {
+                                result = command.ExecuteScalar();
+                            }
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        // Handle or log the exception as needed
+                        MessageBox.Show($"Error executing query:\n\n{query}\n\nCommand Type: {commandType}\n\nError Message: {ex.Message}");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                // Handle or log the exception as needed
+                MessageBox.Show($"Outer Error executing query:\n\n{query}\n\nCommand Type: {commandType}\n\nError Message: {ex.Message}");
+            }
+            return result;
+        }
         public static DataTable FetchDataTableFromDataCareDataBase(string query)
         {
             DataTable dataCareDataTable = new DataTable();

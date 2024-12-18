@@ -1,5 +1,4 @@
-﻿
-namespace SYA   
+﻿namespace SYA   
 {
     public partial class SaleAuto : Form
     {
