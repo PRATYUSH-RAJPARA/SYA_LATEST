@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-namespace SYA.Testing
+namespace SYA   
 {
     public partial class ChartForm : Form
     {

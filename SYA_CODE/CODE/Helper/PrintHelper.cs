@@ -1,6 +1,6 @@
 ﻿using QRCoder;
 using System.Drawing.Printing;
-namespace SYA.CODE.Helper
+namespace SYA   
 {
     public static class PrintHelper
     {

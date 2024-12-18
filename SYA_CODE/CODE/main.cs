@@ -1,9 +1,4 @@
-﻿using SYA.CODE.Contact;
-using SYA.CODE.Helper;
-using SYA.CODE.Sales;
-using SYA.Sell;
-using SYA.Stocks;
-using SYA.Testing_Phase;
+﻿
 using Timer = System.Windows.Forms.Timer;
 namespace SYA
 {

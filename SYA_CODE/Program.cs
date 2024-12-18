@@ -1,7 +1,7 @@
-using SYA.CODE.Reparing;
+
 using System.Net;
 using System.Text;
-namespace SYA.CODE
+namespace SYA
 {
     internal static class Program
     {

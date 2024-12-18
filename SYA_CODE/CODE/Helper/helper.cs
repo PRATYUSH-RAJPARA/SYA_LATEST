@@ -3,7 +3,7 @@ using System.Data;
 using System.Data.OleDb;
 using System.Data.SQLite;
 using DataTable = System.Data.DataTable;
-namespace SYA.CODE.Helper
+namespace SYA
 {
     public static class helper
     {
@@ -15,7 +15,7 @@ namespace SYA.CODE.Helper
                 if (_configuration == null)
                 {
                     _configuration = new ConfigurationBuilder()
-                        .SetBasePath(@"C:\\SYA_NEW\\DATABASE\\SYA_DATA_NEW\\config")
+                        .SetBasePath(@"F:\\SYA_LATEST\\DATABASE\\SYA_DATA_NEW\\config")
                         .AddJsonFile("appsettings.json")
                         .Build();
                 }

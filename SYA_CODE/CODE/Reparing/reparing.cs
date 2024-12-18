@@ -1,6 +1,5 @@
-﻿using SYA.CODE.Helper;
-using System.Drawing.Printing;
-namespace SYA.CODE.Reparing
+﻿using System.Drawing.Printing;
+namespace SYA
 {
     public class reparing
     {

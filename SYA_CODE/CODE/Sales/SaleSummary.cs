@@ -1,7 +1,7 @@
 ﻿using RestSharp;
 using System.Net;
 using System.Text.Json.Nodes;
-namespace SYA.Stocks
+namespace SYA
 {
     public partial class SaleSummary : Form
     {

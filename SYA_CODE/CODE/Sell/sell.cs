@@ -1,9 +1,8 @@
 ﻿using System.IO.Ports;
 using System.Data;
 using System.Media;
-using SYA.CODE.Sales;
-using SYA.CODE.Helper;
-namespace SYA.Sell
+
+namespace SYA
 {
     public partial class sell : Form
     {

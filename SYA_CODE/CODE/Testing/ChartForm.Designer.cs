@@ -1,4 +1,4 @@
-﻿namespace SYA.Testing
+﻿namespace SYA
 {
     partial class ChartForm
     {

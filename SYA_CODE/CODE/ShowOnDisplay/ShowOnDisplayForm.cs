@@ -1,5 +1,4 @@
-﻿using SYA.CODE.Helper;
-using SYA.Sales;
+﻿
 using System;
 using System.Data;
 using System.IO.Ports;

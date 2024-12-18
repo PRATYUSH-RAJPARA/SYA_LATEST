@@ -1,5 +1,4 @@
-﻿using SYA.CODE.Helper;
-using System.Drawing.Printing;
+﻿using System.Drawing.Printing;
 namespace SYA
 {
     public partial class PrintLabel : Form

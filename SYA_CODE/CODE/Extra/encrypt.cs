@@ -1,6 +1,6 @@
 ﻿using System.Security.Cryptography;
 using System.Text;
-namespace SYA.CODE.Extra
+namespace SYA
 {
     public class encrypt
     {

@@ -1,6 +1,5 @@
 ﻿using Serilog;
-using SYA.CODE.AddItem;
-using SYA.CODE.Helper;
+
 using System.Data;
 using System.Data.SQLite;
 using System.Drawing.Printing;
@@ -190,7 +189,7 @@ namespace SYA
         private void dataGridView1_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)
         {
 
-            Q
+            
             string currentColumnName = getCurrentColumnName();
             DataGridViewRow selectedRow = dataGridView1.CurrentRow;
             if (currentColumnName == "net" || currentColumnName == "gross")

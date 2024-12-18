@@ -1,4 +1,4 @@
-﻿namespace SYA.CODE.AddItem
+﻿namespace SYA
 {
     public static class addGoldHelper
     {

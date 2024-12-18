@@ -1,6 +1,6 @@
-﻿using SYA.CODE.Helper;
+﻿    
 using System.Data;
-namespace SYA.CODE
+namespace SYA
 {
     public class SaleReportAutomation : Form
     {

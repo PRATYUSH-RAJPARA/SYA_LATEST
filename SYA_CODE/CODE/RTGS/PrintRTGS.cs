@@ -1,5 +1,4 @@
-﻿using SYA.CODE.Helper;
-using System.Data;
+﻿using System.Data;
 using System.Drawing.Printing;
 using Form = System.Windows.Forms.Form;
 namespace SYA

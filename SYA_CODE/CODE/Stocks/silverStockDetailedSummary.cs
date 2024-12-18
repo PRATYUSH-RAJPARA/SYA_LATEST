@@ -1,7 +1,6 @@
-﻿using SYA.CODE.Helper;
-using SYA.CODE.Stocks;
+﻿
 using System.Data;
-namespace SYA.Stocks
+namespace SYA
 {
     public partial class silverStockDetailedSummary : Form
     {

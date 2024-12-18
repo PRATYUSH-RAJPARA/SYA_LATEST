@@ -1,5 +1,4 @@
 ﻿//using LiveCharts.Configurations;
-using SYA.CODE.Helper;
 using System.Data;
 namespace SYA
 {

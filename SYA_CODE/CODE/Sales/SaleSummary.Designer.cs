@@ -1,4 +1,4 @@
-﻿namespace SYA.Stocks
+﻿namespace SYA   
 {
     partial class SaleSummary
     {

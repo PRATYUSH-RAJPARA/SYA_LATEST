@@ -1,5 +1,4 @@
 ﻿using Serilog;
-using SYA.CODE.Helper;
 using System.Data.SQLite;
 using System.Drawing.Printing;
 using Font = System.Drawing.Font;

@@ -1,6 +1,5 @@
-﻿using SYA.CODE;
-
-namespace SYA.Testing_Phase
+﻿
+namespace SYA   
 {
     public partial class SaleAuto : Form
     {

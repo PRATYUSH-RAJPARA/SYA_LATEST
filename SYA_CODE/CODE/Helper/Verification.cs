@@ -1,4 +1,4 @@
-﻿namespace SYA.CODE.Helper
+﻿namespace SYA
 {
     public static class Verification
     {

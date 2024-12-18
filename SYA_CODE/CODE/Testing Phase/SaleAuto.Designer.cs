@@ -1,4 +1,4 @@
-﻿namespace SYA.Testing_Phase
+﻿namespace SYA
 {
     partial class SaleAuto
     {

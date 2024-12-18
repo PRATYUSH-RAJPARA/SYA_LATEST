@@ -1,5 +1,4 @@
-﻿using SYA.CODE.Helper;
-using System.Data;
+﻿using System.Data;
 namespace SYA
 {
     public partial class settings : Form

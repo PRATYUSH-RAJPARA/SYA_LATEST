@@ -1,7 +1,7 @@
 ﻿using QRCoder;
 using System.Drawing;
 using System.Drawing.Printing;
-namespace SYA.CODE.Helper
+namespace SYA
 {
     public static class TagPrintHelper
     {

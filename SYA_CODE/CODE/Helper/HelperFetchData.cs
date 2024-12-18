@@ -5,7 +5,7 @@ using System.Text;
 using Application = System.Windows.Forms.Application;
 using DataTable = System.Data.DataTable;
 using TextBox = System.Windows.Forms.TextBox;
-namespace SYA.CODE.Helper
+namespace SYA
 {
     public class HelperFetchData
     {

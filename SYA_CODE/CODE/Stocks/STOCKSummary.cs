@@ -1,4 +1,4 @@
-﻿using SYA.CODE.Helper;
+﻿
 using System.Data;
 using DataTable = System.Data.DataTable;
 namespace SYA

@@ -1,5 +1,4 @@
-﻿using SYA.CODE.Helper;
-using System.Data.SQLite;
+﻿using System.Data.SQLite;
 namespace SYA
 {
     public partial class login : Form

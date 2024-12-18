@@ -1,4 +1,4 @@
-﻿namespace SYA.Sell
+﻿namespace SYA
 {
     partial class sell
     {

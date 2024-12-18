@@ -1,6 +1,6 @@
-﻿using SYA.CODE.Helper;
+﻿
 using System.Data;
-namespace SYA.CODE.Stocks
+namespace SYA
 {
     public static class StockHelper
     {

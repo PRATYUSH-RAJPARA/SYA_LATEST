@@ -1,7 +1,6 @@
 ﻿using SYA;
 using System.Data.SQLite;
 using System.Data;
-using SYA.CODE.Helper;
 
 public class HelperFetchData1
 {

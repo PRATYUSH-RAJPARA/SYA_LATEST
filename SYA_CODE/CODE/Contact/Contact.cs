@@ -1,8 +1,7 @@
-﻿using SYA.CODE.Helper;
-using System.Data;
+﻿using System.Data;
 using System.Data.SQLite;
 using System.Text;
-namespace SYA.CODE.Contact
+namespace SYA
 {
     public class Contact
     {
