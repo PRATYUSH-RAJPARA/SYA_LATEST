@@ -21,7 +21,7 @@ public class HelperFetchData1
         foreach (DataRow row in accessData.Rows)
         {
             
-                if (RecordExists(row))
+                if (RecordExists(row,"SALE_DATA_NEW"))
                 {
                     ExecuteUpdateQueryForSales(row);
                 }
@@ -58,7 +58,7 @@ public class HelperFetchData1
                 // Handle existing tag
                 foreach (DataRow dr in dt.Rows)
                 {
-                    if (RecordExists(dr))
+                    if (RecordExists(dr,"SALE_DATA_NEW"))
                     {
                         ExecuteUpdateQueryForSales(dr);
                         updatedRows++;
@@ -74,7 +74,7 @@ public class HelperFetchData1
             else
             {
                 // Handle new data
-                if (RecordExists(row))
+                if (RecordExists(row,"MAIN_DATA_NEW"))
                 {
                     ExecuteUpdateQuery(row);
                     updatedRows++;
@@ -105,12 +105,12 @@ public class HelperFetchData1
         accessData = helper.FetchDataTableFromDataCareDataBase(query);
     }
 
-    public bool RecordExists(DataRow accessDataRow)
+    public bool RecordExists(DataRow accessDataRow,string tableName)
     {
         string tagNo = accessDataRow["TAG_NO"]?.ToString() ?? "";
         string coYear = accessDataRow["CO_YEAR"]?.ToString() ?? "";
 
-        string query = "SELECT 1 FROM MAIN_DATA_NEW WHERE TAG_NO = '" + tagNo + "' AND CO_YEAR = '" + coYear + "'";
+        string query = "SELECT 1 FROM "+tableName+" WHERE TAG_NO = '" + tagNo + "' AND CO_YEAR = '" + coYear + "'";
         DataTable dt = helper.FetchDataTableFromSYADataBase(query);
         return dt.Rows.Count > 0;
     }

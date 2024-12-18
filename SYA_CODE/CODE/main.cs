@@ -335,7 +335,7 @@ namespace SYA
         private void btnProcessData_Click(object sender, EventArgs e)
         {
             HelperFetchData1 obj = new HelperFetchData1();
-            obj.processSaleData();
+            obj.ProcessData();
         }
     }
     public class ApiResponseItem
