@@ -38,23 +38,19 @@ public class HelperFetchData1
             // Check if input is null or empty
             if (string.IsNullOrWhiteSpace(financialYear))
                 return false;
-
             try
             {
                 // Split the years into parts
                 var financialYearParts = financialYear.Split('-');
                 var targetYearParts = targetYear.Split('-');
-
                 // Ensure the format is correct
                 if (financialYearParts.Length != 2 || targetYearParts.Length != 2)
                     return false;
-
                 // Parse the years to integers
                 int startYear = int.Parse(financialYearParts[0]);
                 int endYear = int.Parse(financialYearParts[1]);
                 int targetStartYear = int.Parse(targetYearParts[0]);
                 int targetEndYear = int.Parse(targetYearParts[1]);
-
                 // Compare the financial years
                 if (startYear > targetStartYear || (startYear == targetStartYear && endYear >= targetEndYear))
                     return true;
@@ -64,11 +60,9 @@ public class HelperFetchData1
                 // Handle parsing errors gracefully
                 return false;
             }
-
             return false;
         }
         bool doOrNot = false;
-
         if (IsFinancialYearGreaterOrEqual(CO_YEAR_CHECK))
         {
             doOrNot = true;
@@ -95,7 +89,6 @@ public class HelperFetchData1
             notifyForm.ShowNotification1($"Total Rows in Access: {totalRows}");
             Application.DoEvents();
             int currentRow = 0;
-
             foreach (DataRow row in accessData.Rows)
             {
                 string tagNo = row["TAG_NO"]?.ToString() ?? "";
@@ -210,7 +203,6 @@ public class HelperFetchData1
         sqliteParameters.Add(new SQLiteParameter("@PRICE", 0));
         return sqliteParameters;
     }
-
     // Helper method for mapping parameters for sales data
     public List<SQLiteParameter> MapDataToSQLiteParametersForSales(DataRow accessDataRow)
     {

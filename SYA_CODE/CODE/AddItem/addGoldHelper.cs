@@ -1,6 +1,5 @@
 ﻿using System.Data.SQLite;
 using System.Windows.Forms;
-
 namespace SYA
 {
     public  class addGoldHelper
@@ -85,6 +84,5 @@ namespace SYA
                 }
             }
         }
-
     }
 }

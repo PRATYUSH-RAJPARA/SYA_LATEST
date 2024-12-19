@@ -8,19 +8,16 @@ namespace SYA
 {
     public partial class addgold : Form
     {
-
         addGoldHelper addGoldHelper = new addGoldHelper();
         private const int ItemNameColumnIndex = 2;
         bool quickSave = false;
         bool quickSaveAndPrint = true;
         public Labour objLabour = new Labour();
-
         private DataGridViewNavigationHelper navigationHelper;
         public addgold()
         {
             InitializeComponent();
             navigationHelper = new DataGridViewNavigationHelper(dataGridView1);
-
             dataGridView1.AutoGenerateColumns = false;
             gridviewstyle();
             DataGridViewTextBoxColumn textBoxColumn = new DataGridViewTextBoxColumn();
@@ -36,7 +33,6 @@ namespace SYA
         }
         private void addgold_Load(object sender, EventArgs e)
         {
-            InitializeLogging();
             dataGridView1.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
             UpdateRowNumbers();
         }
@@ -61,182 +57,16 @@ namespace SYA
                 }
             }
         }
-
         private void InitializeComboBoxColumns()
         {
             LoadComboBoxValues("G", "IT_NAME", "IT_NAME", (DataGridViewComboBoxColumn)dataGridView1.Columns["type"]);
             LoadComboBoxValues("GQ", "IT_NAME", "IT_NAME", (DataGridViewComboBoxColumn)dataGridView1.Columns["caret"]);
         }
-
         private void messageBoxTimer_Tick(object sender, EventArgs e)
         {
             txtMessageBox.Text = string.Empty;
             messageBoxTimer.Stop();
         }
-        //private void dataGridView1_KeyDown(object sender, KeyEventArgs e)
-        // {
-        //     MessageBox.Show("keydown----------");
-        //     DataGridView dataGridView10 = dataGridView1;
-        //     string currentColumnName1 = dataGridView10.Columns[dataGridView10.CurrentCell.ColumnIndex].Name;
-        //     if (quickSaveAndPrint)
-        //     {
-        //         if (e.KeyCode == Keys.Tab)
-        //         {
-        //             dataGridView1.CommitEdit(DataGridViewDataErrorContexts.Commit);
-        //             DataGridViewTextBoxEditingControl editingControl = sender as DataGridViewTextBoxEditingControl;
-        //             DataGridView dataGridView = dataGridView1;
-        //             string currentColumnName = dataGridView.Columns[dataGridView.CurrentCell.ColumnIndex].Name;
-        //             int currentRowIndex = dataGridView.CurrentCell.RowIndex;
-        //             if (currentColumnName == "comment")
-        //             {
-        //                 DataGridViewRow empty = new DataGridViewRow();
-        //                 DataGridViewRow selectedRow = dataGridView1.CurrentRow;
-        //                 if (SaveData(selectedRow, 1))
-        //                 {
-        //                     string tagNumber = (selectedRow.Cells["tagno"].Value ?? "0").ToString();
-        //                     if (tagNumber.Length > 1)
-        //                     {
-        //                         PrintLabels();
-        //                     }
-        //                 }
-        //             }
-        //         }
-        //     }
-        //     else if (false)
-        //     {
-        //         if (e.KeyCode == Keys.Tab)
-        //         {
-        //             dataGridView1.CommitEdit(DataGridViewDataErrorContexts.Commit);
-        //             DataGridViewTextBoxEditingControl editingControl = sender as DataGridViewTextBoxEditingControl;
-        //             DataGridView dataGridView = dataGridView1;
-        //             string currentColumnName = dataGridView.Columns[dataGridView.CurrentCell.ColumnIndex].Name;
-        //             int currentRowIndex = dataGridView.CurrentCell.RowIndex;
-        //             if (currentColumnName == "comment")
-        //             {
-        //                 DataGridViewRow selectedRow = dataGridView1.CurrentRow;
-        //                 string tagNumber = (selectedRow.Cells["tagno"].Value ?? "0").ToString();
-        //                 if (tagNumber.Length > 1)
-        //                 {
-        //                     PrintLabels();
-        //                 }
-        //             }
-        //         }
-        //     }
-        //     else if (quickSave)
-        //     {
-        //         if (e.KeyCode == Keys.Tab)
-        //         {
-        //             dataGridView1.CommitEdit(DataGridViewDataErrorContexts.Commit);
-        //             DataGridViewTextBoxEditingControl editingControl = sender as DataGridViewTextBoxEditingControl;
-        //             DataGridView dataGridView = dataGridView1;
-        //             string currentColumnName = dataGridView.Columns[dataGridView.CurrentCell.ColumnIndex].Name;
-        //             int currentRowIndex = dataGridView.CurrentCell.RowIndex;
-        //             if (currentColumnName == "comment")
-        //             {
-        //                 DataGridViewRow selectedRow = dataGridView1.CurrentRow;
-        //                 SaveData(selectedRow, 1);
-        //             }
-        //         }
-        //     }
-        // }
-
-
-
-
-
-
-        private void validateEverything(DataGridViewRow selectedRow, string currentColumnName)
-        {
-            string currentColumnName1 = dataGridView1.Columns[dataGridView1.CurrentCell.ColumnIndex].Name;
-            if (currentColumnName == "net" || currentColumnName == "gross" || currentColumnName == "labour" || currentColumnName == "wholeLabour" || currentColumnName == "other") { }
-        }
-        // -----------------
-
-        private void dataGridView1_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            string message = "KeyPress Event Triggered\n";
-            message += "Key Pressed: " + e.KeyChar + "\n";
-
-            // You can add more live validation logic here if needed
-
-            MessageBox.Show(message, "KeyPress Event", MessageBoxButtons.OK, MessageBoxIcon.Information);
-        }
-
-        // Event for KeyDown (After pressing Enter)
-        private void dataGridView1_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.Enter)
-            {
-                MessageBox.Show("hi");
-                // Prevent the default Enter key behavior (moving to the next row)
-                e.Handled = true;
-
-                // Commit the edit (if the cell is in edit mode)
-                if (dataGridView1.IsCurrentCellInEditMode)
-                {
-                    dataGridView1.CommitEdit(DataGridViewDataErrorContexts.Commit);
-                }
-
-                // Move to the next cell (same row)
-                MoveToNextCell();
-            }
-        }
-        int currentRowIndex = -1;
-        int currentColumnIndex = -1;
-        // Function to move to the next cell
-        private void MoveToNextCell()
-        {
-            if (currentColumnIndex < dataGridView1.ColumnCount - 1)
-            {
-                // Move to the next cell in the same row
-                dataGridView1.CurrentCell = dataGridView1.Rows[currentRowIndex].Cells[currentColumnIndex + 1];
-            }
-            else if (currentRowIndex < dataGridView1.RowCount - 1)
-            {
-                // Move to the first cell of the next row
-                dataGridView1.CurrentCell = dataGridView1.Rows[currentRowIndex + 1].Cells[0];
-            }
-        }
-
-
-        private void dataGridView1_CellEndEdit(object sender, DataGridViewCellEventArgs e)
-        {
-            // Example of where you would put your validation logic
-
-                MoveToNextCell();
-         
-        }
-
-
-        // -----------------
-        private void dataGridView1_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
-        {
-            string currentColumnName = addGoldHelper.getCurrentColumnName(dataGridView1);
-            if (currentColumnName == "gross" || currentColumnName == "net" || currentColumnName == "labour" || currentColumnName == "wholelabour" || currentColumnName == "other")
-            {
-                TextBox tb = e.Control as TextBox;
-                if (tb != null)
-                {
-                    tb.KeyPress -= NumericTextBox_KeyPress;
-                    tb.KeyPress += NumericTextBox_KeyPress;
-                }
-            }
-        }
-        private void NumericTextBox_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            TextBox tb = sender as TextBox;
-            // Allow digits, backspace, delete, and one '.' (decimal point)
-            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && e.KeyChar != '.')
-            {
-                e.Handled = true; // Block invalid input
-            }
-            // Allow only one '.' in the TextBox
-            if (e.KeyChar == '.' && tb.Text.Contains("."))
-            {
-                e.Handled = true; // Block additional decimal points
-            }
-        }
-        // Validate cell value when editing is completed
         private void dataGridView1_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)
         {
             string currentColumnName = addGoldHelper.getCurrentColumnName(dataGridView1);
@@ -481,11 +311,6 @@ namespace SYA
                 e.Handled = true;
             }
         }
-        private void InitializeLogging()
-        {
-            Log.Logger = new LoggerConfiguration()
-                .WriteTo.File(helper.LogsFolder + "\\logs_tagno.txt", rollingInterval: RollingInterval.Day).CreateLogger();
-        }
         private void SelectCell(DataGridView dataGridView, int rowIndex, string columnName)
         {
             dataGridView.CurrentCell = dataGridView.Rows[rowIndex].Cells[columnName];
@@ -683,8 +508,6 @@ namespace SYA
                 }
             }
         }
-
-
         private bool ValidateData(DataGridViewRow row)
         {
             if (!Verification.validateType(row.Cells["type"].Value.ToString()))
@@ -866,20 +689,8 @@ namespace SYA
                 quickSave = false;
             }
         }
-        private void dataGridView1_SizeChanged(object sender, EventArgs e)
-        {
-        }
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
-        }
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-        }
-
-        private void dataGridView1_CellBeginEdit(object sender, DataGridViewCellCancelEventArgs e)
-        {
-            currentRowIndex = e.RowIndex;
-            currentColumnIndex = e.ColumnIndex;
         }
     }
 }
