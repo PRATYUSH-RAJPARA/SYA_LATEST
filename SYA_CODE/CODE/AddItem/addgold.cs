@@ -8,8 +8,8 @@ namespace SYA
 {
     public partial class addgold : Form
     {
-        private SQLiteConnection connectionToSYADatabase;
-        private SQLiteConnection connectionToDatacare;
+
+        addGoldHelper addGoldHelper = new addGoldHelper();
         private const int ItemNameColumnIndex = 2;
         bool quickSave = false;
         bool quickSaveAndPrint = true;
@@ -17,7 +17,6 @@ namespace SYA
         public addgold()
         {
             InitializeComponent();
-            InitializeDatabaseConnection();
             dataGridView1.AutoGenerateColumns = false;
             gridviewstyle();
             DataGridViewTextBoxColumn textBoxColumn = new DataGridViewTextBoxColumn();
@@ -58,20 +57,13 @@ namespace SYA
                 }
             }
         }
-        private void InitializeDatabaseConnection()
-        {
-            connectionToSYADatabase = new SQLiteConnection(helper.SYAConnectionString);
-            connectionToDatacare = new SQLiteConnection(helper.accessConnectionString);
-        }
+
         private void InitializeComboBoxColumns()
         {
             LoadComboBoxValues("G", "IT_NAME", "IT_NAME", (DataGridViewComboBoxColumn)dataGridView1.Columns["type"]);
             LoadComboBoxValues("GQ", "IT_NAME", "IT_NAME", (DataGridViewComboBoxColumn)dataGridView1.Columns["caret"]);
         }
-        private string getCurrentColumnName()
-        {
-            return dataGridView1.Columns[dataGridView1.CurrentCell.ColumnIndex].Name;
-        }
+
         private void messageBoxTimer_Tick(object sender, EventArgs e)
         {
             txtMessageBox.Text = string.Empty;
@@ -143,14 +135,79 @@ namespace SYA
         //         }
         //     }
         // }
+
+
+
+
+
+
         private void validateEverything(DataGridViewRow selectedRow, string currentColumnName)
         {
             string currentColumnName1 = dataGridView1.Columns[dataGridView1.CurrentCell.ColumnIndex].Name;
             if (currentColumnName == "net" || currentColumnName == "gross" || currentColumnName == "labour" || currentColumnName == "wholeLabour" || currentColumnName == "other") { }
         }
+        // -----------------
+
+        private void dataGridView1_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            string message = "KeyPress Event Triggered\n";
+            message += "Key Pressed: " + e.KeyChar + "\n";
+
+            // You can add more live validation logic here if needed
+
+            MessageBox.Show(message, "KeyPress Event", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        // Event for KeyDown (After pressing Enter)
+        private void dataGridView1_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                MessageBox.Show("hi");
+                // Prevent the default Enter key behavior (moving to the next row)
+                e.Handled = true;
+
+                // Commit the edit (if the cell is in edit mode)
+                if (dataGridView1.IsCurrentCellInEditMode)
+                {
+                    dataGridView1.CommitEdit(DataGridViewDataErrorContexts.Commit);
+                }
+
+                // Move to the next cell (same row)
+                MoveToNextCell();
+            }
+        }
+        int currentRowIndex = -1;
+        int currentColumnIndex = -1;
+        // Function to move to the next cell
+        private void MoveToNextCell()
+        {
+            if (currentColumnIndex < dataGridView1.ColumnCount - 1)
+            {
+                // Move to the next cell in the same row
+                dataGridView1.CurrentCell = dataGridView1.Rows[currentRowIndex].Cells[currentColumnIndex + 1];
+            }
+            else if (currentRowIndex < dataGridView1.RowCount - 1)
+            {
+                // Move to the first cell of the next row
+                dataGridView1.CurrentCell = dataGridView1.Rows[currentRowIndex + 1].Cells[0];
+            }
+        }
+
+
+        private void dataGridView1_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        {
+            // Example of where you would put your validation logic
+
+                MoveToNextCell();
+         
+        }
+
+
+        // -----------------
         private void dataGridView1_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
         {
-            string currentColumnName = getCurrentColumnName();
+            string currentColumnName = addGoldHelper.getCurrentColumnName(dataGridView1);
             if (currentColumnName == "gross" || currentColumnName == "net" || currentColumnName == "labour" || currentColumnName == "wholelabour" || currentColumnName == "other")
             {
                 TextBox tb = e.Control as TextBox;
@@ -178,7 +235,7 @@ namespace SYA
         // Validate cell value when editing is completed
         private void dataGridView1_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)
         {
-            string currentColumnName = getCurrentColumnName();
+            string currentColumnName = addGoldHelper.getCurrentColumnName(dataGridView1);
             DataGridViewRow selectedRow = dataGridView1.CurrentRow;
             if (currentColumnName == "net" || currentColumnName == "gross")
             {
@@ -224,7 +281,7 @@ namespace SYA
         }
         private void dataGridView1_CellValidated(object sender, DataGridViewCellEventArgs e)
         {
-            string currentColumnName = getCurrentColumnName();
+            string currentColumnName = addGoldHelper.getCurrentColumnName(dataGridView1);
             DataGridViewRow selectedRow1 = dataGridView1.CurrentRow;
             if (currentColumnName == "huid2" || currentColumnName == "huid1")
             {
@@ -605,9 +662,9 @@ namespace SYA
                     {
                         string itemName = itemNameObject.ToString();
                         string caret = dataGridView1.Rows[rowIndex].Cells["caret"].Value?.ToString();
-                        string prCode = GetPRCode(itemName);
+                        string prCode = addGoldHelper.GetPRCode(itemName);
                         string prefix = "SYA";
-                        int newSequenceNumber = GetNextSequenceNumber(prefix, prCode, caret);
+                        int newSequenceNumber = addGoldHelper.GetNextSequenceNumber(prefix, prCode, caret);
                         if (!string.IsNullOrEmpty(caret) && !string.IsNullOrEmpty(prCode))
                         {
                             string newTagNo = $"{prefix}{caret}{prCode}{newSequenceNumber:D5}";
@@ -622,42 +679,8 @@ namespace SYA
                 }
             }
         }
-        private int GetNextSequenceNumber(string prefix, string prCode, string caret)
-        {
-            prefix ??= "";
-            prCode ??= "";
-            caret ??= "";
-            int prefixLength = prefix.Length + prCode.Length + caret.Length;
-            using (SQLiteConnection con = new SQLiteConnection(connectionToSYADatabase.ConnectionString))
-            {
-                using (SQLiteCommand command = new SQLiteCommand($"SELECT MAX(CAST(SUBSTR(TAG_NO, {prefixLength + 1}) AS INTEGER)) FROM MAIN_DATA WHERE ITEM_CODE = '{prCode}'", con))
-                {
-                    con.Open();
-                    object result = command.ExecuteScalar();
-                    if (result != DBNull.Value)
-                    {
-                        return Convert.ToInt32(result) + 1;
-                    }
-                    return 1;
-                }
-            }
-        }
-        private string GetPRCode(string itemName)
-        {
-            using (SQLiteConnection con = new SQLiteConnection(connectionToSYADatabase.ConnectionString))
-            {
-                using (SQLiteCommand command = new SQLiteCommand($"SELECT PR_CODE FROM ITEM_MASTER WHERE IT_NAME = '{itemName}' AND IT_TYPE = 'G'", con))
-                {
-                    con.Open();
-                    object result = command.ExecuteScalar();
-                    if (result != null)
-                    {
-                        return result.ToString();
-                    }
-                    return null;
-                }
-            }
-        }
+
+
         private bool ValidateData(DataGridViewRow row)
         {
             if (!Verification.validateType(row.Cells["type"].Value.ToString()))
@@ -847,6 +870,12 @@ namespace SYA
         }
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
+        }
+
+        private void dataGridView1_CellBeginEdit(object sender, DataGridViewCellCancelEventArgs e)
+        {
+            currentRowIndex = e.RowIndex;
+            currentColumnIndex = e.ColumnIndex;
         }
     }
 }
