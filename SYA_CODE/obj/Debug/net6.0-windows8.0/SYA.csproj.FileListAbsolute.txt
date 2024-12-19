@@ -1026,3 +1026,4 @@ C:\SYA_LATEST\SYA_CODE\obj\Debug\net6.0-windows8.0\SYA.pdb
 C:\SYA_LATEST\SYA_CODE\obj\Debug\net6.0-windows8.0\SYA.genruntimeconfig.cache
 C:\SYA_LATEST\SYA_CODE\obj\Debug\net6.0-windows8.0\ref\SYA.dll
 C:\SYA_LATEST\SYA_CODE\obj\Debug\net6.0-windows8.0\SYA.testForm.resources
+F:\SYA_LATEST\SYA_CODE\obj\Debug\net6.0-windows8.0\SYA.testForm.resources

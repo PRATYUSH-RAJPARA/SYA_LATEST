@@ -14,9 +14,13 @@ namespace SYA
         bool quickSave = false;
         bool quickSaveAndPrint = true;
         public Labour objLabour = new Labour();
+
+        private DataGridViewNavigationHelper navigationHelper;
         public addgold()
         {
             InitializeComponent();
+            navigationHelper = new DataGridViewNavigationHelper(dataGridView1);
+
             dataGridView1.AutoGenerateColumns = false;
             gridviewstyle();
             DataGridViewTextBoxColumn textBoxColumn = new DataGridViewTextBoxColumn();

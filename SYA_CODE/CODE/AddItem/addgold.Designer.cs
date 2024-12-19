@@ -224,10 +224,10 @@ namespace SYA
             dataGridView1.RowTemplate.Height = 29;
             dataGridView1.Size = new Size(1266, 579);
             dataGridView1.TabIndex = 1;
-            dataGridView1.CellBeginEdit += dataGridView1_CellBeginEdit;
-            dataGridView1.CellEndEdit += dataGridView1_CellEndEdit;
-            dataGridView1.KeyDown += dataGridView1_KeyDown;
-            dataGridView1.KeyPress += dataGridView1_KeyPress;
+       //     dataGridView1.CellBeginEdit += dataGridView1_CellBeginEdit;
+        //    dataGridView1.CellEndEdit += dataGridView1_CellEndEdit;
+         //   dataGridView1.KeyDown += dataGridView1_KeyDown;
+         //   dataGridView1.KeyPress += dataGridView1_KeyPress;
             // 
             // select
             // 

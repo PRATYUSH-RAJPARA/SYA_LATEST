@@ -13,8 +13,8 @@ namespace SYA
             // Initialize the cancellation token source
             cts = new CancellationTokenSource();
             // Start a new thread to handle HTTP requests
-            httpThread = new Thread(() => HandleHttpRequests(cts.Token));
-            httpThread.Start();
+       //     httpThread = new Thread(() => HandleHttpRequests(cts.Token));
+       //     httpThread.Start();
             Application.ApplicationExit += new EventHandler(OnApplicationExit);
             ApplicationConfiguration.Initialize();
             Application.Run(new main());
@@ -119,8 +119,8 @@ namespace SYA
             // Signal the cancellation token
             cts.Cancel();
             // Ensure the listener is stopped when the application exits
-            listener?.Stop();
-            httpThread?.Join(); // Wait for the HTTP thread to finish
+          //  listener?.Stop();
+           // httpThread?.Join(); // Wait for the HTTP thread to finish
         }
     }
 }

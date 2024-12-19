@@ -9,19 +9,22 @@ namespace SYA
         private int savedColumnIndex = -1;
         private System.Windows.Forms.Timer moveCellTimer;
 
+        private DataGridViewNavigationHelper navigationHelper;
+
         public testForm()
         {
             InitializeComponent();
+            navigationHelper = new DataGridViewNavigationHelper(dataGridView1);
 
-            // Attach event handlers
-            dataGridView1.CellEndEdit += DataGridView1_CellEndEdit;
-            dataGridView1.CellEnter += DataGridView1_CellEnter;
-            dataGridView1.KeyDown += DataGridView1_KeyDown;
+            //// Attach event handlers
+            //dataGridView1.CellEndEdit += DataGridView1_CellEndEdit;
+            //dataGridView1.CellEnter += DataGridView1_CellEnter;
+            //dataGridView1.KeyDown += DataGridView1_KeyDown;
 
-            // Initialize the Timer
-            moveCellTimer = new System.Windows.Forms.Timer();
-            moveCellTimer.Interval = 1; // Minimal delay
-            moveCellTimer.Tick += MoveCellTimer_Tick;
+            //// Initialize the Timer
+            //moveCellTimer = new System.Windows.Forms.Timer();
+            //moveCellTimer.Interval = 1; // Minimal delay
+            //moveCellTimer.Tick += MoveCellTimer_Tick;
         }
 
         private void testForm_Load(object sender, EventArgs e)
