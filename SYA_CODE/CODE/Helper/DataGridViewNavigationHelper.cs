@@ -52,20 +52,31 @@ namespace SYA
         {
             // Stop the Timer to prevent repeated execution
             moveCellTimer.Stop();
+
             // Move focus to the next cell
             if (savedRowIndex >= 0 && savedColumnIndex >= 0)
             {
-                int nextColumnIndex = savedColumnIndex + 1;
-                if (nextColumnIndex < targetDataGridView.Columns.Count)
+                // Check if the current column is "comment"
+                if (targetDataGridView.Columns[savedColumnIndex].Name == "comment")
+                {
+                    if (savedRowIndex + 1 < targetDataGridView.Rows.Count)
+                    {
+                        // Move to the first column of the next row
+                        targetDataGridView.CurrentCell = targetDataGridView.Rows[savedRowIndex + 1].Cells[0];
+                    }
+                    else
+                    {
+                        // Add a new row and move to the first column of the new row
+                        int newRowIndex = targetDataGridView.Rows.Add();
+                        targetDataGridView.CurrentCell = targetDataGridView.Rows[newRowIndex].Cells[0];
+                    }
+                }
+                else
                 {
                     // Move to the next column in the same row
-                    targetDataGridView.CurrentCell = targetDataGridView.Rows[savedRowIndex].Cells[nextColumnIndex];
+                    targetDataGridView.CurrentCell = targetDataGridView.Rows[savedRowIndex].Cells[savedColumnIndex + 1];
                 }
-                else if (savedRowIndex + 1 < targetDataGridView.Rows.Count)
-                {
-                    // Move to the first column of the next row
-                    targetDataGridView.CurrentCell = targetDataGridView.Rows[savedRowIndex + 1].Cells[0];
-                }
+
                 // Reset saved indices after moving
                 savedRowIndex = -1;
                 savedColumnIndex = -1;

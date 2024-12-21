@@ -1,7 +1,7 @@
 ﻿using System.Runtime.InteropServices;
 namespace SYA
 {
-    partial class addgold1
+    partial class addgold_WORKINGcopy
     {
         /// <summary>
         /// Required designer variable.
@@ -53,16 +53,15 @@ namespace SYA
             dataGridView1 = new DataGridView();
             select = new DataGridViewCheckBoxColumn();
             tagno = new DataGridViewTextBoxColumn();
-            itemName = new DataGridViewComboBoxColumn();
-            purity = new DataGridViewComboBoxColumn();
+            type = new DataGridViewComboBoxColumn();
+            caret = new DataGridViewComboBoxColumn();
             gross = new DataGridViewTextBoxColumn();
             net = new DataGridViewTextBoxColumn();
             labour = new DataGridViewTextBoxColumn();
-            labourAmount = new DataGridViewTextBoxColumn();
+            wholeLabour = new DataGridViewTextBoxColumn();
             other = new DataGridViewTextBoxColumn();
             huid1 = new DataGridViewTextBoxColumn();
             huid2 = new DataGridViewTextBoxColumn();
-            huid3 = new DataGridViewTextBoxColumn();
             size = new DataGridViewTextBoxColumn();
             comment = new DataGridViewTextBoxColumn();
             panel31 = new Panel();
@@ -116,7 +115,7 @@ namespace SYA
             panel1.Location = new Point(0, 0);
             panel1.Margin = new Padding(3, 2, 3, 2);
             panel1.Name = "panel1";
-            panel1.Size = new Size(1284, 50);
+            panel1.Size = new Size(1347, 50);
             panel1.TabIndex = 0;
             // 
             // textBox1
@@ -128,11 +127,12 @@ namespace SYA
             textBox1.Margin = new Padding(3, 2, 3, 2);
             textBox1.Name = "textBox1";
             textBox1.ReadOnly = true;
-            textBox1.Size = new Size(1266, 38);
+            textBox1.Size = new Size(1329, 38);
             textBox1.TabIndex = 12;
             textBox1.TabStop = false;
             textBox1.Text = "ADD GOLD ITEMS";
             textBox1.TextAlign = HorizontalAlignment.Center;
+            textBox1.TextChanged += textBox1_TextChanged;
             // 
             // panel28
             // 
@@ -148,7 +148,7 @@ namespace SYA
             // 
             panel27.BackColor = Color.Black;
             panel27.Dock = DockStyle.Right;
-            panel27.Location = new Point(1275, 4);
+            panel27.Location = new Point(1338, 4);
             panel27.Margin = new Padding(3, 2, 3, 2);
             panel27.Name = "panel27";
             panel27.Size = new Size(9, 42);
@@ -161,7 +161,7 @@ namespace SYA
             panel22.Location = new Point(0, 0);
             panel22.Margin = new Padding(3, 2, 3, 2);
             panel22.Name = "panel22";
-            panel22.Size = new Size(1284, 4);
+            panel22.Size = new Size(1347, 4);
             panel22.TabIndex = 4;
             // 
             // panel19
@@ -171,7 +171,7 @@ namespace SYA
             panel19.Location = new Point(0, 46);
             panel19.Margin = new Padding(3, 2, 3, 2);
             panel19.Name = "panel19";
-            panel19.Size = new Size(1284, 4);
+            panel19.Size = new Size(1347, 4);
             panel19.TabIndex = 3;
             // 
             // panel4
@@ -185,7 +185,7 @@ namespace SYA
             panel4.Location = new Point(0, 50);
             panel4.Margin = new Padding(3, 2, 3, 2);
             panel4.Name = "panel4";
-            panel4.Size = new Size(1284, 583);
+            panel4.Size = new Size(1347, 583);
             panel4.TabIndex = 3;
             // 
             // dataGridView1
@@ -197,7 +197,7 @@ namespace SYA
             dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
             dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { select, tagno, itemName, purity, gross, net, labour, labourAmount, other, huid1, huid2, huid3, size, comment });
+            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { select, tagno, type, caret, gross, net, labour, wholeLabour, other, huid1, huid2, size, comment });
             dataGridViewCellStyle15.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle15.BackColor = SystemColors.Window;
             dataGridViewCellStyle15.Font = new Font("Segoe UI", 12.5F, FontStyle.Regular, GraphicsUnit.Point);
@@ -222,8 +222,15 @@ namespace SYA
             dataGridView1.RowHeadersDefaultCellStyle = dataGridViewCellStyle16;
             dataGridView1.RowHeadersWidth = 51;
             dataGridView1.RowTemplate.Height = 29;
-            dataGridView1.Size = new Size(1266, 579);
+            dataGridView1.Size = new Size(1329, 579);
             dataGridView1.TabIndex = 1;
+            dataGridView1.CellEndEdit += dataGridView1_CellEndEdit;
+            dataGridView1.CellEnter += dataGridView1_CellEnter;
+            dataGridView1.CellPainting += dataGridView1_CellPainting;
+            dataGridView1.CellValueChanged += dataGridView1_CellValueChanged;
+            dataGridView1.EditingControlShowing += dataGridView1_EditingControlShowing;
+            dataGridView1.SizeChanged += dataGridView1_SizeChanged;
+            dataGridView1.KeyDown += dataGridView1_KeyDown;
             // 
             // select
             // 
@@ -247,27 +254,27 @@ namespace SYA
             tagno.ReadOnly = true;
             tagno.Width = 125;
             // 
-            // itemName
+            // type
             // 
             dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle4.BackColor = Color.FromArgb(181, 201, 154);
-            itemName.DefaultCellStyle = dataGridViewCellStyle4;
-            itemName.DisplayStyle = DataGridViewComboBoxDisplayStyle.Nothing;
-            itemName.HeaderText = "ITEMNAME";
-            itemName.MinimumWidth = 6;
-            itemName.Name = "itemName";
-            itemName.Width = 125;
+            type.DefaultCellStyle = dataGridViewCellStyle4;
+            type.DisplayStyle = DataGridViewComboBoxDisplayStyle.Nothing;
+            type.HeaderText = "ITEM";
+            type.MinimumWidth = 6;
+            type.Name = "type";
+            type.Width = 125;
             // 
-            // purity
+            // caret
             // 
             dataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle5.BackColor = Color.FromArgb(194, 213, 170);
-            purity.DefaultCellStyle = dataGridViewCellStyle5;
-            purity.DisplayStyle = DataGridViewComboBoxDisplayStyle.Nothing;
-            purity.HeaderText = "CARET";
-            purity.MinimumWidth = 6;
-            purity.Name = "purity";
-            purity.Width = 125;
+            caret.DefaultCellStyle = dataGridViewCellStyle5;
+            caret.DisplayStyle = DataGridViewComboBoxDisplayStyle.Nothing;
+            caret.HeaderText = "CARET";
+            caret.MinimumWidth = 6;
+            caret.Name = "caret";
+            caret.Width = 125;
             // 
             // gross
             // 
@@ -291,19 +298,19 @@ namespace SYA
             // 
             dataGridViewCellStyle8.BackColor = Color.FromArgb(233, 245, 219);
             labour.DefaultCellStyle = dataGridViewCellStyle8;
-            labour.HeaderText = "LABOUR";
+            labour.HeaderText = "PER GRAM LABOUR";
             labour.MinimumWidth = 6;
             labour.Name = "labour";
             labour.Width = 125;
             // 
-            // labourAmount
+            // wholeLabour
             // 
             dataGridViewCellStyle9.BackColor = Color.FromArgb(220, 235, 202);
-            labourAmount.DefaultCellStyle = dataGridViewCellStyle9;
-            labourAmount.HeaderText = "LABOUR AMOUNT";
-            labourAmount.MinimumWidth = 6;
-            labourAmount.Name = "labourAmount";
-            labourAmount.Width = 125;
+            wholeLabour.DefaultCellStyle = dataGridViewCellStyle9;
+            wholeLabour.HeaderText = "WHOLE LABOUR";
+            wholeLabour.MinimumWidth = 6;
+            wholeLabour.Name = "wholeLabour";
+            wholeLabour.Width = 125;
             // 
             // other
             // 
@@ -333,11 +340,6 @@ namespace SYA
             huid2.MinimumWidth = 6;
             huid2.Name = "huid2";
             huid2.Width = 125;
-            // 
-            // huid3
-            // 
-            huid3.HeaderText = "HUID3";
-            huid3.Name = "huid3";
             // 
             // size
             // 
@@ -371,7 +373,7 @@ namespace SYA
             // 
             panel24.BackColor = Color.FromArgb(65, 72, 51);
             panel24.Dock = DockStyle.Right;
-            panel24.Location = new Point(1275, 0);
+            panel24.Location = new Point(1338, 0);
             panel24.Margin = new Padding(3, 2, 3, 2);
             panel24.Name = "panel24";
             panel24.Size = new Size(9, 579);
@@ -384,7 +386,7 @@ namespace SYA
             panel20.Location = new Point(0, 579);
             panel20.Margin = new Padding(3, 2, 3, 2);
             panel20.Name = "panel20";
-            panel20.Size = new Size(1284, 4);
+            panel20.Size = new Size(1347, 4);
             panel20.TabIndex = 3;
             // 
             // panel5
@@ -398,7 +400,7 @@ namespace SYA
             panel5.Location = new Point(0, 583);
             panel5.Margin = new Padding(3, 2, 3, 2);
             panel5.Name = "panel5";
-            panel5.Size = new Size(1284, 50);
+            panel5.Size = new Size(1347, 50);
             panel5.TabIndex = 4;
             // 
             // panel34
@@ -408,7 +410,7 @@ namespace SYA
             panel34.Location = new Point(9, 0);
             panel34.Margin = new Padding(3, 2, 3, 2);
             panel34.Name = "panel34";
-            panel34.Size = new Size(1266, 46);
+            panel34.Size = new Size(1329, 46);
             panel34.TabIndex = 13;
             // 
             // panel32
@@ -425,7 +427,7 @@ namespace SYA
             // 
             panel23.BackColor = Color.FromArgb(65, 72, 51);
             panel23.Dock = DockStyle.Right;
-            panel23.Location = new Point(1275, 0);
+            panel23.Location = new Point(1338, 0);
             panel23.Margin = new Padding(3, 2, 3, 2);
             panel23.Name = "panel23";
             panel23.Size = new Size(9, 46);
@@ -438,7 +440,7 @@ namespace SYA
             panel21.Location = new Point(0, 46);
             panel21.Margin = new Padding(3, 2, 3, 2);
             panel21.Name = "panel21";
-            panel21.Size = new Size(1284, 4);
+            panel21.Size = new Size(1347, 4);
             panel21.TabIndex = 3;
             // 
             // panelBackground
@@ -452,7 +454,7 @@ namespace SYA
             panelBackground.Location = new Point(0, 0);
             panelBackground.Margin = new Padding(3, 2, 3, 2);
             panelBackground.Name = "panelBackground";
-            panelBackground.Size = new Size(1284, 633);
+            panelBackground.Size = new Size(1347, 633);
             panelBackground.TabIndex = 0;
             // 
             // panel6
@@ -467,7 +469,7 @@ namespace SYA
             panel6.Location = new Point(0, 533);
             panel6.Margin = new Padding(3, 2, 3, 2);
             panel6.Name = "panel6";
-            panel6.Size = new Size(1284, 50);
+            panel6.Size = new Size(1347, 50);
             panel6.TabIndex = 5;
             // 
             // panel3
@@ -480,7 +482,7 @@ namespace SYA
             panel3.Location = new Point(9, 8);
             panel3.Margin = new Padding(3, 2, 3, 2);
             panel3.Name = "panel3";
-            panel3.Size = new Size(1266, 38);
+            panel3.Size = new Size(1329, 38);
             panel3.TabIndex = 18;
             // 
             // panel9
@@ -497,7 +499,7 @@ namespace SYA
             panel9.Location = new Point(32, 0);
             panel9.Margin = new Padding(3, 2, 3, 2);
             panel9.Name = "panel9";
-            panel9.Size = new Size(1202, 38);
+            panel9.Size = new Size(1265, 38);
             panel9.TabIndex = 44;
             // 
             // panel7
@@ -507,7 +509,7 @@ namespace SYA
             panel7.Location = new Point(544, 6);
             panel7.Margin = new Padding(3, 2, 3, 2);
             panel7.Name = "panel7";
-            panel7.Size = new Size(658, 26);
+            panel7.Size = new Size(721, 26);
             panel7.TabIndex = 16;
             // 
             // txtMessageBox
@@ -530,7 +532,7 @@ namespace SYA
             panel16.Location = new Point(544, 0);
             panel16.Margin = new Padding(3, 2, 3, 2);
             panel16.Name = "panel16";
-            panel16.Size = new Size(658, 6);
+            panel16.Size = new Size(721, 6);
             panel16.TabIndex = 15;
             // 
             // panel17
@@ -539,7 +541,7 @@ namespace SYA
             panel17.Location = new Point(544, 32);
             panel17.Margin = new Padding(3, 2, 3, 2);
             panel17.Name = "panel17";
-            panel17.Size = new Size(658, 6);
+            panel17.Size = new Size(721, 6);
             panel17.TabIndex = 15;
             // 
             // panel8
@@ -611,7 +613,7 @@ namespace SYA
             // 
             panel36.BackColor = Color.FromArgb(233, 245, 219);
             panel36.Dock = DockStyle.Right;
-            panel36.Location = new Point(1234, 0);
+            panel36.Location = new Point(1297, 0);
             panel36.Margin = new Padding(3, 2, 3, 2);
             panel36.Name = "panel36";
             panel36.Size = new Size(32, 38);
@@ -631,7 +633,7 @@ namespace SYA
             // 
             panel12.BackColor = Color.FromArgb(65, 72, 51);
             panel12.Dock = DockStyle.Right;
-            panel12.Location = new Point(1275, 4);
+            panel12.Location = new Point(1338, 4);
             panel12.Margin = new Padding(3, 2, 3, 2);
             panel12.Name = "panel12";
             panel12.Size = new Size(9, 42);
@@ -644,7 +646,7 @@ namespace SYA
             panel14.Location = new Point(0, 46);
             panel14.Margin = new Padding(3, 2, 3, 2);
             panel14.Name = "panel14";
-            panel14.Size = new Size(1284, 4);
+            panel14.Size = new Size(1347, 4);
             panel14.TabIndex = 8;
             // 
             // panel11
@@ -654,7 +656,7 @@ namespace SYA
             panel11.Location = new Point(0, 0);
             panel11.Margin = new Padding(3, 2, 3, 2);
             panel11.Name = "panel11";
-            panel11.Size = new Size(1284, 4);
+            panel11.Size = new Size(1347, 4);
             panel11.TabIndex = 1;
             // 
             // backgroundWorker1
@@ -667,14 +669,14 @@ namespace SYA
             messageBoxTimer.Interval = 3000;
             messageBoxTimer.Tick += messageBoxTimer_Tick;
             // 
-            // addgold
+            // addgold_WORKING
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1284, 633);
+            ClientSize = new Size(1347, 633);
             Controls.Add(panelBackground);
             Margin = new Padding(3, 2, 3, 2);
-            Name = "addgold";
+            Name = "addgold_WORKING";
             Text = "addgold";
             WindowState = FormWindowState.Maximized;
             Load += addgold_Load;
@@ -713,6 +715,19 @@ namespace SYA
         private Panel panel33;
         private Panel panel34;
         private DataGridView dataGridView1;
+        private DataGridViewCheckBoxColumn select;
+        private DataGridViewTextBoxColumn tagno;
+        private DataGridViewComboBoxColumn type;
+        private DataGridViewComboBoxColumn caret;
+        private DataGridViewTextBoxColumn gross;
+        private DataGridViewTextBoxColumn net;
+        private DataGridViewTextBoxColumn labour;
+        private DataGridViewTextBoxColumn wholeLabour;
+        private DataGridViewTextBoxColumn other;
+        private DataGridViewTextBoxColumn huid1;
+        private DataGridViewTextBoxColumn huid2;
+        private DataGridViewTextBoxColumn size;
+        private DataGridViewTextBoxColumn comment;
         private TextBox textBox1;
         private Panel panel19;
         private Panel panel14;
@@ -732,19 +747,5 @@ namespace SYA
         private Panel panel36;
         private System.Windows.Forms.Timer messageBoxTimer;
         private RichTextBox richTextBox1;
-        private DataGridViewCheckBoxColumn select;
-        private DataGridViewTextBoxColumn tagno;
-        private DataGridViewComboBoxColumn itemName;
-        private DataGridViewComboBoxColumn purity;
-        private DataGridViewTextBoxColumn gross;
-        private DataGridViewTextBoxColumn net;
-        private DataGridViewTextBoxColumn labour;
-        private DataGridViewTextBoxColumn labourAmount;
-        private DataGridViewTextBoxColumn other;
-        private DataGridViewTextBoxColumn huid1;
-        private DataGridViewTextBoxColumn huid2;
-        private DataGridViewTextBoxColumn huid3;
-        private DataGridViewTextBoxColumn size;
-        private DataGridViewTextBoxColumn comment;
     }
 }

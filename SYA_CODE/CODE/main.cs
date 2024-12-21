@@ -1,4 +1,5 @@
-﻿using Timer = System.Windows.Forms.Timer;
+﻿using SYA.CODE.Search;
+using Timer = System.Windows.Forms.Timer;
 namespace SYA
 {
     public partial class main : Form
@@ -136,7 +137,7 @@ namespace SYA
         private void btnSearch_Click(object sender, EventArgs e)
         {
             panelsecond.Visible = false;
-            LoadForm(new Search());
+            LoadForm(new SearchNew());
         }
         private void btnSales_Click(object sender, EventArgs e)
         {
@@ -202,7 +203,7 @@ namespace SYA
         private void button1_Click(object sender, EventArgs e)
         {
             panelsecond.Visible = false;
-            LoadForm(new addgold());
+            LoadForm(new addgold_WORKING());
         }
         // BUTTON DATACARE ADD
         private void button2_Click(object sender, EventArgs e)

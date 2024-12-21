@@ -6,7 +6,7 @@ using System.Windows.Forms;
 using TextBox = System.Windows.Forms.TextBox;
 namespace SYA
 {
-    public partial class addgold : Form
+    public partial class addgold1 : Form
     {
         addGoldHelper addGoldHelper = new addGoldHelper();
         private const int ItemNameColumnIndex = 2;
@@ -14,7 +14,7 @@ namespace SYA
         bool quickSaveAndPrint = true;
         public Labour objLabour = new Labour();
         private DataGridViewNavigationHelper navigationHelper;
-        public addgold()
+        public addgold1()
         {
             InitializeComponent();
             navigationHelper = new DataGridViewNavigationHelper(dataGridView1);
@@ -28,12 +28,16 @@ namespace SYA
             InitializeComboBoxColumns();
             dataGridView1.DataSource = GetEmptyDataTable();
             dataGridView1.RowHeadersVisible = true;
-            dataGridView1.RowsAdded += (s, args) => UpdateRowNumbers();
+            dataGridView1.RowsAdded  += (s, args) => UpdateRowNumbers();
             dataGridView1.RowsRemoved += (s, args) => UpdateRowNumbers();
         }
         private void addgold_Load(object sender, EventArgs e)
         {
             dataGridView1.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
+            dataGridView1.CellEndEdit += dataGridView1_CellEndEdit;
+            dataGridView1.EditingControlShowing += dataGridView1_EditingControlShowing;
+
+
             UpdateRowNumbers();
         }
         private void addgold_SizeChanged(object sender, EventArgs e)
@@ -41,7 +45,7 @@ namespace SYA
             int formWidth = this.ClientSize.Width;
             int formHeight = this.ClientSize.Height;
             int ww = (int)(formWidth * 0.008);
-            dataGridView1.Columns["select"].Width = 0; dataGridView1.Columns["tagno"].Width = (int)(ww * 16); dataGridView1.Columns["type"].Width = (int)(ww * 18); dataGridView1.Columns["caret"].Width = (int)(ww * 6); dataGridView1.Columns["gross"].Width = (int)(ww * 8); dataGridView1.Columns["net"].Width = (int)(ww * 8); dataGridView1.Columns["labour"].Width = (int)(ww * 10); dataGridView1.Columns["wholeLabour"].Width = (int)(ww * 10); dataGridView1.Columns["other"].Width = (int)(ww * 10); dataGridView1.Columns["huid1"].Width = (int)(ww * 10); dataGridView1.Columns["huid2"].Width = (int)(ww * 10); dataGridView1.Columns["size"].Width = (int)(ww * 6); dataGridView1.Columns["comment"].Width = (int)(ww * 8);
+            dataGridView1.Columns["select"].Width = 0; dataGridView1.Columns["tagno"].Width = (int)(ww * 16); dataGridView1.Columns["itemName"].Width = (int)(ww * 18); dataGridView1.Columns["purity"].Width = (int)(ww * 6); dataGridView1.Columns["gross"].Width = (int)(ww * 8); dataGridView1.Columns["net"].Width = (int)(ww * 8); dataGridView1.Columns["labour"].Width = (int)(ww * 10); dataGridView1.Columns["labourAmount"].Width = (int)(ww * 10); dataGridView1.Columns["other"].Width = (int)(ww * 10); dataGridView1.Columns["huid1"].Width = (int)(ww * 10); dataGridView1.Columns["huid2"].Width = (int)(ww * 10); dataGridView1.Columns["size"].Width = (int)(ww * 6); dataGridView1.Columns["comment"].Width = (int)(ww * 8);
             if ((float)(formWidth * 0.0066) > 12.5)
             {
                 foreach (DataGridViewColumn column in dataGridView1.Columns)
@@ -59,258 +63,76 @@ namespace SYA
         }
         private void InitializeComboBoxColumns()
         {
-            LoadComboBoxValues("G", "IT_NAME", "IT_NAME", (DataGridViewComboBoxColumn)dataGridView1.Columns["type"]);
-            LoadComboBoxValues("GQ", "IT_NAME", "IT_NAME", (DataGridViewComboBoxColumn)dataGridView1.Columns["caret"]);
+            LoadComboBoxValues("G", "IT_NAME", "IT_NAME", (DataGridViewComboBoxColumn)dataGridView1.Columns["itemName"]);
+            LoadComboBoxValues("GQ", "IT_NAME", "IT_NAME", (DataGridViewComboBoxColumn)dataGridView1.Columns["purity"]);
         }
         private void messageBoxTimer_Tick(object sender, EventArgs e)
         {
             txtMessageBox.Text = string.Empty;
             messageBoxTimer.Stop();
         }
-        private void dataGridView1_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)
+
+        private void dataGridView1_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
         {
-            string currentColumnName = addGoldHelper.getCurrentColumnName(dataGridView1);
-            DataGridViewRow selectedRow = dataGridView1.CurrentRow;
-            if (currentColumnName == "net" || currentColumnName == "gross")
+            // Check if the current cell is in edit mode
+            if (e.Control is TextBox textBox)
             {
-                selectedRow.Cells[currentColumnName].Value = addGoldHelper.correctWeight(selectedRow.Cells[currentColumnName].Value);
+                // Remove existing event handlers to avoid duplication
+                textBox.KeyPress -= TextBox_KeyPress;
+
+                // Attach the KeyPress event for live validation
+                textBox.KeyPress += TextBox_KeyPress;
             }
-            if (currentColumnName == "huid2")
+        }
+
+        private void TextBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Get the current cell
+            var currentCell = dataGridView1.CurrentCell;
+
+            // Check if the cell belongs to one of the numeric columns
+            if (currentCell != null &&
+                (currentCell.OwningColumn.Name == "gross" ||
+                 currentCell.OwningColumn.Name == "net" ||
+                 currentCell.OwningColumn.Name == "labour" ||
+                 currentCell.OwningColumn.Name == "labourAmount" ||
+                 currentCell.OwningColumn.Name == "other"))
             {
-                //   MessageBox.Show("jk");
-                string huid1 = selectedRow.Cells["huid1"]?.Value?.ToString() ?? "";
-                string huid2 = selectedRow.Cells["huid2"]?.Value?.ToString() ?? "";
-                string huid3 = selectedRow.Cells["huid2"]?.Value?.ToString() ?? "";
-                // addGoldHelper.validateHUID(huid1, huid2, huid3);
-                //   selectedRow.Cells["huid1"].Value = (selectedRow.Cells["huid1"].Value ?? "").ToString().ToUpper();
-            }
-            if (quickSaveAndPrint)
-            {
-                dataGridView1.CommitEdit(DataGridViewDataErrorContexts.Commit);
-                DataGridViewTextBoxEditingControl editingControl = sender as DataGridViewTextBoxEditingControl;
-                int currentRowIndex = dataGridView1.CurrentCell.RowIndex;
-                if (currentColumnName == "comment")
+                // Allow digits, control characters (e.g., backspace), and one decimal point
+                if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar) && e.KeyChar != '.')
                 {
-                    DataGridViewRow empty = new DataGridViewRow();
-                    if (SaveData(selectedRow, 1))
+                    e.Handled = true; // Discard the keypress
+                }
+                else
+                {
+                    // Prevent multiple decimal points
+                    var textBox = sender as TextBox;
+                    if (e.KeyChar == '.' && textBox != null && textBox.Text.Contains("."))
                     {
-                        string tagNumber = (selectedRow.Cells["tagno"].Value ?? "0").ToString();
-                        if (tagNumber.Length > 1)
-                        {
-                            PrintLabels();
-                        }
+                        e.Handled = true;
                     }
                 }
             }
-            else if (quickSave)
-            {
-                dataGridView1.CommitEdit(DataGridViewDataErrorContexts.Commit);
-                DataGridViewTextBoxEditingControl editingControl = sender as DataGridViewTextBoxEditingControl;
-                int currentRowIndex = dataGridView1.CurrentCell.RowIndex;
-                if (currentColumnName == "comment")
-                {
-                    SaveData(selectedRow, 1);
-                }
-            }
         }
-        private void dataGridView1_CellValidated(object sender, DataGridViewCellEventArgs e)
+
+
+
+        private void dataGridView1_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
-            string currentColumnName = addGoldHelper.getCurrentColumnName(dataGridView1);
-            DataGridViewRow selectedRow1 = dataGridView1.CurrentRow;
-            if (currentColumnName == "huid2" || currentColumnName == "huid1")
+            // Get the edited cell value
+            var editedValue = dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].Value;
+
+            // Display the value in a message box
+            MessageBox.Show($"Edited value is: {editedValue}", "Edit Committed");
+
+            // (Optional) Change another cell value in the same row
+            // For example, update the cell in column 1 with some new value
+            if (e.ColumnIndex != 1) // Avoid editing the cell itself
             {
-                string huid1 = selectedRow1.Cells["huid1"]?.Value?.ToString() ?? "";
-                string huid2 = selectedRow1.Cells["huid2"]?.Value?.ToString() ?? "";
-                string huid3 = selectedRow1.Cells["huid2"]?.Value?.ToString() ?? "";
-                if (!addGoldHelper.validateHUID(huid1, huid2, huid3))
-                {
-                    // Set focus on the current cell where the error occurred
-                    dataGridView1.CurrentCell = dataGridView1[currentColumnName, dataGridView1.CurrentRow.Index];
-                    dataGridView1.BeginEdit(true); // Start editing the cell again if needed                }
-                }
-                //   selectedRow.Cells["huid1"].Value = (selectedRow.Cells["huid1"].Value ?? "").ToString().ToUpper();
-            }
-            //MessageBox.Show("validated");
-            //            MessageBox.Show("cellendedit");
-            if (e.RowIndex >= 0 && e.ColumnIndex >= 0)
-            {
-                if (dataGridView1.Columns[e.ColumnIndex].Name == "gross")
-                {
-                    if (dataGridView1.Rows[e.RowIndex].Cells["net"].Value == null || (decimal.Parse(dataGridView1.Rows[e.RowIndex].Cells["net"].Value.ToString()) > decimal.Parse(dataGridView1.Rows[e.RowIndex].Cells["gross"].Value.ToString())))
-                    {
-                        dataGridView1.Rows[e.RowIndex].Cells["net"].Value = dataGridView1.Rows[e.RowIndex].Cells["gross"].Value;
-                    }
-                    dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].Value = Verification.correctWeight(dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].Value);
-                    decimal[] a = objLabour.getLabourAndWholeLabour(dataGridView1.Rows[e.RowIndex].Cells["gross"].Value.ToString());
-                    dataGridView1.Rows[e.RowIndex].Cells["labour"].Value = a[0];
-                    dataGridView1.Rows[e.RowIndex].Cells["wholeLabour"].Value = a[1];
-                }
-                else if (dataGridView1.Columns[e.ColumnIndex].Name == "net")
-                {
-                    dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].Value = Verification.correctWeight(dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].Value);
-                    decimal[] a = objLabour.getLabourAndWholeLabour(dataGridView1.Rows[e.RowIndex].Cells["net"].Value.ToString());
-                    dataGridView1.Rows[e.RowIndex].Cells["labour"].Value = a[0];
-                    dataGridView1.Rows[e.RowIndex].Cells["wholeLabour"].Value = a[1];
-                }
-                else if (dataGridView1.Columns[e.ColumnIndex].Name == "huid1")
-                {
-                    DataGridViewRow selectedRow = dataGridView1.CurrentRow;
-                    dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].Value = (dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].Value ?? "").ToString().ToUpper();
-                }
-                else if (dataGridView1.Columns[e.ColumnIndex].Name == "huid2")
-                {
-                    DataGridViewRow selectedRow = dataGridView1.CurrentRow;
-                    dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].Value = (dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].Value ?? "").ToString().ToUpper();
-                }
+                dataGridView1.Rows[e.RowIndex].Cells[1].Value = $"Updated based on {editedValue}";
             }
         }
-        //private void dataGridView1_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
-        //{
-        //    MessageBox.Show("preview key down");
-        //    DataGridView dataGridView10 = dataGridView1;
-        //    string currentColumnName1 = dataGridView10.Columns[dataGridView10.CurrentCell.ColumnIndex].Name;
-        //    DataGridViewRow selectedRow = dataGridView1.CurrentRow;
-        //    if (currentColumnName1 == "net")
-        //    {
-        //        MessageBox.Show("ss");
-        //        selectedRow.Cells["net"].Value = Verification.correctWeight(selectedRow.Cells["net"].Value);
-        //    }
-        //    if (currentColumnName1 == "gross")
-        //    {
-        //        selectedRow.Cells["gross"].Value = Verification.correctWeight(selectedRow.Cells["gross"].Value);
-        //    }
-        //    if (currentColumnName1 == "huid1")
-        //    {
-        //        selectedRow.Cells["huid1"].Value = (selectedRow.Cells["huid1"].Value ?? "").ToString().ToUpper();
-        //    }
-        //    if (currentColumnName1 == "huid2")
-        //    {
-        //        selectedRow.Cells["huid2"].Value = (selectedRow.Cells["huid2"].Value ?? "").ToString().ToUpper();
-        //    }
-        //    if (quickSaveAndPrint)
-        //    {
-        //        if (e.KeyCode == Keys.Tab)
-        //        {
-        //            dataGridView1.CommitEdit(DataGridViewDataErrorContexts.Commit);
-        //            DataGridViewTextBoxEditingControl editingControl = sender as DataGridViewTextBoxEditingControl;
-        //            DataGridView dataGridView = dataGridView1;
-        //            string currentColumnName = dataGridView.Columns[dataGridView.CurrentCell.ColumnIndex].Name;
-        //            int currentRowIndex = dataGridView.CurrentCell.RowIndex;
-        //            if (currentColumnName == "comment")
-        //            {
-        //                DataGridViewRow empty = new DataGridViewRow();
-        //                if (SaveData(selectedRow, 1))
-        //                {
-        //                    string tagNumber = (selectedRow.Cells["tagno"].Value ?? "0").ToString();
-        //                    if (tagNumber.Length > 1)
-        //                    {
-        //                        PrintLabels();
-        //                    }
-        //                }
-        //            }
-        //        }
-        //    }
-        //    else if (quickSave)
-        //    {
-        //        if (e.KeyCode == Keys.Tab)
-        //        {
-        //            dataGridView1.CommitEdit(DataGridViewDataErrorContexts.Commit);
-        //            DataGridViewTextBoxEditingControl editingControl = sender as DataGridViewTextBoxEditingControl;
-        //            DataGridView dataGridView = dataGridView1;
-        //            string currentColumnName = dataGridView.Columns[dataGridView.CurrentCell.ColumnIndex].Name;
-        //            int currentRowIndex = dataGridView.CurrentCell.RowIndex;
-        //            if (currentColumnName == "comment")
-        //            {
-        //                SaveData(selectedRow, 1);
-        //            }
-        //        }
-        //    }
-        //}
-        //private void dataGridView1_CellEndEdit(object sender, DataGridViewCellEventArgs e)
-        //{
-        //    MessageBox.Show("cellendedit");
-        //    if (e.RowIndex >= 0 && e.ColumnIndex >= 0)
-        //    {
-        //        if (dataGridView1.Columns[e.ColumnIndex].Name == "gross")
-        //        {
-        //            if (dataGridView1.Rows[e.RowIndex].Cells["net"].Value == null || (decimal.Parse(dataGridView1.Rows[e.RowIndex].Cells["net"].Value.ToString()) > decimal.Parse(dataGridView1.Rows[e.RowIndex].Cells["gross"].Value.ToString())))
-        //            {
-        //                dataGridView1.Rows[e.RowIndex].Cells["net"].Value = dataGridView1.Rows[e.RowIndex].Cells["gross"].Value;
-        //            }
-        //            dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].Value = Verification.correctWeight(dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].Value);
-        //            decimal[] a = objLabour.getLabourAndWholeLabour(dataGridView1.Rows[e.RowIndex].Cells["gross"].Value.ToString());
-        //            dataGridView1.Rows[e.RowIndex].Cells["labour"].Value = a[0];
-        //            dataGridView1.Rows[e.RowIndex].Cells["wholeLabour"].Value = a[1];
-        //        }
-        //        else if (dataGridView1.Columns[e.ColumnIndex].Name == "net")
-        //        {
-        //            dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].Value = Verification.correctWeight(dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].Value);
-        //            decimal[] a = objLabour.getLabourAndWholeLabour(dataGridView1.Rows[e.RowIndex].Cells["net"].Value.ToString());
-        //            dataGridView1.Rows[e.RowIndex].Cells["labour"].Value = a[0];
-        //            dataGridView1.Rows[e.RowIndex].Cells["wholeLabour"].Value = a[1];
-        //        }
-        //        else if (dataGridView1.Columns[e.ColumnIndex].Name == "huid1")
-        //        {
-        //            DataGridViewRow selectedRow = dataGridView1.CurrentRow;
-        //            dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].Value = (dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].Value ?? "").ToString().ToUpper();
-        //        }
-        //        else if (dataGridView1.Columns[e.ColumnIndex].Name == "huid2")
-        //        {
-        //            DataGridViewRow selectedRow = dataGridView1.CurrentRow;
-        //            dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].Value = (dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].Value ?? "").ToString().ToUpper();
-        //        }
-        //    }
-        //}
-        //private void dataGridView1_CellEnter(object sender, DataGridViewCellEventArgs e)
-        //{
-        //    MessageBox.Show("cellenter");
-        //    if (dataGridView1.CurrentCell is DataGridViewTextBoxCell)
-        //    {
-        //        dataGridView1.BeginEdit(true);
-        //        if (dataGridView1.EditingControl is TextBox textBox)
-        //        {
-        //            textBox.SelectAll();
-        //        }
-        //    }
-        //    if (e.ColumnIndex == 1 && e.RowIndex == dataGridView1.Rows.Count - 1)
-        //    {
-        //        dataGridView1.Rows[e.RowIndex].Cells["other"].Value = "0";
-        //        if (dataGridView1.Rows.Count > 1)
-        //        {
-        //            DataGridViewRow previousRow = dataGridView1.Rows[dataGridView1.Rows.Count - 2];
-        //            DataGridViewComboBoxCell typeCell = (DataGridViewComboBoxCell)dataGridView1.Rows[e.RowIndex].Cells["type"];
-        //            DataGridViewComboBoxCell caretCell = (DataGridViewComboBoxCell)dataGridView1.Rows[e.RowIndex].Cells["caret"];
-        //            typeCell.Value = previousRow.Cells["type"].Value;
-        //            caretCell.Value = previousRow.Cells["caret"].Value;
-        //            // dataGridView1.Rows[e.RowIndex].Cells["labour"].Value = (previousRow.Cells["labour"].Value ?? "0").ToString();
-        //            // dataGridView1.Rows[e.RowIndex].Cells["wholeLabour"].Value = (previousRow.Cells["wholeLabour"].Value ?? "0").ToString();
-        //            dataGridView1.Rows[e.RowIndex].Cells["other"].Value = (previousRow.Cells["other"].Value ?? "0").ToString();
-        //            this.BeginInvoke(new MethodInvoker(delegate
-        //            {
-        //                dataGridView1.CurrentCell = dataGridView1.Rows[e.RowIndex].Cells["type"];
-        //                dataGridView1.BeginEdit(true);
-        //            }));
-        //        }
-        //    }
-        //}
-        //private void dataGridView1_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
-        //{
-        //    MessageBox.Show("editing control showing");
-        //    //  e.Control.PreviewKeyDown -= dataGridView_EditingControl_PreviewKeyDown;
-        //    // e.Control.PreviewKeyDown += dataGridView_EditingControl_PreviewKeyDown;
-        //}
-        // Preview key down
-        //   cell end edit
-        // kcell enter 
-        //edit control showing
-        private void dataGridView1_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
-        {
-            if (e.RowIndex == -1 && e.ColumnIndex == -1)
-            {
-                e.Graphics.FillRectangle(new SolidBrush(Color.FromArgb(114, 131, 89)), e.CellBounds);
-                e.Handled = true;
-            }
-        }
+        
         private void SelectCell(DataGridView dataGridView, int rowIndex, string columnName)
         {
             dataGridView.CurrentCell = dataGridView.Rows[rowIndex].Cells[columnName];
@@ -321,12 +143,12 @@ namespace SYA
             dataGridView1.Columns["select"].Visible = false;
             dataGridView1.RowHeadersDefaultCellStyle.BackColor = Color.FromArgb(114, 131, 89); dataGridView1.Columns["select"].HeaderCell.Style.BackColor = Color.FromArgb(151, 169, 124);
             dataGridView1.Columns["tagno"].HeaderCell.Style.BackColor = Color.FromArgb(166, 185, 139);
-            dataGridView1.Columns["type"].HeaderCell.Style.BackColor = Color.FromArgb(181, 201, 154);
-            dataGridView1.Columns["caret"].HeaderCell.Style.BackColor = Color.FromArgb(194, 213, 170);
+            dataGridView1.Columns["itemName"].HeaderCell.Style.BackColor = Color.FromArgb(181, 201, 154);
+            dataGridView1.Columns["purity"].HeaderCell.Style.BackColor = Color.FromArgb(194, 213, 170);
             dataGridView1.Columns["gross"].HeaderCell.Style.BackColor = Color.FromArgb(207, 225, 185);
             dataGridView1.Columns["net"].HeaderCell.Style.BackColor = Color.FromArgb(220, 235, 202);
             dataGridView1.Columns["labour"].HeaderCell.Style.BackColor = Color.FromArgb(233, 245, 219);
-            dataGridView1.Columns["wholeLabour"].HeaderCell.Style.BackColor = Color.FromArgb(220, 235, 202);
+            dataGridView1.Columns["labourAmount"].HeaderCell.Style.BackColor = Color.FromArgb(220, 235, 202);
             dataGridView1.Columns["other"].HeaderCell.Style.BackColor = Color.FromArgb(207, 225, 185);
             dataGridView1.Columns["huid1"].HeaderCell.Style.BackColor = Color.FromArgb(194, 213, 170);
             dataGridView1.Columns["huid2"].HeaderCell.Style.BackColor = Color.FromArgb(181, 201, 154);
@@ -338,7 +160,7 @@ namespace SYA
                 {
                     column.Width = 40;
                 }
-                else if (column.Name == "type")
+                else if (column.Name == "itemName")
                 {
                     column.Width = 225;
                 }
@@ -346,7 +168,7 @@ namespace SYA
                 {
                     column.Width = 200;
                 }
-                else if (column.Name == "caret")
+                else if (column.Name == "purity")
                 {
                     column.Width = 75;
                 }
@@ -388,8 +210,8 @@ namespace SYA
             DataTable dataTable = new DataTable();
             dataTable.Columns.Add("select", typeof(bool));
             dataTable.Columns.Add("tagno", typeof(string));
-            dataTable.Columns.Add("type", typeof(string));
-            dataTable.Columns.Add("caret", typeof(string));
+            dataTable.Columns.Add("itemName", typeof(string));
+            dataTable.Columns.Add("purity", typeof(string));
             dataTable.Columns.Add("gross", typeof(decimal));
             dataTable.Columns.Add("net", typeof(decimal));
             dataTable.Columns.Add("labour", typeof(decimal));
@@ -420,8 +242,8 @@ namespace SYA
                             {
                                 if (UpdateData(row))
                                 {
-                                    row.Cells["type"].ReadOnly = true;
-                                    row.Cells["caret"].ReadOnly = true;
+                                    row.Cells["itemName"].ReadOnly = true;
+                                    row.Cells["purity"].ReadOnly = true;
                                     txtMessageBox.Text = "Data Updated Successfully for " + row.Cells["tagno"].Value.ToString() + ".";
                                     messageBoxTimer.Start();
                                 }
@@ -430,8 +252,8 @@ namespace SYA
                             {
                                 if (InsertData(row))
                                 {
-                                    row.Cells["type"].ReadOnly = true;
-                                    row.Cells["caret"].ReadOnly = true;
+                                    row.Cells["itemName"].ReadOnly = true;
+                                    row.Cells["purity"].ReadOnly = true;
                                     txtMessageBox.Text = "Data Added Successfully for " + row.Cells["tagno"].Value.ToString() + ".";
                                     messageBoxTimer.Start();
                                 }
@@ -454,8 +276,8 @@ namespace SYA
                     {
                         if (UpdateData(selectedRow))
                         {
-                            selectedRow.Cells["type"].ReadOnly = true;
-                            selectedRow.Cells["caret"].ReadOnly = true;
+                            selectedRow.Cells["itemName"].ReadOnly = true;
+                            selectedRow.Cells["purity"].ReadOnly = true;
                             txtMessageBox.Text = "Data Updated Successfully for " + selectedRow.Cells["tagno"].Value.ToString() + ".";
                             messageBoxTimer.Start();
                         }
@@ -464,8 +286,8 @@ namespace SYA
                     {
                         if (InsertData(selectedRow))
                         {
-                            selectedRow.Cells["type"].ReadOnly = true;
-                            selectedRow.Cells["caret"].ReadOnly = true;
+                            selectedRow.Cells["itemName"].ReadOnly = true;
+                            selectedRow.Cells["purity"].ReadOnly = true;
                             txtMessageBox.Text = "Data Added Successfully for " + selectedRow.Cells["tagno"].Value.ToString() + ".";
                             messageBoxTimer.Start();
                         }
@@ -490,7 +312,7 @@ namespace SYA
                     if (itemNameObject != null)
                     {
                         string itemName = itemNameObject.ToString();
-                        string caret = dataGridView1.Rows[rowIndex].Cells["caret"].Value?.ToString();
+                        string caret = dataGridView1.Rows[rowIndex].Cells["purity"].Value?.ToString();
                         string prCode = addGoldHelper.GetPRCode(itemName);
                         string prefix = "SYA";
                         int newSequenceNumber = addGoldHelper.GetNextSequenceNumber(prefix, prCode, caret);
@@ -508,71 +330,25 @@ namespace SYA
                 }
             }
         }
-        private bool ValidateData(DataGridViewRow row)
-        {
-            if (!Verification.validateType(row.Cells["type"].Value.ToString()))
-            {
-                MessageBox.Show($"Please add a valid type for Row {row.Index + 1}.");
-                SelectCell(dataGridView1, row.Index, "type");
-                return false;
-            }
-            if (!Verification.validateWeight(row.Cells["gross"].Value?.ToString()))
-            {
-                MessageBox.Show($"Gross weight should be a non-negative numeric value for Row {row.Index + 1}.");
-                SelectCell(dataGridView1, row.Index, "gross");
-                return false;
-            }
-            if (!Verification.validateWeight(row.Cells["net"].Value?.ToString()))
-            {
-                MessageBox.Show($"Net weight should be a non-negative numeric value for Row {row.Index + 1}.");
-                SelectCell(dataGridView1, row.Index, "net");
-                return false;
-            }
-            if (!Verification.validateWeight(row.Cells["gross"].Value?.ToString(), row.Cells["net"].Value?.ToString()))
-            {
-                MessageBox.Show($"Gross weight should be greater than or equal to net weight for Row {row.Index + 1}.");
-                SelectCell(dataGridView1, row.Index, "gross");
-                return false;
-            }
-            if (!Verification.validateLabour(row.Cells["labour"].Value?.ToString()))
-            {
-                MessageBox.Show($"Labour should be a non-negative numeric value for Row {row.Index + 1}.");
-                SelectCell(dataGridView1, row.Index, "labour");
-                return false;
-            }
-            if (!Verification.validateOther(row.Cells["other"].Value?.ToString()))
-            {
-                MessageBox.Show($"Other should be a non-negative numeric value for Row {row.Index + 1}.");
-                SelectCell(dataGridView1, row.Index, "other");
-                return false;
-            }
-            string huid1 = row.Cells["huid1"].Value?.ToString();
-            string huid2 = row.Cells["huid2"].Value?.ToString();
-            if (!Verification.validateHUID(huid1, huid2))
-            {
-                SelectCell(dataGridView1, row.Index, "huid1");
-                return false;
-            }
-            return true;
-        }
+      
         private bool UpdateData(DataGridViewRow row)
         {
-            if (!ValidateData(row))
-            {
-                return false;
-            }
+            //if (!ValidateData(row))
+            //{
+            //    return false;
+            //}
             string updateQuery = "UPDATE MAIN_DATA SET ITEM_DESC = @type, ITEM_PURITY = @caret, GW = @gross, NW = @net, " +
                      "LABOUR_AMT = @labour, WHOLE_LABOUR_AMT = @wholeLabour, OTHER_AMT = @other, HUID1 = @huid1, HUID2 = @huid2, SIZE = @size, " +
                      "\"COMMENT\" = @comment, ITEM_CODE = @prCode WHERE TAG_NO = @tagNo";
             SQLiteParameter[] parameters = new SQLiteParameter[]
             {
         new SQLiteParameter("@tagNo", row.Cells["tagno"].Value?.ToString()),
-        new SQLiteParameter("@type", row.Cells["type"].Value?.ToString()),
-        new SQLiteParameter("@caret", row.Cells["caret"].Value?.ToString()),
+        new SQLiteParameter("@type", row.Cells["itemName"].Value?.ToString()),
+        new SQLiteParameter("@caret", row.Cells["purity"].Value?.ToString()),
         new SQLiteParameter("@gross", Convert.IsDBNull(row.Cells["gross"].Value) ? 0 : Convert.ToDecimal(row.Cells["gross"].Value)),
         new SQLiteParameter("@net", Convert.IsDBNull(row.Cells["net"].Value) ? 0 : Convert.ToDecimal(row.Cells["net"].Value)),
         new SQLiteParameter("@labour", Convert.IsDBNull(row.Cells["labour"].Value) ? 0 : Convert.ToDecimal(row.Cells["labour"].Value)),
-        new SQLiteParameter("@wholeLabour", Convert.IsDBNull(row.Cells["wholeLabour"].Value) ? 0 : Convert.ToDecimal(row.Cells["wholeLabour"].Value)),
+        new SQLiteParameter("@wholeLabour", Convert.IsDBNull(row.Cells["labourAmount"].Value) ? 0 : Convert.ToDecimal(row.Cells["labourAmount"].Value)),
         new SQLiteParameter("@other", Convert.IsDBNull(row.Cells["other"].Value) ? 0 : Convert.ToDecimal(row.Cells["other"].Value)),
         new SQLiteParameter("@huid1", row.Cells["huid1"].Value?.ToString()),
         new SQLiteParameter("@huid2", row.Cells["huid2"].Value?.ToString()),
@@ -593,21 +369,21 @@ namespace SYA
                 string InsertQuery = "INSERT INTO MAIN_DATA ( TAG_NO, ITEM_DESC, ITEM_PURITY, GW, NW, LABOUR_AMT,WHOLE_LABOUR_AMT, OTHER_AMT, HUID1, HUID2, SIZE, \"COMMENT\",IT_TYPE, ITEM_CODE, CO_YEAR, CO_BOOK, VCH_NO, VCH_DATE, PRICE, STATUS, AC_CODE, AC_NAME) VALUES ( @tagNo, @type, @caret, @gross, @net, @labour,@wholeLabour, @other, @huid1, @huid2, @size, @comment,@ittype, @prCode, @coYear, @coBook, @vchNo, @vchDate, @price, @status, @acCode, @acName)";
                 {
                     UpdateTagNo(row.Index);
-                    if (!ValidateData(row))
-                    {
-                        row.Cells["tagno"].Value = null;
-                        return false;
-                    }
+                    //if (!ValidateData(row))
+                    //{
+                    //    row.Cells["tagno"].Value = null;
+                    //    return false;
+                    //}
                     int currentYear = DateTime.Now.Year;
                     SQLiteParameter[] parameters = new SQLiteParameter[]
 {
                 new SQLiteParameter("@tagNo", row.Cells["tagno"].Value?.ToString()),
-                new SQLiteParameter("@type", row.Cells["type"].Value?.ToString()),
-                new SQLiteParameter("@caret", row.Cells["caret"].Value?.ToString()),
+                new SQLiteParameter("@type", row.Cells["itemName"].Value?.ToString()),
+                new SQLiteParameter("@caret", row.Cells["purity"].Value?.ToString()),
                 new SQLiteParameter("@gross", Convert.IsDBNull(row.Cells["gross"].Value) ? 0 : Convert.ToDecimal(row.Cells["gross"].Value)),
                 new SQLiteParameter("@net", Convert.IsDBNull(row.Cells["net"].Value) ? 0 : Convert.ToDecimal(row.Cells["net"].Value)),
                 new SQLiteParameter("@labour", Convert.IsDBNull(row.Cells["labour"].Value) ? 0 : Convert.ToDecimal(row.Cells["labour"].Value)),
-                new SQLiteParameter("@wholeLabour", Convert.IsDBNull(row.Cells["wholeLabour"].Value) ? 0 : Convert.ToDecimal(row.Cells["wholeLabour"].Value)),
+                new SQLiteParameter("@wholeLabour", Convert.IsDBNull(row.Cells["labourAmount"].Value) ? 0 : Convert.ToDecimal(row.Cells["labourAmount"].Value)),
                 new SQLiteParameter("@other", Convert.IsDBNull(row.Cells["other"].Value) ? 0 : Convert.ToDecimal(row.Cells["other"].Value)),
                 new SQLiteParameter("@huid1", row.Cells["huid1"].Value?.ToString()),
                 new SQLiteParameter("@huid2", row.Cells["huid2"].Value?.ToString()),
@@ -689,8 +465,8 @@ namespace SYA
                 quickSave = false;
             }
         }
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-        }
+    
+
+       
     }
 }
