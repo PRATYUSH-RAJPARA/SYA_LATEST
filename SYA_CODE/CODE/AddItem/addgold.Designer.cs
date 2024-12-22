@@ -667,14 +667,14 @@ namespace SYA
             messageBoxTimer.Interval = 3000;
             messageBoxTimer.Tick += messageBoxTimer_Tick;
             // 
-            // addgold
+            // addgold1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1284, 633);
             Controls.Add(panelBackground);
             Margin = new Padding(3, 2, 3, 2);
-            Name = "addgold";
+            Name = "addgold1";
             Text = "addgold";
             WindowState = FormWindowState.Maximized;
             Load += addgold_Load;
