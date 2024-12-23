@@ -36,8 +36,6 @@ namespace SYA
             dataGridView1.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
             dataGridView1.CellEndEdit += dataGridView1_CellEndEdit;
             dataGridView1.EditingControlShowing += dataGridView1_EditingControlShowing;
-
-
             UpdateRowNumbers();
         }
         private void addgold_SizeChanged(object sender, EventArgs e)
@@ -71,7 +69,6 @@ namespace SYA
             txtMessageBox.Text = string.Empty;
             messageBoxTimer.Stop();
         }
-
         private void dataGridView1_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
         {
             // Check if the current cell is in edit mode
@@ -79,17 +76,14 @@ namespace SYA
             {
                 // Remove existing event handlers to avoid duplication
                 textBox.KeyPress -= TextBox_KeyPress;
-
                 // Attach the KeyPress event for live validation
                 textBox.KeyPress += TextBox_KeyPress;
             }
         }
-
         private void TextBox_KeyPress(object sender, KeyPressEventArgs e)
         {
             // Get the current cell
             var currentCell = dataGridView1.CurrentCell;
-
             // Check if the cell belongs to one of the numeric columns
             if (currentCell != null &&
                 (currentCell.OwningColumn.Name == "gross" ||
@@ -114,17 +108,12 @@ namespace SYA
                 }
             }
         }
-
-
-
         private void dataGridView1_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
             // Get the edited cell value
             var editedValue = dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].Value;
-
             // Display the value in a message box
             MessageBox.Show($"Edited value is: {editedValue}", "Edit Committed");
-
             // (Optional) Change another cell value in the same row
             // For example, update the cell in column 1 with some new value
             if (e.ColumnIndex != 1) // Avoid editing the cell itself
@@ -132,7 +121,6 @@ namespace SYA
                 dataGridView1.Rows[e.RowIndex].Cells[1].Value = $"Updated based on {editedValue}";
             }
         }
-        
         private void SelectCell(DataGridView dataGridView, int rowIndex, string columnName)
         {
             dataGridView.CurrentCell = dataGridView.Rows[rowIndex].Cells[columnName];
@@ -330,7 +318,6 @@ namespace SYA
                 }
             }
         }
-      
         private bool UpdateData(DataGridViewRow row)
         {
             //if (!ValidateData(row))
@@ -465,8 +452,5 @@ namespace SYA
                 quickSave = false;
             }
         }
-    
-
-       
     }
 }

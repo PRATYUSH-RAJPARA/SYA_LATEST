@@ -1,4 +1,4 @@
-﻿using SYA.CODE.Search;
+﻿using SYA;
 using Timer = System.Windows.Forms.Timer;
 namespace SYA
 {

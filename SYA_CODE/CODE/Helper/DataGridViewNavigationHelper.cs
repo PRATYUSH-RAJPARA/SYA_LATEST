@@ -52,7 +52,6 @@ namespace SYA
         {
             // Stop the Timer to prevent repeated execution
             moveCellTimer.Stop();
-
             // Move focus to the next cell
             if (savedRowIndex >= 0 && savedColumnIndex >= 0)
             {
@@ -76,7 +75,6 @@ namespace SYA
                     // Move to the next column in the same row
                     targetDataGridView.CurrentCell = targetDataGridView.Rows[savedRowIndex].Cells[savedColumnIndex + 1];
                 }
-
                 // Reset saved indices after moving
                 savedRowIndex = -1;
                 savedColumnIndex = -1;
