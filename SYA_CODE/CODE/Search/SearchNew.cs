@@ -25,7 +25,37 @@ namespace SYA
             AttachEventHandlers();
             dataGridView1.RowsAdded += DataGridView1_RowsAdded; // Attach event handler for row addition
             CustomizeDataGridView();
+            BindCOYearComboBox();
         }
+        private void BindCOYearComboBox()
+        {
+            string query = @"
+        SELECT DISTINCT CO_YEAR
+        FROM (
+            SELECT CO_YEAR FROM SALE_DATA_NEW
+            UNION
+            SELECT CO_YEAR FROM MAIN_DATA_NEW
+        ) AS combined_data
+        ORDER BY CO_YEAR DESC;";
+
+            // Fetch distinct CO_YEAR values from both tables
+            DataTable coYearTable = helper.FetchDataTableFromSYADataBase(query);
+
+            // Create a new row for "All" and add it at the top
+            DataRow allRow = coYearTable.NewRow();
+            allRow["CO_YEAR"] = "All";
+            coYearTable.Rows.InsertAt(allRow, 0); // Insert "All" as the first row
+
+            // Bind the fetched values to the combo box
+            CB_YEAR.DataSource = coYearTable;
+            CB_YEAR.DisplayMember = "CO_YEAR"; // Column to display in the combo box
+            CB_YEAR.ValueMember = "CO_YEAR";   // Value to bind in the combo box
+
+            // Set the default selected item to "All"
+            CB_YEAR.SelectedIndex = 0;
+        }
+
+
 
         private void CustomizeDataGridView()
         {
@@ -52,23 +82,27 @@ namespace SYA
 
         private void AdjustColumnWidths()
         {
-            // Set fixed widths for specific columns
+            // Set auto-sizing for all columns initially
+            dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+
+            // Manually override specific column widths
             if (dataGridView1.Columns.Contains("METAL_TYPE"))
             {
+                dataGridView1.Columns["METAL_TYPE"].AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
                 dataGridView1.Columns["METAL_TYPE"].Width = 50;
+            }
+            if (dataGridView1.Columns.Contains("PURITY"))
+            {
+                dataGridView1.Columns["PURITY"].AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
                 dataGridView1.Columns["PURITY"].Width = 50;
+            }
+            if (dataGridView1.Columns.Contains("ITEM_TYPE"))
+            {
+                dataGridView1.Columns["ITEM_TYPE"].AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
                 dataGridView1.Columns["ITEM_TYPE"].Width = 50;
             }
-
-            // Set auto-sizing for other columns
-            foreach (DataGridViewColumn column in dataGridView1.Columns)
-            {
-                if (column.Name != "METAL_TYPE" && column.Name != "PURITY" && column.Name != "ITEM_TYPE")
-                {
-                    column.AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
-                }
-            }
         }
+
 
         private void InitializeDataGridView()
         {

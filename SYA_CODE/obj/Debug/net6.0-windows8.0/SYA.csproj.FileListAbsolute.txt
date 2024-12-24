@@ -672,7 +672,6 @@ F:\SYA_LATEST\SYA_CODE\obj\Debug\net6.0-windows8.0\Interop.Microsoft.Office.Inte
 F:\SYA_LATEST\SYA_CODE\obj\Debug\net6.0-windows8.0\Interop.Microsoft.Office.Interop.Excel.dll
 F:\SYA_LATEST\SYA_CODE\obj\Debug\net6.0-windows8.0\SYA.csproj.ResolveComReference.cache
 F:\SYA_LATEST\SYA_CODE\obj\Debug\net6.0-windows8.0\SYA.addgold_WORKING.resources
-F:\SYA_LATEST\SYA_CODE\obj\Debug\net6.0-windows8.0\SYA.addgold.resources
 F:\SYA_LATEST\SYA_CODE\obj\Debug\net6.0-windows8.0\SYA.addSilver.resources
 F:\SYA_LATEST\SYA_CODE\obj\Debug\net6.0-windows8.0\SYA.ContactDisplay.resources
 F:\SYA_LATEST\SYA_CODE\obj\Debug\net6.0-windows8.0\SYA.PrintLabel.resources
@@ -1029,3 +1028,6 @@ F:\SYA_LATEST\SYA_CODE\obj\Debug\net6.0-windows8.0\SYA.testForm.resources
 C:\SYA_LATEST\SYA_CODE\obj\Debug\net6.0-windows8.0\SYA.addgold_WORKINGcopy.resources
 C:\SYA_LATEST\SYA_CODE\obj\Debug\net6.0-windows8.0\SYA.addgold1.resources
 C:\SYA_LATEST\SYA_CODE\obj\Debug\net6.0-windows8.0\SYA.SearchNew.resources
+F:\SYA_LATEST\SYA_CODE\obj\Debug\net6.0-windows8.0\SYA.addgold_WORKINGcopy.resources
+F:\SYA_LATEST\SYA_CODE\obj\Debug\net6.0-windows8.0\SYA.addgold1.resources
+F:\SYA_LATEST\SYA_CODE\obj\Debug\net6.0-windows8.0\SYA.SearchNew.resources
