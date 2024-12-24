@@ -251,9 +251,16 @@ public class HelperFetchData1
         sqliteParameters.Add(new SQLiteParameter("@ITM_RAT", accessDataRow["ITM_RAT"] ?? 0));
         sqliteParameters.Add(new SQLiteParameter("@ITM_AMT", accessDataRow["ITM_AMT"] ?? 0));
         sqliteParameters.Add(new SQLiteParameter("@AC_CODE", accessDataRow["AC_CODE"] ?? 0));
+        sqliteParameters.Add(new SQLiteParameter("@AC_NAME", FetchACName(accessDataRow["AC_CODE"].ToString() ?? "")));
         string comment = (accessDataRow["IT_DESC"]?.ToString() ?? "") + " " + (designParts.Length > 3 ? string.Join(",", designParts.Skip(3)) : "");
         sqliteParameters.Add(new SQLiteParameter("@COMMENT", comment));
         return sqliteParameters;
+    }
+    public string FetchACName(string acCode)
+    {
+        string query = "SELECT AC_NAME FROM AC_MAST WHERE AC_CODE = '" + acCode + "'"; // Assuming your account table is named `ACCOUNT_TABLE`
+        DataTable dt = helper.FetchDataTableFromDataCareDataBase(query);
+        return dt.Rows.Count > 0 ? dt.Rows[0]["AC_NAME"].ToString() : "";
     }
     // Execute query for insert operation
     public void ExecuteInsertQuery(DataRow accessDataRow)
@@ -270,13 +277,13 @@ public class HelperFetchData1
     // Execute query for insert operation in sales data
     public void ExecuteInsertQueryForSales(DataRow accessDataRow)
     {
-        string query = "INSERT INTO SALE_DATA_NEW (CO_YEAR, CO_BOOK, VCH_NO, VCH_DATE, PURITY, METAL_TYPE, TAG_NO, DESIGN, ITM_SIZE, ITM_PCS, GW, NW, LBR_RATE, OTH_AMT, LBR_AMT, HUID1, HUID2, HUID3, ITEM_TYPE, SIZE, PRICE, ITM_RAT, ITM_AMT, COMMENT, AC_CODE) VALUES (@CO_YEAR, @CO_BOOK, @VCH_NO, @VCH_DATE, @PURITY, @METAL_TYPE, @TAG_NO, @DESIGN, @ITM_SIZE, @ITM_PCS, @GW, @NW, @LBR_RATE, @OTH_AMT, @LBR_AMT, @HUID1, @HUID2, @HUID3, @ITEM_TYPE, @SIZE, @PRICE, @ITM_RAT, @ITM_AMT, @COMMENT, @AC_CODE)";
+        string query = "INSERT INTO SALE_DATA_NEW (CO_YEAR, CO_BOOK, VCH_NO, VCH_DATE, PURITY, METAL_TYPE, TAG_NO, DESIGN, ITM_SIZE, ITM_PCS, GW, NW, LBR_RATE, OTH_AMT, LBR_AMT, HUID1, HUID2, HUID3, ITEM_TYPE, SIZE, PRICE, ITM_RAT, ITM_AMT, COMMENT, AC_CODE) VALUES (@CO_YEAR, @CO_BOOK, @VCH_NO, @VCH_DATE, @PURITY, @METAL_TYPE, @TAG_NO, @DESIGN, @ITM_SIZE, @ITM_PCS, @GW, @NW, @LBR_RATE, @OTH_AMT, @LBR_AMT, @HUID1, @HUID2, @HUID3, @ITEM_TYPE, @SIZE, @PRICE, @ITM_RAT, @ITM_AMT, @COMMENT, @AC_CODE,@AC_NAME)";
         helper.RunQueryWithParametersSYADataBase(query, MapDataToSQLiteParametersForSales(accessDataRow).ToArray());
     }
     // Execute update query for sales data
     public void ExecuteUpdateQueryForSales(DataRow accessDataRow)
     {
-        string query = "UPDATE SALE_DATA_NEW SET CO_BOOK = @CO_BOOK, VCH_NO = @VCH_NO, VCH_DATE = @VCH_DATE, PURITY = @PURITY, METAL_TYPE = @METAL_TYPE, DESIGN = @DESIGN, ITM_SIZE = @ITM_SIZE, ITM_PCS = @ITM_PCS, GW = @GW, NW = @NW, LBR_RATE = @LBR_RATE, OTH_AMT = @OTH_AMT, LBR_AMT = @LBR_AMT, HUID1 = @HUID1, HUID2 = @HUID2, HUID3 = @HUID3, ITEM_TYPE = @ITEM_TYPE, SIZE = @SIZE, PRICE = @PRICE, ITM_RAT = @ITM_RAT, ITM_AMT = @ITM_AMT, COMMENT = @COMMENT, AC_CODE = @AC_CODE WHERE TAG_NO = @TAG_NO AND CO_YEAR = @CO_YEAR";
+        string query = "UPDATE SALE_DATA_NEW SET CO_BOOK = @CO_BOOK, VCH_NO = @VCH_NO, VCH_DATE = @VCH_DATE, PURITY = @PURITY, METAL_TYPE = @METAL_TYPE, DESIGN = @DESIGN, ITM_SIZE = @ITM_SIZE, ITM_PCS = @ITM_PCS, GW = @GW, NW = @NW, LBR_RATE = @LBR_RATE, OTH_AMT = @OTH_AMT, LBR_AMT = @LBR_AMT, HUID1 = @HUID1, HUID2 = @HUID2, HUID3 = @HUID3, ITEM_TYPE = @ITEM_TYPE, SIZE = @SIZE, PRICE = @PRICE, ITM_RAT = @ITM_RAT, ITM_AMT = @ITM_AMT, COMMENT = @COMMENT, AC_CODE = @AC_CODE,AC_NAME = @AC_NAME WHERE TAG_NO = @TAG_NO AND CO_YEAR = @CO_YEAR";
         helper.RunQueryWithParametersSYADataBase(query, MapDataToSQLiteParametersForSales(accessDataRow).ToArray());
     }
 }
