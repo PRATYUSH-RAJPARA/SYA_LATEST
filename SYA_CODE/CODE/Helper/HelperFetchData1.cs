@@ -277,7 +277,7 @@ public class HelperFetchData1
     // Execute query for insert operation in sales data
     public void ExecuteInsertQueryForSales(DataRow accessDataRow)
     {
-        string query = "INSERT INTO SALE_DATA_NEW (CO_YEAR, CO_BOOK, VCH_NO, VCH_DATE, PURITY, METAL_TYPE, TAG_NO, DESIGN, ITM_SIZE, ITM_PCS, GW, NW, LBR_RATE, OTH_AMT, LBR_AMT, HUID1, HUID2, HUID3, ITEM_TYPE, SIZE, PRICE, ITM_RAT, ITM_AMT, COMMENT, AC_CODE) VALUES (@CO_YEAR, @CO_BOOK, @VCH_NO, @VCH_DATE, @PURITY, @METAL_TYPE, @TAG_NO, @DESIGN, @ITM_SIZE, @ITM_PCS, @GW, @NW, @LBR_RATE, @OTH_AMT, @LBR_AMT, @HUID1, @HUID2, @HUID3, @ITEM_TYPE, @SIZE, @PRICE, @ITM_RAT, @ITM_AMT, @COMMENT, @AC_CODE,@AC_NAME)";
+        string query = "INSERT INTO SALE_DATA_NEW (CO_YEAR, CO_BOOK, VCH_NO, VCH_DATE, PURITY, METAL_TYPE, TAG_NO, DESIGN, ITM_SIZE, ITM_PCS, GW, NW, LBR_RATE, OTH_AMT, LBR_AMT, HUID1, HUID2, HUID3, ITEM_TYPE, SIZE, PRICE, ITM_RAT, ITM_AMT, COMMENT, AC_CODE,AC_NAME) VALUES (@CO_YEAR, @CO_BOOK, @VCH_NO, @VCH_DATE, @PURITY, @METAL_TYPE, @TAG_NO, @DESIGN, @ITM_SIZE, @ITM_PCS, @GW, @NW, @LBR_RATE, @OTH_AMT, @LBR_AMT, @HUID1, @HUID2, @HUID3, @ITEM_TYPE, @SIZE, @PRICE, @ITM_RAT, @ITM_AMT, @COMMENT, @AC_CODE,@AC_NAME)";
         helper.RunQueryWithParametersSYADataBase(query, MapDataToSQLiteParametersForSales(accessDataRow).ToArray());
     }
     // Execute update query for sales data

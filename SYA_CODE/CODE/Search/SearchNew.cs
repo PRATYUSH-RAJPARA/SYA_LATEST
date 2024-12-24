@@ -1,8 +1,7 @@
-﻿using System;
+﻿﻿using System;
 using System.Data;
 using System.Drawing;
 using System.Windows.Forms;
-
 namespace SYA
 {
     public partial class SearchNew : Form
@@ -12,20 +11,57 @@ namespace SYA
         private int currentOffset = 0; // Tracks the current offset for lazy loading
         private bool isLoading = false; // Prevents multiple fetches during loading
         private DataTable loadedTable = new DataTable(); // Table to hold all loaded rows
-
+        private string whereQuery = "";
+        private string baseQuery = $@"
+                SELECT 
+                    ID, CO_YEAR, CO_BOOK, VCH_NO, VCH_DATE, PURITY, METAL_TYPE, TAG_NO, DESIGN, HUID1, HUID2, HUID3, 
+                    ITM_SIZE, ITEM_TYPE, ITM_PCS, GW, NW, LBR_RATE, OTH_AMT, LBR_AMT, SIZE, PRICE, COMMENT, ITM_RAT, 
+                    ITM_AMT, AC_CODE,AC_NAME
+                FROM (
+                    SELECT * FROM SALE_DATA_NEW
+                    UNION
+                    SELECT ID, CO_YEAR, CO_BOOK, VCH_NO, VCH_DATE, PURITY, METAL_TYPE, TAG_NO, DESIGN, HUID1, HUID2, 
+                           HUID3, ITM_SIZE, ITEM_TYPE, ITM_PCS, GW, NW, LBR_RATE, OTH_AMT, LBR_AMT, SIZE, PRICE, 
+                           COMMENT, NULL AS ITM_RAT, NULL AS ITM_AMT, NULL AS AC_CODE, NULL AS AC_NAME
+                    FROM MAIN_DATA_NEW
+                ) AS combined_data ";
+        private string orderByQuery = "  ORDER BY CO_YEAR DESC, VCH_DATE DESC ";
         public SearchNew()
         {
             InitializeComponent();
         }
-
         private void SearchNew_Load(object sender, EventArgs e)
         {
-            InitializeDataGridView();
-            LoadInitialData();
+            loadData();
             AttachEventHandlers();
             dataGridView1.RowsAdded += DataGridView1_RowsAdded; // Attach event handler for row addition
-            CustomizeDataGridView();
             BindCOYearComboBox();
+            BindACNameComboBox();
+        }
+        private void loadData() {
+            InitializeDataGridView();
+            LoadInitialData();
+            CustomizeDataGridView();
+        }
+        private void BindACNameComboBox()
+        {
+            string query = @"
+        SELECT DISTINCT AC_NAME
+        FROM  SALE_DATA_NEW 
+        ORDER BY AC_NAME ASC;";
+            // Fetch distinct CO_YEAR values from both tables
+            DataTable AC_NAME_TABLE = helper.FetchDataTableFromSYADataBase(query);
+            // Create a new row for "All" and add it at the top
+            DataRow allRow = AC_NAME_TABLE.NewRow();
+            allRow["AC_NAME"] = "All";
+            AC_NAME_TABLE.Rows.InsertAt(allRow, 0); // Insert "All" as the first row
+            // Bind the fetched values to the combo box
+            CB_NAME.DataSource = AC_NAME_TABLE;
+            CB_NAME.DisplayMember = "AC_NAME"; // Column to display in the combo box
+            CB_NAME.ValueMember = "AC_NAME";   // Value to bind in the combo box
+            // Set the default selected item to "All"
+            CB_NAME.SelectedIndex = 0;
+            CB_NAME.SelectedIndexChanged += CB_NAME_SelectedIndexChanged;
         }
         private void BindCOYearComboBox()
         {
@@ -37,26 +73,78 @@ namespace SYA
             SELECT CO_YEAR FROM MAIN_DATA_NEW
         ) AS combined_data
         ORDER BY CO_YEAR DESC;";
-
             // Fetch distinct CO_YEAR values from both tables
             DataTable coYearTable = helper.FetchDataTableFromSYADataBase(query);
-
             // Create a new row for "All" and add it at the top
             DataRow allRow = coYearTable.NewRow();
             allRow["CO_YEAR"] = "All";
             coYearTable.Rows.InsertAt(allRow, 0); // Insert "All" as the first row
-
             // Bind the fetched values to the combo box
             CB_YEAR.DataSource = coYearTable;
             CB_YEAR.DisplayMember = "CO_YEAR"; // Column to display in the combo box
             CB_YEAR.ValueMember = "CO_YEAR";   // Value to bind in the combo box
-
             // Set the default selected item to "All"
             CB_YEAR.SelectedIndex = 0;
+            CB_YEAR.SelectedIndexChanged += CB_YEAR_SelectedIndexChanged;
         }
-
-
-
+        private void CB_NAME_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string selectedCoYear = CB_NAME.SelectedValue.ToString();
+            // Reload data based on selected CO_YEAR
+            LoadDataBasedOnCONAME(selectedCoYear);
+        }
+        private void CB_YEAR_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string selectedCoYear = CB_YEAR.SelectedValue.ToString();
+            // Reload data based on selected CO_YEAR
+            LoadDataBasedOnCOYear(selectedCoYear);
+        }
+        private void LoadDataBasedOnCONAME(string AC_NAME)
+        {
+            // Reset DataGridView
+            dataGridView1.DataSource = null;
+            dataGridView1.Rows.Clear();
+            // Reset the current offset
+            currentOffset = 0;
+            // Build the query directly based on selected CO_YEAR
+            string query = "";
+            if (AC_NAME != "All")
+            {
+                // Query with WHERE clause for a specific CO_YEAR
+                whereQuery = $" WHERE AC_NAME = '{AC_NAME}'";
+            }
+            else
+            {
+                // Query without WHERE clause for "All" CO_YEAR
+                whereQuery = "";
+            }
+            // Fetch the filtered data from the database
+            currentOffset = 0;
+            loadData();
+        }
+        private void LoadDataBasedOnCOYear(string coYear)
+        {
+            // Reset DataGridView
+            dataGridView1.DataSource = null;
+            dataGridView1.Rows.Clear();
+            // Reset the current offset
+            currentOffset = 0;
+            // Build the query directly based on selected CO_YEAR
+            string query="";
+            if (coYear != "All")
+            {
+                // Query with WHERE clause for a specific CO_YEAR
+                whereQuery = $" WHERE CO_YEAR = '{coYear}'";
+            }
+            else
+            {
+                // Query without WHERE clause for "All" CO_YEAR
+                whereQuery = "";
+            }
+            // Fetch the filtered data from the database
+            currentOffset = 0;
+            loadData();
+        }
         private void CustomizeDataGridView()
         {
             // Hide specific columns
@@ -68,23 +156,18 @@ namespace SYA
                     dataGridView1.Columns[columnName].Visible = false;
                 }
             }
-
             // Set row height
             dataGridView1.RowTemplate.Height = 50;
-
             // Configure text alignment and font size
             dataGridView1.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dataGridView1.DefaultCellStyle.Font = new Font(dataGridView1.Font.FontFamily, 15);
-
             // Adjust column widths
             AdjustColumnWidths();
         }
-
         private void AdjustColumnWidths()
         {
             // Set auto-sizing for all columns initially
             dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
-
             // Manually override specific column widths
             if (dataGridView1.Columns.Contains("METAL_TYPE"))
             {
@@ -102,14 +185,11 @@ namespace SYA
                 dataGridView1.Columns["ITEM_TYPE"].Width = 50;
             }
         }
-
-
         private void InitializeDataGridView()
         {
             dataGridView1.DataSource = null;
             dataGridView1.Scroll += DataGridView1_Scroll;
         }
-
         private void AttachEventHandlers()
         {
             // Attach event handlers
@@ -119,14 +199,12 @@ namespace SYA
             // Initialize the Timer for Enter key navigation
             searchHelper.EnterKeyHandle_EventHandler(dataGridView1);
         }
-
         private void LoadInitialData()
         {
             loadedTable = CreateHardcodedDataTable();
             LoadNextPage();
             dataGridView1.DataSource = loadedTable;
         }
-
         private DataTable CreateHardcodedDataTable()
         {
             DataTable table = new DataTable();
@@ -156,7 +234,8 @@ namespace SYA
                 ("COMMENT", typeof(string)),
                 ("ITM_RAT", typeof(int)),
                 ("ITM_AMT", typeof(int)),
-                ("AC_CODE", typeof(int))
+                ("AC_CODE", typeof(string)),
+                ("AC_NAME", typeof(string)),
             };
             foreach (var (columnName, dataType) in columnDefinitions)
             {
@@ -164,31 +243,15 @@ namespace SYA
             }
             return table;
         }
-
         private void LoadNextPage()
         {
             isLoading = true;
-            string query = $@"
-                SELECT 
-                    ID, CO_YEAR, CO_BOOK, VCH_NO, VCH_DATE, PURITY, METAL_TYPE, TAG_NO, DESIGN, HUID1, HUID2, HUID3, 
-                    ITM_SIZE, ITEM_TYPE, ITM_PCS, GW, NW, LBR_RATE, OTH_AMT, LBR_AMT, SIZE, PRICE, COMMENT, ITM_RAT, 
-                    ITM_AMT, AC_CODE
-                FROM (
-                    SELECT * FROM SALE_DATA_NEW
-                    UNION
-                    SELECT ID, CO_YEAR, CO_BOOK, VCH_NO, VCH_DATE, PURITY, METAL_TYPE, TAG_NO, DESIGN, HUID1, HUID2, 
-                           HUID3, ITM_SIZE, ITEM_TYPE, ITM_PCS, GW, NW, LBR_RATE, OTH_AMT, LBR_AMT, SIZE, PRICE, 
-                           COMMENT, NULL AS ITM_RAT, NULL AS ITM_AMT, NULL AS AC_CODE
-                    FROM MAIN_DATA_NEW
-                ) AS combined_data
-                ORDER BY CO_YEAR DESC, VCH_DATE DESC
-                LIMIT {PageSize} OFFSET {currentOffset};";
+            string query =baseQuery+whereQuery +orderByQuery+ $" LIMIT {PageSize} OFFSET {currentOffset};";
             DataTable originalTable = helper.FetchDataTableFromSYADataBase(query);
             MapRowsToDataTable(originalTable, loadedTable);
             currentOffset += PageSize;
             isLoading = false;
         }
-
         private void MapRowsToDataTable(DataTable source, DataTable destination)
         {
             foreach (DataRow row in source.Rows)
@@ -226,19 +289,15 @@ namespace SYA
                 destination.Rows.Add(newRow);
             }
         }
-
         private void DataGridView1_RowsAdded(object sender, DataGridViewRowsAddedEventArgs e)
         {
             for (int i = e.RowIndex; i < e.RowIndex + e.RowCount; i++)
             {
                 DataGridViewRow gridViewRow = dataGridView1.Rows[i];
-
                 gridViewRow.Height = 50;
-
                 if (gridViewRow.DataBoundItem is DataRowView dataRowView)
                 {
                     DataRow dataRow = dataRowView.Row;
-
                     if (dataRow["CO_BOOK"] != DBNull.Value)
                     {
                         string coBookValue = dataRow["CO_BOOK"].ToString();
@@ -263,7 +322,6 @@ namespace SYA
                             }
                         }
                     }
-
                     if (gridViewRow.DefaultCellStyle.BackColor == Color.Empty)
                     {
                         gridViewRow.DefaultCellStyle.BackColor = i % 2 == 0 ? Color.LightGray : Color.White;
@@ -271,22 +329,18 @@ namespace SYA
                 }
             }
         }
-
         private void DataGridView1_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
             searchHelper.DataGridView1_CellEndEdit_ForEnterKeyHandle(sender, e);
         }
-
         private void DataGridView1_CellEnter(object sender, DataGridViewCellEventArgs e)
         {
             searchHelper.DataGridView1_CellEnter_ForEnterKeyHandle();
         }
-
         private void DataGridView1_KeyDown(object sender, KeyEventArgs e)
         {
             searchHelper.DataGridView1_KeyDown_ForEnterKeyHandle(dataGridView1, e);
         }
-
         private void DataGridView1_Scroll(object sender, ScrollEventArgs e)
         {
             if (e.ScrollOrientation == ScrollOrientation.VerticalScroll)

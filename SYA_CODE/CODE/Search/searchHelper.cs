@@ -46,13 +46,11 @@
             if (savedRowIndex >= 0 && savedColumnIndex >= 0)
             {
                 int nextColumnIndex = savedColumnIndex + 1;
-
                 // Loop to find the next visible column in the current row
                 while (nextColumnIndex < _dataGridView1.Columns.Count && !_dataGridView1.Columns[nextColumnIndex].Visible)
                 {
                     nextColumnIndex++;
                 }
-
                 // If a valid visible column is found, set the current cell
                 if (nextColumnIndex < _dataGridView1.Columns.Count)
                 {
@@ -63,26 +61,22 @@
                     // If no visible columns in the current row, move to the next row and set the first visible column
                     savedRowIndex++;
                     nextColumnIndex = 0; // Start from the first column of the next row
-
                     // Loop to find the first visible column in the next row
                     while (nextColumnIndex < _dataGridView1.Columns.Count && !_dataGridView1.Columns[nextColumnIndex].Visible)
                     {
                         nextColumnIndex++;
                     }
-
                     // Set the first visible cell in the next row
                     if (nextColumnIndex < _dataGridView1.Columns.Count)
                     {
                         _dataGridView1.CurrentCell = _dataGridView1.Rows[savedRowIndex].Cells[nextColumnIndex];
                     }
                 }
-
                 // Reset saved row and column indices
                 savedRowIndex = -1;
                 savedColumnIndex = -1;
             }
         }
-
         // Helper method to get the first visible column index
         private int GetFirstVisibleColumnIndex()
         {
@@ -95,7 +89,6 @@
             }
             return -1; // Return -1 if no visible columns exist
         }
-
         #endregion
     }
 }

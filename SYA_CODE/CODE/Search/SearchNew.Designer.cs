@@ -71,7 +71,7 @@
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 5F));
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 94F));
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 1F));
-            tableLayoutPanel1.Size = new Size(1616, 843);
+            tableLayoutPanel1.Size = new Size(1284, 843);
             tableLayoutPanel1.TabIndex = 0;
             // 
             // tableLayoutPanel2
@@ -83,14 +83,14 @@
             tableLayoutPanel2.Controls.Add(TB_EVERYTHING, 0, 0);
             tableLayoutPanel2.Controls.Add(dataGridView1, 0, 1);
             tableLayoutPanel2.Dock = DockStyle.Fill;
-            tableLayoutPanel2.Location = new Point(11, 45);
+            tableLayoutPanel2.Location = new Point(9, 45);
             tableLayoutPanel2.Name = "tableLayoutPanel2";
             tableLayoutPanel2.RowCount = 4;
             tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 10F));
             tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 78F));
             tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 5F));
             tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 7F));
-            tableLayoutPanel2.Size = new Size(1593, 786);
+            tableLayoutPanel2.Size = new Size(1265, 786);
             tableLayoutPanel2.TabIndex = 0;
             // 
             // LABEL_MESSAGE
@@ -99,7 +99,7 @@
             LABEL_MESSAGE.Font = new Font("Arial Rounded MT Bold", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
             LABEL_MESSAGE.Location = new Point(3, 691);
             LABEL_MESSAGE.Name = "LABEL_MESSAGE";
-            LABEL_MESSAGE.Size = new Size(1587, 39);
+            LABEL_MESSAGE.Size = new Size(1259, 39);
             LABEL_MESSAGE.TabIndex = 4;
             LABEL_MESSAGE.Text = "No Updates !";
             LABEL_MESSAGE.TextAlign = ContentAlignment.MiddleCenter;
@@ -134,7 +134,7 @@
             tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Percent, 5F));
             tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Percent, 5F));
             tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Percent, 5F));
-            tableLayoutPanel4.Size = new Size(1587, 50);
+            tableLayoutPanel4.Size = new Size(1259, 50);
             tableLayoutPanel4.TabIndex = 2;
             // 
             // BUTTON_PRINT_ON_OFF
@@ -142,9 +142,9 @@
             BUTTON_PRINT_ON_OFF.Dock = DockStyle.Fill;
             BUTTON_PRINT_ON_OFF.FlatStyle = FlatStyle.Flat;
             BUTTON_PRINT_ON_OFF.Font = new Font("Arial Rounded MT Bold", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
-            BUTTON_PRINT_ON_OFF.Location = new Point(918, 5);
+            BUTTON_PRINT_ON_OFF.Location = new Point(732, 5);
             BUTTON_PRINT_ON_OFF.Name = "BUTTON_PRINT_ON_OFF";
-            BUTTON_PRINT_ON_OFF.Size = new Size(184, 34);
+            BUTTON_PRINT_ON_OFF.Size = new Size(145, 34);
             BUTTON_PRINT_ON_OFF.TabIndex = 2;
             BUTTON_PRINT_ON_OFF.Text = "PRINTING OFF";
             BUTTON_PRINT_ON_OFF.UseVisualStyleBackColor = true;
@@ -154,9 +154,9 @@
             BUTTON_FETCH_DATA.Dock = DockStyle.Fill;
             BUTTON_FETCH_DATA.FlatStyle = FlatStyle.Flat;
             BUTTON_FETCH_DATA.Font = new Font("Arial Rounded MT Bold", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
-            BUTTON_FETCH_DATA.Location = new Point(1139, 5);
+            BUTTON_FETCH_DATA.Location = new Point(908, 5);
             BUTTON_FETCH_DATA.Name = "BUTTON_FETCH_DATA";
-            BUTTON_FETCH_DATA.Size = new Size(184, 34);
+            BUTTON_FETCH_DATA.Size = new Size(145, 34);
             BUTTON_FETCH_DATA.TabIndex = 0;
             BUTTON_FETCH_DATA.Text = "FETCH DATA";
             BUTTON_FETCH_DATA.UseVisualStyleBackColor = true;
@@ -166,9 +166,9 @@
             BUTTON_RESET_FILTERS.Dock = DockStyle.Fill;
             BUTTON_RESET_FILTERS.FlatStyle = FlatStyle.Flat;
             BUTTON_RESET_FILTERS.Font = new Font("Arial Rounded MT Bold", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
-            BUTTON_RESET_FILTERS.Location = new Point(1360, 5);
+            BUTTON_RESET_FILTERS.Location = new Point(1084, 5);
             BUTTON_RESET_FILTERS.Name = "BUTTON_RESET_FILTERS";
-            BUTTON_RESET_FILTERS.Size = new Size(184, 34);
+            BUTTON_RESET_FILTERS.Size = new Size(145, 34);
             BUTTON_RESET_FILTERS.TabIndex = 1;
             BUTTON_RESET_FILTERS.Text = "RESET FILTERS";
             BUTTON_RESET_FILTERS.UseVisualStyleBackColor = true;
@@ -176,21 +176,21 @@
             // TB_EVERYTHING
             // 
             TB_EVERYTHING.ColumnCount = 15;
-            TB_EVERYTHING.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 2F));
+            TB_EVERYTHING.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 1F));
+            TB_EVERYTHING.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 20F));
+            TB_EVERYTHING.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 1F));
             TB_EVERYTHING.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 12F));
-            TB_EVERYTHING.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 2F));
+            TB_EVERYTHING.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 1F));
             TB_EVERYTHING.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 12F));
-            TB_EVERYTHING.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 2F));
+            TB_EVERYTHING.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 1F));
             TB_EVERYTHING.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 12F));
-            TB_EVERYTHING.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 2F));
+            TB_EVERYTHING.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 1F));
             TB_EVERYTHING.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 12F));
-            TB_EVERYTHING.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 2F));
+            TB_EVERYTHING.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 1F));
             TB_EVERYTHING.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 12F));
-            TB_EVERYTHING.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 2F));
+            TB_EVERYTHING.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 1F));
             TB_EVERYTHING.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 12F));
-            TB_EVERYTHING.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 2F));
-            TB_EVERYTHING.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 12F));
-            TB_EVERYTHING.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 2F));
+            TB_EVERYTHING.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 1F));
             TB_EVERYTHING.Controls.Add(richTextBox8, 13, 3);
             TB_EVERYTHING.Controls.Add(TB_HUID, 11, 3);
             TB_EVERYTHING.Controls.Add(TB_BILLNO, 9, 3);
@@ -214,7 +214,7 @@
             TB_EVERYTHING.RowStyles.Add(new RowStyle(SizeType.Percent, 4F));
             TB_EVERYTHING.RowStyles.Add(new RowStyle(SizeType.Percent, 54F));
             TB_EVERYTHING.RowStyles.Add(new RowStyle(SizeType.Percent, 4F));
-            TB_EVERYTHING.Size = new Size(1587, 72);
+            TB_EVERYTHING.Size = new Size(1259, 72);
             TB_EVERYTHING.TabIndex = 0;
             // 
             // richTextBox8
@@ -222,10 +222,10 @@
             richTextBox8.BorderStyle = BorderStyle.FixedSingle;
             richTextBox8.Dock = DockStyle.Fill;
             richTextBox8.Font = new Font("Arial Rounded MT Bold", 15.25F, FontStyle.Regular, GraphicsUnit.Point);
-            richTextBox8.Location = new Point(1360, 31);
+            richTextBox8.Location = new Point(1093, 31);
             richTextBox8.Multiline = false;
             richTextBox8.Name = "richTextBox8";
-            richTextBox8.Size = new Size(184, 32);
+            richTextBox8.Size = new Size(145, 32);
             richTextBox8.TabIndex = 4;
             richTextBox8.Text = "";
             // 
@@ -234,10 +234,10 @@
             TB_HUID.BorderStyle = BorderStyle.FixedSingle;
             TB_HUID.Dock = DockStyle.Fill;
             TB_HUID.Font = new Font("Arial Rounded MT Bold", 15.25F, FontStyle.Regular, GraphicsUnit.Point);
-            TB_HUID.Location = new Point(1139, 31);
+            TB_HUID.Location = new Point(930, 31);
             TB_HUID.Multiline = false;
             TB_HUID.Name = "TB_HUID";
-            TB_HUID.Size = new Size(184, 32);
+            TB_HUID.Size = new Size(145, 32);
             TB_HUID.TabIndex = 4;
             TB_HUID.Text = "";
             // 
@@ -246,10 +246,10 @@
             TB_BILLNO.BorderStyle = BorderStyle.FixedSingle;
             TB_BILLNO.Dock = DockStyle.Fill;
             TB_BILLNO.Font = new Font("Arial Rounded MT Bold", 15.25F, FontStyle.Regular, GraphicsUnit.Point);
-            TB_BILLNO.Location = new Point(918, 31);
+            TB_BILLNO.Location = new Point(767, 31);
             TB_BILLNO.Multiline = false;
             TB_BILLNO.Name = "TB_BILLNO";
-            TB_BILLNO.Size = new Size(184, 32);
+            TB_BILLNO.Size = new Size(145, 32);
             TB_BILLNO.TabIndex = 4;
             TB_BILLNO.Text = "";
             // 
@@ -258,10 +258,10 @@
             TB_WEIGHT.BorderStyle = BorderStyle.FixedSingle;
             TB_WEIGHT.Dock = DockStyle.Fill;
             TB_WEIGHT.Font = new Font("Arial Rounded MT Bold", 15.25F, FontStyle.Regular, GraphicsUnit.Point);
-            TB_WEIGHT.Location = new Point(697, 31);
+            TB_WEIGHT.Location = new Point(604, 31);
             TB_WEIGHT.Multiline = false;
             TB_WEIGHT.Name = "TB_WEIGHT";
-            TB_WEIGHT.Size = new Size(184, 32);
+            TB_WEIGHT.Size = new Size(145, 32);
             TB_WEIGHT.TabIndex = 4;
             TB_WEIGHT.Text = "";
             // 
@@ -270,10 +270,10 @@
             TB_TAGNO.BorderStyle = BorderStyle.FixedSingle;
             TB_TAGNO.Dock = DockStyle.Fill;
             TB_TAGNO.Font = new Font("Arial Rounded MT Bold", 15.25F, FontStyle.Regular, GraphicsUnit.Point);
-            TB_TAGNO.Location = new Point(476, 31);
+            TB_TAGNO.Location = new Point(441, 31);
             TB_TAGNO.Multiline = false;
             TB_TAGNO.Name = "TB_TAGNO";
-            TB_TAGNO.Size = new Size(184, 32);
+            TB_TAGNO.Size = new Size(145, 32);
             TB_TAGNO.TabIndex = 4;
             TB_TAGNO.Text = "";
             // 
@@ -281,9 +281,9 @@
             // 
             label3.Dock = DockStyle.Fill;
             label3.Font = new Font("Arial Rounded MT Bold", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
-            label3.Location = new Point(476, 2);
+            label3.Location = new Point(441, 2);
             label3.Name = "label3";
-            label3.Size = new Size(184, 24);
+            label3.Size = new Size(145, 24);
             label3.TabIndex = 2;
             label3.Text = "TAG NO";
             label3.TextAlign = ContentAlignment.MiddleCenter;
@@ -292,9 +292,9 @@
             // 
             label7.Dock = DockStyle.Fill;
             label7.Font = new Font("Arial Rounded MT Bold", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
-            label7.Location = new Point(1360, 2);
+            label7.Location = new Point(1093, 2);
             label7.Name = "label7";
-            label7.Size = new Size(184, 24);
+            label7.Size = new Size(145, 24);
             label7.TabIndex = 3;
             label7.Text = "EVERYTHING";
             label7.TextAlign = ContentAlignment.MiddleCenter;
@@ -303,9 +303,9 @@
             // 
             label6.Dock = DockStyle.Fill;
             label6.Font = new Font("Arial Rounded MT Bold", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
-            label6.Location = new Point(1139, 2);
+            label6.Location = new Point(930, 2);
             label6.Name = "label6";
-            label6.Size = new Size(184, 24);
+            label6.Size = new Size(145, 24);
             label6.TabIndex = 3;
             label6.Text = "HUID";
             label6.TextAlign = ContentAlignment.MiddleCenter;
@@ -314,9 +314,9 @@
             // 
             label5.Dock = DockStyle.Fill;
             label5.Font = new Font("Arial Rounded MT Bold", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
-            label5.Location = new Point(918, 2);
+            label5.Location = new Point(767, 2);
             label5.Name = "label5";
-            label5.Size = new Size(184, 24);
+            label5.Size = new Size(145, 24);
             label5.TabIndex = 3;
             label5.Text = "BILL NO";
             label5.TextAlign = ContentAlignment.MiddleCenter;
@@ -325,9 +325,9 @@
             // 
             label4.Dock = DockStyle.Fill;
             label4.Font = new Font("Arial Rounded MT Bold", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
-            label4.Location = new Point(697, 2);
+            label4.Location = new Point(604, 2);
             label4.Name = "label4";
-            label4.Size = new Size(184, 24);
+            label4.Size = new Size(145, 24);
             label4.TabIndex = 3;
             label4.Text = "WEIGHT";
             label4.TextAlign = ContentAlignment.MiddleCenter;
@@ -336,9 +336,9 @@
             // 
             label1.Dock = DockStyle.Fill;
             label1.Font = new Font("Arial Rounded MT Bold", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
-            label1.Location = new Point(34, 2);
+            label1.Location = new Point(15, 2);
             label1.Name = "label1";
-            label1.Size = new Size(184, 24);
+            label1.Size = new Size(245, 24);
             label1.TabIndex = 0;
             label1.Text = "NAME";
             label1.TextAlign = ContentAlignment.MiddleCenter;
@@ -347,9 +347,9 @@
             // 
             label2.Dock = DockStyle.Fill;
             label2.Font = new Font("Arial Rounded MT Bold", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
-            label2.Location = new Point(255, 2);
+            label2.Location = new Point(278, 2);
             label2.Name = "label2";
-            label2.Size = new Size(184, 24);
+            label2.Size = new Size(145, 24);
             label2.TabIndex = 1;
             label2.Text = "YEAR";
             label2.TextAlign = ContentAlignment.MiddleCenter;
@@ -359,9 +359,9 @@
             CB_NAME.Dock = DockStyle.Fill;
             CB_NAME.Font = new Font("Arial Rounded MT Bold", 15.25F, FontStyle.Regular, GraphicsUnit.Point);
             CB_NAME.FormattingEnabled = true;
-            CB_NAME.Location = new Point(34, 31);
+            CB_NAME.Location = new Point(15, 31);
             CB_NAME.Name = "CB_NAME";
-            CB_NAME.Size = new Size(184, 31);
+            CB_NAME.Size = new Size(245, 31);
             CB_NAME.TabIndex = 5;
             // 
             // CB_YEAR
@@ -369,9 +369,9 @@
             CB_YEAR.Dock = DockStyle.Fill;
             CB_YEAR.Font = new Font("Arial Rounded MT Bold", 15.25F, FontStyle.Regular, GraphicsUnit.Point);
             CB_YEAR.FormattingEnabled = true;
-            CB_YEAR.Location = new Point(255, 31);
+            CB_YEAR.Location = new Point(278, 31);
             CB_YEAR.Name = "CB_YEAR";
-            CB_YEAR.Size = new Size(184, 31);
+            CB_YEAR.Size = new Size(145, 31);
             CB_YEAR.TabIndex = 6;
             // 
             // dataGridView1
@@ -381,16 +381,16 @@
             dataGridView1.Location = new Point(3, 81);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.RowTemplate.Height = 25;
-            dataGridView1.Size = new Size(1587, 607);
+            dataGridView1.Size = new Size(1259, 607);
             dataGridView1.TabIndex = 1;
             // 
             // label8
             // 
             label8.Dock = DockStyle.Fill;
             label8.Font = new Font("Microsoft Sans Serif", 24F, FontStyle.Regular, GraphicsUnit.Point);
-            label8.Location = new Point(11, 0);
+            label8.Location = new Point(9, 0);
             label8.Name = "label8";
-            label8.Size = new Size(1593, 42);
+            label8.Size = new Size(1265, 42);
             label8.TabIndex = 5;
             label8.Text = "SEARCH";
             label8.TextAlign = ContentAlignment.MiddleCenter;
@@ -399,7 +399,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1616, 843);
+            ClientSize = new Size(1284, 843);
             Controls.Add(tableLayoutPanel1);
             Name = "SearchNew";
             Text = "SearchNew";
