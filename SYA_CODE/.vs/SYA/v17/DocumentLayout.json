@@ -32,7 +32,7 @@
               "RelativeDocumentMoniker": "CODE\\Search\\SearchNew.cs",
               "ToolTip": "C:\\SYA_LATEST\\SYA_CODE\\CODE\\Search\\SearchNew.cs",
               "RelativeToolTip": "CODE\\Search\\SearchNew.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAGoAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAA4AAAAAAAAAAAAQwPEAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-12-22T05:53:41.19Z",
               "IsPinned": true,
@@ -46,10 +46,11 @@
               "RelativeDocumentMoniker": "CODE\\Search\\searchHelper.cs",
               "ToolTip": "C:\\SYA_LATEST\\SYA_CODE\\CODE\\Search\\searchHelper.cs",
               "RelativeToolTip": "CODE\\Search\\searchHelper.cs",
-              "ViewState": "AgIAAC0AAAAAAAAAAAAYwEIAAABEAAAAAAAAAA==",
+              "ViewState": "AgIAAEEAAAAAAAAAAAAgwGQAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-12-22T07:36:08.73Z",
-              "IsPinned": true
+              "IsPinned": true,
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -61,7 +62,8 @@
               "RelativeToolTip": "CODE\\Search\\SearchNew.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-12-21T15:55:08.348Z",
-              "IsPinned": true
+              "IsPinned": true,
+              "EditorCaption": " [Design]"
             },
             {
               "$type": "Bookmark",

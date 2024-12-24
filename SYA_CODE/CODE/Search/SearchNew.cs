@@ -46,62 +46,27 @@ namespace SYA
             dataGridView1.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dataGridView1.DefaultCellStyle.Font = new Font(dataGridView1.Font.FontFamily, 15);
 
-            // Adjust column widths to fit content
-            dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells;
-
-            // Manually adjust widths of specific columns if needed
+            // Adjust column widths
             AdjustColumnWidths();
-
-            // Additional row styling (if needed for preloaded rows)
-            foreach (DataGridViewRow row in dataGridView1.Rows)
-            {
-                if (row.DataBoundItem is DataRowView dataRowView)
-                {
-                    DataRow dataRow = dataRowView.Row;
-
-                    // Styling logic based on conditions
-                    if (dataRow["CO_BOOK"] != DBNull.Value)
-                    {
-                        string coBook = dataRow["CO_BOOK"].ToString();
-                        if (coBook == "026" || coBook == "027")
-                        {
-                            row.DefaultCellStyle.BackColor = Color.LightSkyBlue;
-                            row.DefaultCellStyle.ForeColor = Color.White;
-                        }
-                        else if (coBook == "015")
-                        {
-                            if (dataRow["METAL_TYPE"] != DBNull.Value)
-                            {
-                                string metalType = dataRow["METAL_TYPE"].ToString();
-                                if (metalType == "G")
-                                {
-                                    row.DefaultCellStyle.BackColor = Color.Gold;
-                                }
-                                else if (metalType == "S")
-                                {
-                                    row.DefaultCellStyle.BackColor = Color.Silver;
-                                }
-                            }
-                        }
-                    }
-                }
-            }
         }
 
         private void AdjustColumnWidths()
         {
-            // Adjust the width of METAL_TYPE column based on its content
+            // Set fixed widths for specific columns
             if (dataGridView1.Columns.Contains("METAL_TYPE"))
             {
-                int maxWidth = 0;
-                foreach (DataGridViewRow row in dataGridView1.Rows)
+                dataGridView1.Columns["METAL_TYPE"].Width = 50;
+                dataGridView1.Columns["PURITY"].Width = 50;
+                dataGridView1.Columns["ITEM_TYPE"].Width = 50;
+            }
+
+            // Set auto-sizing for other columns
+            foreach (DataGridViewColumn column in dataGridView1.Columns)
+            {
+                if (column.Name != "METAL_TYPE" && column.Name != "PURITY" && column.Name != "ITEM_TYPE")
                 {
-                    string value = row.Cells["METAL_TYPE"].Value?.ToString() ?? string.Empty;
-                    int width = TextRenderer.MeasureText(value, dataGridView1.Font).Width;
-                    maxWidth = Math.Max(maxWidth, width);
+                    column.AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
                 }
-                // Set the width with a margin (you can adjust the margin based on your preference)
-                dataGridView1.Columns["METAL_TYPE"].Width = maxWidth + 10; // 10px margin
             }
         }
 
@@ -201,25 +166,21 @@ namespace SYA
                     {
                         if (row[column] is string dateString)
                         {
-                            // Try to parse the string to a DateTime
                             if (DateTime.TryParse(dateString, out DateTime parsedDate))
                             {
                                 newRow[column.ColumnName] = parsedDate.ToString("dd-MM-yy");
                             }
                             else
                             {
-                                // If parsing fails, keep the original value
                                 newRow[column.ColumnName] = dateString;
                             }
                         }
                         else if (row[column] is DateTime dateValue)
                         {
-                            // If the value is already a DateTime, format it directly
                             newRow[column.ColumnName] = dateValue.ToString("dd-MM-yy");
                         }
                         else
                         {
-                            // If it's neither string nor DateTime, keep the original value
                             newRow[column.ColumnName] = row[column];
                         }
                     }
@@ -232,51 +193,46 @@ namespace SYA
             }
         }
 
-        // Handle row styling as they are added
         private void DataGridView1_RowsAdded(object sender, DataGridViewRowsAddedEventArgs e)
         {
             for (int i = e.RowIndex; i < e.RowIndex + e.RowCount; i++)
             {
                 DataGridViewRow gridViewRow = dataGridView1.Rows[i];
 
-                // Set row height to 50px
                 gridViewRow.Height = 50;
 
                 if (gridViewRow.DataBoundItem is DataRowView dataRowView)
                 {
                     DataRow dataRow = dataRowView.Row;
 
-                    // Styling for CO_BOOK values
                     if (dataRow["CO_BOOK"] != DBNull.Value)
                     {
                         string coBookValue = dataRow["CO_BOOK"].ToString();
                         if (coBookValue == "026" || coBookValue == "027")
                         {
-                            gridViewRow.DefaultCellStyle.BackColor = Color.LightSkyBlue; // Lighter blue background
-                            gridViewRow.DefaultCellStyle.ForeColor = Color.White;       // White font
+                            gridViewRow.DefaultCellStyle.BackColor = Color.LightSkyBlue;
+                            gridViewRow.DefaultCellStyle.ForeColor = Color.White;
                         }
                         else if (coBookValue == "015")
                         {
-                            // Styling for CO_BOOK = 015 and Metal Type
                             if (dataRow["METAL_TYPE"] != DBNull.Value)
                             {
                                 string metalType = dataRow["METAL_TYPE"].ToString().ToUpper();
-                                if (metalType == "G") // Gold
+                                if (metalType == "G")
                                 {
-                                    gridViewRow.DefaultCellStyle.BackColor = Color.Gold; // Gold background
+                                    gridViewRow.DefaultCellStyle.BackColor = Color.Gold;
                                 }
-                                else if (metalType == "S") // Silver
+                                else if (metalType == "S")
                                 {
-                                    gridViewRow.DefaultCellStyle.BackColor = Color.Silver; // Silver background
+                                    gridViewRow.DefaultCellStyle.BackColor = Color.Silver;
                                 }
                             }
                         }
                     }
 
-                    // Example: Alternating row colors for unstyled rows (Optional for better readability)
-                    if (gridViewRow.DefaultCellStyle.BackColor == Color.Empty) // If no specific style applied
+                    if (gridViewRow.DefaultCellStyle.BackColor == Color.Empty)
                     {
-                        gridViewRow.DefaultCellStyle.BackColor = i % 2 == 0 ? Color.LightGray : Color.White; // Alternating colors
+                        gridViewRow.DefaultCellStyle.BackColor = i % 2 == 0 ? Color.LightGray : Color.White;
                     }
                 }
             }
