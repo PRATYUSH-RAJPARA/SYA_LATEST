@@ -46,9 +46,9 @@
             label2 = new Label();
             CB_NAME = new ComboBox();
             CB_YEAR = new ComboBox();
+            CB_HUID = new ComboBox();
             dataGridView1 = new DataGridView();
             label8 = new Label();
-            CB_HUID = new ComboBox();
             tableLayoutPanel1.SuspendLayout();
             tableLayoutPanel2.SuspendLayout();
             tableLayoutPanel4.SuspendLayout();
@@ -360,6 +360,16 @@
             CB_YEAR.Size = new Size(145, 33);
             CB_YEAR.TabIndex = 6;
             // 
+            // CB_HUID
+            // 
+            CB_HUID.Dock = DockStyle.Fill;
+            CB_HUID.Font = new Font("Microsoft Sans Serif", 15.25F, FontStyle.Regular, GraphicsUnit.Point);
+            CB_HUID.FormattingEnabled = true;
+            CB_HUID.Location = new Point(930, 31);
+            CB_HUID.Name = "CB_HUID";
+            CB_HUID.Size = new Size(145, 33);
+            CB_HUID.TabIndex = 8;
+            // 
             // dataGridView1
             // 
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -380,16 +390,6 @@
             label8.TabIndex = 5;
             label8.Text = "SEARCH";
             label8.TextAlign = ContentAlignment.MiddleCenter;
-            // 
-            // CB_HUID
-            // 
-            CB_HUID.Dock = DockStyle.Fill;
-            CB_HUID.Font = new Font("Microsoft Sans Serif", 15.25F, FontStyle.Regular, GraphicsUnit.Point);
-            CB_HUID.FormattingEnabled = true;
-            CB_HUID.Location = new Point(930, 31);
-            CB_HUID.Name = "CB_HUID";
-            CB_HUID.Size = new Size(145, 33);
-            CB_HUID.TabIndex = 8;
             // 
             // SearchNew
             // 

@@ -3,12 +3,12 @@
   "WorkspaceRootPath": "C:\\SYA_LATEST\\SYA_CODE\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{F4E7395C-6436-4F9A-A0E3-A889008539AF}|SYA.csproj|c:\\sya_latest\\sya_code\\code\\search\\searchhelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F4E7395C-6436-4F9A-A0E3-A889008539AF}|SYA.csproj|solutionrelative:code\\search\\searchhelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{F4E7395C-6436-4F9A-A0E3-A889008539AF}|SYA.csproj|c:\\sya_latest\\sya_code\\code\\search\\searchnew.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F4E7395C-6436-4F9A-A0E3-A889008539AF}|SYA.csproj|solutionrelative:code\\search\\searchnew.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F4E7395C-6436-4F9A-A0E3-A889008539AF}|SYA.csproj|c:\\sya_latest\\sya_code\\code\\search\\searchhelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F4E7395C-6436-4F9A-A0E3-A889008539AF}|SYA.csproj|solutionrelative:code\\search\\searchhelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{F4E7395C-6436-4F9A-A0E3-A889008539AF}|SYA.csproj|c:\\sya_latest\\sya_code\\code\\search\\enterkeynavigation.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -50,17 +50,17 @@
       "DocumentGroups": [
         {
           "DockedWidth": 373,
-          "SelectedChildIndex": 5,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
               "Title": "SearchNew.cs",
               "DocumentMoniker": "C:\\SYA_LATEST\\SYA_CODE\\CODE\\Search\\SearchNew.cs",
               "RelativeDocumentMoniker": "CODE\\Search\\SearchNew.cs",
-              "ToolTip": "C:\\SYA_LATEST\\SYA_CODE\\CODE\\Search\\SearchNew.cs*",
-              "RelativeToolTip": "CODE\\Search\\SearchNew.cs*",
-              "ViewState": "AgIAAJ4AAAAAAAAAAAAQwLgAAAAwAAAAAAAAAA==",
+              "ToolTip": "C:\\SYA_LATEST\\SYA_CODE\\CODE\\Search\\SearchNew.cs",
+              "RelativeToolTip": "CODE\\Search\\SearchNew.cs",
+              "ViewState": "AgIAABYAAAAAAAAAAAAkwEAAAAApAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-12-22T05:53:41.19Z",
               "IsPinned": true,
@@ -72,8 +72,8 @@
               "Title": "EnterKeyNavigation.cs",
               "DocumentMoniker": "C:\\SYA_LATEST\\SYA_CODE\\CODE\\Search\\EnterKeyNavigation.cs",
               "RelativeDocumentMoniker": "CODE\\Search\\EnterKeyNavigation.cs",
-              "ToolTip": "C:\\SYA_LATEST\\SYA_CODE\\CODE\\Search\\EnterKeyNavigation.cs*",
-              "RelativeToolTip": "CODE\\Search\\EnterKeyNavigation.cs*",
+              "ToolTip": "C:\\SYA_LATEST\\SYA_CODE\\CODE\\Search\\EnterKeyNavigation.cs",
+              "RelativeToolTip": "CODE\\Search\\EnterKeyNavigation.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAmAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-12-22T07:36:08.73Z",
@@ -86,8 +86,8 @@
               "Title": "SearchNew.cs [Design]",
               "DocumentMoniker": "C:\\SYA_LATEST\\SYA_CODE\\CODE\\Search\\SearchNew.cs",
               "RelativeDocumentMoniker": "CODE\\Search\\SearchNew.cs",
-              "ToolTip": "C:\\SYA_LATEST\\SYA_CODE\\CODE\\Search\\SearchNew.cs [Design]*",
-              "RelativeToolTip": "CODE\\Search\\SearchNew.cs [Design]*",
+              "ToolTip": "C:\\SYA_LATEST\\SYA_CODE\\CODE\\Search\\SearchNew.cs [Design]",
+              "RelativeToolTip": "CODE\\Search\\SearchNew.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-12-24T06:28:25.404Z",
               "IsPinned": true,
@@ -123,13 +123,13 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "SearchHelper.cs",
               "DocumentMoniker": "C:\\SYA_LATEST\\SYA_CODE\\CODE\\Search\\SearchHelper.cs",
               "RelativeDocumentMoniker": "CODE\\Search\\SearchHelper.cs",
-              "ToolTip": "C:\\SYA_LATEST\\SYA_CODE\\CODE\\Search\\SearchHelper.cs*",
-              "RelativeToolTip": "CODE\\Search\\SearchHelper.cs*",
-              "ViewState": "AgIAACkAAAAAAAAAAAAQwLwAAAALAAAAAAAAAA==",
+              "ToolTip": "C:\\SYA_LATEST\\SYA_CODE\\CODE\\Search\\SearchHelper.cs",
+              "RelativeToolTip": "CODE\\Search\\SearchHelper.cs",
+              "ViewState": "AgIAACYAAAAAAAAAAAAQwD8AAAAjAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-12-25T19:23:10.007Z",
               "IsPinned": true,

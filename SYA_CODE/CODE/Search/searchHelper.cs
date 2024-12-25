@@ -5,7 +5,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
 namespace SYA
 {
     public class SearchHelper
@@ -14,7 +13,6 @@ namespace SYA
         //ComboBox CB_NAME1;
         //ComboBox CB_HUID1;
         //ComboBox CB_TAGNO1;
-       
         //private void BindACNameComboBox(ComboBox CB_NAME)
         //{
         //    string query = @"
@@ -36,7 +34,6 @@ namespace SYA
         //    CB_NAME.AutoCompleteSource = AutoCompleteSource.ListItems;
         //    CB_NAME1 = CB_NAME;
         //    CB_NAME.TextChanged += CB_NAME_TextChanged;
-
         //    CB_NAME.SelectedIndexChanged += CB_NAME_SelectedIndexChanged;
         //}
         //private void BindCOYearComboBox(ComboBox CB_YEAR)
@@ -67,7 +64,6 @@ namespace SYA
         //    CB_YEAR.TextChanged += CB_YEAR_TextChanged;
         //    CB_YEAR.SelectedIndexChanged += CB_YEAR_SelectedIndexChanged;
         //}
-
         //private void BindTAGNOComboBox(ComboBox CB_TAGNO)
         //{
         //    string query = @"
@@ -123,29 +119,23 @@ namespace SYA
         //    CB_HUID1 = CB_HUID;
         //    CB_HUID.TextChanged += CB_HUID_TextChanged;
         //    CB_HUID.SelectedIndexChanged += CB_HUID_SelectedIndexChanged;
-
         //}
         //private void CB_NAME_SelectedIndexChanged(object sender, EventArgs e)
         //{
         //    LoadDataBasedOnComboBoxValue(CB_NAME1, "AC_NAME");
-
         //}
         //private void CB_YEAR_SelectedIndexChanged(object sender, EventArgs e)
         //{
         //    LoadDataBasedOnComboBoxValue(CB_YEAR1, "CO_YEAR");
-
         //}
         //private void CB_TAGNO_SelectedIndexChanged(object sender, EventArgs e)
         //{
         //    LoadDataBasedOnComboBoxValue(CB_TAGNO1, "TAG_NO");
-
         //}
         //private void CB_HUID_SelectedIndexChanged(object sender, EventArgs e)
         //{
         //    LoadDataBasedOnComboBoxValue(CB_HUID1, "HUID1");
-
         //}
-
         //private void CB_HUID_TextChanged(object sender, EventArgs e)
         //{
         //    LoadDataBasedOnComboBoxValue(CB_HUID1, "HUID1");
@@ -162,7 +152,6 @@ namespace SYA
         //{
         //    LoadDataBasedOnComboBoxValue(CB_YEAR1, "CO_YEAR");
         //}
-
         //private void LoadDataBasedOnComboBoxValue(ComboBox CB, string columnName)
         //{
         //    string typedText = CB.Text.ToString();
