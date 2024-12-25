@@ -11,23 +11,23 @@ namespace SYA
         private int currentOffset = 0; // Tracks the current offset for lazy loading
         private bool isLoading = false; // Prevents multiple fetches during loading
         private DataTable loadedTable = new DataTable(); // Table to hold all loaded rows
-        private string whereQuery = "";
-        private string baseQuery = $@"
-                SELECT 
-                    ID, CO_YEAR, CO_BOOK, VCH_NO, VCH_DATE, PURITY, METAL_TYPE, TAG_NO, DESIGN, HUID1, HUID2, HUID3, 
-                    ITM_SIZE, ITEM_TYPE, ITM_PCS, GW, NW, LBR_RATE, OTH_AMT, LBR_AMT, SIZE, PRICE, COMMENT, ITM_RAT, 
-                    ITM_AMT, AC_CODE,AC_NAME
-                FROM (
-                    SELECT * FROM SALE_DATA_NEW
-                    UNION
-                    SELECT ID, CO_YEAR, CO_BOOK, VCH_NO, VCH_DATE, PURITY, METAL_TYPE, TAG_NO, DESIGN, HUID1, HUID2, 
-                           HUID3, ITM_SIZE, ITEM_TYPE, ITM_PCS, GW, NW, LBR_RATE, OTH_AMT, LBR_AMT, SIZE, PRICE, 
-                           COMMENT, NULL AS ITM_RAT, NULL AS ITM_AMT, NULL AS AC_CODE, NULL AS AC_NAME
-                    FROM MAIN_DATA_NEW
-                ) AS combined_data ";
-        private string orderByQuery = "  ORDER BY CO_YEAR DESC, VCH_DATE DESC ";
+
+        string SELECT = " SELECT ";
+        string CN_SALE = @" ID, CO_YEAR, CO_BOOK, VCH_NO, VCH_DATE, PURITY, METAL_TYPE, TAG_NO, DESIGN, HUID1, HUID2, HUID3,ITM_SIZE, ITEM_TYPE, ITM_PCS, GW, NW, LBR_RATE, OTH_AMT, LBR_AMT, SIZE, PRICE, COMMENT, ITM_RAT,  ITM_AMT, AC_CODE,AC_NAME ";
+        string FROM_SALE = @" FROM (  SELECT * FROM SALE_DATA_NEW ";
+        string WHERE_SALE = @"  ";
+        string UNION_SELECT = "  UNION SELECT ";
+        string CN_MD = " ID, CO_YEAR, CO_BOOK, VCH_NO, VCH_DATE, PURITY, METAL_TYPE, TAG_NO, DESIGN, HUID1, HUID2, HUID3, ITM_SIZE, ITEM_TYPE, ITM_PCS, GW, NW, LBR_RATE, OTH_AMT, LBR_AMT, SIZE, PRICE, COMMENT, NULL AS ITM_RAT, NULL AS ITM_AMT, NULL AS AC_CODE, NULL AS AC_NAME ";
+        string FROM_MD = "   FROM MAIN_DATA_NEW ";
+        string WHERE_MD =@"  ";
+        string COMBINE_DATA = @"  ) AS combined_data  ";
+        string WHERE_ALL = " ";
+        string orderByQuery = "  ORDER BY CO_YEAR DESC, VCH_DATE DESC ";
+
+        
         public SearchNew()
         {
+            string A = SELECT + CN_SALE + FROM_SALE + WHERE_SALE + UNION_SELECT + CN_MD + FROM_MD + WHERE_MD + COMBINE_DATA + orderByQuery;
             InitializeComponent();
         }
         private void SearchNew_Load(object sender, EventArgs e)
@@ -47,22 +47,29 @@ namespace SYA
         {
             string query = @"
         SELECT DISTINCT AC_NAME
-        FROM  SALE_DATA_NEW 
+        FROM SALE_DATA_NEW 
         ORDER BY AC_NAME ASC;";
-            // Fetch distinct CO_YEAR values from both tables
+
             DataTable AC_NAME_TABLE = helper.FetchDataTableFromSYADataBase(query);
+
             // Create a new row for "All" and add it at the top
             DataRow allRow = AC_NAME_TABLE.NewRow();
             allRow["AC_NAME"] = "All";
-            AC_NAME_TABLE.Rows.InsertAt(allRow, 0); // Insert "All" as the first row
+            AC_NAME_TABLE.Rows.InsertAt(allRow, 0);
+
             // Bind the fetched values to the combo box
             CB_NAME.DataSource = AC_NAME_TABLE;
-            CB_NAME.DisplayMember = "AC_NAME"; // Column to display in the combo box
-            CB_NAME.ValueMember = "AC_NAME";   // Value to bind in the combo box
-            // Set the default selected item to "All"
+            CB_NAME.DisplayMember = "AC_NAME";
+            CB_NAME.ValueMember = "AC_NAME";
             CB_NAME.SelectedIndex = 0;
+
+            // Enable autocomplete functionality
+            CB_NAME.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+            CB_NAME.AutoCompleteSource = AutoCompleteSource.ListItems;
+
             CB_NAME.SelectedIndexChanged += CB_NAME_SelectedIndexChanged;
         }
+
         private void BindCOYearComboBox()
         {
             string query = @"
@@ -85,6 +92,8 @@ namespace SYA
             CB_YEAR.ValueMember = "CO_YEAR";   // Value to bind in the combo box
             // Set the default selected item to "All"
             CB_YEAR.SelectedIndex = 0;
+            CB_YEAR.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+            CB_YEAR.AutoCompleteSource = AutoCompleteSource.ListItems;
             CB_YEAR.SelectedIndexChanged += CB_YEAR_SelectedIndexChanged;
         }
         private void CB_NAME_SelectedIndexChanged(object sender, EventArgs e)
@@ -111,12 +120,14 @@ namespace SYA
             if (AC_NAME != "All")
             {
                 // Query with WHERE clause for a specific CO_YEAR
-                whereQuery = $" WHERE AC_NAME = '{AC_NAME}'";
+                WHERE_SALE = $" WHERE AC_NAME = '{AC_NAME}'";
+                WHERE_MD = $" WHERE AC_NAME = '{AC_NAME}'";
             }
             else
             {
                 // Query without WHERE clause for "All" CO_YEAR
-                whereQuery = "";
+                WHERE_SALE = "";
+                WHERE_MD = "";
             }
             // Fetch the filtered data from the database
             currentOffset = 0;
@@ -134,12 +145,14 @@ namespace SYA
             if (coYear != "All")
             {
                 // Query with WHERE clause for a specific CO_YEAR
-                whereQuery = $" WHERE CO_YEAR = '{coYear}'";
+                WHERE_SALE = $" WHERE CO_YEAR = '{coYear}'";
+                WHERE_MD = $" WHERE CO_YEAR = '{coYear}'";
             }
             else
             {
                 // Query without WHERE clause for "All" CO_YEAR
-                whereQuery = "";
+                WHERE_SALE = "";
+                WHERE_MD = "";
             }
             // Fetch the filtered data from the database
             currentOffset = 0;
@@ -246,7 +259,7 @@ namespace SYA
         private void LoadNextPage()
         {
             isLoading = true;
-            string query =baseQuery+whereQuery +orderByQuery+ $" LIMIT {PageSize} OFFSET {currentOffset};";
+            string query = SELECT + CN_SALE + FROM_SALE + WHERE_SALE + UNION_SELECT + CN_MD + FROM_MD + WHERE_MD + COMBINE_DATA + WHERE_ALL+orderByQuery + $" LIMIT {PageSize} OFFSET {currentOffset};";
             DataTable originalTable = helper.FetchDataTableFromSYADataBase(query);
             MapRowsToDataTable(originalTable, loadedTable);
             currentOffset += PageSize;

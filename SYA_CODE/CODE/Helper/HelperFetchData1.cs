@@ -162,7 +162,7 @@ public class HelperFetchData1
         helper.RunQueryWithParametersSYADataBase(query);
     }
     // Helper method for mapping parameters to SQLite parameters
-    public List<SQLiteParameter> MapDataToSQLiteParameters(DataRow accessDataRow)
+    public List<SQLiteParameter> MapData_Stock(DataRow accessDataRow)
     {
         var sqliteParameters = new List<SQLiteParameter>
         {
@@ -204,7 +204,7 @@ public class HelperFetchData1
         return sqliteParameters;
     }
     // Helper method for mapping parameters for sales data
-    public List<SQLiteParameter> MapDataToSQLiteParametersForSales(DataRow accessDataRow)
+    public List<SQLiteParameter> MapData_Sales(DataRow accessDataRow)
     {
         var sqliteParameters = new List<SQLiteParameter>
         {
@@ -266,24 +266,24 @@ public class HelperFetchData1
     public void ExecuteInsertQuery(DataRow accessDataRow)
     {
         string query = "INSERT INTO MAIN_DATA_NEW (CO_YEAR, CO_BOOK, VCH_NO, VCH_DATE, PURITY, METAL_TYPE, TAG_NO, DESIGN, ITM_SIZE, ITM_PCS, GW, NW, LBR_RATE, OTH_AMT, LBR_AMT, HUID1, HUID2, HUID3, ITEM_TYPE, SIZE, PRICE, COMMENT) VALUES (@CO_YEAR, @CO_BOOK, @VCH_NO, @VCH_DATE, @PURITY, @METAL_TYPE, @TAG_NO, @DESIGN, @ITM_SIZE, @ITM_PCS, @GW, @NW, @LBR_RATE, @OTH_AMT, @LBR_AMT, @HUID1, @HUID2, @HUID3, @ITEM_TYPE, @SIZE, @PRICE, @COMMENT)";
-        helper.RunQueryWithParametersSYADataBase(query, MapDataToSQLiteParameters(accessDataRow).ToArray());
+        helper.RunQueryWithParametersSYADataBase(query, MapData_Stock(accessDataRow).ToArray());
     }
     // Execute update query
     public void ExecuteUpdateQuery(DataRow accessDataRow)
     {
         string query = "UPDATE MAIN_DATA_NEW SET CO_BOOK = @CO_BOOK, VCH_NO = @VCH_NO, VCH_DATE = @VCH_DATE, PURITY = @PURITY, METAL_TYPE = @METAL_TYPE, DESIGN = @DESIGN, ITM_SIZE = @ITM_SIZE, ITM_PCS = @ITM_PCS, GW = @GW, NW = @NW, LBR_RATE = @LBR_RATE, OTH_AMT = @OTH_AMT, LBR_AMT = @LBR_AMT, HUID1 = @HUID1, HUID2 = @HUID2, HUID3 = @HUID3, ITEM_TYPE = @ITEM_TYPE, SIZE = @SIZE, PRICE = @PRICE, COMMENT = @COMMENT WHERE TAG_NO = @TAG_NO AND CO_YEAR = @CO_YEAR";
-        helper.RunQueryWithParametersSYADataBase(query, MapDataToSQLiteParameters(accessDataRow).ToArray());
+        helper.RunQueryWithParametersSYADataBase(query, MapData_Stock(accessDataRow).ToArray());
     }
     // Execute query for insert operation in sales data
     public void ExecuteInsertQueryForSales(DataRow accessDataRow)
     {
         string query = "INSERT INTO SALE_DATA_NEW (CO_YEAR, CO_BOOK, VCH_NO, VCH_DATE, PURITY, METAL_TYPE, TAG_NO, DESIGN, ITM_SIZE, ITM_PCS, GW, NW, LBR_RATE, OTH_AMT, LBR_AMT, HUID1, HUID2, HUID3, ITEM_TYPE, SIZE, PRICE, ITM_RAT, ITM_AMT, COMMENT, AC_CODE,AC_NAME) VALUES (@CO_YEAR, @CO_BOOK, @VCH_NO, @VCH_DATE, @PURITY, @METAL_TYPE, @TAG_NO, @DESIGN, @ITM_SIZE, @ITM_PCS, @GW, @NW, @LBR_RATE, @OTH_AMT, @LBR_AMT, @HUID1, @HUID2, @HUID3, @ITEM_TYPE, @SIZE, @PRICE, @ITM_RAT, @ITM_AMT, @COMMENT, @AC_CODE,@AC_NAME)";
-        helper.RunQueryWithParametersSYADataBase(query, MapDataToSQLiteParametersForSales(accessDataRow).ToArray());
+        helper.RunQueryWithParametersSYADataBase(query, MapData_Sales(accessDataRow).ToArray());
     }
     // Execute update query for sales data
     public void ExecuteUpdateQueryForSales(DataRow accessDataRow)
     {
         string query = "UPDATE SALE_DATA_NEW SET CO_BOOK = @CO_BOOK, VCH_NO = @VCH_NO, VCH_DATE = @VCH_DATE, PURITY = @PURITY, METAL_TYPE = @METAL_TYPE, DESIGN = @DESIGN, ITM_SIZE = @ITM_SIZE, ITM_PCS = @ITM_PCS, GW = @GW, NW = @NW, LBR_RATE = @LBR_RATE, OTH_AMT = @OTH_AMT, LBR_AMT = @LBR_AMT, HUID1 = @HUID1, HUID2 = @HUID2, HUID3 = @HUID3, ITEM_TYPE = @ITEM_TYPE, SIZE = @SIZE, PRICE = @PRICE, ITM_RAT = @ITM_RAT, ITM_AMT = @ITM_AMT, COMMENT = @COMMENT, AC_CODE = @AC_CODE,AC_NAME = @AC_NAME WHERE TAG_NO = @TAG_NO AND CO_YEAR = @CO_YEAR";
-        helper.RunQueryWithParametersSYADataBase(query, MapDataToSQLiteParametersForSales(accessDataRow).ToArray());
+        helper.RunQueryWithParametersSYADataBase(query, MapData_Sales(accessDataRow).ToArray());
     }
 }
