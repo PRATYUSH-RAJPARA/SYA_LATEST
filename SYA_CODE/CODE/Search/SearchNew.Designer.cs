@@ -25,9 +25,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-
-
-
             tableLayoutPanel1 = new TableLayoutPanel();
             tableLayoutPanel2 = new TableLayoutPanel();
             LABEL_MESSAGE = new Label();

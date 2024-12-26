@@ -1,9 +1,7 @@
-﻿using Humanizer.Localisation;
-using System;
+﻿using System;
 using System.Data;
 using System.Drawing;
 using System.Windows.Forms;
-
 namespace SYA
 {
     public partial class SearchNew : Form
@@ -23,33 +21,10 @@ namespace SYA
         string COMBINE_DATA = @"  ) AS combined_data  ";
         string WHERE_ALL = " ";
         string orderByQuery = "  ORDER BY CO_YEAR DESC, VCH_DATE DESC ";
-        private PictureBox loadingGifPictureBox;
-
         public SearchNew()
         {
             InitializeComponent();
-            InitializeLoadingGif();
         }
-
-        private void InitializeLoadingGif()
-        {
-            // Initialize the PictureBox
-            loadingGifPictureBox = new PictureBox
-            {
-                // Set the image from a direct file path
-                Image = Image.FromFile(@"C:\SYA_LATEST\SYA_CODE\Resources\loading.gif"),  // Direct path to the loading gif
-                Location = new Point(100, 100),        // Set position on the form
-                Name = "loadingGifPictureBox",
-                Size = new Size(50, 50),               // Set the size of the loading gif
-                SizeMode = PictureBoxSizeMode.StretchImage,  // Adjust image to fit the box
-                Visible = false                         // Hide initially
-            };
-
-            // Add the PictureBox to the form's controls
-            this.Controls.Add(loadingGifPictureBox);
-        }
-
-
         private void SearchNew_Load(object sender, EventArgs e)
         {
             loadData();
@@ -60,26 +35,12 @@ namespace SYA
             BindTAGNOComboBox();
             BindHUIDComboBox();
         }
-
         private void loadData()
         {
-            ShowLoading();  // Show loading indicator
             InitializeDataGridView();
             LoadInitialData();
             searchStyling.CustomizeDataGridView(dataGridView1);
-            HideLoading();  // Hide loading indicator after data is loaded
         }
-
-        private void ShowLoading()
-        {
-            loadingGifPictureBox.Visible = true; // Show loading gif
-        }
-
-        private void HideLoading()
-        {
-            loadingGifPictureBox.Visible = true; // Hide loading gif
-        }
-
         private void BindComboBox(ComboBox comboBox, string query, string displayMember, string valueMember, string allText, EventHandler textChangedHandler, EventHandler selectedIndexChangedHandler, AutoCompleteMode autoCompleteMode = AutoCompleteMode.Suggest)
         {
             // Fetch data using the query
@@ -101,7 +62,6 @@ namespace SYA
             if (selectedIndexChangedHandler != null)
                 comboBox.SelectedIndexChanged += selectedIndexChangedHandler;
         }
-
         private void BindACNameComboBox()
         {
             string query = @"
@@ -110,7 +70,6 @@ FROM SALE_DATA_NEW
 ORDER BY AC_NAME ASC;";
             BindComboBox(CB_NAME, query, "AC_NAME", "AC_NAME", "All", CB_NAME_TextChanged, CB_NAME_SelectedIndexChanged);
         }
-
         private void BindCOYearComboBox()
         {
             string query = @"
@@ -123,7 +82,6 @@ FROM (
 ORDER BY CO_YEAR DESC;";
             BindComboBox(CB_YEAR, query, "CO_YEAR", "CO_YEAR", "All", CB_YEAR_TextChanged, CB_YEAR_SelectedIndexChanged);
         }
-
         private void BindTAGNOComboBox()
         {
             string query = @"
@@ -136,7 +94,6 @@ FROM (
 ORDER BY TAG_NO ASC;";
             BindComboBox(CB_TAGNO, query, "TAG_NO", "TAG_NO", "All", CB_TAGNO_TextChanged, CB_TAGNO_SelectedIndexChanged);
         }
-
         private void BindHUIDComboBox()
         {
             string query = @"
@@ -149,47 +106,38 @@ FROM (
 ORDER BY HUID1 ASC;";
             BindComboBox(CB_HUID, query, "HUID1", "HUID1", "All", CB_HUID_TextChanged, CB_HUID_SelectedIndexChanged, AutoCompleteMode.None);
         }
-
         private void CB_NAME_SelectedIndexChanged(object sender, EventArgs e)
         {
             LoadDataBasedOnComboBoxValue(CB_NAME, "AC_NAME");
         }
-
         private void CB_YEAR_SelectedIndexChanged(object sender, EventArgs e)
         {
             LoadDataBasedOnComboBoxValue(CB_YEAR, "CO_YEAR");
         }
-
         private void CB_TAGNO_SelectedIndexChanged(object sender, EventArgs e)
         {
             LoadDataBasedOnComboBoxValue(CB_TAGNO, "TAG_NO");
         }
-
         private void CB_HUID_SelectedIndexChanged(object sender, EventArgs e)
         {
             LoadDataBasedOnComboBoxValue(CB_HUID, "HUID1");
         }
-
         private void CB_HUID_TextChanged(object sender, EventArgs e)
         {
             LoadDataBasedOnComboBoxValue(CB_HUID, "HUID1");
         }
-
         private void CB_TAGNO_TextChanged(object sender, EventArgs e)
         {
             LoadDataBasedOnComboBoxValue(CB_TAGNO, "TAG_NO");
         }
-
         private void CB_NAME_TextChanged(object sender, EventArgs e)
         {
             LoadDataBasedOnComboBoxValue(CB_NAME, "AC_NAME");
         }
-
         private void CB_YEAR_TextChanged(object sender, EventArgs e)
         {
             LoadDataBasedOnComboBoxValue(CB_YEAR, "CO_YEAR");
         }
-
         private void LoadDataBasedOnComboBoxValue(ComboBox CB, string columnName)
         {
             string typedText = CB.Text.ToString();
@@ -214,13 +162,11 @@ ORDER BY HUID1 ASC;";
             SearchPaginationHelper.setCurrentOffset(0);
             loadData();
         }
-
         private void InitializeDataGridView()
         {
             dataGridView1.DataSource = null;
             dataGridView1.Scroll += DataGridView1_Scroll;
         }
-
         private void AttachEventHandlers()
         {
             // Attach event handlers
@@ -230,13 +176,11 @@ ORDER BY HUID1 ASC;";
             // Initialize the Timer for Enter key navigation
             EnterKeyNavigation.EnterKeyHandle_EventHandler(dataGridView1);
         }
-
         private void LoadInitialData()
         {
             SearchPaginationHelper.loadedTable = CreateHardcodedDataTable();
             dataGridView1.DataSource = LoadNextPage();
         }
-
         private DataTable CreateHardcodedDataTable()
         {
             DataTable table = new DataTable();
@@ -275,37 +219,32 @@ ORDER BY HUID1 ASC;";
             }
             return table;
         }
-
         private void DataGridView1_RowsAdded(object sender, DataGridViewRowsAddedEventArgs e)
         {
             searchStyling.DataGridView1_RowsAdded(sender, e, dataGridView1);
         }
-
         private void DataGridView1_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
             EnterKeyNavigation.DataGridView1_CellEndEdit_ForEnterKeyHandle(sender, e);
         }
-
         private void DataGridView1_CellEnter(object sender, DataGridViewCellEventArgs e)
         {
             EnterKeyNavigation.DataGridView1_CellEnter_ForEnterKeyHandle();
         }
-
         private void DataGridView1_KeyDown(object sender, KeyEventArgs e)
         {
             EnterKeyNavigation.DataGridView1_KeyDown_ForEnterKeyHandle(dataGridView1, e);
         }
-
         public DataTable LoadNextPage()
         {
             string query = SELECT + CN_SALE + FROM_SALE + WHERE_SALE + UNION_SELECT + CN_MD + FROM_MD + WHERE_MD + COMBINE_DATA + WHERE_ALL + orderByQuery;
             return SearchPaginationHelper.LoadNextPage(query);
         }
-
         public void DataGridView1_Scroll(object sender, ScrollEventArgs e)
         {
             string query = SELECT + CN_SALE + FROM_SALE + WHERE_SALE + UNION_SELECT + CN_MD + FROM_MD + WHERE_MD + COMBINE_DATA + WHERE_ALL + orderByQuery;
-            SearchPaginationHelper.DataGridView1_Scroll(sender, e, dataGridView1, query);
+            SearchPaginationHelper.DataGridView1_Scroll(sender, e, dataGridView1, query)
+;
         }
     }
 }

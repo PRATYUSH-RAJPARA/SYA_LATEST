@@ -3,15 +3,15 @@
   "WorkspaceRootPath": "C:\\SYA_LATEST\\SYA_CODE\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{F4E7395C-6436-4F9A-A0E3-A889008539AF}|SYA.csproj|c:\\sya_latest\\sya_code\\code\\search\\searchnew.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F4E7395C-6436-4F9A-A0E3-A889008539AF}|SYA.csproj|solutionrelative:code\\search\\searchnew.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Software\\VisualStudio\\2022\\Community\\MSBuild\\Current\\Bin\\amd64\\Microsoft.Common.CurrentVersion.targets||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
     },
     {
       "AbsoluteMoniker": "D:0:0:{F4E7395C-6436-4F9A-A0E3-A889008539AF}|SYA.csproj|c:\\sya_latest\\sya_code\\properties\\resources.resx||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
       "RelativeMoniker": "D:0:0:{F4E7395C-6436-4F9A-A0E3-A889008539AF}|SYA.csproj|solutionrelative:properties\\resources.resx||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F4E7395C-6436-4F9A-A0E3-A889008539AF}|SYA.csproj|c:\\sya_latest\\sya_code\\code\\search\\searchnew.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F4E7395C-6436-4F9A-A0E3-A889008539AF}|SYA.csproj|solutionrelative:code\\search\\searchnew.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{F4E7395C-6436-4F9A-A0E3-A889008539AF}|SYA.csproj|c:\\sya_latest\\sya_code\\code\\search\\searchnew.resx||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
@@ -45,17 +45,17 @@
       "DocumentGroups": [
         {
           "DockedWidth": 373,
-          "SelectedChildIndex": 8,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 0,
               "Title": "SearchNew.cs",
               "DocumentMoniker": "C:\\SYA_LATEST\\SYA_CODE\\CODE\\Search\\SearchNew.cs",
               "RelativeDocumentMoniker": "CODE\\Search\\SearchNew.cs",
               "ToolTip": "C:\\SYA_LATEST\\SYA_CODE\\CODE\\Search\\SearchNew.cs",
               "RelativeToolTip": "CODE\\Search\\SearchNew.cs",
-              "ViewState": "AgIAABUAAAAAAAAAAAAiwDIAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAADQAAAAAAAAAAAA9wFEAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-12-22T05:53:41.19Z",
               "IsPinned": true,
@@ -135,8 +135,12 @@
               "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
             },
             {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{e5c86464-96be-4d7c-9a8b-abcb3bbf5f92}"
+            },
+            {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "Microsoft.Common.CurrentVersion.targets",
               "DocumentMoniker": "C:\\Software\\VisualStudio\\2022\\Community\\MSBuild\\Current\\Bin\\amd64\\Microsoft.Common.CurrentVersion.targets",
               "RelativeDocumentMoniker": "..\\..\\Software\\VisualStudio\\2022\\Community\\MSBuild\\Current\\Bin\\amd64\\Microsoft.Common.CurrentVersion.targets",
@@ -149,7 +153,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "Resources.resx",
               "DocumentMoniker": "C:\\SYA_LATEST\\SYA_CODE\\Properties\\Resources.resx",
               "RelativeDocumentMoniker": "Properties\\Resources.resx",
@@ -172,10 +176,6 @@
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001005|",
               "WhenOpened": "2024-12-25T20:25:48.405Z",
               "EditorCaption": ""
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{e5c86464-96be-4d7c-9a8b-abcb3bbf5f92}"
             }
           ]
         }
