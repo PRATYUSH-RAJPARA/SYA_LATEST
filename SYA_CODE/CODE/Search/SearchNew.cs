@@ -50,17 +50,17 @@ namespace SYA
             allRow[displayMember] = allText;
             dataTable.Rows.InsertAt(allRow, 0);
             // Bind data to the combo box
-            comboBox.DataSource = dataTable;
-            comboBox.DisplayMember = displayMember;
-            comboBox.ValueMember = valueMember;
-            comboBox.SelectedIndex = 0;
-            comboBox.AutoCompleteMode = autoCompleteMode;
-            comboBox.AutoCompleteSource = AutoCompleteSource.ListItems;
+            //comboBox.DataSource = dataTable;
+            //comboBox.DisplayMember = displayMember;
+            //comboBox.ValueMember = valueMember;
+            //comboBox.SelectedIndex = 0;
+            //comboBox.AutoCompleteMode = autoCompleteMode;
+            //comboBox.AutoCompleteSource = AutoCompleteSource.ListItems;
             // Attach event handlers
             if (textChangedHandler != null)
                 comboBox.TextChanged += textChangedHandler;
-            if (selectedIndexChangedHandler != null)
-                comboBox.SelectedIndexChanged += selectedIndexChangedHandler;
+            //if (selectedIndexChangedHandler != null)
+            //    comboBox.SelectedIndexChanged += selectedIndexChangedHandler;
         }
         private void BindACNameComboBox()
         {

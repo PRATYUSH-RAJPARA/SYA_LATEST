@@ -34,9 +34,6 @@
             BUTTON_RESET_FILTERS = new Button();
             TB_EVERYTHING = new TableLayoutPanel();
             CB_TAGNO = new ComboBox();
-            richTextBox8 = new RichTextBox();
-            TB_BILLNO = new RichTextBox();
-            TB_WEIGHT = new RichTextBox();
             label3 = new Label();
             label7 = new Label();
             label6 = new Label();
@@ -47,6 +44,9 @@
             CB_NAME = new ComboBox();
             CB_YEAR = new ComboBox();
             CB_HUID = new ComboBox();
+            CB_WEIGHT = new ComboBox();
+            CB_EVERYTHING = new ComboBox();
+            CB_BILLNO = new ComboBox();
             dataGridView1 = new DataGridView();
             label8 = new Label();
             tableLayoutPanel1.SuspendLayout();
@@ -192,9 +192,6 @@
             TB_EVERYTHING.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 12F));
             TB_EVERYTHING.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 1F));
             TB_EVERYTHING.Controls.Add(CB_TAGNO, 5, 3);
-            TB_EVERYTHING.Controls.Add(richTextBox8, 13, 3);
-            TB_EVERYTHING.Controls.Add(TB_BILLNO, 9, 3);
-            TB_EVERYTHING.Controls.Add(TB_WEIGHT, 7, 3);
             TB_EVERYTHING.Controls.Add(label3, 5, 1);
             TB_EVERYTHING.Controls.Add(label7, 13, 1);
             TB_EVERYTHING.Controls.Add(label6, 11, 1);
@@ -205,6 +202,9 @@
             TB_EVERYTHING.Controls.Add(CB_NAME, 1, 3);
             TB_EVERYTHING.Controls.Add(CB_YEAR, 3, 3);
             TB_EVERYTHING.Controls.Add(CB_HUID, 11, 3);
+            TB_EVERYTHING.Controls.Add(CB_WEIGHT, 7, 3);
+            TB_EVERYTHING.Controls.Add(CB_EVERYTHING, 13, 3);
+            TB_EVERYTHING.Controls.Add(CB_BILLNO, 9, 3);
             TB_EVERYTHING.Dock = DockStyle.Fill;
             TB_EVERYTHING.Location = new Point(3, 3);
             TB_EVERYTHING.Name = "TB_EVERYTHING";
@@ -226,42 +226,6 @@
             CB_TAGNO.Name = "CB_TAGNO";
             CB_TAGNO.Size = new Size(145, 33);
             CB_TAGNO.TabIndex = 7;
-            // 
-            // richTextBox8
-            // 
-            richTextBox8.BorderStyle = BorderStyle.FixedSingle;
-            richTextBox8.Dock = DockStyle.Fill;
-            richTextBox8.Font = new Font("Microsoft Sans Serif", 15.25F, FontStyle.Regular, GraphicsUnit.Point);
-            richTextBox8.Location = new Point(1093, 31);
-            richTextBox8.Multiline = false;
-            richTextBox8.Name = "richTextBox8";
-            richTextBox8.Size = new Size(145, 32);
-            richTextBox8.TabIndex = 4;
-            richTextBox8.Text = "";
-            // 
-            // TB_BILLNO
-            // 
-            TB_BILLNO.BorderStyle = BorderStyle.FixedSingle;
-            TB_BILLNO.Dock = DockStyle.Fill;
-            TB_BILLNO.Font = new Font("Microsoft Sans Serif", 15.25F, FontStyle.Regular, GraphicsUnit.Point);
-            TB_BILLNO.Location = new Point(767, 31);
-            TB_BILLNO.Multiline = false;
-            TB_BILLNO.Name = "TB_BILLNO";
-            TB_BILLNO.Size = new Size(145, 32);
-            TB_BILLNO.TabIndex = 4;
-            TB_BILLNO.Text = "";
-            // 
-            // TB_WEIGHT
-            // 
-            TB_WEIGHT.BorderStyle = BorderStyle.FixedSingle;
-            TB_WEIGHT.Dock = DockStyle.Fill;
-            TB_WEIGHT.Font = new Font("Microsoft Sans Serif", 15.25F, FontStyle.Regular, GraphicsUnit.Point);
-            TB_WEIGHT.Location = new Point(604, 31);
-            TB_WEIGHT.Multiline = false;
-            TB_WEIGHT.Name = "TB_WEIGHT";
-            TB_WEIGHT.Size = new Size(145, 32);
-            TB_WEIGHT.TabIndex = 4;
-            TB_WEIGHT.Text = "";
             // 
             // label3
             // 
@@ -370,6 +334,36 @@
             CB_HUID.Size = new Size(145, 33);
             CB_HUID.TabIndex = 8;
             // 
+            // CB_WEIGHT
+            // 
+            CB_WEIGHT.Dock = DockStyle.Fill;
+            CB_WEIGHT.Font = new Font("Microsoft Sans Serif", 15.25F, FontStyle.Regular, GraphicsUnit.Point);
+            CB_WEIGHT.FormattingEnabled = true;
+            CB_WEIGHT.Location = new Point(604, 31);
+            CB_WEIGHT.Name = "CB_WEIGHT";
+            CB_WEIGHT.Size = new Size(145, 33);
+            CB_WEIGHT.TabIndex = 9;
+            // 
+            // CB_EVERYTHING
+            // 
+            CB_EVERYTHING.Dock = DockStyle.Fill;
+            CB_EVERYTHING.Font = new Font("Microsoft Sans Serif", 15.25F, FontStyle.Regular, GraphicsUnit.Point);
+            CB_EVERYTHING.FormattingEnabled = true;
+            CB_EVERYTHING.Location = new Point(1093, 31);
+            CB_EVERYTHING.Name = "CB_EVERYTHING";
+            CB_EVERYTHING.Size = new Size(145, 33);
+            CB_EVERYTHING.TabIndex = 10;
+            // 
+            // CB_BILLNO
+            // 
+            CB_BILLNO.Dock = DockStyle.Fill;
+            CB_BILLNO.Font = new Font("Microsoft Sans Serif", 15.25F, FontStyle.Regular, GraphicsUnit.Point);
+            CB_BILLNO.FormattingEnabled = true;
+            CB_BILLNO.Location = new Point(767, 31);
+            CB_BILLNO.Name = "CB_BILLNO";
+            CB_BILLNO.Size = new Size(145, 33);
+            CB_BILLNO.TabIndex = 11;
+            // 
             // dataGridView1
             // 
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -419,7 +413,6 @@
         private Label label1;
         private Label label2;
         public DataGridView dataGridView1;
-        private RichTextBox richTextBox8;
         private TableLayoutPanel tableLayoutPanel4;
         private Label label8;
         private ComboBox CB_YEAR;
@@ -428,9 +421,10 @@
         private Button BUTTON_RESET_FILTERS;
         private Button BUTTON_PRINT_ON_OFF;
         private Label LABEL_MESSAGE;
-        private RichTextBox TB_BILLNO;
-        private RichTextBox TB_WEIGHT;
         private ComboBox CB_TAGNO;
         private ComboBox CB_HUID;
+        private ComboBox CB_WEIGHT;
+        private ComboBox CB_EVERYTHING;
+        private ComboBox CB_BILLNO;
     }
 }
