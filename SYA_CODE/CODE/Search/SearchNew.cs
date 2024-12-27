@@ -40,7 +40,41 @@ namespace SYA
             InitializeDataGridView();
             LoadInitialData();
             searchStyling.CustomizeDataGridView(dataGridView1);
+          //  ApplyColorsForSalesData(dataGridView1);
         }
+        private void ApplyColorsForSalesData(DataGridView dataGridView)
+        {
+            dataGridView.Columns["CO_YEAR"].DefaultCellStyle.BackColor = ColorTranslator.FromHtml("#212529");    // Eerie Black
+            dataGridView.Columns["CO_BOOK"].DefaultCellStyle.BackColor = ColorTranslator.FromHtml("#25292D");    // Gunmetal
+            dataGridView.Columns["VCH_NO"].DefaultCellStyle.BackColor = ColorTranslator.FromHtml("#2A2E32");     // Gunmetal-2
+            dataGridView.Columns["VCH_DATE"].DefaultCellStyle.BackColor = ColorTranslator.FromHtml("#2E3236");    // Onyx
+            dataGridView.Columns["PURITY"].DefaultCellStyle.BackColor = ColorTranslator.FromHtml("#33373A");       // Onyx-2
+            dataGridView.Columns["METAL_TYPE"].DefaultCellStyle.BackColor = ColorTranslator.FromHtml("#373B3F");    // Onyx-3
+            dataGridView.Columns["TAG_NO"].DefaultCellStyle.BackColor = ColorTranslator.FromHtml("#3C3F43");       // Onyx-4
+            dataGridView.Columns["HUID1"].DefaultCellStyle.BackColor = ColorTranslator.FromHtml("#404448");        // Outer Space
+            dataGridView.Columns["HUID2"].DefaultCellStyle.BackColor = ColorTranslator.FromHtml("#45484C");        // Outer Space-2
+            dataGridView.Columns["HUID3"].DefaultCellStyle.BackColor = ColorTranslator.FromHtml("#494D50");        // Outer Space-3
+            dataGridView.Columns["ITEM_TYPE"].DefaultCellStyle.BackColor = ColorTranslator.FromHtml("#4E5155");     // Davy's Gray
+            dataGridView.Columns["GW"].DefaultCellStyle.BackColor = ColorTranslator.FromHtml("#525659");           // Davy's Gray-2
+            dataGridView.Columns["NW"].DefaultCellStyle.BackColor = ColorTranslator.FromHtml("#565A5D");           // Davy's Gray-3
+            dataGridView.Columns["LBR_RATE"].DefaultCellStyle.BackColor = ColorTranslator.FromHtml("#5B5E62");      // Davy's Gray-4
+            dataGridView.Columns["OTH_AMT"].DefaultCellStyle.BackColor = ColorTranslator.FromHtml("#5F6366");       // Dim Gray
+            dataGridView.Columns["LBR_AMT"].DefaultCellStyle.BackColor = ColorTranslator.FromHtml("#64676A");       // Dim Gray-2
+            dataGridView.Columns["SIZE"].DefaultCellStyle.BackColor = ColorTranslator.FromHtml("#686C6F");          // Dim Gray-3
+            dataGridView.Columns["PRICE"].DefaultCellStyle.BackColor = ColorTranslator.FromHtml("#6D7073");         // Dim Gray-4
+            dataGridView.Columns["COMMENT"].DefaultCellStyle.BackColor = ColorTranslator.FromHtml("#717478");        // Dim Gray-5
+            dataGridView.Columns["ITM_RAT"].DefaultCellStyle.BackColor = ColorTranslator.FromHtml("#76797C");        // Gray
+            dataGridView.Columns["ITM_AMT"].DefaultCellStyle.BackColor = ColorTranslator.FromHtml("#7A7D80");        // Gray-2
+            dataGridView.Columns["AC_CODE"].DefaultCellStyle.BackColor = ColorTranslator.FromHtml("#7F8285");        // Gray-3
+            dataGridView.Columns["AC_NAME"].DefaultCellStyle.BackColor = ColorTranslator.FromHtml("#838689");        // Gray-4
+            foreach (DataGridViewColumn column in dataGridView.Columns)
+            {
+                column.DefaultCellStyle.ForeColor = Color.White;
+            }
+        }
+
+
+
         private void BindComboBox(ComboBox comboBox, string query, string displayMember, string valueMember, string allText, EventHandler textChangedHandler, EventHandler selectedIndexChangedHandler, AutoCompleteMode autoCompleteMode = AutoCompleteMode.Suggest)
         {
             // Fetch data using the query
