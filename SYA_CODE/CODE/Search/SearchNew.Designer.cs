@@ -399,7 +399,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.Pink;
+            BackColor = Color.FromArgb(134, 168, 248);
             ClientSize = new Size(1284, 843);
             Controls.Add(tableLayoutPanel1);
             Name = "SearchNew";

@@ -34,13 +34,15 @@ namespace SYA
             BindACNameComboBox();
             BindTAGNOComboBox();
             BindHUIDComboBox();
+            BindBillNoComboBox();
+            BindWEIGHTComboBox();
         }
         private void loadData()
         {
             InitializeDataGridView();
             LoadInitialData();
             searchStyling.CustomizeDataGridView(dataGridView1);
-          //  ApplyColorsForSalesData(dataGridView1);
+            //  ApplyColorsForSalesData(dataGridView1);
         }
         private void ApplyColorsForSalesData(DataGridView dataGridView)
         {
@@ -80,11 +82,14 @@ namespace SYA
             // Fetch data using the query
             DataTable dataTable = helper.FetchDataTableFromSYADataBase(query);
             // Add "All" as the first row
-            DataRow allRow = dataTable.NewRow();
-            allRow[displayMember] = allText;
-            dataTable.Rows.InsertAt(allRow, 0);
-           
-            if(displayMember=="CO_YEAR")
+            if (displayMember != "GW")
+            {
+                DataRow allRow = dataTable.NewRow();
+                allRow[displayMember] = allText;
+                dataTable.Rows.InsertAt(allRow, 0);
+            }
+
+            if (displayMember == "CO_YEAR")
             {
                 comboBox.DataSource = dataTable;
                 comboBox.DisplayMember = displayMember;
@@ -133,15 +138,40 @@ ORDER BY TAG_NO ASC;";
         private void BindHUIDComboBox()
         {
             string query = @"
-SELECT DISTINCT HUID1
+SELECT DISTINCT HUID1,HUID2,HUID3
 FROM (
-    SELECT HUID1 FROM SALE_DATA_NEW
+    SELECT HUID1,HUID2,HUID3 FROM SALE_DATA_NEW
     UNION
-    SELECT HUID1 FROM MAIN_DATA_NEW
+    SELECT HUID1,HUID2,HUID3 FROM MAIN_DATA_NEW
 ) AS combined_data
 ORDER BY HUID1 ASC;";
             BindComboBox(CB_HUID, query, "HUID1", "HUID1", "All", CB_HUID_TextChanged, CB_HUID_SelectedIndexChanged, AutoCompleteMode.None);
         }
+        private void BindWEIGHTComboBox()
+        {
+            string query = @"
+SELECT DISTINCT GW,NW
+FROM (
+    SELECT GW,NW FROM SALE_DATA_NEW
+    UNION
+    SELECT GW,NW FROM MAIN_DATA_NEW
+) AS combined_data
+ORDER BY GW ASC;";
+            BindComboBox(CB_WEIGHT, query, "GW", "GW", "All", CB_WEIGHT_TextChanged, CB_WEIGHT_SelectedIndexChanged, AutoCompleteMode.None);
+        }
+        private void BindBillNoComboBox()
+        {
+            string query = @"
+SELECT DISTINCT VCH_NO
+FROM (
+    SELECT VCH_NO FROM SALE_DATA_NEW
+    UNION
+    SELECT VCH_NO FROM MAIN_DATA_NEW
+) AS combined_data
+ORDER BY VCH_NO ASC;";
+            BindComboBox(CB_BILLNO, query, "VCH_NO", "VCH_NO", "All", CB_BILLNO_TextChanged, CB_BILLNO_SelectedIndexChanged, AutoCompleteMode.None);
+        }
+
         private void CB_NAME_SelectedIndexChanged(object sender, EventArgs e)
         {
             LoadDataBasedOnComboBoxValue(CB_NAME, "AC_NAME");
@@ -158,9 +188,24 @@ ORDER BY HUID1 ASC;";
         {
             LoadDataBasedOnComboBoxValue(CB_HUID, "HUID1");
         }
+        private void CB_WEIGHT_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            LoadDataBasedOnComboBoxValue(CB_WEIGHT, "GW");
+        }
+        private void CB_BILLNO_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            LoadDataBasedOnComboBoxValue(CB_BILLNO, "VCH_NO");
+        }
         private void CB_HUID_TextChanged(object sender, EventArgs e)
         {
             LoadDataBasedOnComboBoxValue(CB_HUID, "HUID1");
+        }private void CB_WEIGHT_TextChanged(object sender, EventArgs e)
+        {
+            LoadDataBasedOnComboBoxValue(CB_WEIGHT, "GW");
+        }
+        private void CB_BILLNO_TextChanged(object sender, EventArgs e)
+        {
+            LoadDataBasedOnComboBoxValue(CB_BILLNO, "VCH_NO");
         }
         private void CB_TAGNO_TextChanged(object sender, EventArgs e)
         {
@@ -185,8 +230,21 @@ ORDER BY HUID1 ASC;";
             if (typedText != "All")
             {
                 // Query with WHERE clause for a specific CO_YEAR
-                WHERE_SALE = $" WHERE {columnName}  LIKE '%{typedText}%'";
-                WHERE_MD = $" WHERE {columnName}  LIKE '%{typedText}%'";
+                if (columnName == "HUID1")
+                {
+                    WHERE_SALE = $" WHERE HUID1  LIKE '%{typedText}%' OR HUID2 LIKE '%{typedText}%' OR HUID3 LIKE '%{typedText}%' ";
+                    WHERE_MD = WHERE_SALE;
+                }
+                else if (columnName == "GW")
+                {
+                    WHERE_SALE = $" WHERE GW  LIKE '%{typedText}%' OR NW LIKE '%{typedText}%' ";
+                    WHERE_MD = WHERE_SALE;
+                }
+                else
+                {
+                    WHERE_SALE = $" WHERE {columnName}  LIKE '%{typedText}%'";
+                    WHERE_MD = WHERE_SALE;
+                }
             }
             else
             {
