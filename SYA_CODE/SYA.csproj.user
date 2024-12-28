@@ -4,13 +4,16 @@
     <_LastSelectedProfileId>F:\SYA_LATEST\SYA_CODE\Properties\PublishProfiles\FolderProfile1.pubxml</_LastSelectedProfileId>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Update="CODE\AddItem\addgold.cs">
+    <Compile Update="CODE\AddItem\GOLD\addgold.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="CODE\AddItem\GOLD NEW\addItemNew.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="CODE\AddItem\Silver\addSilver.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="CODE\AddItem\testForm.cs">
+    <Compile Update="CODE\AddItem\GOLD\testForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="CODE\Contact\ContactDisplay.cs">

@@ -45,7 +45,6 @@ namespace SYA
                             {
                                 cell.Style.ForeColor = Color.Black;
                             }
-
                         }
                         else if (coBookValue == "026" || coBookValue == "027")
                         {
@@ -72,7 +71,6 @@ namespace SYA
                             gridViewRow.Cells["ITM_AMT"].Style.BackColor = ColorTranslator.FromHtml("#7A7D80");        // Gray-2
                             gridViewRow.Cells["AC_CODE"].Style.BackColor = ColorTranslator.FromHtml("#7F8285");        // Gray-3
                             gridViewRow.Cells["AC_NAME"].Style.BackColor = ColorTranslator.FromHtml("#838689");        // Gray-4
-
                             // Apply white font color for all cells in the row
                             foreach (DataGridViewCell cell in gridViewRow.Cells)
                             {
@@ -116,11 +114,8 @@ namespace SYA
             dataGridView1.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dataGridView1.DefaultCellStyle.Font = new Font(dataGridView1.Font.FontFamily, 12);
             dataGridView1.RowHeadersVisible = false;
-            dataGridView1.Columns["LBR_RATE"].HeaderText = "LBR";
-            dataGridView1.Columns["OTH_AMT"].HeaderText = "O";
-            dataGridView1.Columns["LBR_RATE"].HeaderText = "LBR";
+           
             // Adjust column widths
-
             AdjustColumnWidths(dataGridView1);
             AdjustColumnHeaderStyles(dataGridView1);
         }
@@ -147,21 +142,14 @@ namespace SYA
             dataGridView1.Columns["METAL_TYPE"].HeaderText = "";
             dataGridView1.Columns["PURITY"].HeaderText = "";
             dataGridView1.Columns["ITEM_TYPE"].HeaderText = "";
-
-
-
-
-
         }
         public void AdjustColumnWidths(DataGridView dataGridView1)
         {
             dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
-           
                 if (dataGridView1.Columns.Contains("COMMENT"))
                 {
                     dataGridView1.Columns["COMMENT"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;  
                 }
-            
             dataGridView1.ColumnHeadersDefaultCellStyle.Font = new Font("Arial", 10, FontStyle.Bold); // Set font size and style
             dataGridView1.ColumnHeadersDefaultCellStyle.ForeColor = Color.White; // Set font color
             dataGridView1.ColumnHeadersDefaultCellStyle.BackColor = Color.Black; // Set background color

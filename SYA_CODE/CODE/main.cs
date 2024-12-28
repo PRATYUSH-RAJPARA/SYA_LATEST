@@ -203,7 +203,8 @@ namespace SYA
         private void button1_Click(object sender, EventArgs e)
         {
             panelsecond.Visible = false;
-            LoadForm(new addgold_WORKING());
+          //  LoadForm(new addgold_WORKING());
+            LoadForm(new addItemNew());
         }
         // BUTTON DATACARE ADD
         private void button2_Click(object sender, EventArgs e)

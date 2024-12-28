@@ -598,7 +598,7 @@ namespace SYA
                     }
                 }
             }
-            void frame()
+            void frame1()
             {
                 if (selectedRow != null)
                 {
@@ -708,6 +708,20 @@ namespace SYA
                     }
                 }
             }
+            void frame()
+            {
+                if (selectedRow != null)
+                {
+                    //   e.Graphics.DrawRectangle(Pens.Red, 4, 4, (float)169, (float)22.5);
+                    //   e.Graphics.DrawRectangle(Pens.Red, 4, (float)26, (float)169, (float)22.5);
+                    TagPrintHelper.FramesName((selectedRow.Cells["comment"].Value ?? "").ToString(), e);
+                  //  TagPrintHelper.FramesPrice((selectedRow.Cells["price"].Value ?? "").ToString(), e);
+                    string tagNumber = (selectedRow.Cells["tagno"].Value ?? "0").ToString();
+                    string caret = (selectedRow.Cells["caret"].Value ?? "").ToString() ?? "0";
+                   
+                }
+            }
+
         }
     }
 }

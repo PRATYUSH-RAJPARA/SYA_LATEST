@@ -700,3 +700,4 @@ F:\SYA_LATEST\SYA_CODE\obj\Release\net6.0-windows8.0\refint\SYA.dll
 F:\SYA_LATEST\SYA_CODE\obj\Release\net6.0-windows8.0\SYA.pdb
 F:\SYA_LATEST\SYA_CODE\obj\Release\net6.0-windows8.0\SYA.genruntimeconfig.cache
 F:\SYA_LATEST\SYA_CODE\obj\Release\net6.0-windows8.0\ref\SYA.dll
+F:\SYA_LATEST\SYA_CODE\obj\Release\net6.0-windows8.0\SYA.addItemNew.resources

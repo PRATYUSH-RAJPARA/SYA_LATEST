@@ -30,12 +30,194 @@ namespace SYA
             loadData();
             AttachEventHandlers();
             dataGridView1.RowsAdded += DataGridView1_RowsAdded; // Attach event handler for row addition
+            bindComboBoxes();
+        }
+        private void bindComboBoxes()
+        {
             BindCOYearComboBox();
             BindACNameComboBox();
             BindTAGNOComboBox();
             BindHUIDComboBox();
             BindBillNoComboBox();
             BindWEIGHTComboBox();
+            void BindACNameComboBox()
+            {
+                string query = @"
+                SELECT DISTINCT AC_NAME
+                FROM SALE_DATA_NEW 
+                ORDER BY AC_NAME ASC;";
+                BindComboBox(CB_NAME, query, "AC_NAME", "AC_NAME", "All", CB_NAME_TextChanged, CB_NAME_SelectedIndexChanged);
+            }
+            void BindCOYearComboBox()
+            {
+                string query = @"
+                SELECT DISTINCT CO_YEAR
+                FROM (
+                    SELECT CO_YEAR FROM SALE_DATA_NEW
+                    UNION
+                    SELECT CO_YEAR FROM MAIN_DATA_NEW
+                ) AS combined_data
+                ORDER BY CO_YEAR DESC;";
+                BindComboBox(CB_YEAR, query, "CO_YEAR", "CO_YEAR", "All", CB_YEAR_TextChanged, CB_YEAR_SelectedIndexChanged);
+            }
+            void BindTAGNOComboBox()
+            {
+                string query = @"
+                SELECT DISTINCT TAG_NO
+                FROM (
+                    SELECT TAG_NO FROM SALE_DATA_NEW
+                    UNION
+                    SELECT TAG_NO FROM MAIN_DATA_NEW
+                ) AS combined_data
+                ORDER BY TAG_NO ASC;";
+                BindComboBox(CB_TAGNO, query, "TAG_NO", "TAG_NO", "All", CB_TAGNO_TextChanged, CB_TAGNO_SelectedIndexChanged);
+            }
+            void BindHUIDComboBox()
+            {
+                string query = @"
+                SELECT DISTINCT HUID1,HUID2,HUID3
+                FROM (
+                    SELECT HUID1,HUID2,HUID3 FROM SALE_DATA_NEW
+                    UNION
+                    SELECT HUID1,HUID2,HUID3 FROM MAIN_DATA_NEW
+                ) AS combined_data
+                ORDER BY HUID1 ASC;";
+                BindComboBox(CB_HUID, query, "HUID1", "HUID1", "All", CB_HUID_TextChanged, CB_HUID_SelectedIndexChanged, AutoCompleteMode.None);
+            }
+            void BindWEIGHTComboBox()
+            {
+                string query = @"
+                SELECT DISTINCT GW,NW
+                FROM (
+                    SELECT GW,NW FROM SALE_DATA_NEW
+                    UNION
+                    SELECT GW,NW FROM MAIN_DATA_NEW
+                ) AS combined_data
+                ORDER BY GW ASC;";
+                BindComboBox(CB_WEIGHT, query, "GW", "GW", "All", CB_WEIGHT_TextChanged, CB_WEIGHT_SelectedIndexChanged, AutoCompleteMode.None);
+            }
+            void BindBillNoComboBox()
+            {
+                string query = @"
+                SELECT DISTINCT VCH_NO
+                FROM (
+                    SELECT VCH_NO FROM SALE_DATA_NEW
+                    UNION
+                    SELECT VCH_NO FROM MAIN_DATA_NEW
+                ) AS combined_data
+                ORDER BY VCH_NO ASC;";
+                BindComboBox(CB_BILLNO, query, "VCH_NO", "VCH_NO", "All", CB_BILLNO_TextChanged, CB_BILLNO_SelectedIndexChanged, AutoCompleteMode.None);
+            }
+            void BindComboBox(ComboBox comboBox, string query, string displayMember, string valueMember, string allText, EventHandler textChangedHandler, EventHandler selectedIndexChangedHandler, AutoCompleteMode autoCompleteMode = AutoCompleteMode.Suggest)
+            {
+                // Fetch data using the query
+                DataTable dataTable = helper.FetchDataTableFromSYADataBase(query);
+                // Add "All" as the first row
+                if (displayMember != "GW")
+                {
+                    DataRow allRow = dataTable.NewRow();
+                    allRow[displayMember] = allText;
+                    dataTable.Rows.InsertAt(allRow, 0);
+                }
+                if (displayMember == "CO_YEAR")
+                {
+                    comboBox.DataSource = dataTable;
+                    comboBox.DisplayMember = displayMember;
+                    comboBox.ValueMember = valueMember;
+                    comboBox.SelectedIndex = 0;
+                    comboBox.AutoCompleteMode = autoCompleteMode;
+                    comboBox.AutoCompleteSource = AutoCompleteSource.ListItems;
+                }
+                if (textChangedHandler != null)
+                    comboBox.TextChanged += textChangedHandler;
+                //if (selectedIndexChangedHandler != null)
+                //    comboBox.SelectedIndexChanged += selectedIndexChangedHandler;
+            }
+             void CB_NAME_SelectedIndexChanged(object sender, EventArgs e)
+            {
+                LoadDataBasedOnComboBoxValue(CB_NAME, "AC_NAME");
+            }
+             void CB_YEAR_SelectedIndexChanged(object sender, EventArgs e)
+            {
+                LoadDataBasedOnComboBoxValue(CB_YEAR, "CO_YEAR");
+            }
+             void CB_TAGNO_SelectedIndexChanged(object sender, EventArgs e)
+            {
+                LoadDataBasedOnComboBoxValue(CB_TAGNO, "TAG_NO");
+            }
+             void CB_HUID_SelectedIndexChanged(object sender, EventArgs e)
+            {
+                LoadDataBasedOnComboBoxValue(CB_HUID, "HUID1");
+            }
+             void CB_WEIGHT_SelectedIndexChanged(object sender, EventArgs e)
+            {
+                LoadDataBasedOnComboBoxValue(CB_WEIGHT, "GW");
+            }
+             void CB_BILLNO_SelectedIndexChanged(object sender, EventArgs e)
+            {
+                LoadDataBasedOnComboBoxValue(CB_BILLNO, "VCH_NO");
+            }
+             void CB_HUID_TextChanged(object sender, EventArgs e)
+            {
+                LoadDataBasedOnComboBoxValue(CB_HUID, "HUID1");
+            }
+             void CB_WEIGHT_TextChanged(object sender, EventArgs e)
+            {
+                LoadDataBasedOnComboBoxValue(CB_WEIGHT, "GW");
+            }
+             void CB_BILLNO_TextChanged(object sender, EventArgs e)
+            {
+                LoadDataBasedOnComboBoxValue(CB_BILLNO, "VCH_NO");
+            }
+             void CB_TAGNO_TextChanged(object sender, EventArgs e)
+            {
+                LoadDataBasedOnComboBoxValue(CB_TAGNO, "TAG_NO");
+            }
+             void CB_NAME_TextChanged(object sender, EventArgs e)
+            {
+                LoadDataBasedOnComboBoxValue(CB_NAME, "AC_NAME");
+            }
+             void CB_YEAR_TextChanged(object sender, EventArgs e)
+            {
+                LoadDataBasedOnComboBoxValue(CB_YEAR, "CO_YEAR");
+            }
+             void LoadDataBasedOnComboBoxValue(ComboBox CB, string columnName)
+            {
+                string typedText = CB.Text.ToString();
+                // Reset DataGridView
+                dataGridView1.DataSource = null;
+                dataGridView1.Rows.Clear();
+                // Reset the current offset
+                // Build the query directly based on selected CO_YEAR
+                if (typedText != "All")
+                {
+                    // Query with WHERE clause for a specific CO_YEAR
+                    if (columnName == "HUID1")
+                    {
+                        WHERE_SALE = $" WHERE HUID1  LIKE '%{typedText}%' OR HUID2 LIKE '%{typedText}%' OR HUID3 LIKE '%{typedText}%' ";
+                        WHERE_MD = WHERE_SALE;
+                    }
+                    else if (columnName == "GW")
+                    {
+                        WHERE_SALE = $" WHERE GW  LIKE '%{typedText}%' OR NW LIKE '%{typedText}%' ";
+                        WHERE_MD = WHERE_SALE;
+                    }
+                    else
+                    {
+                        WHERE_SALE = $" WHERE {columnName}  LIKE '%{typedText}%'";
+                        WHERE_MD = WHERE_SALE;
+                    }
+                }
+                else
+                {
+                    // Query without WHERE clause for "All" CO_YEAR
+                    WHERE_SALE = "";
+                    WHERE_MD = "";
+                }
+                // Fetch the filtered data from the database
+                SearchPaginationHelper.setCurrentOffset(0);
+                loadData();
+            }
         }
         private void loadData()
         {
@@ -74,188 +256,6 @@ namespace SYA
                 column.DefaultCellStyle.ForeColor = Color.White;
             }
         }
-
-
-
-        private void BindComboBox(ComboBox comboBox, string query, string displayMember, string valueMember, string allText, EventHandler textChangedHandler, EventHandler selectedIndexChangedHandler, AutoCompleteMode autoCompleteMode = AutoCompleteMode.Suggest)
-        {
-            // Fetch data using the query
-            DataTable dataTable = helper.FetchDataTableFromSYADataBase(query);
-            // Add "All" as the first row
-            if (displayMember != "GW")
-            {
-                DataRow allRow = dataTable.NewRow();
-                allRow[displayMember] = allText;
-                dataTable.Rows.InsertAt(allRow, 0);
-            }
-
-            if (displayMember == "CO_YEAR")
-            {
-                comboBox.DataSource = dataTable;
-                comboBox.DisplayMember = displayMember;
-                comboBox.ValueMember = valueMember;
-                comboBox.SelectedIndex = 0;
-                comboBox.AutoCompleteMode = autoCompleteMode;
-                comboBox.AutoCompleteSource = AutoCompleteSource.ListItems;
-            }
-            if (textChangedHandler != null)
-                comboBox.TextChanged += textChangedHandler;
-            //if (selectedIndexChangedHandler != null)
-            //    comboBox.SelectedIndexChanged += selectedIndexChangedHandler;
-        }
-        private void BindACNameComboBox()
-        {
-            string query = @"
-SELECT DISTINCT AC_NAME
-FROM SALE_DATA_NEW 
-ORDER BY AC_NAME ASC;";
-            BindComboBox(CB_NAME, query, "AC_NAME", "AC_NAME", "All", CB_NAME_TextChanged, CB_NAME_SelectedIndexChanged);
-        }
-        private void BindCOYearComboBox()
-        {
-            string query = @"
-SELECT DISTINCT CO_YEAR
-FROM (
-    SELECT CO_YEAR FROM SALE_DATA_NEW
-    UNION
-    SELECT CO_YEAR FROM MAIN_DATA_NEW
-) AS combined_data
-ORDER BY CO_YEAR DESC;";
-            BindComboBox(CB_YEAR, query, "CO_YEAR", "CO_YEAR", "All", CB_YEAR_TextChanged, CB_YEAR_SelectedIndexChanged);
-        }
-        private void BindTAGNOComboBox()
-        {
-            string query = @"
-SELECT DISTINCT TAG_NO
-FROM (
-    SELECT TAG_NO FROM SALE_DATA_NEW
-    UNION
-    SELECT TAG_NO FROM MAIN_DATA_NEW
-) AS combined_data
-ORDER BY TAG_NO ASC;";
-            BindComboBox(CB_TAGNO, query, "TAG_NO", "TAG_NO", "All", CB_TAGNO_TextChanged, CB_TAGNO_SelectedIndexChanged);
-        }
-        private void BindHUIDComboBox()
-        {
-            string query = @"
-SELECT DISTINCT HUID1,HUID2,HUID3
-FROM (
-    SELECT HUID1,HUID2,HUID3 FROM SALE_DATA_NEW
-    UNION
-    SELECT HUID1,HUID2,HUID3 FROM MAIN_DATA_NEW
-) AS combined_data
-ORDER BY HUID1 ASC;";
-            BindComboBox(CB_HUID, query, "HUID1", "HUID1", "All", CB_HUID_TextChanged, CB_HUID_SelectedIndexChanged, AutoCompleteMode.None);
-        }
-        private void BindWEIGHTComboBox()
-        {
-            string query = @"
-SELECT DISTINCT GW,NW
-FROM (
-    SELECT GW,NW FROM SALE_DATA_NEW
-    UNION
-    SELECT GW,NW FROM MAIN_DATA_NEW
-) AS combined_data
-ORDER BY GW ASC;";
-            BindComboBox(CB_WEIGHT, query, "GW", "GW", "All", CB_WEIGHT_TextChanged, CB_WEIGHT_SelectedIndexChanged, AutoCompleteMode.None);
-        }
-        private void BindBillNoComboBox()
-        {
-            string query = @"
-SELECT DISTINCT VCH_NO
-FROM (
-    SELECT VCH_NO FROM SALE_DATA_NEW
-    UNION
-    SELECT VCH_NO FROM MAIN_DATA_NEW
-) AS combined_data
-ORDER BY VCH_NO ASC;";
-            BindComboBox(CB_BILLNO, query, "VCH_NO", "VCH_NO", "All", CB_BILLNO_TextChanged, CB_BILLNO_SelectedIndexChanged, AutoCompleteMode.None);
-        }
-
-        private void CB_NAME_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            LoadDataBasedOnComboBoxValue(CB_NAME, "AC_NAME");
-        }
-        private void CB_YEAR_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            LoadDataBasedOnComboBoxValue(CB_YEAR, "CO_YEAR");
-        }
-        private void CB_TAGNO_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            LoadDataBasedOnComboBoxValue(CB_TAGNO, "TAG_NO");
-        }
-        private void CB_HUID_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            LoadDataBasedOnComboBoxValue(CB_HUID, "HUID1");
-        }
-        private void CB_WEIGHT_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            LoadDataBasedOnComboBoxValue(CB_WEIGHT, "GW");
-        }
-        private void CB_BILLNO_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            LoadDataBasedOnComboBoxValue(CB_BILLNO, "VCH_NO");
-        }
-        private void CB_HUID_TextChanged(object sender, EventArgs e)
-        {
-            LoadDataBasedOnComboBoxValue(CB_HUID, "HUID1");
-        }private void CB_WEIGHT_TextChanged(object sender, EventArgs e)
-        {
-            LoadDataBasedOnComboBoxValue(CB_WEIGHT, "GW");
-        }
-        private void CB_BILLNO_TextChanged(object sender, EventArgs e)
-        {
-            LoadDataBasedOnComboBoxValue(CB_BILLNO, "VCH_NO");
-        }
-        private void CB_TAGNO_TextChanged(object sender, EventArgs e)
-        {
-            LoadDataBasedOnComboBoxValue(CB_TAGNO, "TAG_NO");
-        }
-        private void CB_NAME_TextChanged(object sender, EventArgs e)
-        {
-            LoadDataBasedOnComboBoxValue(CB_NAME, "AC_NAME");
-        }
-        private void CB_YEAR_TextChanged(object sender, EventArgs e)
-        {
-            LoadDataBasedOnComboBoxValue(CB_YEAR, "CO_YEAR");
-        }
-        private void LoadDataBasedOnComboBoxValue(ComboBox CB, string columnName)
-        {
-            string typedText = CB.Text.ToString();
-            // Reset DataGridView
-            dataGridView1.DataSource = null;
-            dataGridView1.Rows.Clear();
-            // Reset the current offset
-            // Build the query directly based on selected CO_YEAR
-            if (typedText != "All")
-            {
-                // Query with WHERE clause for a specific CO_YEAR
-                if (columnName == "HUID1")
-                {
-                    WHERE_SALE = $" WHERE HUID1  LIKE '%{typedText}%' OR HUID2 LIKE '%{typedText}%' OR HUID3 LIKE '%{typedText}%' ";
-                    WHERE_MD = WHERE_SALE;
-                }
-                else if (columnName == "GW")
-                {
-                    WHERE_SALE = $" WHERE GW  LIKE '%{typedText}%' OR NW LIKE '%{typedText}%' ";
-                    WHERE_MD = WHERE_SALE;
-                }
-                else
-                {
-                    WHERE_SALE = $" WHERE {columnName}  LIKE '%{typedText}%'";
-                    WHERE_MD = WHERE_SALE;
-                }
-            }
-            else
-            {
-                // Query without WHERE clause for "All" CO_YEAR
-                WHERE_SALE = "";
-                WHERE_MD = "";
-            }
-            // Fetch the filtered data from the database
-            SearchPaginationHelper.setCurrentOffset(0);
-            loadData();
-        }
         private void InitializeDataGridView()
         {
             dataGridView1.DataSource = null;
@@ -269,6 +269,18 @@ ORDER BY VCH_NO ASC;";
             dataGridView1.KeyDown += DataGridView1_KeyDown;
             // Initialize the Timer for Enter key navigation
             EnterKeyNavigation.EnterKeyHandle_EventHandler(dataGridView1);
+        }
+        private void DataGridView1_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        {
+            EnterKeyNavigation.DataGridView1_CellEndEdit_ForEnterKeyHandle(sender, e);
+        }
+        private void DataGridView1_CellEnter(object sender, DataGridViewCellEventArgs e)
+        {
+            EnterKeyNavigation.DataGridView1_CellEnter_ForEnterKeyHandle();
+        }
+        private void DataGridView1_KeyDown(object sender, KeyEventArgs e)
+        {
+            EnterKeyNavigation.DataGridView1_KeyDown_ForEnterKeyHandle(dataGridView1, e);
         }
         private void LoadInitialData()
         {
@@ -316,18 +328,6 @@ ORDER BY VCH_NO ASC;";
         private void DataGridView1_RowsAdded(object sender, DataGridViewRowsAddedEventArgs e)
         {
             searchStyling.DataGridView1_RowsAdded(sender, e, dataGridView1);
-        }
-        private void DataGridView1_CellEndEdit(object sender, DataGridViewCellEventArgs e)
-        {
-            EnterKeyNavigation.DataGridView1_CellEndEdit_ForEnterKeyHandle(sender, e);
-        }
-        private void DataGridView1_CellEnter(object sender, DataGridViewCellEventArgs e)
-        {
-            EnterKeyNavigation.DataGridView1_CellEnter_ForEnterKeyHandle();
-        }
-        private void DataGridView1_KeyDown(object sender, KeyEventArgs e)
-        {
-            EnterKeyNavigation.DataGridView1_KeyDown_ForEnterKeyHandle(dataGridView1, e);
         }
         public DataTable LoadNextPage()
         {

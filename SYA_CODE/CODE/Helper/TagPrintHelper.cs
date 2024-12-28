@@ -99,7 +99,7 @@ namespace SYA
         }
         public static void FramesName(string value, PrintPageEventArgs e)
         {
-            e.Graphics.DrawString(value, new Font("Arial", (float)13.5, FontStyle.Bold), brush, new RectangleF(8, 4, 165, (float)22.5), new StringFormat() { Alignment = StringAlignment.Near, LineAlignment = StringAlignment.Near });
+            e.Graphics.DrawString(value, new Font("Arial", (float)17.5, FontStyle.Bold), brush, new RectangleF(8, 4, 185, (float)45), new StringFormat() { Alignment = StringAlignment.Center, LineAlignment = StringAlignment.Center });
         }
         public static void FramesPrice(string value, PrintPageEventArgs e)
         {

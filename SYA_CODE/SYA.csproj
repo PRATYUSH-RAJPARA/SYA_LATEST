@@ -53,10 +53,10 @@
     <PackageReference Include="ZXing.Net" Version="0.16.9" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Update="CODE\AddItem\addgold - Copy - Copy.cs">
+    <Compile Update="CODE\AddItem\GOLD\addgold - Copy - Copy.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="CODE\AddItem\addgold - Copy.cs">
+    <Compile Update="CODE\AddItem\GOLD\addgold - Copy.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="Properties\Resources.Designer.cs">
