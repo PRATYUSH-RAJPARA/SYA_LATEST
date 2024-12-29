@@ -1032,3 +1032,4 @@ F:\SYA_LATEST\SYA_CODE\obj\Debug\net6.0-windows8.0\SYA.addgold_WORKINGcopy.resou
 F:\SYA_LATEST\SYA_CODE\obj\Debug\net6.0-windows8.0\SYA.addgold1.resources
 F:\SYA_LATEST\SYA_CODE\obj\Debug\net6.0-windows8.0\SYA.SearchNew.resources
 F:\SYA_LATEST\SYA_CODE\obj\Debug\net6.0-windows8.0\SYA.addItemNew.resources
+C:\SYA_LATEST\SYA_CODE\obj\Debug\net6.0-windows8.0\SYA.addItemNew.resources

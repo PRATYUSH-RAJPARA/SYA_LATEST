@@ -13,7 +13,6 @@ namespace SYA
                 if (gridViewRow.DataBoundItem is DataRowView dataRowView)
                 {
                     DataRow dataRow = dataRowView.Row;
-                  
                             gridViewRow.Cells["PURITY"].Style.BackColor = ColorTranslator.FromHtml("#96B5FE");     // Jordy Blue-4
                             gridViewRow.Cells["TAG_NO"].Style.BackColor = ColorTranslator.FromHtml("#9EBBFE");     // Jordy Blue-6
                             gridViewRow.Cells["HUID1"].Style.BackColor = ColorTranslator.FromHtml("#A3BEFE");      // Jordy Blue-7
@@ -28,7 +27,6 @@ namespace SYA
                             gridViewRow.Cells["SIZE"].Style.BackColor = ColorTranslator.FromHtml("#C9D8FD");       // Periwinkle-6
                             gridViewRow.Cells["PRICE"].Style.BackColor = ColorTranslator.FromHtml("#CDDBFD");      // Periwinkle-7
                             gridViewRow.Cells["COMMENT"].Style.BackColor = ColorTranslator.FromHtml("#D1DEFD");    // Lavender Web
-
                             foreach (DataGridViewCell cell in gridViewRow.Cells)
                             {
                                 cell.Style.ForeColor = Color.Black;
@@ -76,7 +74,6 @@ namespace SYA
                 //            //        gridViewRow.DefaultCellStyle.BackColor = Color.Silver;
                 //            //    }
                 //            //}
-                        
                 //    if (gridViewRow.DefaultCellStyle.BackColor == Color.Empty)
                 //    {
                 //        gridViewRow.DefaultCellStyle.BackColor = i % 2 == 0 ? Color.LightGray : Color.White;
@@ -88,11 +85,9 @@ namespace SYA
         {
             // Set styles for each column by column name (for non-ComboBox columns)
             dataGridView1.Columns["TAG_NO"].DefaultCellStyle.BackColor = ColorTranslator.FromHtml("#96B5FE"); // Jordy Blue-4
-
             // Set background color for ComboBox columns (non-edited cells) when DataGridView is first initialized
             dataGridView1.Columns["ITEM_TYPE"].DefaultCellStyle.BackColor = ColorTranslator.FromHtml("#9EBBFE"); // Jordy Blue-6
             dataGridView1.Columns["PURITY"].DefaultCellStyle.BackColor = ColorTranslator.FromHtml("#A3BEFE"); // Jordy Blue-7
-
             dataGridView1.Columns["GW"].DefaultCellStyle.BackColor = ColorTranslator.FromHtml("#A7C1FE"); // Jordy Blue-8
             dataGridView1.Columns["NW"].DefaultCellStyle.BackColor = ColorTranslator.FromHtml("#ABC4FE"); // Jordy Blue-9
             dataGridView1.Columns["LBR_RATE"].DefaultCellStyle.BackColor = ColorTranslator.FromHtml("#AFC7FE"); // Jordy Blue-10
@@ -104,30 +99,20 @@ namespace SYA
             dataGridView1.Columns["SIZE"].DefaultCellStyle.BackColor = ColorTranslator.FromHtml("#C9D8FD"); // Periwinkle-6
             dataGridView1.Columns["PRICE"].DefaultCellStyle.BackColor = ColorTranslator.FromHtml("#CDDBFD"); // Periwinkle-7
             dataGridView1.Columns["COMMENT"].DefaultCellStyle.BackColor = ColorTranslator.FromHtml("#D1DEFD"); // Lavender Web
-
             // Set ForeColor for all columns
             foreach (DataGridViewColumn column in dataGridView1.Columns)
             {
                 column.DefaultCellStyle.ForeColor = Color.Black;
             }
-
             // Apply background color for ComboBox cells in the first row (if any)
             foreach (DataGridViewRow row in dataGridView1.Rows)
             {
                 // Apply background color for ITEM_TYPE ComboBox cells
                 row.Cells["ITEM_TYPE"].Style.BackColor = ColorTranslator.FromHtml("#9EBBFE"); // Jordy Blue-6
-
                 // Apply background color for PURITY ComboBox cells
                 row.Cells["PURITY"].Style.BackColor = ColorTranslator.FromHtml("#A3BEFE"); // Jordy Blue-7
             }
         }
-
-
-
-
-
-
-
         public void CustomizeDataGridView(DataGridView dataGridView1)
         {
             // Hide specific columns
@@ -146,7 +131,6 @@ namespace SYA
             dataGridView1.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dataGridView1.DefaultCellStyle.Font = new Font(dataGridView1.Font.FontFamily, 20);
             dataGridView1.RowHeadersVisible = false;
-
             // Adjust column widths
             AdjustColumnWidths(dataGridView1);
             AdjustColumnHeaderStyles(dataGridView1);
@@ -160,16 +144,14 @@ namespace SYA
             dataGridView1.EnableHeadersVisualStyles = false; // Ensure cust
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing; // Enable manual height resizing
             dataGridView1.ColumnHeadersHeight = 50; // Set header}
-      
         }
         public void AdjustColumnWidths(DataGridView dataGridView1)
         {
-            dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+            dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.None;
             if (dataGridView1.Columns.Contains("COMMENT"))
             {
                 dataGridView1.Columns["COMMENT"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             }
-          
         }
     }
 }

@@ -23,6 +23,7 @@ namespace SYA
         {
             AttachEventHandlers();
             InitializeDataGridView();
+            InitializeComboBoxColumns();
         }
         private void InitializeDataGridView()
         {
@@ -61,19 +62,26 @@ namespace SYA
                 };
             }
             AddItemDataGridView_Setup.CustomizeDataGridView(dataGridView1);
-
         }
-
-        private void LoadComboBoxValues(string itemType, string columnName, string displayMember, DataGridViewComboBoxColumn comboBoxColumn)
+        private void InitializeComboBoxColumns()
         {
-            using (SQLiteDataReader reader = helper.FetchDataFromSYADataBase($"SELECT DISTINCT {columnName} FROM ITEM_MASTER WHERE IT_TYPE = '{itemType}'"))
+            LoadComboBoxValues("G", "IT_NAME", "IT_NAME", (DataGridViewComboBoxColumn)dataGridView1.Columns["ITEM_TYPE"]);
+            LoadComboBoxValues("GQ", "IT_NAME", "IT_NAME", (DataGridViewComboBoxColumn)dataGridView1.Columns["PURITY"]);
+            void LoadComboBoxValues(string itemType, string columnName, string displayMember, DataGridViewComboBoxColumn comboBoxColumn)
             {
-                while (reader.Read())
+                DataTable dt = helper.FetchDataTableFromSYADataBase($"SELECT DISTINCT {columnName} FROM ITEM_MASTER WHERE IT_TYPE = '{itemType}'");
+
+                using (SQLiteDataReader reader = helper.FetchDataFromSYADataBase($"SELECT DISTINCT {columnName} FROM ITEM_MASTER WHERE IT_TYPE = '{itemType}'"))
                 {
-                    comboBoxColumn.Items.Add(reader[displayMember].ToString());
+                    
+                    while (reader.Read())
+                    {
+                        comboBoxColumn.Items.Add(reader[displayMember].ToString());
+                    }
                 }
             }
         }
+         
         private void AttachEventHandlers()
         {
             dataGridView1.CellEndEdit += DataGridView1_CellEndEdit;
@@ -81,15 +89,10 @@ namespace SYA
             dataGridView1.KeyDown += DataGridView1_KeyDown;
             dataGridView1.EditingControlShowing += DataGridView1_EditingControlShowing;
             dataGridView1.RowsAdded += DataGridView1_RowsAdded;
-
             EnterKeyNavigation.EnterKeyHandle_EventHandler(dataGridView1);
              void DataGridView1_CellEndEdit(object sender, DataGridViewCellEventArgs e)
             {
-                var cellValue = dataGridView1[e.ColumnIndex, e.RowIndex].Value?.ToString() ?? "Empty";
-                DataGridViewCell dg_cell = dataGridView1[e.ColumnIndex, e.RowIndex];
-                var columnName = dataGridView1.Columns[e.ColumnIndex].Name;
-
-              //  itemValidations.Validate(e.ColumnIndex, e.RowIndex, LABEL_MESSAGE);
+                itemValidations.Validate(e.ColumnIndex, e.RowIndex, LABEL_MESSAGE,dataGridView1);
                 EnterKeyNavigation.DataGridView1_CellEndEdit_ForEnterKeyHandle(sender, e);
             }
              void DataGridView1_CellEnter(object sender, DataGridViewCellEventArgs e)
@@ -98,29 +101,33 @@ namespace SYA
             }
              void DataGridView1_KeyDown(object sender, KeyEventArgs e)
             {
-                var cellValue = dataGridView1.CurrentCell.Value?.ToString() ?? "Empty";
-                var columnName = dataGridView1.Columns[dataGridView1.CurrentCell.ColumnIndex].Name;
-                DataGridViewCell dg_cell = dataGridView1.CurrentCell;
-                dg_cell.Value.ToString();
-
-             //   itemValidations.Validate(dataGridView1.CurrentCell.ColumnIndex, dataGridView1.CurrentCell.RowIndex, LABEL_MESSAGE);
+                itemValidations.Validate(dataGridView1.CurrentCell.ColumnIndex, dataGridView1.CurrentCell.RowIndex, LABEL_MESSAGE,dataGridView1);
                 EnterKeyNavigation.DataGridView1_KeyDown_ForEnterKeyHandle(dataGridView1, e);
             }
-             void DataGridView1_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
+            void DataGridView1_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
             {
-                DataGridViewTextBoxEditingControl editingControl = e.Control as DataGridViewTextBoxEditingControl;
-                try
+                if (dataGridView1.CurrentCell == null)
                 {
-                    editingControl.KeyPress -= EditingControl_KeyPress;
+                    return; // No cell is currently selected
                 }
-                catch(Exception ){ }
-                if (dataGridView1.CurrentCell.ColumnIndex == dataGridView1.Columns["GW"].Index ||
-                    dataGridView1.CurrentCell.ColumnIndex == dataGridView1.Columns["NW"].Index ||
-                    dataGridView1.CurrentCell.ColumnIndex == dataGridView1.Columns["LBR_AMT"].Index ||
-                    dataGridView1.CurrentCell.ColumnIndex == dataGridView1.Columns["LBR_RATE"].Index ||
-                    dataGridView1.CurrentCell.ColumnIndex == dataGridView1.Columns["OTH_AMT"].Index)
+
+                DataGridViewTextBoxEditingControl editingControl = e.Control as DataGridViewTextBoxEditingControl;
+                if (editingControl != null)
                 {
-                    editingControl.KeyPress += EditingControl_KeyPress;
+                    try
+                    {
+                        editingControl.KeyPress -= EditingControl_KeyPress;
+                    }
+                    catch (Exception) { }
+
+                    if (dataGridView1.CurrentCell.ColumnIndex == dataGridView1.Columns["GW"].Index ||
+                        dataGridView1.CurrentCell.ColumnIndex == dataGridView1.Columns["NW"].Index ||
+                        dataGridView1.CurrentCell.ColumnIndex == dataGridView1.Columns["LBR_AMT"].Index ||
+                        dataGridView1.CurrentCell.ColumnIndex == dataGridView1.Columns["LBR_RATE"].Index ||
+                        dataGridView1.CurrentCell.ColumnIndex == dataGridView1.Columns["OTH_AMT"].Index)
+                    {
+                        editingControl.KeyPress += EditingControl_KeyPress;
+                    }
                 }
                 void EditingControl_KeyPress(object sender, KeyPressEventArgs e)
                 {
@@ -142,7 +149,6 @@ namespace SYA
             {
                 AddItemDataGridView_Setup.DataGridView1_RowsAdded(sender, e, dataGridView1);
             }
-
         }
         private void BUTTON_PRINT_ON_OFF_Click(object sender, EventArgs e)
         {

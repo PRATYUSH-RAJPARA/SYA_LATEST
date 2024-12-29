@@ -718,10 +718,8 @@ namespace SYA
                   //  TagPrintHelper.FramesPrice((selectedRow.Cells["price"].Value ?? "").ToString(), e);
                     string tagNumber = (selectedRow.Cells["tagno"].Value ?? "0").ToString();
                     string caret = (selectedRow.Cells["caret"].Value ?? "").ToString() ?? "0";
-                   
                 }
             }
-
         }
     }
 }
