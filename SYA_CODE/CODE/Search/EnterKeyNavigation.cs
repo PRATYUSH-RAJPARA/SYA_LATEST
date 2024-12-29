@@ -6,7 +6,7 @@
         private int savedColumnIndex = -1;
         private System.Windows.Forms.Timer moveCellTimer;
         private DataGridView _dataGridView1;
-        public bool AllowRowAdding { get; set; } = false; // Flag to enable/disable row adding
+        public bool AllowRowAdding  = true; // Flag to enable/disable row adding
         public void EnterKeyHandle_EventHandler(DataGridView dataGridView1)
         {
             _dataGridView1 = dataGridView1;
@@ -15,10 +15,6 @@
             moveCellTimer.Tick += MoveCellTimer_Tick_ForEnterKeyHandle;
         }
         public void DataGridView1_CellEndEdit_ForEnterKeyHandle(object sender, DataGridViewCellEventArgs e)
-        {
-            savedRowIndex = e.RowIndex;
-            savedColumnIndex = e.ColumnIndex;
-        }public void DataGridView1_CellEndEdit_ForEnterKeyHandle1(object sender, DataGridViewCellEventArgs e,Label l,DataGridView dataGridView1)
         {
             savedRowIndex = e.RowIndex;
             savedColumnIndex = e.ColumnIndex;
@@ -43,29 +39,9 @@
                 }
             }
         }
-        public void DataGridView1_KeyDown_ForEnterKeyHandle1(DataGridView dataGridView1, KeyEventArgs e,Label LABEL_MESSAGE)
-        {
-            if (e.KeyCode == Keys.Enter)
-            {
-                e.Handled = true; // Prevent default Enter key behavior
-                if (dataGridView1.CurrentCell != null)
-                {
-                    if (dataGridView1.IsCurrentCellInEditMode)
-                    {
-                        dataGridView1.EndEdit(); // Commit the current cell's edit
-                    }
-                    // Retrieve the value of the current cell
-                    savedRowIndex = dataGridView1.CurrentCell.RowIndex;
-                    savedColumnIndex = dataGridView1.CurrentCell.ColumnIndex;
-                    var cellValue = dataGridView1[savedColumnIndex, savedRowIndex].Value?.ToString() ?? "Empty";
-                    LABEL_MESSAGE.Text = $" Cell Value on Leave: {cellValue} ";
-                    moveCellTimer.Start();
-                }
-            }
-        }
         public void MoveCellTimer_Tick_ForEnterKeyHandle(object sender, EventArgs e)
         {
-           // MessageBox.Show("5");
+            // MessageBox.Show("5");
             moveCellTimer.Stop();
             if (savedRowIndex >= 0 && savedColumnIndex >= 0)
             {

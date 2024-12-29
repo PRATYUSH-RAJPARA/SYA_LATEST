@@ -15,139 +15,150 @@ namespace SYA
         EnterKeyNavigation EnterKeyNavigation = new EnterKeyNavigation();
         ItemValidations itemValidations = new ItemValidations();
         AddItemDataGridView_Setup AddItemDataGridView_Setup = new AddItemDataGridView_Setup();
+        private bool isHandlingCellEnter = false; // Flag to prevent reentrant calls
+        int C = 0;
+        int R = 0;
+        bool a = true;
         public addItemNew()
         {
             InitializeComponent();
         }
         private void addItemNew_Load(object sender, EventArgs e)
         {
-            AttachEventHandlers();
-            InitializeDataGridView();
-            InitializeComboBoxColumns();
+            Attach_Event_Handlers();
+            AddItemDataGridView_Setup.InitializeDataGridView(dataGridView1);
         }
-        private void InitializeDataGridView()
+        private void Attach_Event_Handlers()
         {
-            dataGridView1.Columns.Clear();
-            dataGridView1.Columns.Add(CreateTextBoxColumn("TAG_NO", "Tag No"));
-            dataGridView1.Columns.Add(CreateComboBoxColumn("ITEM_TYPE", "Item Type"));
-            dataGridView1.Columns.Add(CreateComboBoxColumn("PURITY", "Purity"));
-            dataGridView1.Columns.Add(CreateTextBoxColumn("GW", "Gross Weight"));
-            dataGridView1.Columns.Add(CreateTextBoxColumn("NW", "Net Weight"));
-            dataGridView1.Columns.Add(CreateTextBoxColumn("LBR_RATE", "Labour"));
-            dataGridView1.Columns.Add(CreateTextBoxColumn("LBR_AMT", "Labour Amount"));
-            dataGridView1.Columns.Add(CreateTextBoxColumn("OTH_AMT", "Other"));
-            dataGridView1.Columns.Add(CreateTextBoxColumn("HUID1", "HUID1"));
-            dataGridView1.Columns.Add(CreateTextBoxColumn("HUID2", "HUID2"));
-            dataGridView1.Columns.Add(CreateTextBoxColumn("HUID3", "HUID3"));
-            dataGridView1.Columns.Add(CreateTextBoxColumn("SIZE", "Size"));
-            dataGridView1.Columns.Add(CreateTextBoxColumn("PRICE", "PRICE"));
-            dataGridView1.Columns.Add(CreateTextBoxColumn("COMMENT", "Comment"));
-            dataGridView1.AllowUserToAddRows = true;
-            dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            DataGridViewTextBoxColumn CreateTextBoxColumn(string name, string headerText)
+            others();
+            datagridview();
+            void others()
             {
-                return new DataGridViewTextBoxColumn
+                this.SizeChanged += Form1_SizeChanged;
+                void Form1_SizeChanged(object sender, EventArgs e)
                 {
-                    Name = name,
-                    HeaderText = headerText
-                };
+                    AddItemDataGridView_Setup.AdjustColumnWidths(dataGridView1);
+                }
             }
-            // ComboBox column
-            DataGridViewComboBoxColumn CreateComboBoxColumn(string name, string headerText)
+            void datagridview()
             {
-                return new DataGridViewComboBoxColumn
+                dataGridView1.CellEndEdit += DataGridView1_CellEndEdit;
+                dataGridView1.CellEnter += DataGridView1_CellEnter;
+                dataGridView1.KeyDown += DataGridView1_KeyDown;
+                dataGridView1.EditingControlShowing += DataGridView1_EditingControlShowing;
+                dataGridView1.RowsAdded += DataGridView1_RowsAdded;
+                EnterKeyNavigation.EnterKeyHandle_EventHandler(dataGridView1);
+                void DataGridView1_CellEndEdit(object sender, DataGridViewCellEventArgs e)
                 {
-                    Name = name,
-                    HeaderText = headerText
-                };
-            }
-            AddItemDataGridView_Setup.CustomizeDataGridView(dataGridView1);
-        }
-        private void InitializeComboBoxColumns()
-        {
-            LoadComboBoxValues("G", "IT_NAME", "IT_NAME", (DataGridViewComboBoxColumn)dataGridView1.Columns["ITEM_TYPE"]);
-            LoadComboBoxValues("GQ", "IT_NAME", "IT_NAME", (DataGridViewComboBoxColumn)dataGridView1.Columns["PURITY"]);
-            void LoadComboBoxValues(string itemType, string columnName, string displayMember, DataGridViewComboBoxColumn comboBoxColumn)
-            {
-                DataTable dt = helper.FetchDataTableFromSYADataBase($"SELECT DISTINCT {columnName} FROM ITEM_MASTER WHERE IT_TYPE = '{itemType}'");
-
-                using (SQLiteDataReader reader = helper.FetchDataFromSYADataBase($"SELECT DISTINCT {columnName} FROM ITEM_MASTER WHERE IT_TYPE = '{itemType}'"))
-                {
-                    
-                    while (reader.Read())
+                     a = itemValidations.Validate("G",e.ColumnIndex, e.RowIndex, LABEL_MESSAGE, dataGridView1);
+                    if (!a)
                     {
-                        comboBoxColumn.Items.Add(reader[displayMember].ToString());
+                        C = e.ColumnIndex;
+                        R = e.RowIndex;
                     }
+                   // dataGridView1.CurrentCell = dataGridView1.Rows[e.RowIndex].Cells["NW"];
+                    EnterKeyNavigation.DataGridView1_CellEndEdit_ForEnterKeyHandle(sender, e);
                 }
-            }
-        }
-         
-        private void AttachEventHandlers()
-        {
-            dataGridView1.CellEndEdit += DataGridView1_CellEndEdit;
-            dataGridView1.CellEnter += DataGridView1_CellEnter;
-            dataGridView1.KeyDown += DataGridView1_KeyDown;
-            dataGridView1.EditingControlShowing += DataGridView1_EditingControlShowing;
-            dataGridView1.RowsAdded += DataGridView1_RowsAdded;
-            EnterKeyNavigation.EnterKeyHandle_EventHandler(dataGridView1);
-             void DataGridView1_CellEndEdit(object sender, DataGridViewCellEventArgs e)
-            {
-                itemValidations.Validate(e.ColumnIndex, e.RowIndex, LABEL_MESSAGE,dataGridView1);
-                EnterKeyNavigation.DataGridView1_CellEndEdit_ForEnterKeyHandle(sender, e);
-            }
-             void DataGridView1_CellEnter(object sender, DataGridViewCellEventArgs e)
-            {
-                EnterKeyNavigation.DataGridView1_CellEnter_ForEnterKeyHandle();
-            }
-             void DataGridView1_KeyDown(object sender, KeyEventArgs e)
-            {
-                itemValidations.Validate(dataGridView1.CurrentCell.ColumnIndex, dataGridView1.CurrentCell.RowIndex, LABEL_MESSAGE,dataGridView1);
-                EnterKeyNavigation.DataGridView1_KeyDown_ForEnterKeyHandle(dataGridView1, e);
-            }
-            void DataGridView1_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
-            {
-                if (dataGridView1.CurrentCell == null)
+                 void DataGridView1_CellEnter(object sender, DataGridViewCellEventArgs e)
                 {
-                    return; // No cell is currently selected
-                }
-
-                DataGridViewTextBoxEditingControl editingControl = e.Control as DataGridViewTextBoxEditingControl;
-                if (editingControl != null)
-                {
+                    if (!a)
+                    {
+                        StopMovingFocus();
+                    }
+                    void StopMovingFocus()
+                    {
+                        if (isHandlingCellEnter)
+                            return;
+                        try
+                        {
+                            isHandlingCellEnter = true;
+                                dataGridView1.BeginInvoke(new Action(() =>
+                                {
+                                    int rowIndex = e.RowIndex;
+                                    int itemTypeColumnIndex = dataGridView1.Columns["ITEM_TYPE"].Index;
+                                    dataGridView1.CurrentCell = dataGridView1.Rows[R].Cells[C];
+                                }));
+                        }
+                        finally
+                        {
+                            isHandlingCellEnter = false;
+                        }
+                    }
+                    // Avoid reentrant calls
+                    if (isHandlingCellEnter)
+                        return;
                     try
                     {
-                        editingControl.KeyPress -= EditingControl_KeyPress;
-                    }
-                    catch (Exception) { }
-
-                    if (dataGridView1.CurrentCell.ColumnIndex == dataGridView1.Columns["GW"].Index ||
-                        dataGridView1.CurrentCell.ColumnIndex == dataGridView1.Columns["NW"].Index ||
-                        dataGridView1.CurrentCell.ColumnIndex == dataGridView1.Columns["LBR_AMT"].Index ||
-                        dataGridView1.CurrentCell.ColumnIndex == dataGridView1.Columns["LBR_RATE"].Index ||
-                        dataGridView1.CurrentCell.ColumnIndex == dataGridView1.Columns["OTH_AMT"].Index)
-                    {
-                        editingControl.KeyPress += EditingControl_KeyPress;
-                    }
-                }
-                void EditingControl_KeyPress(object sender, KeyPressEventArgs e)
-                {
-                    if (!char.IsDigit(e.KeyChar) && e.KeyChar != '.' && e.KeyChar != (char)8)
-                    {
-                        e.Handled = true; // Block invalid characters
-                    }
-                    else
-                    {
-                        // Ensure only one decimal point is allowed
-                        if (e.KeyChar == '.' && (sender as TextBox).Text.Contains("."))
+                        isHandlingCellEnter = true;
+                        if (dataGridView1.Columns[e.ColumnIndex].Name == "TAG_NO")
                         {
-                            e.Handled = true; // Block multiple decimal points
+                            dataGridView1.BeginInvoke(new Action(() =>
+                            {
+                                int rowIndex = e.RowIndex;
+                                int itemTypeColumnIndex = dataGridView1.Columns["ITEM_TYPE"].Index;
+                                dataGridView1.CurrentCell = dataGridView1.Rows[rowIndex].Cells[itemTypeColumnIndex];
+                            }));
+                        }
+                    }
+                    finally
+                    {
+                        isHandlingCellEnter = false;
+                    }
+                    EnterKeyNavigation.DataGridView1_CellEnter_ForEnterKeyHandle();
+                }
+                void DataGridView1_KeyDown(object sender, KeyEventArgs e)
+                {
+                    a = itemValidations.Validate("G", dataGridView1.CurrentCell.ColumnIndex, dataGridView1.CurrentCell.RowIndex, LABEL_MESSAGE, dataGridView1);
+                    if (!a)
+                    {
+                        C = dataGridView1.CurrentCell.ColumnIndex;
+                        R = dataGridView1.CurrentCell.RowIndex;
+                    }
+                    EnterKeyNavigation.DataGridView1_KeyDown_ForEnterKeyHandle(dataGridView1, e);
+                }
+                void DataGridView1_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
+                {
+                    if (dataGridView1.CurrentCell == null)
+                    {
+                        return; // No cell is currently selected
+                    }
+                    DataGridViewTextBoxEditingControl editingControl = e.Control as DataGridViewTextBoxEditingControl;
+                    if (editingControl != null)
+                    {
+                        try
+                        {
+                            editingControl.KeyPress -= EditingControl_KeyPress;
+                        }
+                        catch (Exception) { }
+                        if (dataGridView1.CurrentCell.ColumnIndex == dataGridView1.Columns["GW"].Index ||
+                            dataGridView1.CurrentCell.ColumnIndex == dataGridView1.Columns["NW"].Index ||
+                            dataGridView1.CurrentCell.ColumnIndex == dataGridView1.Columns["LBR_AMT"].Index ||
+                            dataGridView1.CurrentCell.ColumnIndex == dataGridView1.Columns["LBR_RATE"].Index ||
+                            dataGridView1.CurrentCell.ColumnIndex == dataGridView1.Columns["OTH_AMT"].Index)
+                        {
+                            editingControl.KeyPress += EditingControl_KeyPress;
+                        }
+                    }
+                    void EditingControl_KeyPress(object sender, KeyPressEventArgs e)
+                    {
+                        if (!char.IsDigit(e.KeyChar) && e.KeyChar != '.' && e.KeyChar != (char)8)
+                        {
+                            e.Handled = true; // Block invalid characters
+                        }
+                        else
+                        {
+                            // Ensure only one decimal point is allowed
+                            if (e.KeyChar == '.' && (sender as TextBox).Text.Contains("."))
+                            {
+                                e.Handled = true; // Block multiple decimal points
+                            }
                         }
                     }
                 }
-            }
-             void DataGridView1_RowsAdded(object sender, DataGridViewRowsAddedEventArgs e)
-            {
-                AddItemDataGridView_Setup.DataGridView1_RowsAdded(sender, e, dataGridView1);
+                void DataGridView1_RowsAdded(object sender, DataGridViewRowsAddedEventArgs e)
+                {
+                    AddItemDataGridView_Setup.DataGridView1_RowsAdded(sender, e, dataGridView1);
+                }
             }
         }
         private void BUTTON_PRINT_ON_OFF_Click(object sender, EventArgs e)
