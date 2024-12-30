@@ -27,7 +27,6 @@ namespace SYA
         {
             Attach_Event_Handlers();
             AddItemDataGridView_Setup.InitializeDataGridView(dataGridView1);
-
             // Use Invoke to set focus after initialization
             this.BeginInvoke(new Action(() =>
             {
@@ -38,7 +37,6 @@ namespace SYA
                 }
             }));
         }
-
         private void Attach_Event_Handlers()
         {
             others();

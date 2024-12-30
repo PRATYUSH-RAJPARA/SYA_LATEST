@@ -71,6 +71,7 @@ namespace SYA
             {
                 if (!string.IsNullOrEmpty(get_CellValue(rowIndex, "GW")) && get_CellValue(rowIndex, "GW") != "0")
                 {
+                    set_CellValue(rowIndex, "GW", ConvertToDecimal_3digit(get_CellValue(rowIndex, "GW")));
                     if (!string.IsNullOrEmpty(get_CellValue(rowIndex, "NW")) && get_CellValue(rowIndex, "NW") != "0")
                     {
                         if (ConvertToDecimal(get_CellValue(rowIndex, "NW")) > ConvertToDecimal(get_CellValue(rowIndex, "GW")))
@@ -87,17 +88,17 @@ namespace SYA
                 {
                     return false;
                 }
-
                 return true;
             }
             bool NW()
             {
-            
                 if (!string.IsNullOrEmpty(get_CellValue(rowIndex, "NW")) && get_CellValue(rowIndex, "NW") != "0")
                 {
+                    set_CellValue(rowIndex, "NW", ConvertToDecimal_3digit(get_CellValue(rowIndex, "NW")));
+
                     if (string.IsNullOrEmpty(get_CellValue(rowIndex, "GW")))
                     {
-                        set_CellValue(rowIndex, "GW", get_CellValue(rowIndex,"NW"));
+                        set_CellValue(rowIndex, "GW", get_CellValue(rowIndex, "NW"));
                     }
                     if (ConvertToDecimal(get_CellValue(rowIndex, "NW")) > ConvertToDecimal(get_CellValue(rowIndex, "GW")))
                     {
@@ -106,7 +107,6 @@ namespace SYA
                     }
                 }
                 else { return false; }
-
                 l.Text = "";
                 return true;
             }
@@ -116,20 +116,17 @@ namespace SYA
                 {
                     set_CellValue(rowIndex, "LBR_AMT", ((ConvertToDecimal(get_CellValue(rowIndex, "NW"))) * (ConvertToDecimal(get_CellValue(rowIndex, "LBR_RATE")))).ToString());
                 }
-
                 return true;
             }
             bool OTHER() { return true; }
             bool LABOUR_AMOUNT()
             {
-                    decimal nw = ConvertToDecimal(get_CellValue(rowIndex, "NW"));
-                    decimal lbr_rat = ConvertToDecimal(get_CellValue(rowIndex, "LBR_RATE"));
-                    decimal lbr_amt = ConvertToDecimal(get_CellValue(rowIndex, "LBR_AMT"));
+                decimal nw = ConvertToDecimal(get_CellValue(rowIndex, "NW"));
+                decimal lbr_rat = ConvertToDecimal(get_CellValue(rowIndex, "LBR_RATE"));
+                decimal lbr_amt = ConvertToDecimal(get_CellValue(rowIndex, "LBR_AMT"));
                 if (!string.IsNullOrEmpty(get_CellValue(rowIndex, "LBR_AMT")))
                 {
-
-
-                    if (lbr_amt < (lbr_rat * nw))
+                    if (lbr_amt <= (lbr_rat * nw))
                     {
                         set_CellValue(rowIndex, "LBR_AMT", (lbr_rat * nw).ToString());
                     }
@@ -144,8 +141,10 @@ namespace SYA
                 }
                 return true;
             }
-            bool HUID1() {
-                set_CellValue(rowIndex,"HUID3", ConvertToDecimal(get_CellValue(rowIndex, "HUID1")).ToString()); return true; }
+            bool HUID1()
+            {
+                return true;
+            }
             bool HUID2() { return true; }
             bool HUID3() { return true; }
             void set_CellValue(int row_Index, string column, string value)
@@ -156,6 +155,15 @@ namespace SYA
             string get_CellValue(int row_Index, string column)
             {
                 return dg.Rows[rowIndex].Cells[column].Value?.ToString() ?? string.Empty;
+            }
+            string ConvertToDecimal_3digit(string str)
+            {
+                if (str != null && decimal.TryParse(str.ToString(), out decimal weight))
+                {
+                    // Format the entered value to have three decimal places
+                    return weight.ToString("0.000");
+                }
+                return (cellValue ?? "").ToString();
             }
             decimal ConvertToDecimal(string str)
             {
@@ -170,7 +178,6 @@ namespace SYA
                     return 3.000m;
                 }
             }
-
             return true;
         }
     }
