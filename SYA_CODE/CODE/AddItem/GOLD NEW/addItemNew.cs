@@ -27,7 +27,18 @@ namespace SYA
         {
             Attach_Event_Handlers();
             AddItemDataGridView_Setup.InitializeDataGridView(dataGridView1);
+
+            // Use Invoke to set focus after initialization
+            this.BeginInvoke(new Action(() =>
+            {
+                if (dataGridView1.Rows.Count >= 0 && dataGridView1.Columns.Contains("ITEM_TYPE"))
+                {
+                    dataGridView1.CurrentCell = dataGridView1.Rows[0].Cells["ITEM_TYPE"];
+                    dataGridView1.BeginEdit(true); // Start editing if necessary
+                }
+            }));
         }
+
         private void Attach_Event_Handlers()
         {
             others();

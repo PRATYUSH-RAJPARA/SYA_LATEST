@@ -92,8 +92,13 @@ namespace SYA
             }
             bool NW()
             {
-                if (!string.IsNullOrEmpty(get_CellValue(rowIndex, "GW")) && get_CellValue(rowIndex, "GW") != "0")
+            
+                if (!string.IsNullOrEmpty(get_CellValue(rowIndex, "NW")) && get_CellValue(rowIndex, "NW") != "0")
                 {
+                    if (string.IsNullOrEmpty(get_CellValue(rowIndex, "GW")))
+                    {
+                        set_CellValue(rowIndex, "GW", get_CellValue(rowIndex,"NW"));
+                    }
                     if (ConvertToDecimal(get_CellValue(rowIndex, "NW")) > ConvertToDecimal(get_CellValue(rowIndex, "GW")))
                     {
                         l.Text = "Net Weight is Greater Then Gross Weight !";
@@ -101,6 +106,7 @@ namespace SYA
                     }
                 }
                 else { return false; }
+
                 l.Text = "";
                 return true;
             }
@@ -116,15 +122,30 @@ namespace SYA
             bool OTHER() { return true; }
             bool LABOUR_AMOUNT()
             {
-                decimal nw = ConvertToDecimal(get_CellValue(rowIndex, "NW"));
-                decimal lbr_rat = ConvertToDecimal(get_CellValue(rowIndex, "LBR_RATE"));
-                decimal lbr_amt = ConvertToDecimal(get_CellValue(rowIndex, "LBR_AMT"));
-                if (lbr_amt < (lbr_rat * nw)) {
+                    decimal nw = ConvertToDecimal(get_CellValue(rowIndex, "NW"));
+                    decimal lbr_rat = ConvertToDecimal(get_CellValue(rowIndex, "LBR_RATE"));
+                    decimal lbr_amt = ConvertToDecimal(get_CellValue(rowIndex, "LBR_AMT"));
+                if (!string.IsNullOrEmpty(get_CellValue(rowIndex, "LBR_AMT")))
+                {
+
+
+                    if (lbr_amt < (lbr_rat * nw))
+                    {
+                        set_CellValue(rowIndex, "LBR_AMT", (lbr_rat * nw).ToString());
+                    }
+                    else
+                    {
+                        set_CellValue(rowIndex, "LBR_RATE", "0");
+                    }
+                }
+                else
+                {
                     set_CellValue(rowIndex, "LBR_AMT", (lbr_rat * nw).ToString());
                 }
                 return true;
             }
-            bool HUID1() { return true; }
+            bool HUID1() {
+                set_CellValue(rowIndex,"HUID3", ConvertToDecimal(get_CellValue(rowIndex, "HUID1")).ToString()); return true; }
             bool HUID2() { return true; }
             bool HUID3() { return true; }
             void set_CellValue(int row_Index, string column, string value)
@@ -138,8 +159,18 @@ namespace SYA
             }
             decimal ConvertToDecimal(string str)
             {
-                return decimal.TryParse(str, out decimal result) ? result : 0m;
+                if (decimal.TryParse(str, out decimal result))
+                {
+                    // Ensure the value is rounded to 3 decimal places
+                    return Math.Round(result, 3);
+                }
+                else
+                {
+                    // Return 3.000 if parsing fails
+                    return 3.000m;
+                }
             }
+
             return true;
         }
     }
