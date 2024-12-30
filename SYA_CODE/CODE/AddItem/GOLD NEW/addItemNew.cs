@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Guna.UI2.AnimatorNS;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -36,6 +37,7 @@ namespace SYA
                     dataGridView1.BeginEdit(true); // Start editing if necessary
                 }
             }));
+            InitializeAutoCompleteCollections();
         }
         private void Attach_Event_Handlers()
         {
@@ -56,10 +58,12 @@ namespace SYA
                 dataGridView1.KeyDown += DataGridView1_KeyDown;
                 dataGridView1.EditingControlShowing += DataGridView1_EditingControlShowing;
                 dataGridView1.RowsAdded += DataGridView1_RowsAdded;
+                dataGridView1.CellValidating += DataGridView1_CellValidating; // Attach the CellValidating event
                 EnterKeyNavigation.EnterKeyHandle_EventHandler(dataGridView1);
                 void DataGridView1_CellEndEdit(object sender, DataGridViewCellEventArgs e)
                 {
-                     a = itemValidations.Validate("G",e.ColumnIndex, e.RowIndex, LABEL_MESSAGE, dataGridView1);
+                    a = itemValidations.Validate("G",e.ColumnIndex, e.RowIndex, LABEL_MESSAGE, dataGridView1,itemTypeCollection,purityCollection);
+                    LABEL_MESSAGE.Text += "\tCell End Edit : " + a.ToString();
                     if (!a)
                     {
                         C = e.ColumnIndex;
@@ -70,6 +74,8 @@ namespace SYA
                 }
                  void DataGridView1_CellEnter(object sender, DataGridViewCellEventArgs e)
                 {
+                    dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].Style.BackColor = Color.Yellow; // Highlight background color
+                    dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].Style.ForeColor = Color.Red;
                     if (!a)
                     {
                         StopMovingFocus();
@@ -117,7 +123,8 @@ namespace SYA
                 }
                 void DataGridView1_KeyDown(object sender, KeyEventArgs e)
                 {
-                    a = itemValidations.Validate("G", dataGridView1.CurrentCell.ColumnIndex, dataGridView1.CurrentCell.RowIndex, LABEL_MESSAGE, dataGridView1);
+                    a = itemValidations.Validate("G", dataGridView1.CurrentCell.ColumnIndex, dataGridView1.CurrentCell.RowIndex, LABEL_MESSAGE, dataGridView1,itemTypeCollection,purityCollection);
+                    LABEL_MESSAGE.Text += "\tKey Down : "+a.ToString();
                     if (!a)
                     {
                         C = dataGridView1.CurrentCell.ColumnIndex;
@@ -127,6 +134,28 @@ namespace SYA
                 }
                 void DataGridView1_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
                 {
+                        if (e.Control is TextBox textBox)
+                        {
+                            // Determine the current column and apply the appropriate auto-complete collection
+                            if (dataGridView1.CurrentCell.OwningColumn.Name == "ITEM_TYPE")
+                            {
+                                textBox.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+                                textBox.AutoCompleteSource = AutoCompleteSource.CustomSource;
+                                textBox.AutoCompleteCustomSource = itemTypeCollection;
+                            }
+                            else if (dataGridView1.CurrentCell.OwningColumn.Name == "PURITY")
+                            {
+                                textBox.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+                                textBox.AutoCompleteSource = AutoCompleteSource.CustomSource;
+                                textBox.AutoCompleteCustomSource = purityCollection;
+                            }
+                            else
+                            {
+                                // Disable auto-complete for other columns
+                                textBox.AutoCompleteMode = AutoCompleteMode.None;
+                            }
+                        }
+                    //---
                     if (dataGridView1.CurrentCell == null)
                     {
                         return; // No cell is currently selected
@@ -134,44 +163,96 @@ namespace SYA
                     DataGridViewTextBoxEditingControl editingControl = e.Control as DataGridViewTextBoxEditingControl;
                     if (editingControl != null)
                     {
-                        try
-                        {
-                            editingControl.KeyPress -= EditingControl_KeyPress;
-                        }
-                        catch (Exception) { }
-                        if (dataGridView1.CurrentCell.ColumnIndex == dataGridView1.Columns["GW"].Index ||
-                            dataGridView1.CurrentCell.ColumnIndex == dataGridView1.Columns["NW"].Index ||
-                            dataGridView1.CurrentCell.ColumnIndex == dataGridView1.Columns["LBR_AMT"].Index ||
-                            dataGridView1.CurrentCell.ColumnIndex == dataGridView1.Columns["LBR_RATE"].Index ||
-                            dataGridView1.CurrentCell.ColumnIndex == dataGridView1.Columns["OTH_AMT"].Index)
-                        {
-                            editingControl.KeyPress += EditingControl_KeyPress;
-                        }
+                        //try
+                        //{
+                        //    editingControl.KeyPress -= EditingControl_KeyPress;
+                        //}
+                        //catch (Exception) { }
+                        //if (dataGridView1.CurrentCell.ColumnIndex == dataGridView1.Columns["GW"].Index ||
+                        //    dataGridView1.CurrentCell.ColumnIndex == dataGridView1.Columns["NW"].Index ||
+                        //    dataGridView1.CurrentCell.ColumnIndex == dataGridView1.Columns["LBR_AMT"].Index ||
+                        //    dataGridView1.CurrentCell.ColumnIndex == dataGridView1.Columns["LBR_RATE"].Index ||
+                        //    dataGridView1.CurrentCell.ColumnIndex == dataGridView1.Columns["OTH_AMT"].Index)
+                        //{
+                        //    editingControl.KeyPress += EditingControl_KeyPress;
+                        //}
+                        editingControl.KeyPress -= EditingControl_KeyPress;
+                        editingControl.KeyPress += EditingControl_KeyPress;
                     }
                     void EditingControl_KeyPress(object sender, KeyPressEventArgs e)
                     {
-                        if (!char.IsDigit(e.KeyChar) && e.KeyChar != '.' && e.KeyChar != (char)8)
+                        TextBox textBox = sender as TextBox;
+                        if (textBox != null)
                         {
-                            e.Handled = true; // Block invalid characters
-                        }
-                        else
-                        {
-                            // Ensure only one decimal point is allowed
-                            if (e.KeyChar == '.' && (sender as TextBox).Text.Contains("."))
+                            // Convert alphabetic characters to uppercase (for all columns)
+                            if (char.IsLetter(e.KeyChar))
                             {
-                                e.Handled = true; // Block multiple decimal points
+                                e.KeyChar = char.ToUpper(e.KeyChar); // Convert to uppercase
+                            }
+                            // Check column for numeric validation (specific columns only)
+                            if (dataGridView1.CurrentCell.ColumnIndex == dataGridView1.Columns["GW"].Index ||
+                                dataGridView1.CurrentCell.ColumnIndex == dataGridView1.Columns["NW"].Index ||
+                                dataGridView1.CurrentCell.ColumnIndex == dataGridView1.Columns["LBR_AMT"].Index ||
+                                dataGridView1.CurrentCell.ColumnIndex == dataGridView1.Columns["LBR_RATE"].Index ||
+                                dataGridView1.CurrentCell.ColumnIndex == dataGridView1.Columns["OTH_AMT"].Index)
+                            {
+                                // Allow only digits, decimal point, and backspace in specific columns
+                                if (!char.IsDigit(e.KeyChar) && e.KeyChar != '.' && e.KeyChar != (char)8)
+                                {
+                                    e.Handled = true; // Block invalid characters
+                                }
+                                else
+                                {
+                                    // Ensure only one decimal point is allowed
+                                    if (e.KeyChar == '.' && textBox.Text.Contains("."))
+                                    {
+                                        e.Handled = true; // Block multiple decimal points
+                                    }
+                                }
                             }
                         }
                     }
+                    //void EditingControl_KeyPress(object sender, KeyPressEventArgs e)
+                    //{
+                    //    if (!char.IsDigit(e.KeyChar) && e.KeyChar != '.' && e.KeyChar != (char)8)
+                    //    {
+                    //        e.Handled = true; // Block invalid characters
+                    //    }
+                    //    else
+                    //    {
+                    //        // Ensure only one decimal point is allowed
+                    //        if (e.KeyChar == '.' && (sender as TextBox).Text.Contains("."))
+                    //        {
+                    //            e.Handled = true; // Block multiple decimal points
+                    //        }
+                    //    }
+                    //}
                 }
                 void DataGridView1_RowsAdded(object sender, DataGridViewRowsAddedEventArgs e)
                 {
                     AddItemDataGridView_Setup.DataGridView1_RowsAdded(sender, e, dataGridView1);
                 }
+                void DataGridView1_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)
+                {
+                }
             }
         }
-        private void BUTTON_PRINT_ON_OFF_Click(object sender, EventArgs e)
+        private AutoCompleteStringCollection itemTypeCollection = new AutoCompleteStringCollection();
+        private AutoCompleteStringCollection purityCollection = new AutoCompleteStringCollection();
+        void InitializeAutoCompleteCollections()
         {
-        }
+            LoadAutoCompleteValues("G", "IT_NAME", "IT_NAME", itemTypeCollection);
+            LoadAutoCompleteValues("GQ", "IT_NAME", "IT_NAME", purityCollection);
+            void LoadAutoCompleteValues(string itemType, string columnName, string displayMember, AutoCompleteStringCollection collection)
+            {
+                using (SQLiteDataReader reader = helper.FetchDataFromSYADataBase($"SELECT DISTINCT {columnName} FROM ITEM_MASTER WHERE IT_TYPE = '{itemType}'"))
+                {
+                    while (reader.Read())
+                    {
+                        collection.Add(reader[displayMember].ToString());
+                    }
+                }
+            }
+        }   
     }
 }

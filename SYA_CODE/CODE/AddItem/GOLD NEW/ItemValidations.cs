@@ -8,13 +8,17 @@ namespace SYA
 {
     public class ItemValidations
     {
-        public bool Validate(string metalType, int columnIndex, int rowIndex, Label l, DataGridView dg)
+        public bool Validate(string metalType, int columnIndex, int rowIndex, Label l, DataGridView dg, AutoCompleteStringCollection itemTypeCollection, AutoCompleteStringCollection purityCollection)
         {
             //     dg[columnIndex+3, rowIndex].Value = "asas";
             dg.Refresh();
             string cellValue = dg[columnIndex, rowIndex].Value?.ToString() ?? "";
             string columnName = dg.Columns[columnIndex].Name.ToString();
-            if (columnName == "PURITY")
+            if (columnName == "ITEM_TYPE")
+            {
+                return ITEM_TYPE();
+            }
+            else if (columnName == "PURITY")
             {
                 return PURITY();
             }
@@ -50,38 +54,44 @@ namespace SYA
             {
                 return HUID3();
             }
+            bool ITEM_TYPE()
+            {
+                if (!itemTypeCollection.Contains(cellValue))
+                {
+                    return false;
+                }
+                return true;
+            }
             bool PURITY()
             {
-                if (!string.IsNullOrEmpty(get_CellValue(rowIndex, "PURITY")))
+                if (!purityCollection.Contains(cellValue))
+                {
+                    return false; // Set flag to false if value is not in the collection
+                }
+                else
                 {
                     set_CellValue(rowIndex, "GW", "0");
-                    set_CellValue(rowIndex, "NW", "0");
-                    set_CellValue(rowIndex, "LBR_RATE", "0");
-                    set_CellValue(rowIndex, "LBR_AMT", "0");
-                    set_CellValue(rowIndex, "OTH_AMT", "0");
-                    if (metalType == "S" && cellValue == "925")
-                    {
-                        set_CellValue(rowIndex, "LBR_RATE", "380");
-                    }
                 }
-                else { return false; }
                 return true;
             }
             bool GW()
             {
-                if (!string.IsNullOrEmpty(get_CellValue(rowIndex, "GW")) && get_CellValue(rowIndex, "GW") != "0")
+                string NW = get_CellValue(rowIndex, "NW");
+                string GW = get_CellValue(rowIndex, "GW");
+                if (!string.IsNullOrEmpty(GW) && GW != "0")
                 {
-                    set_CellValue(rowIndex, "GW", ConvertToDecimal_3digit(get_CellValue(rowIndex, "GW")));
-                    if (!string.IsNullOrEmpty(get_CellValue(rowIndex, "NW")) && get_CellValue(rowIndex, "NW") != "0")
+                    set_CellValue(rowIndex, "GW", ConvertToDecimal_3digit(GW));
+                    GW = get_CellValue(rowIndex, "GW");
+                    if (!string.IsNullOrEmpty(NW) && NW != "0")
                     {
-                        if (ConvertToDecimal(get_CellValue(rowIndex, "NW")) > ConvertToDecimal(get_CellValue(rowIndex, "GW")))
+                        if (ConvertToDecimal(NW) > ConvertToDecimal(GW))
                         {
-                            set_CellValue(rowIndex, "NW", get_CellValue(rowIndex, "GW"));
+                            set_CellValue(rowIndex, "NW", GW);
                         }
                     }
                     else
                     {
-                        set_CellValue(rowIndex, "NW", get_CellValue(rowIndex, "GW"));
+                        set_CellValue(rowIndex, "NW", GW);
                     }
                 }
                 else
@@ -92,53 +102,69 @@ namespace SYA
             }
             bool NW()
             {
-                if (!string.IsNullOrEmpty(get_CellValue(rowIndex, "NW")) && get_CellValue(rowIndex, "NW") != "0")
-                {
-                    set_CellValue(rowIndex, "NW", ConvertToDecimal_3digit(get_CellValue(rowIndex, "NW")));
+                string NW = get_CellValue(rowIndex, "NW");
+                string GW = get_CellValue(rowIndex, "GW");
+                string LBR_RATE = get_CellValue(rowIndex, "LBR_RATE");
 
-                    if (string.IsNullOrEmpty(get_CellValue(rowIndex, "GW")))
+                if (!string.IsNullOrEmpty(NW) && NW != "0")
+                {
+                    set_CellValue(rowIndex, "NW", ConvertToDecimal_3digit(NW));
+                     NW = get_CellValue(rowIndex, "NW");
+
+                    if (string.IsNullOrEmpty(GW))
                     {
-                        set_CellValue(rowIndex, "GW", get_CellValue(rowIndex, "NW"));
+                        set_CellValue(rowIndex, "GW", NW);
                     }
-                    if (ConvertToDecimal(get_CellValue(rowIndex, "NW")) > ConvertToDecimal(get_CellValue(rowIndex, "GW")))
+                    if (ConvertToDecimal(NW) > ConvertToDecimal(GW))
                     {
                         l.Text = "Net Weight is Greater Then Gross Weight !";
                         return false;
                     }
                 }
-                else { return false; }
                 l.Text = "";
                 return true;
             }
             bool LABOUR()
             {
-                if (!string.IsNullOrEmpty(get_CellValue(rowIndex, "LBR_RATE")) && ConvertToDecimal(get_CellValue(rowIndex, "LBR_RATE")) != 0)
+                Set_0_If_Null(rowIndex, "LBR_RATE");
+
+                string NW = get_CellValue(rowIndex, "NW");
+                string LBR_RATE = get_CellValue(rowIndex, "LBR_RATE");
+
+                if (!string.IsNullOrEmpty(LBR_RATE) && ConvertToDecimal(LBR_RATE) != 0)
                 {
-                    set_CellValue(rowIndex, "LBR_AMT", ((ConvertToDecimal(get_CellValue(rowIndex, "NW"))) * (ConvertToDecimal(get_CellValue(rowIndex, "LBR_RATE")))).ToString());
+                    set_CellValue(rowIndex, "LBR_AMT", CustomRound( ((ConvertToDecimal(NW)) * (ConvertToDecimal(LBR_RATE))) ,1).ToString() );
                 }
                 return true;
             }
-            bool OTHER() { return true; }
+            bool OTHER() {
+                decimal price = 7250;
+                Set_0_If_Null(rowIndex, "OTH_AMT");
+
+                return true; }
             bool LABOUR_AMOUNT()
             {
-                decimal nw = ConvertToDecimal(get_CellValue(rowIndex, "NW"));
-                decimal lbr_rat = ConvertToDecimal(get_CellValue(rowIndex, "LBR_RATE"));
-                decimal lbr_amt = ConvertToDecimal(get_CellValue(rowIndex, "LBR_AMT"));
-                if (!string.IsNullOrEmpty(get_CellValue(rowIndex, "LBR_AMT")))
+                Set_0_If_Null(rowIndex, "LBR_AMT");
+                string NW = (get_CellValue(rowIndex, "NW"));
+                string LBR_RATE = (get_CellValue(rowIndex, "LBR_RATE"));
+                string LBR_AMT = (get_CellValue(rowIndex, "LBR_AMT"));
+                decimal amount = (ConvertToDecimal(LBR_RATE) * ConvertToDecimal(NW));
+                if (!string.IsNullOrEmpty(LBR_AMT))
                 {
-                    if (lbr_amt <= (lbr_rat * nw))
+                    if (ConvertToDecimal(LBR_AMT) < (ConvertToDecimal(LBR_RATE) * ConvertToDecimal(NW)))
                     {
-                        set_CellValue(rowIndex, "LBR_AMT", (lbr_rat * nw).ToString());
+                        set_CellValue(rowIndex, "LBR_AMT", amount.ToString());
                     }
-                    else
+                    else if (ConvertToDecimal(LBR_AMT) > (ConvertToDecimal(LBR_RATE) * ConvertToDecimal(NW)))
                     {
                         set_CellValue(rowIndex, "LBR_RATE", "0");
                     }
                 }
                 else
                 {
-                    set_CellValue(rowIndex, "LBR_AMT", (lbr_rat * nw).ToString());
+                    set_CellValue(rowIndex, "LBR_AMT", amount.ToString());
                 }
+                set_CellValue(rowIndex, "OTH_AMT", "0");
                 return true;
             }
             bool HUID1()
@@ -149,7 +175,17 @@ namespace SYA
             bool HUID3() { return true; }
             void set_CellValue(int row_Index, string column, string value)
             {
-                dg.Rows[row_Index].Cells[column].Value = value;
+                if (value == "0")
+                {
+                    if (string.IsNullOrEmpty(get_CellValue(row_Index, column)))
+                    {
+                        dg.Rows[row_Index].Cells[column].Value = value;
+                    }
+                }
+                else
+                {
+                    dg.Rows[row_Index].Cells[column].Value = value;
+                }
                 dg.Refresh();
             }
             string get_CellValue(int row_Index, string column)
@@ -176,6 +212,25 @@ namespace SYA
                 {
                     // Return 3.000 if parsing fails
                     return 3.000m;
+                }
+            }
+            int CustomRound(decimal value, decimal step)
+            {
+                decimal remainder = value % step;
+                if (remainder == 0)
+                {
+                    return (int)value;
+                }
+                else
+                {
+                    return (int)(value + (step - remainder));
+                }
+            }
+            void Set_0_If_Null(int row_index,string column)
+            {
+                if (string.IsNullOrEmpty(get_CellValue(row_index, column)))
+                {
+                    set_CellValue(row_index, column, "0");
                 }
             }
             return true;

@@ -1,4 +1,5 @@
-﻿namespace SYA
+﻿using System.Windows.Forms;
+namespace SYA
 {
     public class EnterKeyNavigation
     {

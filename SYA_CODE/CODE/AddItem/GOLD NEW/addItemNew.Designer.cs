@@ -324,7 +324,6 @@
             BUTTON_PRINT_ON_OFF.TabIndex = 2;
             BUTTON_PRINT_ON_OFF.Text = "PRINTING OFF";
             BUTTON_PRINT_ON_OFF.UseVisualStyleBackColor = true;
-            BUTTON_PRINT_ON_OFF.Click += BUTTON_PRINT_ON_OFF_Click;
             // 
             // tableLayoutPanel2
             // 

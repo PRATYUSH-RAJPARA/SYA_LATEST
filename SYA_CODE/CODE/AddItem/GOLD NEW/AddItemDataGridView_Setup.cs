@@ -9,8 +9,8 @@ namespace SYA
         {
             dataGridView1.Columns.Clear();
             dataGridView1.Columns.Add(CreateTextBoxColumn("TAG_NO", "Tag No"));
-            dataGridView1.Columns.Add(CreateComboBoxColumn("ITEM_TYPE", "Item Type"));
-            dataGridView1.Columns.Add(CreateComboBoxColumn("PURITY", "Purity"));
+            dataGridView1.Columns.Add(CreateTextBoxColumn("ITEM_TYPE", "Item Type"));
+            dataGridView1.Columns.Add(CreateTextBoxColumn("PURITY", "Purity"));
             dataGridView1.Columns.Add(CreateTextBoxColumn("GW", "Gross Weight"));
             dataGridView1.Columns.Add(CreateTextBoxColumn("NW", "Net Weight"));
             dataGridView1.Columns.Add(CreateTextBoxColumn("LBR_RATE", "Labour"));
@@ -20,7 +20,7 @@ namespace SYA
             dataGridView1.Columns.Add(CreateTextBoxColumn("HUID2", "HUID2"));
             dataGridView1.Columns.Add(CreateTextBoxColumn("HUID3", "HUID3"));
             dataGridView1.Columns.Add(CreateTextBoxColumn("SIZE", "Size"));
-            dataGridView1.Columns.Add(CreateTextBoxColumn("PRICE", "PRICE"));
+            dataGridView1.Columns.Add(CreateTextBoxColumn("PRICE", "Price"));
             dataGridView1.Columns.Add(CreateTextBoxColumn("COMMENT", "Comment"));
             dataGridView1.AllowUserToAddRows = true;
             dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
@@ -41,7 +41,7 @@ namespace SYA
                     HeaderText = headerText
                 };
             }
-            InitializeComboBoxColumns();
+         //   InitializeComboBoxColumns();
             CustomizeDataGridView(dataGridView1);
             void InitializeComboBoxColumns()
             {
