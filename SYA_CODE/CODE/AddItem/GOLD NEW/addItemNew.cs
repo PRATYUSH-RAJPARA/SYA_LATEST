@@ -62,6 +62,7 @@ namespace SYA
                 EnterKeyNavigation.EnterKeyHandle_EventHandler(dataGridView1);
                 void DataGridView1_CellEndEdit(object sender, DataGridViewCellEventArgs e)
                 {
+                    
                     a = itemValidations.Validate("G",e.ColumnIndex, e.RowIndex, LABEL_MESSAGE, dataGridView1,itemTypeCollection,purityCollection);
                     LABEL_MESSAGE.Text += "\tCell End Edit : " + a.ToString();
                     if (!a)
@@ -69,8 +70,11 @@ namespace SYA
                         C = e.ColumnIndex;
                         R = e.RowIndex;
                     }
-                   // dataGridView1.CurrentCell = dataGridView1.Rows[e.RowIndex].Cells["NW"];
+                    else { 
                     EnterKeyNavigation.DataGridView1_CellEndEdit_ForEnterKeyHandle(sender, e);
+                    }
+                   
+                    // dataGridView1.CurrentCell = dataGridView1.Rows[e.RowIndex].Cells["NW"];
                 }
                  void DataGridView1_CellEnter(object sender, DataGridViewCellEventArgs e)
                 {
@@ -80,6 +84,11 @@ namespace SYA
                     {
                         StopMovingFocus();
                     }
+                    else
+                    {
+
+                    EnterKeyNavigation.DataGridView1_CellEnter_ForEnterKeyHandle();
+                    }
                     void StopMovingFocus()
                     {
                         if (isHandlingCellEnter)
@@ -87,12 +96,12 @@ namespace SYA
                         try
                         {
                             isHandlingCellEnter = true;
-                                dataGridView1.BeginInvoke(new Action(() =>
-                                {
-                                    int rowIndex = e.RowIndex;
-                                    int itemTypeColumnIndex = dataGridView1.Columns["ITEM_TYPE"].Index;
-                                    dataGridView1.CurrentCell = dataGridView1.Rows[R].Cells[C];
-                                }));
+                            dataGridView1.BeginInvoke(new Action(() =>
+                            {
+                                int rowIndex = e.RowIndex;
+                                int itemTypeColumnIndex = dataGridView1.Columns["ITEM_TYPE"].Index;
+                                dataGridView1.CurrentCell = dataGridView1.Rows[R].Cells[C];
+                            }));
                         }
                         finally
                         {
@@ -100,26 +109,25 @@ namespace SYA
                         }
                     }
                     // Avoid reentrant calls
-                    if (isHandlingCellEnter)
-                        return;
-                    try
-                    {
-                        isHandlingCellEnter = true;
-                        if (dataGridView1.Columns[e.ColumnIndex].Name == "TAG_NO")
-                        {
-                            dataGridView1.BeginInvoke(new Action(() =>
-                            {
-                                int rowIndex = e.RowIndex;
-                                int itemTypeColumnIndex = dataGridView1.Columns["ITEM_TYPE"].Index;
-                                dataGridView1.CurrentCell = dataGridView1.Rows[rowIndex].Cells[itemTypeColumnIndex];
-                            }));
-                        }
-                    }
-                    finally
-                    {
-                        isHandlingCellEnter = false;
-                    }
-                    EnterKeyNavigation.DataGridView1_CellEnter_ForEnterKeyHandle();
+                    //if (isHandlingCellEnter)
+                    //    return;
+                    //try
+                    //{
+                    //    isHandlingCellEnter = true;
+                    //    if (dataGridView1.Columns[e.ColumnIndex].Name == "TAG_NO")
+                    //    {
+                    //        dataGridView1.BeginInvoke(new Action(() =>
+                    //        {
+                    //            int rowIndex = e.RowIndex;
+                    //            int itemTypeColumnIndex = dataGridView1.Columns["ITEM_TYPE"].Index;
+                    //            dataGridView1.CurrentCell = dataGridView1.Rows[rowIndex].Cells[itemTypeColumnIndex];
+                    //        }));
+                    //    }
+                    //}
+                    //finally
+                    //{
+                    //    isHandlingCellEnter = false;
+                    //}
                 }
                 void DataGridView1_KeyDown(object sender, KeyEventArgs e)
                 {
@@ -127,10 +135,16 @@ namespace SYA
                     LABEL_MESSAGE.Text += "\tKey Down : "+a.ToString();
                     if (!a)
                     {
+                        
+                    e.SuppressKeyPress=true; //
                         C = dataGridView1.CurrentCell.ColumnIndex;
                         R = dataGridView1.CurrentCell.RowIndex;
                     }
+                    else
+                    {
                     EnterKeyNavigation.DataGridView1_KeyDown_ForEnterKeyHandle(dataGridView1, e);
+
+                    }
                 }
                 void DataGridView1_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
                 {
@@ -212,21 +226,7 @@ namespace SYA
                             }
                         }
                     }
-                    //void EditingControl_KeyPress(object sender, KeyPressEventArgs e)
-                    //{
-                    //    if (!char.IsDigit(e.KeyChar) && e.KeyChar != '.' && e.KeyChar != (char)8)
-                    //    {
-                    //        e.Handled = true; // Block invalid characters
-                    //    }
-                    //    else
-                    //    {
-                    //        // Ensure only one decimal point is allowed
-                    //        if (e.KeyChar == '.' && (sender as TextBox).Text.Contains("."))
-                    //        {
-                    //            e.Handled = true; // Block multiple decimal points
-                    //        }
-                    //    }
-                    //}
+                 
                 }
                 void DataGridView1_RowsAdded(object sender, DataGridViewRowsAddedEventArgs e)
                 {
@@ -234,6 +234,18 @@ namespace SYA
                 }
                 void DataGridView1_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)
                 {
+                    if(e.ColumnIndex==C && e.RowIndex==R )
+                    {
+                        string enteredValue = e.FormattedValue.ToString();
+                        dataGridView1.Rows[e.RowIndex].Cells[e.ColumnIndex].Value = enteredValue;  // Commit the value
+                        if (!a)
+                        {
+                            a = itemValidations.Validate("G", e.ColumnIndex, e.RowIndex, LABEL_MESSAGE, dataGridView1, itemTypeCollection, purityCollection);
+
+                            LABEL_MESSAGE.Text += $"\n{enteredValue} : {e.RowIndex} : {e.ColumnIndex} : {a.ToString()}";
+                            e.Cancel = true;
+                        }
+                    }
                 }
             }
         }

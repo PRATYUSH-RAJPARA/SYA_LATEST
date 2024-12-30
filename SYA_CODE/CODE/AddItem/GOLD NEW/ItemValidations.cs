@@ -71,6 +71,7 @@ namespace SYA
                 else
                 {
                     set_CellValue(rowIndex, "GW", "0");
+                    return true;
                 }
                 return true;
             }
