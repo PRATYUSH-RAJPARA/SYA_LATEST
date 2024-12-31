@@ -5,6 +5,22 @@ namespace SYA
 {
     public class AddItemDataGridView_Setup
     {
+       
+        public void InitializeAutoCompleteCollections(AutoCompleteStringCollection itemTypeCollection, AutoCompleteStringCollection purityCollection)
+        {
+            LoadAutoCompleteValues("G", "IT_NAME", "IT_NAME", itemTypeCollection);
+            LoadAutoCompleteValues("GQ", "IT_NAME", "IT_NAME", purityCollection);
+            void LoadAutoCompleteValues(string itemType, string columnName, string displayMember, AutoCompleteStringCollection collection)
+            {
+                using (SQLiteDataReader reader = helper.FetchDataFromSYADataBase($"SELECT DISTINCT {columnName} FROM ITEM_MASTER WHERE IT_TYPE = '{itemType}'"))
+                {
+                    while (reader.Read())
+                    {
+                        collection.Add(reader[displayMember].ToString());
+                    }
+                }
+            }
+        }
         public void InitializeDataGridView(DataGridView dataGridView1)
         {
             dataGridView1.Columns.Clear();
@@ -22,7 +38,7 @@ namespace SYA
             dataGridView1.Columns.Add(CreateTextBoxColumn("SIZE", "Size"));
             dataGridView1.Columns.Add(CreateTextBoxColumn("PRICE", "Price"));
             dataGridView1.Columns.Add(CreateTextBoxColumn("COMMENT", "Comment"));
-            dataGridView1.AllowUserToAddRows = true;
+            dataGridView1.AllowUserToAddRows = false;
             dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             DataGridViewTextBoxColumn CreateTextBoxColumn(string name, string headerText)
             {

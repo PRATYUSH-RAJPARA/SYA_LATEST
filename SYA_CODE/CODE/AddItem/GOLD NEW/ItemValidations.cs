@@ -106,12 +106,10 @@ namespace SYA
                 string NW = get_CellValue(rowIndex, "NW");
                 string GW = get_CellValue(rowIndex, "GW");
                 string LBR_RATE = get_CellValue(rowIndex, "LBR_RATE");
-
                 if (!string.IsNullOrEmpty(NW) && NW != "0")
                 {
                     set_CellValue(rowIndex, "NW", ConvertToDecimal_3digit(NW));
                      NW = get_CellValue(rowIndex, "NW");
-
                     if (string.IsNullOrEmpty(GW))
                     {
                         set_CellValue(rowIndex, "GW", NW);
@@ -128,10 +126,8 @@ namespace SYA
             bool LABOUR()
             {
                 Set_0_If_Null(rowIndex, "LBR_RATE");
-
                 string NW = get_CellValue(rowIndex, "NW");
                 string LBR_RATE = get_CellValue(rowIndex, "LBR_RATE");
-
                 if (!string.IsNullOrEmpty(LBR_RATE) && ConvertToDecimal(LBR_RATE) != 0)
                 {
                     set_CellValue(rowIndex, "LBR_AMT", CustomRound( ((ConvertToDecimal(NW)) * (ConvertToDecimal(LBR_RATE))) ,1).ToString() );
@@ -141,7 +137,6 @@ namespace SYA
             bool OTHER() {
                 decimal price = 7250;
                 Set_0_If_Null(rowIndex, "OTH_AMT");
-
                 return true; }
             bool LABOUR_AMOUNT()
             {
