@@ -5,22 +5,6 @@ namespace SYA
 {
     public class AddItemDataGridView_Setup
     {
-       
-        public void InitializeAutoCompleteCollections(AutoCompleteStringCollection itemTypeCollection, AutoCompleteStringCollection purityCollection)
-        {
-            LoadAutoCompleteValues("G", "IT_NAME", "IT_NAME", itemTypeCollection);
-            LoadAutoCompleteValues("GQ", "IT_NAME", "IT_NAME", purityCollection);
-            void LoadAutoCompleteValues(string itemType, string columnName, string displayMember, AutoCompleteStringCollection collection)
-            {
-                using (SQLiteDataReader reader = helper.FetchDataFromSYADataBase($"SELECT DISTINCT {columnName} FROM ITEM_MASTER WHERE IT_TYPE = '{itemType}'"))
-                {
-                    while (reader.Read())
-                    {
-                        collection.Add(reader[displayMember].ToString());
-                    }
-                }
-            }
-        }
         public void InitializeDataGridView(DataGridView dataGridView1)
         {
             dataGridView1.Columns.Clear();
@@ -48,29 +32,21 @@ namespace SYA
                     HeaderText = headerText
                 };
             }
-            // ComboBox column
-            DataGridViewComboBoxColumn CreateComboBoxColumn(string name, string headerText)
-            {
-                return new DataGridViewComboBoxColumn
-                {
-                    Name = name,
-                    HeaderText = headerText
-                };
-            }
-         //   InitializeComboBoxColumns();
+           
             CustomizeDataGridView(dataGridView1);
-            void InitializeComboBoxColumns()
+            
+        }
+        public void InitializeAutoCompleteCollections(AutoCompleteStringCollection itemTypeCollection, AutoCompleteStringCollection purityCollection)
+        {
+            LoadAutoCompleteValues("G", "IT_NAME", "IT_NAME", itemTypeCollection);
+            LoadAutoCompleteValues("GQ", "IT_NAME", "IT_NAME", purityCollection);
+            void LoadAutoCompleteValues(string itemType, string columnName, string displayMember, AutoCompleteStringCollection collection)
             {
-                LoadComboBoxValues("G", "IT_NAME", "IT_NAME", (DataGridViewComboBoxColumn)dataGridView1.Columns["ITEM_TYPE"]);
-                LoadComboBoxValues("GQ", "IT_NAME", "IT_NAME", (DataGridViewComboBoxColumn)dataGridView1.Columns["PURITY"]);
-                void LoadComboBoxValues(string itemType, string columnName, string displayMember, DataGridViewComboBoxColumn comboBoxColumn)
+                using (SQLiteDataReader reader = helper.FetchDataFromSYADataBase($"SELECT DISTINCT {columnName} FROM ITEM_MASTER WHERE IT_TYPE = '{itemType}'"))
                 {
-                    using (SQLiteDataReader reader = helper.FetchDataFromSYADataBase($"SELECT DISTINCT {columnName} FROM ITEM_MASTER WHERE IT_TYPE = '{itemType}'"))
+                    while (reader.Read())
                     {
-                        while (reader.Read())
-                        {
-                            comboBoxColumn.Items.Add(reader[displayMember].ToString());
-                        }
+                        collection.Add(reader[displayMember].ToString());
                     }
                 }
             }

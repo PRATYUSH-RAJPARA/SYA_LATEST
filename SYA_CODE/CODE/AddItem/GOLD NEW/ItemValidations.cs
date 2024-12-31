@@ -14,6 +14,7 @@ namespace SYA
             dg.Refresh();
             string cellValue = dg[columnIndex, rowIndex].Value?.ToString() ?? "";
             string columnName = dg.Columns[columnIndex].Name.ToString();
+          //  l.Text += $"{columnIndex} : {rowIndex} : {cellValue}\n ";
             if (columnName == "ITEM_TYPE")
             {
                 return ITEM_TYPE();
@@ -73,7 +74,6 @@ namespace SYA
                     set_CellValue(rowIndex, "GW", "0");
                     return true;
                 }
-                return true;
             }
             bool GW()
             {
@@ -121,6 +121,7 @@ namespace SYA
                     }
                 }
                 l.Text = "";
+                set_CellValue(rowIndex, "LBR_RATE", "0");
                 return true;
             }
             bool LABOUR()
@@ -149,10 +150,13 @@ namespace SYA
                 {
                     if (ConvertToDecimal(LBR_AMT) < (ConvertToDecimal(LBR_RATE) * ConvertToDecimal(NW)))
                     {
+                        l.Text = "GG\n";
+
                         set_CellValue(rowIndex, "LBR_AMT", amount.ToString());
                     }
                     else if (ConvertToDecimal(LBR_AMT) > (ConvertToDecimal(LBR_RATE) * ConvertToDecimal(NW)))
                     {
+                        l.Text = "FG \n";
                         set_CellValue(rowIndex, "LBR_RATE", "0");
                     }
                 }
@@ -171,17 +175,9 @@ namespace SYA
             bool HUID3() { return true; }
             void set_CellValue(int row_Index, string column, string value)
             {
-                if (value == "0")
-                {
-                    if (string.IsNullOrEmpty(get_CellValue(row_Index, column)))
-                    {
-                        dg.Rows[row_Index].Cells[column].Value = value;
-                    }
-                }
-                else
-                {
+               
                     dg.Rows[row_Index].Cells[column].Value = value;
-                }
+                
                 dg.Refresh();
             }
             string get_CellValue(int row_Index, string column)
