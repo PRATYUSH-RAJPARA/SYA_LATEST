@@ -32,9 +32,7 @@ namespace SYA
                     HeaderText = headerText
                 };
             }
-           
             CustomizeDataGridView(dataGridView1);
-            
         }
         public void InitializeAutoCompleteCollections(AutoCompleteStringCollection itemTypeCollection, AutoCompleteStringCollection purityCollection)
         {

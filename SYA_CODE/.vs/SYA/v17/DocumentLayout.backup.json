@@ -58,8 +58,16 @@
       "DocumentGroups": [
         {
           "DockedHeight": 200,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 6,
           "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{eefa5220-e298-11d0-8f78-00a0c9110057}"
+            },
             {
               "$type": "Document",
               "DocumentIndex": 5,
@@ -92,8 +100,8 @@
               "Title": "addItemNew.cs [Design]",
               "DocumentMoniker": "F:\\SYA_LATEST\\SYA_CODE\\CODE\\AddItem\\GOLD NEW\\addItemNew.cs",
               "RelativeDocumentMoniker": "CODE\\AddItem\\GOLD NEW\\addItemNew.cs",
-              "ToolTip": "F:\\SYA_LATEST\\SYA_CODE\\CODE\\AddItem\\GOLD NEW\\addItemNew.cs [Design]",
-              "RelativeToolTip": "CODE\\AddItem\\GOLD NEW\\addItemNew.cs [Design]",
+              "ToolTip": "F:\\SYA_LATEST\\SYA_CODE\\CODE\\AddItem\\GOLD NEW\\addItemNew.cs [Design]*",
+              "RelativeToolTip": "CODE\\AddItem\\GOLD NEW\\addItemNew.cs [Design]*",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-12-28T08:45:51.777Z",
               "IsPinned": true,
@@ -105,8 +113,8 @@
               "Title": "AddItemDataGridView_Setup.cs",
               "DocumentMoniker": "F:\\SYA_LATEST\\SYA_CODE\\CODE\\AddItem\\GOLD NEW\\AddItemDataGridView_Setup.cs",
               "RelativeDocumentMoniker": "CODE\\AddItem\\GOLD NEW\\AddItemDataGridView_Setup.cs",
-              "ToolTip": "F:\\SYA_LATEST\\SYA_CODE\\CODE\\AddItem\\GOLD NEW\\AddItemDataGridView_Setup.cs*",
-              "RelativeToolTip": "CODE\\AddItem\\GOLD NEW\\AddItemDataGridView_Setup.cs*",
+              "ToolTip": "F:\\SYA_LATEST\\SYA_CODE\\CODE\\AddItem\\GOLD NEW\\AddItemDataGridView_Setup.cs",
+              "RelativeToolTip": "CODE\\AddItem\\GOLD NEW\\AddItemDataGridView_Setup.cs",
               "ViewState": "AgIAAA8AAAAAAAAAAAAgwBUAAAA4AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-12-28T13:00:58.342Z",
@@ -121,7 +129,7 @@
               "RelativeDocumentMoniker": "CODE\\AddItem\\GOLD NEW\\ItemValidations.cs",
               "ToolTip": "F:\\SYA_LATEST\\SYA_CODE\\CODE\\AddItem\\GOLD NEW\\ItemValidations.cs*",
               "RelativeToolTip": "CODE\\AddItem\\GOLD NEW\\ItemValidations.cs*",
-              "ViewState": "AgIAAI8AAAAAAAAAAAAgwEwAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAH8AAAAAAAAAAAAgwJQAAAA/AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-12-28T11:22:18.359Z",
               "IsPinned": true,
@@ -138,16 +146,7 @@
               "ViewState": "AgIAACIAAAAAAAAAAAAvwGAAAAAuAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-12-31T05:39:10.772Z",
-              "IsPinned": true,
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{eefa5220-e298-11d0-8f78-00a0c9110057}"
+              "IsPinned": true
             },
             {
               "$type": "Document",
@@ -155,8 +154,8 @@
               "Title": "addItemNew.Designer.cs",
               "DocumentMoniker": "F:\\SYA_LATEST\\SYA_CODE\\CODE\\AddItem\\GOLD NEW\\addItemNew.Designer.cs",
               "RelativeDocumentMoniker": "CODE\\AddItem\\GOLD NEW\\addItemNew.Designer.cs",
-              "ToolTip": "F:\\SYA_LATEST\\SYA_CODE\\CODE\\AddItem\\GOLD NEW\\addItemNew.Designer.cs",
-              "RelativeToolTip": "CODE\\AddItem\\GOLD NEW\\addItemNew.Designer.cs",
+              "ToolTip": "F:\\SYA_LATEST\\SYA_CODE\\CODE\\AddItem\\GOLD NEW\\addItemNew.Designer.cs*",
+              "RelativeToolTip": "CODE\\AddItem\\GOLD NEW\\addItemNew.Designer.cs*",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAAIAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-12-30T17:29:14.767Z",
