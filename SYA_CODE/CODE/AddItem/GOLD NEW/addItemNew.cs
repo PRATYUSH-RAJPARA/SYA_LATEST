@@ -1,14 +1,4 @@
-﻿using Guna.UI2.AnimatorNS;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Data.SQLite;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿
 namespace SYA
 {
     public partial class addItemNew : Form
@@ -53,7 +43,7 @@ namespace SYA
                     if (cellValue.Length > 0)
                     {
                         if (cellValue != uncommittedValue)
-                        { 
+                        {
                             dataGridView1.Rows[rowIndex].Cells[columnIndex].Value = uncommittedValue;
                         }
                     }
@@ -175,6 +165,11 @@ namespace SYA
                     }
                 }
             }
+        }
+
+        private void BUTTON_PRINT_ON_OFF_Click(object sender, EventArgs e)
+        {
+            itemValidations.ExportDataGridViewToExcel(dataGridView1);
         }
     }
 }

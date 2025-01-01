@@ -1,5 +1,4 @@
-﻿using Serilog;
-using System.Data;
+﻿using System.Data;
 using System.Data.SQLite;
 using System.Drawing.Printing;
 namespace SYA
@@ -276,8 +275,8 @@ namespace SYA
         }
         private void InitializeLogging()
         {
-            Log.Logger = new LoggerConfiguration()
-                .WriteTo.File(helper.LogsFolder + "\\logs.txt", rollingInterval: RollingInterval.Day).CreateLogger();
+            //Log.Logger = new LoggerConfiguration()
+            //    .WriteTo.File(helper.LogsFolder + "\\logs.txt", rollingInterval: RollingInterval.Day).CreateLogger();
         }
         private void SelectCell(DataGridView dataGridView, int rowIndex, string columnName)
         {

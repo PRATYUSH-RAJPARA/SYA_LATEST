@@ -1,5 +1,4 @@
-﻿using Serilog;
-using System.Data;
+﻿using System.Data;
 using System.Data.SQLite;
 using System.Drawing.Printing;
 using System.Windows.Forms;

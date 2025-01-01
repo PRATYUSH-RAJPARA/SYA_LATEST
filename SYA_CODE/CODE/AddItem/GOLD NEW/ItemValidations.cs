@@ -4,10 +4,98 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using OfficeOpenXml;
+using OfficeOpenXml.Style;
+using System.Drawing;
+using System.IO;
 namespace SYA
 {
     public class ItemValidations
     {
+        public void ExportDataGridViewToExcel(DataGridView dgv)
+        {
+            // Generate file name with timestamp
+            string timestamp = DateTime.Now.ToString("yyyyMMdd_HHmmss");
+            string filePath = @$"F:/ExportedDataGridView_{timestamp}.xlsx";
+
+            // Enable EPPlus license
+            ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
+
+            using (var package = new ExcelPackage())
+            {
+                var worksheet = package.Workbook.Worksheets.Add("Data");
+
+                // Export header
+                for (int col = 0; col < dgv.Columns.Count; col++)
+                {
+                    var headerCell = dgv.Columns[col].HeaderCell;
+                    var excelCell = worksheet.Cells[1, col + 1];
+
+                    // Set header value
+                    excelCell.Value = headerCell.Value ?? dgv.Columns[col].HeaderText;
+
+                    // Apply header styles
+                    excelCell.Style.Font.Bold = true;
+                    excelCell.Style.Font.Size = 12;
+                    excelCell.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
+                    excelCell.Style.Fill.PatternType = ExcelFillStyle.Solid;
+                    excelCell.Style.Fill.BackgroundColor.SetColor(Color.LightGray);
+                    excelCell.Style.Border.BorderAround(ExcelBorderStyle.Thin);
+                }
+
+                // Export data rows
+                for (int row = 0; row < dgv.Rows.Count; row++)
+                {
+                    for (int col = 0; col < dgv.Columns.Count; col++)
+                    {
+                        var gridCell = dgv.Rows[row].Cells[col];
+                        var excelCell = worksheet.Cells[row + 2, col + 1];
+
+                        // Force the cell's value to string (as text)
+                        excelCell.Value = gridCell.Value?.ToString() ?? string.Empty;
+                        excelCell.Style.Numberformat.Format = "@"; // Force Excel to treat as text
+
+                        // Apply font styles
+                        excelCell.Style.Font.Size = 11;
+                        excelCell.Style.Font.Color.SetColor(gridCell.Style.ForeColor != Color.Empty ? gridCell.Style.ForeColor : Color.Black);
+
+                        // Apply text alignment (Left, Center, Right)
+                        DataGridViewContentAlignment align = gridCell.Style.Alignment;
+                        excelCell.Style.HorizontalAlignment = align switch
+                        {
+                            DataGridViewContentAlignment.MiddleRight => ExcelHorizontalAlignment.Right,
+                            DataGridViewContentAlignment.MiddleCenter => ExcelHorizontalAlignment.Center,
+                            _ => ExcelHorizontalAlignment.Left
+                        };
+
+                        // Apply background color (default to White if not set)
+                        Color bgColor = gridCell.Style.BackColor != Color.Empty ? gridCell.Style.BackColor : Color.White;
+                        excelCell.Style.Fill.PatternType = ExcelFillStyle.Solid;
+                        excelCell.Style.Fill.BackgroundColor.SetColor(bgColor);
+
+                        // Apply borders
+                        excelCell.Style.Border.BorderAround(ExcelBorderStyle.Thin);
+                    }
+                }
+
+                // Auto-fit columns (taking into account column width scaling)
+                for (int col = 0; col < dgv.Columns.Count; col++)
+                {
+                    worksheet.Column(col + 1).AutoFit();
+                }
+
+                // Save file
+                FileInfo excelFile = new FileInfo(filePath);
+                package.SaveAs(excelFile);
+
+                // Confirm export
+                MessageBox.Show($"Excel file generated successfully at:\n{filePath}", "Export Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
+
+
+
         public bool Validate(string metalType, int columnIndex, int rowIndex, Label l, DataGridView dg, AutoCompleteStringCollection itemTypeCollection, AutoCompleteStringCollection purityCollection)
         {
             dg.Refresh();

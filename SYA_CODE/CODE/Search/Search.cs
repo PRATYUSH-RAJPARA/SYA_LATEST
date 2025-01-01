@@ -1,5 +1,4 @@
-﻿using Serilog;
-using System.Data.SQLite;
+﻿using System.Data.SQLite;
 using System.Drawing.Printing;
 using Font = System.Drawing.Font;
 namespace SYA
@@ -88,8 +87,8 @@ namespace SYA
         //ok
         private void InitializeLogging()
         {
-            Log.Logger = new LoggerConfiguration()
-                .WriteTo.File(helper.LogsFolder + "\\logs_tagno.txt", rollingInterval: RollingInterval.Day).CreateLogger();
+            //Log.Logger = new LoggerConfiguration()
+            //    .WriteTo.File(helper.LogsFolder + "\\logs_tagno.txt", rollingInterval: RollingInterval.Day).CreateLogger();
         }
         //ok
         private void messageBoxTimer_Tick(object sender, EventArgs e)
