@@ -60,7 +60,7 @@
             // label8
             // 
             label8.Dock = DockStyle.Fill;
-            label8.Font = new Font("Microsoft Sans Serif", 24F, FontStyle.Regular, GraphicsUnit.Point);
+            label8.Font = new Font("Microsoft Sans Serif", 24F);
             label8.Location = new Point(9, 0);
             label8.Name = "label8";
             label8.Size = new Size(1265, 42);
@@ -72,7 +72,7 @@
             // 
             dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle1.BackColor = SystemColors.Control;
-            dataGridViewCellStyle1.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            dataGridViewCellStyle1.Font = new Font("Segoe UI", 9F);
             dataGridViewCellStyle1.ForeColor = SystemColors.WindowText;
             dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
             dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
@@ -90,7 +90,7 @@
             // CB_TAGNO
             // 
             CB_TAGNO.Dock = DockStyle.Fill;
-            CB_TAGNO.Font = new Font("Microsoft Sans Serif", 15.25F, FontStyle.Regular, GraphicsUnit.Point);
+            CB_TAGNO.Font = new Font("Microsoft Sans Serif", 15.25F);
             CB_TAGNO.FormattingEnabled = true;
             CB_TAGNO.Location = new Point(441, 32);
             CB_TAGNO.Margin = new Padding(3, 4, 3, 4);
@@ -146,7 +146,7 @@
             // label3
             // 
             label3.Dock = DockStyle.Fill;
-            label3.Font = new Font("Microsoft Sans Serif", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
+            label3.Font = new Font("Microsoft Sans Serif", 14.25F);
             label3.Location = new Point(441, 2);
             label3.Name = "label3";
             label3.Size = new Size(145, 24);
@@ -157,7 +157,7 @@
             // label7
             // 
             label7.Dock = DockStyle.Fill;
-            label7.Font = new Font("Microsoft Sans Serif", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
+            label7.Font = new Font("Microsoft Sans Serif", 14.25F);
             label7.Location = new Point(1093, 2);
             label7.Name = "label7";
             label7.Size = new Size(145, 24);
@@ -168,7 +168,7 @@
             // label6
             // 
             label6.Dock = DockStyle.Fill;
-            label6.Font = new Font("Microsoft Sans Serif", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
+            label6.Font = new Font("Microsoft Sans Serif", 14.25F);
             label6.Location = new Point(930, 2);
             label6.Name = "label6";
             label6.Size = new Size(145, 24);
@@ -179,7 +179,7 @@
             // label5
             // 
             label5.Dock = DockStyle.Fill;
-            label5.Font = new Font("Microsoft Sans Serif", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
+            label5.Font = new Font("Microsoft Sans Serif", 14.25F);
             label5.Location = new Point(767, 2);
             label5.Name = "label5";
             label5.Size = new Size(145, 24);
@@ -190,7 +190,7 @@
             // label4
             // 
             label4.Dock = DockStyle.Fill;
-            label4.Font = new Font("Microsoft Sans Serif", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
+            label4.Font = new Font("Microsoft Sans Serif", 14.25F);
             label4.Location = new Point(604, 2);
             label4.Name = "label4";
             label4.Size = new Size(145, 24);
@@ -201,7 +201,7 @@
             // label1
             // 
             label1.Dock = DockStyle.Fill;
-            label1.Font = new Font("Microsoft Sans Serif", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
+            label1.Font = new Font("Microsoft Sans Serif", 14.25F);
             label1.Location = new Point(15, 2);
             label1.Name = "label1";
             label1.Size = new Size(245, 24);
@@ -212,7 +212,7 @@
             // label2
             // 
             label2.Dock = DockStyle.Fill;
-            label2.Font = new Font("Microsoft Sans Serif", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
+            label2.Font = new Font("Microsoft Sans Serif", 14.25F);
             label2.Location = new Point(278, 2);
             label2.Name = "label2";
             label2.Size = new Size(145, 24);
@@ -223,7 +223,7 @@
             // CB_NAME
             // 
             CB_NAME.Dock = DockStyle.Fill;
-            CB_NAME.Font = new Font("Microsoft Sans Serif", 15.25F, FontStyle.Regular, GraphicsUnit.Point);
+            CB_NAME.Font = new Font("Microsoft Sans Serif", 15.25F);
             CB_NAME.FormattingEnabled = true;
             CB_NAME.Location = new Point(15, 32);
             CB_NAME.Margin = new Padding(3, 4, 3, 4);
@@ -234,7 +234,7 @@
             // CB_YEAR
             // 
             CB_YEAR.Dock = DockStyle.Fill;
-            CB_YEAR.Font = new Font("Microsoft Sans Serif", 15.25F, FontStyle.Regular, GraphicsUnit.Point);
+            CB_YEAR.Font = new Font("Microsoft Sans Serif", 15.25F);
             CB_YEAR.FormattingEnabled = true;
             CB_YEAR.Location = new Point(278, 32);
             CB_YEAR.Margin = new Padding(3, 4, 3, 4);
@@ -245,7 +245,7 @@
             // CB_HUID
             // 
             CB_HUID.Dock = DockStyle.Fill;
-            CB_HUID.Font = new Font("Microsoft Sans Serif", 15.25F, FontStyle.Regular, GraphicsUnit.Point);
+            CB_HUID.Font = new Font("Microsoft Sans Serif", 15.25F);
             CB_HUID.FormattingEnabled = true;
             CB_HUID.Location = new Point(930, 32);
             CB_HUID.Margin = new Padding(3, 4, 3, 4);
@@ -256,7 +256,7 @@
             // CB_WEIGHT
             // 
             CB_WEIGHT.Dock = DockStyle.Fill;
-            CB_WEIGHT.Font = new Font("Microsoft Sans Serif", 15.25F, FontStyle.Regular, GraphicsUnit.Point);
+            CB_WEIGHT.Font = new Font("Microsoft Sans Serif", 15.25F);
             CB_WEIGHT.FormattingEnabled = true;
             CB_WEIGHT.Location = new Point(604, 32);
             CB_WEIGHT.Margin = new Padding(3, 4, 3, 4);
@@ -267,7 +267,7 @@
             // CB_EVERYTHING
             // 
             CB_EVERYTHING.Dock = DockStyle.Fill;
-            CB_EVERYTHING.Font = new Font("Microsoft Sans Serif", 15.25F, FontStyle.Regular, GraphicsUnit.Point);
+            CB_EVERYTHING.Font = new Font("Microsoft Sans Serif", 15.25F);
             CB_EVERYTHING.FormattingEnabled = true;
             CB_EVERYTHING.Location = new Point(1093, 32);
             CB_EVERYTHING.Margin = new Padding(3, 4, 3, 4);
@@ -278,7 +278,7 @@
             // CB_BILLNO
             // 
             CB_BILLNO.Dock = DockStyle.Fill;
-            CB_BILLNO.Font = new Font("Microsoft Sans Serif", 15.25F, FontStyle.Regular, GraphicsUnit.Point);
+            CB_BILLNO.Font = new Font("Microsoft Sans Serif", 15.25F);
             CB_BILLNO.FormattingEnabled = true;
             CB_BILLNO.Location = new Point(767, 32);
             CB_BILLNO.Margin = new Padding(3, 4, 3, 4);
@@ -290,7 +290,7 @@
             // 
             BUTTON_FETCH_DATA.Dock = DockStyle.Fill;
             BUTTON_FETCH_DATA.FlatStyle = FlatStyle.Flat;
-            BUTTON_FETCH_DATA.Font = new Font("Microsoft Sans Serif", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
+            BUTTON_FETCH_DATA.Font = new Font("Microsoft Sans Serif", 14.25F);
             BUTTON_FETCH_DATA.Location = new Point(908, 6);
             BUTTON_FETCH_DATA.Margin = new Padding(3, 4, 3, 4);
             BUTTON_FETCH_DATA.Name = "BUTTON_FETCH_DATA";
@@ -303,7 +303,7 @@
             // 
             BUTTON_RESET_FILTERS.Dock = DockStyle.Fill;
             BUTTON_RESET_FILTERS.FlatStyle = FlatStyle.Flat;
-            BUTTON_RESET_FILTERS.Font = new Font("Microsoft Sans Serif", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
+            BUTTON_RESET_FILTERS.Font = new Font("Microsoft Sans Serif", 14.25F);
             BUTTON_RESET_FILTERS.Location = new Point(1084, 6);
             BUTTON_RESET_FILTERS.Margin = new Padding(3, 4, 3, 4);
             BUTTON_RESET_FILTERS.Name = "BUTTON_RESET_FILTERS";
@@ -316,7 +316,7 @@
             // 
             BUTTON_PRINT_ON_OFF.Dock = DockStyle.Fill;
             BUTTON_PRINT_ON_OFF.FlatStyle = FlatStyle.Flat;
-            BUTTON_PRINT_ON_OFF.Font = new Font("Microsoft Sans Serif", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
+            BUTTON_PRINT_ON_OFF.Font = new Font("Microsoft Sans Serif", 14.25F);
             BUTTON_PRINT_ON_OFF.Location = new Point(732, 6);
             BUTTON_PRINT_ON_OFF.Margin = new Padding(3, 4, 3, 4);
             BUTTON_PRINT_ON_OFF.Name = "BUTTON_PRINT_ON_OFF";
@@ -324,6 +324,7 @@
             BUTTON_PRINT_ON_OFF.TabIndex = 2;
             BUTTON_PRINT_ON_OFF.Text = "PRINTING OFF";
             BUTTON_PRINT_ON_OFF.UseVisualStyleBackColor = true;
+            BUTTON_PRINT_ON_OFF.Click += BUTTON_PRINT_ON_OFF_Click;
             // 
             // tableLayoutPanel2
             // 
@@ -348,7 +349,7 @@
             // LABEL_MESSAGE
             // 
             LABEL_MESSAGE.Dock = DockStyle.Fill;
-            LABEL_MESSAGE.Font = new Font("Microsoft Sans Serif", 14.25F, FontStyle.Regular, GraphicsUnit.Point);
+            LABEL_MESSAGE.Font = new Font("Microsoft Sans Serif", 14.25F);
             LABEL_MESSAGE.Location = new Point(3, 475);
             LABEL_MESSAGE.Name = "LABEL_MESSAGE";
             LABEL_MESSAGE.Size = new Size(1259, 254);
