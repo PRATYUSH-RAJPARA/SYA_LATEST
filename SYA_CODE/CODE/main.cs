@@ -137,7 +137,8 @@ namespace SYA
         private void btnSearch_Click(object sender, EventArgs e)
         {
             panelsecond.Visible = false;
-            LoadForm(new SearchNew());
+            LoadForm(new Search());
+          //  LoadForm(new SearchNew());
         }
         private void btnSales_Click(object sender, EventArgs e)
         {
