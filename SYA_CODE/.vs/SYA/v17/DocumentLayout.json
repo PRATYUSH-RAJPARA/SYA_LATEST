@@ -3,36 +3,28 @@
   "WorkspaceRootPath": "F:\\SYA_LATEST\\SYA_CODE\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{F4E7395C-6436-4F9A-A0E3-A889008539AF}|SYA.csproj|f:\\sya_latest\\sya_code\\code\\helper\\tagprinthelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F4E7395C-6436-4F9A-A0E3-A889008539AF}|SYA.csproj|solutionrelative:code\\helper\\tagprinthelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F4E7395C-6436-4F9A-A0E3-A889008539AF}|SYA.csproj|f:\\sya_latest\\sya_code\\code\\helper\\printhelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F4E7395C-6436-4F9A-A0E3-A889008539AF}|SYA.csproj|solutionrelative:code\\helper\\printhelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F4E7395C-6436-4F9A-A0E3-A889008539AF}|SYA.csproj|f:\\sya_latest\\sya_code\\code\\main.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F4E7395C-6436-4F9A-A0E3-A889008539AF}|SYA.csproj|solutionrelative:code\\main.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F4E7395C-6436-4F9A-A0E3-A889008539AF}|SYA.csproj|f:\\sya_latest\\sya_code\\code\\search\\searchnew.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F4E7395C-6436-4F9A-A0E3-A889008539AF}|SYA.csproj|solutionrelative:code\\search\\searchnew.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F4E7395C-6436-4F9A-A0E3-A889008539AF}|SYA.csproj|f:\\sya_latest\\sya_code\\code\\search\\searchnew.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{F4E7395C-6436-4F9A-A0E3-A889008539AF}|SYA.csproj|solutionrelative:code\\search\\searchnew.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F4E7395C-6436-4F9A-A0E3-A889008539AF}|SYA.csproj|f:\\sya_latest\\sya_code\\code\\additem\\gold new\\itemvalidations.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F4E7395C-6436-4F9A-A0E3-A889008539AF}|SYA.csproj|solutionrelative:code\\additem\\gold new\\itemvalidations.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{F4E7395C-6436-4F9A-A0E3-A889008539AF}|SYA.csproj|f:\\sya_latest\\sya_code\\code\\additem\\gold new\\additemnew.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F4E7395C-6436-4F9A-A0E3-A889008539AF}|SYA.csproj|solutionrelative:code\\additem\\gold new\\additemnew.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{F4E7395C-6436-4F9A-A0E3-A889008539AF}|SYA.csproj|F:\\SYA_LATEST\\SYA_CODE\\code\\additem\\gold new\\additemnew.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{F4E7395C-6436-4F9A-A0E3-A889008539AF}|SYA.csproj|solutionrelative:code\\additem\\gold new\\additemnew.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F4E7395C-6436-4F9A-A0E3-A889008539AF}|SYA.csproj|f:\\sya_latest\\sya_code\\code\\additem\\gold new\\itemvalidations.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F4E7395C-6436-4F9A-A0E3-A889008539AF}|SYA.csproj|solutionrelative:code\\additem\\gold new\\itemvalidations.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F4E7395C-6436-4F9A-A0E3-A889008539AF}|SYA.csproj|f:\\sya_latest\\sya_code\\code\\main.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F4E7395C-6436-4F9A-A0E3-A889008539AF}|SYA.csproj|solutionrelative:code\\main.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F4E7395C-6436-4F9A-A0E3-A889008539AF}|SYA.csproj|f:\\sya_latest\\sya_code\\code\\main.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{F4E7395C-6436-4F9A-A0E3-A889008539AF}|SYA.csproj|solutionrelative:code\\main.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F4E7395C-6436-4F9A-A0E3-A889008539AF}|SYA.csproj|F:\\SYA_LATEST\\SYA_CODE\\code\\search\\searchnew.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{F4E7395C-6436-4F9A-A0E3-A889008539AF}|SYA.csproj|solutionrelative:code\\search\\searchnew.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
       "AbsoluteMoniker": "D:0:0:{F4E7395C-6436-4F9A-A0E3-A889008539AF}|SYA.csproj|F:\\SYA_LATEST\\SYA_CODE\\code\\additem\\gold\\addgold.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
@@ -46,7 +38,7 @@
       "DocumentGroups": [
         {
           "DockedHeight": 200,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 5,
           "Children": [
             {
               "$type": "Bookmark",
@@ -58,101 +50,73 @@
             },
             {
               "$type": "Bookmark",
-              "Name": "ST:0:0:{cce594b6-0c39-4442-ba28-10c64ac7e89f}"
+              "Name": "ST:0:0:{e5c86464-96be-4d7c-9a8b-abcb3bbf5f92}"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "TagPrintHelper.cs",
-              "DocumentMoniker": "F:\\SYA_LATEST\\SYA_CODE\\CODE\\Helper\\TagPrintHelper.cs",
-              "RelativeDocumentMoniker": "CODE\\Helper\\TagPrintHelper.cs",
-              "ToolTip": "F:\\SYA_LATEST\\SYA_CODE\\CODE\\Helper\\TagPrintHelper.cs*",
-              "RelativeToolTip": "CODE\\Helper\\TagPrintHelper.cs*",
-              "ViewState": "AgIAACMAAAAAAAAAAAAswCwAAAA2AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-07T07:35:43.263Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "main.cs",
               "DocumentMoniker": "F:\\SYA_LATEST\\SYA_CODE\\CODE\\main.cs",
               "RelativeDocumentMoniker": "CODE\\main.cs",
               "ToolTip": "F:\\SYA_LATEST\\SYA_CODE\\CODE\\main.cs",
               "RelativeToolTip": "CODE\\main.cs",
-              "ViewState": "AgIAAHcAAAAAAAAAAAAkwIsAAAAfAAAAAAAAAA==",
+              "ViewState": "AgIAAIEAAAAAAAAAAIAwwIwAAAAKAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-07T07:33:09.062Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "SearchNew.cs",
-              "DocumentMoniker": "F:\\SYA_LATEST\\SYA_CODE\\CODE\\Search\\SearchNew.cs",
-              "RelativeDocumentMoniker": "CODE\\Search\\SearchNew.cs",
-              "ToolTip": "F:\\SYA_LATEST\\SYA_CODE\\CODE\\Search\\SearchNew.cs",
-              "RelativeToolTip": "CODE\\Search\\SearchNew.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAB0AAAAMAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-07T07:32:51.505Z",
+              "WhenOpened": "2025-01-07T14:11:18.543Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 4,
-              "Title": "SearchNew.cs [Design]",
-              "DocumentMoniker": "F:\\SYA_LATEST\\SYA_CODE\\CODE\\Search\\SearchNew.cs",
-              "RelativeDocumentMoniker": "CODE\\Search\\SearchNew.cs",
-              "ToolTip": "F:\\SYA_LATEST\\SYA_CODE\\CODE\\Search\\SearchNew.cs [Design]",
-              "RelativeToolTip": "CODE\\Search\\SearchNew.cs [Design]",
+              "Title": "main.cs [Design]",
+              "DocumentMoniker": "F:\\SYA_LATEST\\SYA_CODE\\CODE\\main.cs",
+              "RelativeDocumentMoniker": "CODE\\main.cs",
+              "ToolTip": "F:\\SYA_LATEST\\SYA_CODE\\CODE\\main.cs [Design]",
+              "RelativeToolTip": "CODE\\main.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-07T07:32:40.971Z",
+              "WhenOpened": "2025-01-07T14:11:13.431Z",
               "EditorCaption": " [Design]"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "PrintHelper.cs",
-              "DocumentMoniker": "F:\\SYA_LATEST\\SYA_CODE\\CODE\\Helper\\PrintHelper.cs",
-              "RelativeDocumentMoniker": "CODE\\Helper\\PrintHelper.cs",
-              "ToolTip": "F:\\SYA_LATEST\\SYA_CODE\\CODE\\Helper\\PrintHelper.cs",
-              "RelativeToolTip": "CODE\\Helper\\PrintHelper.cs",
-              "ViewState": "AgIAAOYAAAAAAAAAAAAIwPMAAAA0AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-07T07:32:05.015Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 0,
               "Title": "addItemNew.cs",
               "DocumentMoniker": "F:\\SYA_LATEST\\SYA_CODE\\CODE\\AddItem\\GOLD NEW\\addItemNew.cs",
               "RelativeDocumentMoniker": "CODE\\AddItem\\GOLD NEW\\addItemNew.cs",
               "ToolTip": "F:\\SYA_LATEST\\SYA_CODE\\CODE\\AddItem\\GOLD NEW\\addItemNew.cs",
               "RelativeToolTip": "CODE\\AddItem\\GOLD NEW\\addItemNew.cs",
-              "ViewState": "AgIAAAQAAAAAAAAAAAAiwKsAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAMgAAAAAAAAAAAAcwDAAAAA9AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-01-01T12:53:22.246Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 2,
               "Title": "ItemValidations.cs",
               "DocumentMoniker": "F:\\SYA_LATEST\\SYA_CODE\\CODE\\AddItem\\GOLD NEW\\ItemValidations.cs",
               "RelativeDocumentMoniker": "CODE\\AddItem\\GOLD NEW\\ItemValidations.cs",
               "ToolTip": "F:\\SYA_LATEST\\SYA_CODE\\CODE\\AddItem\\GOLD NEW\\ItemValidations.cs",
               "RelativeToolTip": "CODE\\AddItem\\GOLD NEW\\ItemValidations.cs",
-              "ViewState": "AgIAACQAAAAAAAAAAAAqwF4AAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAA5AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-01-01T12:52:49.095Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 5,
+              "Title": "SearchNew.cs [Design]",
+              "DocumentMoniker": "F:\\SYA_LATEST\\SYA_CODE\\CODE\\Search\\SearchNew.cs",
+              "RelativeDocumentMoniker": "CODE\\Search\\SearchNew.cs",
+              "ToolTip": "F:\\SYA_LATEST\\SYA_CODE\\CODE\\Search\\SearchNew.cs [Design]",
+              "RelativeToolTip": "CODE\\Search\\SearchNew.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-07T07:32:40.971Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
               "Title": "addgold.cs [Design]",
               "DocumentMoniker": "F:\\SYA_LATEST\\SYA_CODE\\CODE\\AddItem\\GOLD\\addgold.cs",
               "RelativeDocumentMoniker": "CODE\\AddItem\\GOLD\\addgold.cs",
@@ -163,14 +127,15 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 1,
               "Title": "addItemNew.cs [Design]",
               "DocumentMoniker": "F:\\SYA_LATEST\\SYA_CODE\\CODE\\AddItem\\GOLD NEW\\addItemNew.cs",
               "RelativeDocumentMoniker": "CODE\\AddItem\\GOLD NEW\\addItemNew.cs",
               "ToolTip": "F:\\SYA_LATEST\\SYA_CODE\\CODE\\AddItem\\GOLD NEW\\addItemNew.cs [Design]",
               "RelativeToolTip": "CODE\\AddItem\\GOLD NEW\\addItemNew.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-01T10:43:30.723Z"
+              "WhenOpened": "2025-01-01T10:43:30.723Z",
+              "EditorCaption": " [Design]"
             }
           ]
         }

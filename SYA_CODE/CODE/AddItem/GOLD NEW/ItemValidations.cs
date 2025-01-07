@@ -12,6 +12,10 @@ namespace SYA
 {
     public class ItemValidations
     {
+        public bool change_Labour_On_Price_Change = false;
+        public decimal PP = 92;
+
+
         public void ExportDataGridViewToExcel(DataGridView dgv)
         {
             // Generate file name with timestamp
@@ -155,13 +159,17 @@ namespace SYA
             }
             bool PURITY()
             {
+                string GW = get_CellValue(rowIndex, "GW");
                 if (!purityCollection.Contains(cellValue))
                 {
                     return false; // Set flag to false if value is not in the collection
                 }
                 else
                 {
-                    set_CellValue(rowIndex, "GW", "0");
+                    if (string.IsNullOrEmpty(GW))
+                    {
+                        set_CellValue(rowIndex, "GW", "0");
+                    }
                     return true;
                 }
             }
@@ -211,7 +219,7 @@ namespace SYA
                     }
                 }
                 l.Text = "";
-                set_CellValue(rowIndex, "LBR_RATE", "0");
+                Set_0_If_Null(rowIndex, "LBR_RATE");
                 return true;
             }
             bool LABOUR()
@@ -227,14 +235,23 @@ namespace SYA
             }
             bool OTHER()
             {
-                decimal price = 7250;
+                Set_0_If_Null(rowIndex, "OTH_AMT");
                 string NW = (get_CellValue(rowIndex, "NW"));
                 string LBR_AMT = (get_CellValue(rowIndex, "LBR_AMT"));
                 string OTH_AMT = (get_CellValue(rowIndex, "OTH_AMT"));
-                decimal p = CustomRound((ConvertToDecimal(NW) * price) + ConvertToDecimal(LBR_AMT) + ConvertToDecimal(OTH_AMT),1);
+                decimal p = CustomRound((ConvertToDecimal(NW) * PP) + ConvertToDecimal(LBR_AMT) + ConvertToDecimal(OTH_AMT), 1);
+                string PRICE = get_CellValue(rowIndex, "PRICE");
 
-                Set_0_If_Null(rowIndex, "OTH_AMT");
-                set_CellValue(rowIndex, "PRICE", p.ToString());
+                if (string.IsNullOrEmpty(get_CellValue(rowIndex, "PRICE")))
+                {
+
+                    set_CellValue(rowIndex, "PRICE", p.ToString());
+                }
+                else if (ConvertToDecimal(PRICE) != (ConvertToDecimal(NW) *ConvertToDecimal(get_CellValue(rowIndex, "LBR_RATE")))) { 
+                    set_CellValue(rowIndex, "PRICE", p.ToString());
+                }
+
+
                 return true;
             }
             bool LABOUR_AMOUNT()
@@ -261,20 +278,50 @@ namespace SYA
                 {
                     set_CellValue(rowIndex, "LBR_AMT", amount.ToString());
                 }
-                set_CellValue(rowIndex, "OTH_AMT", "0");
+                Set_0_If_Null(rowIndex, "OTH_AMT");
                 return true;
             }
             bool HUID1()
             {
                 string huid1 = get_CellValue(rowIndex, "HUID1");
-                if (string.IsNullOrEmpty(huid1)) { return true; }
+                string huid2 = get_CellValue(rowIndex, "HUID2");
+                if (string.IsNullOrEmpty(huid1))
+                {
+                    if (!string.IsNullOrEmpty(huid2))
+                    {
+                        set_CellValue(rowIndex, "HUID1", huid2);
+                        set_CellValue(rowIndex, "HUID2", "");
+                    }
+                    return true;
+                }
                 else if (huid1.Length == 6) { return true; }
                 else { return false; }
             }
             bool HUID2()
             {
+                string huid1 = get_CellValue(rowIndex, "HUID1");
+
                 string huid2 = get_CellValue(rowIndex, "HUID2");
-                if (string.IsNullOrEmpty(huid2)) { return true; }
+                string huid3 = get_CellValue(rowIndex, "HUID3");
+                if (string.IsNullOrEmpty(huid2))
+                {
+                    if (!string.IsNullOrEmpty(huid3))
+                    {
+                        if (string.IsNullOrEmpty(huid1))
+                        {
+                            set_CellValue(rowIndex, "HUID1", huid3);
+                            set_CellValue(rowIndex, "HUID3", "");
+                        }
+                        else
+                        {
+
+
+                            set_CellValue(rowIndex, "HUID2", huid3);
+                            set_CellValue(rowIndex, "HUID3", "");
+                        }
+                    }
+                    return true;
+                }
                 else if (huid2.Length == 6) { return true; }
                 else { return false; }
             }
@@ -285,7 +332,18 @@ namespace SYA
                 else if (huid3.Length == 6) { return true; }
                 else { return false; }
             }
-            bool PRICE() {
+            bool PRICE()
+            {
+                if (change_Labour_On_Price_Change)
+                {
+                    decimal PRICE = ConvertToDecimal(get_CellValue(rowIndex, "PRICE"));
+                    decimal NW = ConvertToDecimal(get_CellValue(rowIndex, "NW"));
+                    int PRICE_NEW =  CustomRound(((PRICE - (PP * NW)) / NW),1);
+                    set_CellValue(rowIndex, "LBR_RATE", PRICE_NEW.ToString());
+                    set_CellValue(rowIndex, "LBR_AMT", "0");
+                    set_CellValue(rowIndex, "OTH_AMT", "0");
+                    return true;
+                }
 
                 return true;
             }

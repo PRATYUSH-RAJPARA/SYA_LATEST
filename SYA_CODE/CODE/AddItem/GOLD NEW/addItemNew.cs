@@ -1,4 +1,6 @@
 ﻿
+using System.Drawing.Drawing2D;
+
 namespace SYA
 {
     public partial class addItemNew : Form
@@ -10,12 +12,41 @@ namespace SYA
         bool is_Valid = true;
         public AutoCompleteStringCollection itemTypeCollection = new AutoCompleteStringCollection();
         public AutoCompleteStringCollection purityCollection = new AutoCompleteStringCollection();
+
         public addItemNew()
         {
             InitializeComponent();
         }
+        private void SetButtonGradient(Button button, string state)
+        {
+            // Determine colors based on the state
+            Color startColor = state == "ON" ? Color.LightGreen : Color.Gray;
+            Color endColor = state == "ON" ? Color.Green : Color.DarkGray;
+
+            // Update the button's Paint event dynamically
+            button.Paint += (sender, e) =>
+            {
+                using (LinearGradientBrush brush = new LinearGradientBrush(button.ClientRectangle, startColor, endColor, LinearGradientMode.ForwardDiagonal))
+                {
+                    // Fill gradient background
+                    e.Graphics.FillRectangle(brush, button.ClientRectangle);
+
+                    // Draw button text
+                    TextRenderer.DrawText(e.Graphics, state, button.Font, button.ClientRectangle, button.ForeColor,
+                        TextFormatFlags.HorizontalCenter | TextFormatFlags.VerticalCenter);
+                }
+            };
+
+            // Update the button's text and force a redraw
+            button.Text = state;
+            button.Invalidate();
+        }
+
         private void addItemNew_Load(object sender, EventArgs e)
         {
+            BUTTON_PRINT_ON_OFF.Text = "OFF";
+            string newState = BUTTON_PRINT_ON_OFF.Text == "ON" ? "OFF" : "OFF"; // Toggle state
+            SetButtonGradient(BUTTON_PRINT_ON_OFF, newState);
             Attach_Event_Handlers();
             AddItemDataGridView_Setup.InitializeDataGridView(dataGridView1);
             dataGridView1.Rows.Add();
@@ -169,7 +200,10 @@ namespace SYA
 
         private void BUTTON_PRINT_ON_OFF_Click(object sender, EventArgs e)
         {
-            itemValidations.ExportDataGridViewToExcel(dataGridView1);
+          //  Button button = sender as Button;
+            string newState = BUTTON_PRINT_ON_OFF.Text == "ON" ? "OFF" : "OFF"; // Toggle state
+            SetButtonGradient(BUTTON_PRINT_ON_OFF, newState);
+            //itemValidations.ExportDataGridViewToExcel(dataGridView1);
         }
     }
 }
