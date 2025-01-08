@@ -40,6 +40,7 @@ namespace SYA
         }
         private void addItemNew_Load(object sender, EventArgs e)
         {
+            dataGridView2.Visible = false;
             BUTTON_PRINT_ON_OFF.Text = "ON";
             SetButtonGradient(BUTTON_PRINT_ON_OFF, BUTTON_PRINT_ON_OFF.Text);
             itemValidations.change_Labour_On_Price_Change = true;
@@ -208,6 +209,11 @@ namespace SYA
             SetButtonGradient(BUTTON_PRINT_ON_OFF, BUTTON_PRINT_ON_OFF.Text);
             SetButtonGradient(BUTTON_PRINT_ON_OFF, BUTTON_PRINT_ON_OFF.Text);
             //itemValidations.ExportDataGridViewToExcel(dataGridView1);
+        }
+
+        private void tableLayoutPanel2_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }
