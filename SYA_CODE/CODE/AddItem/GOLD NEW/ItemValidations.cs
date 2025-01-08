@@ -13,31 +13,24 @@ namespace SYA
     public class ItemValidations
     {
         public bool change_Labour_On_Price_Change = false;
-        public decimal PP = 92;
-
-
+        public decimal RATE = 92;
         public void ExportDataGridViewToExcel(DataGridView dgv)
         {
             // Generate file name with timestamp
             string timestamp = DateTime.Now.ToString("yyyyMMdd_HHmmss");
             string filePath = @$"F:/ExportedDataGridView_{timestamp}.xlsx";
-
             // Enable EPPlus license
             ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
-
             using (var package = new ExcelPackage())
             {
                 var worksheet = package.Workbook.Worksheets.Add("Data");
-
                 // Export header
                 for (int col = 0; col < dgv.Columns.Count; col++)
                 {
                     var headerCell = dgv.Columns[col].HeaderCell;
                     var excelCell = worksheet.Cells[1, col + 1];
-
                     // Set header value
                     excelCell.Value = headerCell.Value ?? dgv.Columns[col].HeaderText;
-
                     // Apply header styles
                     excelCell.Style.Font.Bold = true;
                     excelCell.Style.Font.Size = 12;
@@ -46,7 +39,6 @@ namespace SYA
                     excelCell.Style.Fill.BackgroundColor.SetColor(Color.LightGray);
                     excelCell.Style.Border.BorderAround(ExcelBorderStyle.Thin);
                 }
-
                 // Export data rows
                 for (int row = 0; row < dgv.Rows.Count; row++)
                 {
@@ -54,15 +46,12 @@ namespace SYA
                     {
                         var gridCell = dgv.Rows[row].Cells[col];
                         var excelCell = worksheet.Cells[row + 2, col + 1];
-
                         // Force the cell's value to string (as text)
                         excelCell.Value = gridCell.Value?.ToString() ?? string.Empty;
                         excelCell.Style.Numberformat.Format = "@"; // Force Excel to treat as text
-
                         // Apply font styles
                         excelCell.Style.Font.Size = 11;
                         excelCell.Style.Font.Color.SetColor(gridCell.Style.ForeColor != Color.Empty ? gridCell.Style.ForeColor : Color.Black);
-
                         // Apply text alignment (Left, Center, Right)
                         DataGridViewContentAlignment align = gridCell.Style.Alignment;
                         excelCell.Style.HorizontalAlignment = align switch
@@ -71,35 +60,26 @@ namespace SYA
                             DataGridViewContentAlignment.MiddleCenter => ExcelHorizontalAlignment.Center,
                             _ => ExcelHorizontalAlignment.Left
                         };
-
                         // Apply background color (default to White if not set)
                         Color bgColor = gridCell.Style.BackColor != Color.Empty ? gridCell.Style.BackColor : Color.White;
                         excelCell.Style.Fill.PatternType = ExcelFillStyle.Solid;
                         excelCell.Style.Fill.BackgroundColor.SetColor(bgColor);
-
                         // Apply borders
                         excelCell.Style.Border.BorderAround(ExcelBorderStyle.Thin);
                     }
                 }
-
                 // Auto-fit columns (taking into account column width scaling)
                 for (int col = 0; col < dgv.Columns.Count; col++)
                 {
                     worksheet.Column(col + 1).AutoFit();
                 }
-
                 // Save file
                 FileInfo excelFile = new FileInfo(filePath);
                 package.SaveAs(excelFile);
-
                 // Confirm export
                 MessageBox.Show($"Excel file generated successfully at:\n{filePath}", "Export Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
-
-
-
-
         public bool Validate(string metalType, int columnIndex, int rowIndex, Label l, DataGridView dg, AutoCompleteStringCollection itemTypeCollection, AutoCompleteStringCollection purityCollection)
         {
             dg.Refresh();
@@ -162,7 +142,7 @@ namespace SYA
                 string GW = get_CellValue(rowIndex, "GW");
                 if (!purityCollection.Contains(cellValue))
                 {
-                    return false; // Set flag to false if value is not in the collection
+                    return false; 
                 }
                 else
                 {
@@ -239,19 +219,16 @@ namespace SYA
                 string NW = (get_CellValue(rowIndex, "NW"));
                 string LBR_AMT = (get_CellValue(rowIndex, "LBR_AMT"));
                 string OTH_AMT = (get_CellValue(rowIndex, "OTH_AMT"));
-                decimal p = CustomRound((ConvertToDecimal(NW) * PP) + ConvertToDecimal(LBR_AMT) + ConvertToDecimal(OTH_AMT), 1);
+                decimal NEW_PRICE = CustomRound((ConvertToDecimal(NW) * RATE) + ConvertToDecimal(LBR_AMT) + ConvertToDecimal(OTH_AMT), 1);
                 string PRICE = get_CellValue(rowIndex, "PRICE");
-
                 if (string.IsNullOrEmpty(get_CellValue(rowIndex, "PRICE")))
                 {
-
-                    set_CellValue(rowIndex, "PRICE", p.ToString());
+                    set_CellValue(rowIndex, "PRICE", NEW_PRICE.ToString());
                 }
-                else if (ConvertToDecimal(PRICE) != (ConvertToDecimal(NW) *ConvertToDecimal(get_CellValue(rowIndex, "LBR_RATE")))) { 
-                    set_CellValue(rowIndex, "PRICE", p.ToString());
+                else if (ConvertToDecimal(PRICE) != (ConvertToDecimal(NW) * ConvertToDecimal(get_CellValue(rowIndex, "LBR_RATE"))))
+                {
+                    set_CellValue(rowIndex, "PRICE", NEW_PRICE.ToString());
                 }
-
-
                 return true;
             }
             bool LABOUR_AMOUNT()
@@ -300,7 +277,6 @@ namespace SYA
             bool HUID2()
             {
                 string huid1 = get_CellValue(rowIndex, "HUID1");
-
                 string huid2 = get_CellValue(rowIndex, "HUID2");
                 string huid3 = get_CellValue(rowIndex, "HUID3");
                 if (string.IsNullOrEmpty(huid2))
@@ -314,37 +290,64 @@ namespace SYA
                         }
                         else
                         {
-
-
                             set_CellValue(rowIndex, "HUID2", huid3);
                             set_CellValue(rowIndex, "HUID3", "");
                         }
                     }
                     return true;
                 }
-                else if (huid2.Length == 6) { return true; }
+                else if (huid2.Length == 6)
+                {
+                    if (string.IsNullOrEmpty(huid1))
+                    {
+                        set_CellValue(rowIndex, "HUID1", huid2);
+                        set_CellValue(rowIndex, "HUID2", "");
+                    }
+                    return true;
+                }
                 else { return false; }
             }
             bool HUID3()
             {
+                string huid1 = get_CellValue(rowIndex, "HUID1");
+                string huid2 = get_CellValue(rowIndex, "HUID2");
                 string huid3 = get_CellValue(rowIndex, "HUID3");
-                if (string.IsNullOrEmpty(huid3)) { return true; }
-                else if (huid3.Length == 6) { return true; }
+                if (string.IsNullOrEmpty(huid3))
+                {
+                    return true;
+                }
+                else if (huid3.Length == 6)
+                {
+                    if (string.IsNullOrEmpty(huid1))
+                    {
+                        set_CellValue(rowIndex, "HUID1", huid3);
+                        set_CellValue(rowIndex, "HUID3", "");
+                    }
+                    else if (string.IsNullOrEmpty(huid2))
+                    {
+                        set_CellValue(rowIndex, "HUID2", huid3);
+                        set_CellValue(rowIndex, "HUID3", "");
+                    }
+                    return true;
+                }
                 else { return false; }
             }
             bool PRICE()
             {
-                if (change_Labour_On_Price_Change)
+                decimal PRICE = ConvertToDecimal(get_CellValue(rowIndex, "PRICE"));
+                decimal NW = ConvertToDecimal(get_CellValue(rowIndex, "NW"));
+                string LBR_RATE = get_CellValue(rowIndex, "LBR_RATE");
+                string LBR_AMT = (get_CellValue(rowIndex, "LBR_AMT"));
+                string OTH_AMT = (get_CellValue(rowIndex, "OTH_AMT"));
+                decimal NEW_PRICE = CustomRound(((NW) * RATE) + ConvertToDecimal(LBR_AMT) + ConvertToDecimal(OTH_AMT), 1);
+                if (PRICE!=NEW_PRICE && change_Labour_On_Price_Change)
                 {
-                    decimal PRICE = ConvertToDecimal(get_CellValue(rowIndex, "PRICE"));
-                    decimal NW = ConvertToDecimal(get_CellValue(rowIndex, "NW"));
-                    int PRICE_NEW =  CustomRound(((PRICE - (PP * NW)) / NW),1);
-                    set_CellValue(rowIndex, "LBR_RATE", PRICE_NEW.ToString());
-                    set_CellValue(rowIndex, "LBR_AMT", "0");
+                    int LBR_RATE_NEW = CustomRound(((PRICE - (RATE * NW)) / NW), 1);
+                    set_CellValue(rowIndex, "LBR_RATE", LBR_RATE_NEW.ToString());
+                    set_CellValue(rowIndex, "LBR_AMT", CustomRound((((NW)) * (ConvertToDecimal(LBR_RATE_NEW.ToString()))), 1).ToString());
                     set_CellValue(rowIndex, "OTH_AMT", "0");
                     return true;
                 }
-
                 return true;
             }
             void set_CellValue(int row_Index, string column, string value)
@@ -360,7 +363,6 @@ namespace SYA
             {
                 if (str != null && decimal.TryParse(str.ToString(), out decimal weight))
                 {
-                    // Format the entered value to have three decimal places
                     return weight.ToString("0.000");
                 }
                 return (cellValue ?? "").ToString();
@@ -369,12 +371,10 @@ namespace SYA
             {
                 if (decimal.TryParse(str, out decimal result))
                 {
-                    // Ensure the value is rounded to 3 decimal places
                     return Math.Round(result, 3);
                 }
                 else
                 {
-                    // Return 3.000 if parsing fails
                     return 3.000m;
                 }
             }
