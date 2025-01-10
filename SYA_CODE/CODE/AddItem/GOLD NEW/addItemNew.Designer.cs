@@ -26,13 +26,20 @@
         private void InitializeComponent()
         {
             label8 = new Label();
-            BUTTON_FETCH_DATA = new Button();
-            BUTTON_PRINT_ON_OFF = new Button();
+            BUTTON_WEIGHT_OR_PRICE = new Button();
+            BUTTON_LABOUR_CHANGE_ON_PRICE_CHANGE = new Button();
             tableLayoutPanel2 = new TableLayoutPanel();
             LABEL_MESSAGE = new Label();
             tableLayoutPanel4 = new TableLayoutPanel();
             label1 = new Label();
             panel2 = new Panel();
+            panel4 = new Panel();
+            panel5 = new Panel();
+            panel6 = new Panel();
+            panel7 = new Panel();
+            panel8 = new Panel();
+            panel10 = new Panel();
+            panel11 = new Panel();
             panel1 = new Panel();
             dataGridView2 = new DataGridView();
             dataGridView1 = new DataGridView();
@@ -57,30 +64,31 @@
             label8.Text = "ADD ITEM";
             label8.TextAlign = ContentAlignment.MiddleCenter;
             // 
-            // BUTTON_FETCH_DATA
+            // BUTTON_WEIGHT_OR_PRICE
             // 
-            BUTTON_FETCH_DATA.Dock = DockStyle.Fill;
-            BUTTON_FETCH_DATA.FlatStyle = FlatStyle.Flat;
-            BUTTON_FETCH_DATA.Font = new Font("Microsoft Sans Serif", 14.25F);
-            BUTTON_FETCH_DATA.Location = new Point(445, 6);
-            BUTTON_FETCH_DATA.Name = "BUTTON_FETCH_DATA";
-            BUTTON_FETCH_DATA.Size = new Size(154, 42);
-            BUTTON_FETCH_DATA.TabIndex = 0;
-            BUTTON_FETCH_DATA.Text = "FETCH DATA";
-            BUTTON_FETCH_DATA.UseVisualStyleBackColor = true;
+            BUTTON_WEIGHT_OR_PRICE.Dock = DockStyle.Fill;
+            BUTTON_WEIGHT_OR_PRICE.FlatStyle = FlatStyle.Flat;
+            BUTTON_WEIGHT_OR_PRICE.Font = new Font("Microsoft Sans Serif", 14.25F);
+            BUTTON_WEIGHT_OR_PRICE.Location = new Point(445, 5);
+            BUTTON_WEIGHT_OR_PRICE.Name = "BUTTON_WEIGHT_OR_PRICE";
+            BUTTON_WEIGHT_OR_PRICE.Size = new Size(154, 42);
+            BUTTON_WEIGHT_OR_PRICE.TabIndex = 0;
+            BUTTON_WEIGHT_OR_PRICE.Text = "WEIGHT TAG";
+            BUTTON_WEIGHT_OR_PRICE.UseVisualStyleBackColor = true;
+            BUTTON_WEIGHT_OR_PRICE.Click += BUTTON_WEIGHT_OR_PRICE_Click;
             // 
-            // BUTTON_PRINT_ON_OFF
+            // BUTTON_LABOUR_CHANGE_ON_PRICE_CHANGE
             // 
-            BUTTON_PRINT_ON_OFF.Dock = DockStyle.Fill;
-            BUTTON_PRINT_ON_OFF.FlatStyle = FlatStyle.Flat;
-            BUTTON_PRINT_ON_OFF.Font = new Font("Microsoft Sans Serif", 14.25F);
-            BUTTON_PRINT_ON_OFF.Location = new Point(40, 6);
-            BUTTON_PRINT_ON_OFF.Name = "BUTTON_PRINT_ON_OFF";
-            BUTTON_PRINT_ON_OFF.Size = new Size(58, 42);
-            BUTTON_PRINT_ON_OFF.TabIndex = 2;
-            BUTTON_PRINT_ON_OFF.Text = "ON";
-            BUTTON_PRINT_ON_OFF.UseVisualStyleBackColor = true;
-            BUTTON_PRINT_ON_OFF.Click += BUTTON_PRINT_ON_OFF_Click;
+            BUTTON_LABOUR_CHANGE_ON_PRICE_CHANGE.Dock = DockStyle.Fill;
+            BUTTON_LABOUR_CHANGE_ON_PRICE_CHANGE.FlatStyle = FlatStyle.Flat;
+            BUTTON_LABOUR_CHANGE_ON_PRICE_CHANGE.Font = new Font("Microsoft Sans Serif", 14.25F);
+            BUTTON_LABOUR_CHANGE_ON_PRICE_CHANGE.Location = new Point(40, 5);
+            BUTTON_LABOUR_CHANGE_ON_PRICE_CHANGE.Name = "BUTTON_LABOUR_CHANGE_ON_PRICE_CHANGE";
+            BUTTON_LABOUR_CHANGE_ON_PRICE_CHANGE.Size = new Size(58, 42);
+            BUTTON_LABOUR_CHANGE_ON_PRICE_CHANGE.TabIndex = 2;
+            BUTTON_LABOUR_CHANGE_ON_PRICE_CHANGE.Text = "ON";
+            BUTTON_LABOUR_CHANGE_ON_PRICE_CHANGE.UseVisualStyleBackColor = true;
+            BUTTON_LABOUR_CHANGE_ON_PRICE_CHANGE.Click += BUTTON_LABOUR_CHANGE_ON_PRICE_CHANGE_Click;
             // 
             // tableLayoutPanel2
             // 
@@ -101,7 +109,6 @@
             tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 7.070585F));
             tableLayoutPanel2.Size = new Size(1073, 811);
             tableLayoutPanel2.TabIndex = 0;
-            tableLayoutPanel2.Paint += tableLayoutPanel2_Paint;
             // 
             // LABEL_MESSAGE
             // 
@@ -126,17 +133,24 @@
             tableLayoutPanel4.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 15F));
             tableLayoutPanel4.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 2F));
             tableLayoutPanel4.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 41.5F));
-            tableLayoutPanel4.Controls.Add(BUTTON_PRINT_ON_OFF, 2, 1);
+            tableLayoutPanel4.Controls.Add(BUTTON_LABOUR_CHANGE_ON_PRICE_CHANGE, 2, 1);
             tableLayoutPanel4.Controls.Add(label1, 3, 1);
-            tableLayoutPanel4.Controls.Add(BUTTON_FETCH_DATA, 6, 1);
+            tableLayoutPanel4.Controls.Add(BUTTON_WEIGHT_OR_PRICE, 6, 1);
             tableLayoutPanel4.Controls.Add(panel2, 1, 1);
+            tableLayoutPanel4.Controls.Add(panel4, 3, 2);
+            tableLayoutPanel4.Controls.Add(panel5, 4, 1);
+            tableLayoutPanel4.Controls.Add(panel6, 4, 0);
+            tableLayoutPanel4.Controls.Add(panel7, 4, 2);
+            tableLayoutPanel4.Controls.Add(panel8, 1, 0);
+            tableLayoutPanel4.Controls.Add(panel10, 2, 0);
+            tableLayoutPanel4.Controls.Add(panel11, 2, 2);
             tableLayoutPanel4.Dock = DockStyle.Fill;
             tableLayoutPanel4.Location = new Point(3, 754);
             tableLayoutPanel4.Name = "tableLayoutPanel4";
             tableLayoutPanel4.RowCount = 3;
-            tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Percent, 5.55555534F));
-            tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Percent, 88.8888855F));
-            tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Percent, 5.55555534F));
+            tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Percent, 5F));
+            tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Percent, 90F));
+            tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Percent, 5F));
             tableLayoutPanel4.Size = new Size(1067, 54);
             tableLayoutPanel4.TabIndex = 2;
             // 
@@ -144,7 +158,7 @@
             // 
             label1.Dock = DockStyle.Fill;
             label1.Font = new Font("Microsoft Sans Serif", 14.25F);
-            label1.Location = new Point(104, 3);
+            label1.Location = new Point(104, 2);
             label1.Name = "label1";
             label1.Size = new Size(314, 48);
             label1.TabIndex = 3;
@@ -153,11 +167,74 @@
             // 
             // panel2
             // 
-            panel2.BackColor = Color.Black;
-            panel2.Location = new Point(35, 6);
+            panel2.BackColor = Color.Transparent;
+            panel2.Location = new Point(35, 5);
             panel2.Name = "panel2";
             panel2.Size = new Size(1, 42);
             panel2.TabIndex = 4;
+            // 
+            // panel4
+            // 
+            panel4.BackColor = Color.Transparent;
+            panel4.Dock = DockStyle.Fill;
+            panel4.Location = new Point(104, 53);
+            panel4.Name = "panel4";
+            panel4.Size = new Size(314, 1);
+            panel4.TabIndex = 6;
+            // 
+            // panel5
+            // 
+            panel5.BackColor = Color.Transparent;
+            panel5.Dock = DockStyle.Fill;
+            panel5.Location = new Point(424, 5);
+            panel5.Name = "panel5";
+            panel5.Size = new Size(1, 42);
+            panel5.TabIndex = 7;
+            // 
+            // panel6
+            // 
+            panel6.BackColor = Color.Transparent;
+            panel6.Dock = DockStyle.Fill;
+            panel6.Location = new Point(424, 3);
+            panel6.Name = "panel6";
+            panel6.Size = new Size(1, 1);
+            panel6.TabIndex = 8;
+            // 
+            // panel7
+            // 
+            panel7.BackColor = Color.Transparent;
+            panel7.Dock = DockStyle.Fill;
+            panel7.Location = new Point(424, 53);
+            panel7.Name = "panel7";
+            panel7.Size = new Size(1, 1);
+            panel7.TabIndex = 9;
+            // 
+            // panel8
+            // 
+            panel8.BackColor = Color.Transparent;
+            panel8.Dock = DockStyle.Fill;
+            panel8.Location = new Point(35, 3);
+            panel8.Name = "panel8";
+            panel8.Size = new Size(1, 1);
+            panel8.TabIndex = 10;
+            // 
+            // panel10
+            // 
+            panel10.BackColor = Color.Transparent;
+            panel10.Dock = DockStyle.Fill;
+            panel10.Location = new Point(40, 3);
+            panel10.Name = "panel10";
+            panel10.Size = new Size(58, 1);
+            panel10.TabIndex = 12;
+            // 
+            // panel11
+            // 
+            panel11.BackColor = Color.Transparent;
+            panel11.Dock = DockStyle.Fill;
+            panel11.Location = new Point(40, 53);
+            panel11.Name = "panel11";
+            panel11.Size = new Size(58, 1);
+            panel11.TabIndex = 13;
             // 
             // panel1
             // 
@@ -239,8 +316,8 @@
         }
         #endregion
         private Label label8;
-        private Button BUTTON_FETCH_DATA;
-        private Button BUTTON_PRINT_ON_OFF;
+        private Button BUTTON_WEIGHT_OR_PRICE;
+        private Button BUTTON_LABOUR_CHANGE_ON_PRICE_CHANGE;
         private TableLayoutPanel tableLayoutPanel2;
         private Label LABEL_MESSAGE;
         private TableLayoutPanel tableLayoutPanel4;
@@ -251,5 +328,12 @@
         private TableLayoutPanel tableLayoutPanel3;
         private Label label1;
         private Panel panel2;
+        private Panel panel4;
+        private Panel panel5;
+        private Panel panel6;
+        private Panel panel7;
+        private Panel panel8;
+        private Panel panel10;
+        private Panel panel11;
     }
 }

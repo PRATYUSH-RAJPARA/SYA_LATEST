@@ -5,9 +5,9 @@ namespace SYA
     {
         ItemValidations itemValidations = new ItemValidations();
         AddItemDataGridView_Setup AddItemDataGridView_Setup = new AddItemDataGridView_Setup();
-        int C = 0;
-        int R = 0;
+        ItemUpdateOrSave ItemUpdateOrSave = new ItemUpdateOrSave();
         bool is_Valid = true;
+        string WEIGHT_OR_PRICE = "WEIGHT TAG";
         public AutoCompleteStringCollection itemTypeCollection = new AutoCompleteStringCollection();
         public AutoCompleteStringCollection purityCollection = new AutoCompleteStringCollection();
         public addItemNew()
@@ -40,9 +40,10 @@ namespace SYA
         }
         private void addItemNew_Load(object sender, EventArgs e)
         {
+            label1.Text = "Labour Changes On\nPrice Change";
             dataGridView2.Visible = false;
-            BUTTON_PRINT_ON_OFF.Text = "ON";
-            SetButtonGradient(BUTTON_PRINT_ON_OFF, BUTTON_PRINT_ON_OFF.Text);
+            BUTTON_LABOUR_CHANGE_ON_PRICE_CHANGE.Text = "ON";
+            SetButtonGradient(BUTTON_LABOUR_CHANGE_ON_PRICE_CHANGE, BUTTON_LABOUR_CHANGE_ON_PRICE_CHANGE.Text);
             itemValidations.change_Labour_On_Price_Change = true;
             Attach_Event_Handlers();
             AddItemDataGridView_Setup.InitializeDataGridView(dataGridView1);
@@ -78,13 +79,12 @@ namespace SYA
                     dataGridView1.EndEdit();
                 }
                 is_Valid = itemValidations.Validate("G", columnIndex, rowIndex, LABEL_MESSAGE, dataGridView1, itemTypeCollection, purityCollection);
-                if (!is_Valid)
-                {
-                    C = columnIndex;
-                    R = rowIndex;
-                }
                 if (is_Valid)
                 {
+                    if (dataGridView1.Columns[columnIndex].Name.ToString() == "COMMENT")
+                    {
+                        ItemUpdateOrSave.update_or_save(rowIndex, columnIndex,dataGridView1);
+                    }
                     if (columnIndex < dataGridView1.ColumnCount - 1)
                     {
                         dataGridView1.CurrentCell = dataGridView1.Rows[rowIndex].Cells[columnIndex + 1];
@@ -194,26 +194,31 @@ namespace SYA
                 }
             }
         }
-        private void BUTTON_PRINT_ON_OFF_Click(object sender, EventArgs e)
+        private void BUTTON_LABOUR_CHANGE_ON_PRICE_CHANGE_Click(object sender, EventArgs e)
         {
-            if (BUTTON_PRINT_ON_OFF.Text == "ON")
+            if (BUTTON_LABOUR_CHANGE_ON_PRICE_CHANGE.Text == "ON")
             {
-                BUTTON_PRINT_ON_OFF.Text = "OFF";
+                BUTTON_LABOUR_CHANGE_ON_PRICE_CHANGE.Text = "OFF";
                 itemValidations.change_Labour_On_Price_Change = false;
             }
             else
             {
-                BUTTON_PRINT_ON_OFF.Text = "ON";
+                BUTTON_LABOUR_CHANGE_ON_PRICE_CHANGE.Text = "ON";
                 itemValidations.change_Labour_On_Price_Change = true;
             }
-            SetButtonGradient(BUTTON_PRINT_ON_OFF, BUTTON_PRINT_ON_OFF.Text);
-            SetButtonGradient(BUTTON_PRINT_ON_OFF, BUTTON_PRINT_ON_OFF.Text);
-            //itemValidations.ExportDataGridViewToExcel(dataGridView1);
+            SetButtonGradient(BUTTON_LABOUR_CHANGE_ON_PRICE_CHANGE, BUTTON_LABOUR_CHANGE_ON_PRICE_CHANGE.Text);
+            SetButtonGradient(BUTTON_LABOUR_CHANGE_ON_PRICE_CHANGE, BUTTON_LABOUR_CHANGE_ON_PRICE_CHANGE.Text);
         }
-
-        private void tableLayoutPanel2_Paint(object sender, PaintEventArgs e)
+        private void BUTTON_WEIGHT_OR_PRICE_Click(object sender, EventArgs e)
         {
-
+            if (BUTTON_WEIGHT_OR_PRICE.Text == "WEIGHT TAG")
+            {
+                BUTTON_WEIGHT_OR_PRICE.Text = "PRICE TAG";
+            }
+            else
+            {
+                BUTTON_WEIGHT_OR_PRICE.Text = "WEIGHT TAG";
+            }
         }
     }
 }
