@@ -64,6 +64,7 @@ namespace SYA
             dataGridView1.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dataGridView1.DefaultCellStyle.Font = new Font(dataGridView1.Font.FontFamily, (float)15);
             dataGridView1.RowHeadersVisible = false;
+
             AdjustColumnHeaderStyles(dataGridView1);
         }
         public void SetColumnStyles(DataGridView dataGridView1)

@@ -37,9 +37,7 @@ namespace SYA
         public static string SilverPerGramLabour;
         public static object RunQueryWithoutParameters(string connectionString, string query, string commandType)
         {
-            //i am chaning int to object so where we are implementing use proper conversion
-            // pratyush delete
-            //  MessageBox.Show(query);
+         
             object res = null;
             try
             {

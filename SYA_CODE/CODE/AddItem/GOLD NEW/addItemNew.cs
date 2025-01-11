@@ -83,7 +83,10 @@ namespace SYA
                 {
                     if (dataGridView1.Columns[columnIndex].Name.ToString() == "COMMENT")
                     {
-                        ItemUpdateOrSave.update_or_save(rowIndex, columnIndex,dataGridView1);
+                        string RESULT =  ItemUpdateOrSave.update_or_save(rowIndex, columnIndex,dataGridView1,LABEL_MESSAGE);
+                        //if (RESULT == "0") { LABEL_MESSAGE.Text = "Changes Not Saved."; }
+                        //else if (RESULT == "1") { LABEL_MESSAGE.Text = $"{dataGridView1.Rows[rowIndex].Cells["TAG_NO"].Value.ToString()} Saved."; }
+                        //else { LABEL_MESSAGE.Text = $"Something went wrong with tag No : {dataGridView1.Rows[rowIndex].Cells["TAG_NO"].Value.ToString()} Saved."; }
                     }
                     if (columnIndex < dataGridView1.ColumnCount - 1)
                     {
