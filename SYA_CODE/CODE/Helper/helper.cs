@@ -37,7 +37,6 @@ namespace SYA
         public static string SilverPerGramLabour;
         public static object RunQueryWithoutParameters(string connectionString, string query, string commandType)
         {
-         
             object res = null;
             try
             {

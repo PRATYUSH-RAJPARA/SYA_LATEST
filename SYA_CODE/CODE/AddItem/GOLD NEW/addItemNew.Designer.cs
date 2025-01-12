@@ -69,9 +69,9 @@
             BUTTON_WEIGHT_OR_PRICE.Dock = DockStyle.Fill;
             BUTTON_WEIGHT_OR_PRICE.FlatStyle = FlatStyle.Flat;
             BUTTON_WEIGHT_OR_PRICE.Font = new Font("Microsoft Sans Serif", 14.25F);
-            BUTTON_WEIGHT_OR_PRICE.Location = new Point(445, 5);
+            BUTTON_WEIGHT_OR_PRICE.Location = new Point(445, 6);
             BUTTON_WEIGHT_OR_PRICE.Name = "BUTTON_WEIGHT_OR_PRICE";
-            BUTTON_WEIGHT_OR_PRICE.Size = new Size(154, 42);
+            BUTTON_WEIGHT_OR_PRICE.Size = new Size(154, 48);
             BUTTON_WEIGHT_OR_PRICE.TabIndex = 0;
             BUTTON_WEIGHT_OR_PRICE.Text = "WEIGHT TAG";
             BUTTON_WEIGHT_OR_PRICE.UseVisualStyleBackColor = true;
@@ -82,9 +82,9 @@
             BUTTON_LABOUR_CHANGE_ON_PRICE_CHANGE.Dock = DockStyle.Fill;
             BUTTON_LABOUR_CHANGE_ON_PRICE_CHANGE.FlatStyle = FlatStyle.Flat;
             BUTTON_LABOUR_CHANGE_ON_PRICE_CHANGE.Font = new Font("Microsoft Sans Serif", 14.25F);
-            BUTTON_LABOUR_CHANGE_ON_PRICE_CHANGE.Location = new Point(40, 5);
+            BUTTON_LABOUR_CHANGE_ON_PRICE_CHANGE.Location = new Point(40, 6);
             BUTTON_LABOUR_CHANGE_ON_PRICE_CHANGE.Name = "BUTTON_LABOUR_CHANGE_ON_PRICE_CHANGE";
-            BUTTON_LABOUR_CHANGE_ON_PRICE_CHANGE.Size = new Size(58, 42);
+            BUTTON_LABOUR_CHANGE_ON_PRICE_CHANGE.Size = new Size(58, 48);
             BUTTON_LABOUR_CHANGE_ON_PRICE_CHANGE.TabIndex = 2;
             BUTTON_LABOUR_CHANGE_ON_PRICE_CHANGE.Text = "ON";
             BUTTON_LABOUR_CHANGE_ON_PRICE_CHANGE.UseVisualStyleBackColor = true;
@@ -103,10 +103,10 @@
             tableLayoutPanel2.Location = new Point(8, 46);
             tableLayoutPanel2.Name = "tableLayoutPanel2";
             tableLayoutPanel2.RowCount = 4;
-            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 10.1008358F));
-            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 70.50878F));
-            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 12.319788F));
-            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 7.070585F));
+            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 11.5873289F));
+            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 22.9432983F));
+            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 57.3582458F));
+            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 8.111127F));
             tableLayoutPanel2.Size = new Size(1073, 811);
             tableLayoutPanel2.TabIndex = 0;
             // 
@@ -114,9 +114,9 @@
             // 
             LABEL_MESSAGE.Dock = DockStyle.Fill;
             LABEL_MESSAGE.Font = new Font("Microsoft Sans Serif", 14.25F);
-            LABEL_MESSAGE.Location = new Point(3, 652);
+            LABEL_MESSAGE.Location = new Point(3, 279);
             LABEL_MESSAGE.Name = "LABEL_MESSAGE";
-            LABEL_MESSAGE.Size = new Size(1067, 99);
+            LABEL_MESSAGE.Size = new Size(1067, 465);
             LABEL_MESSAGE.TabIndex = 4;
             LABEL_MESSAGE.Text = "No Updates !";
             LABEL_MESSAGE.TextAlign = ContentAlignment.MiddleCenter;
@@ -145,22 +145,22 @@
             tableLayoutPanel4.Controls.Add(panel10, 2, 0);
             tableLayoutPanel4.Controls.Add(panel11, 2, 2);
             tableLayoutPanel4.Dock = DockStyle.Fill;
-            tableLayoutPanel4.Location = new Point(3, 754);
+            tableLayoutPanel4.Location = new Point(3, 747);
             tableLayoutPanel4.Name = "tableLayoutPanel4";
             tableLayoutPanel4.RowCount = 3;
             tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Percent, 5F));
             tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Percent, 90F));
             tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Percent, 5F));
-            tableLayoutPanel4.Size = new Size(1067, 54);
+            tableLayoutPanel4.Size = new Size(1067, 61);
             tableLayoutPanel4.TabIndex = 2;
             // 
             // label1
             // 
             label1.Dock = DockStyle.Fill;
             label1.Font = new Font("Microsoft Sans Serif", 14.25F);
-            label1.Location = new Point(104, 2);
+            label1.Location = new Point(104, 3);
             label1.Name = "label1";
-            label1.Size = new Size(314, 48);
+            label1.Size = new Size(314, 54);
             label1.TabIndex = 3;
             label1.Text = "Labour Changes On Price Change";
             label1.TextAlign = ContentAlignment.MiddleLeft;
@@ -168,7 +168,7 @@
             // panel2
             // 
             panel2.BackColor = Color.Transparent;
-            panel2.Location = new Point(35, 5);
+            panel2.Location = new Point(35, 6);
             panel2.Name = "panel2";
             panel2.Size = new Size(1, 42);
             panel2.TabIndex = 4;
@@ -177,7 +177,7 @@
             // 
             panel4.BackColor = Color.Transparent;
             panel4.Dock = DockStyle.Fill;
-            panel4.Location = new Point(104, 53);
+            panel4.Location = new Point(104, 60);
             panel4.Name = "panel4";
             panel4.Size = new Size(314, 1);
             panel4.TabIndex = 6;
@@ -186,9 +186,9 @@
             // 
             panel5.BackColor = Color.Transparent;
             panel5.Dock = DockStyle.Fill;
-            panel5.Location = new Point(424, 5);
+            panel5.Location = new Point(424, 6);
             panel5.Name = "panel5";
-            panel5.Size = new Size(1, 42);
+            panel5.Size = new Size(1, 48);
             panel5.TabIndex = 7;
             // 
             // panel6
@@ -204,7 +204,7 @@
             // 
             panel7.BackColor = Color.Transparent;
             panel7.Dock = DockStyle.Fill;
-            panel7.Location = new Point(424, 53);
+            panel7.Location = new Point(424, 60);
             panel7.Name = "panel7";
             panel7.Size = new Size(1, 1);
             panel7.TabIndex = 9;
@@ -231,7 +231,7 @@
             // 
             panel11.BackColor = Color.Transparent;
             panel11.Dock = DockStyle.Fill;
-            panel11.Location = new Point(40, 53);
+            panel11.Location = new Point(40, 60);
             panel11.Name = "panel11";
             panel11.Size = new Size(58, 1);
             panel11.TabIndex = 13;
@@ -241,9 +241,9 @@
             panel1.Controls.Add(dataGridView2);
             panel1.Controls.Add(dataGridView1);
             panel1.Dock = DockStyle.Fill;
-            panel1.Location = new Point(3, 84);
+            panel1.Location = new Point(3, 96);
             panel1.Name = "panel1";
-            panel1.Size = new Size(1067, 565);
+            panel1.Size = new Size(1067, 180);
             panel1.TabIndex = 5;
             // 
             // dataGridView2
@@ -252,7 +252,7 @@
             dataGridView2.Dock = DockStyle.Fill;
             dataGridView2.Location = new Point(0, 0);
             dataGridView2.Name = "dataGridView2";
-            dataGridView2.Size = new Size(1067, 565);
+            dataGridView2.Size = new Size(1067, 180);
             dataGridView2.TabIndex = 1;
             // 
             // dataGridView1
@@ -262,7 +262,7 @@
             dataGridView1.Dock = DockStyle.Fill;
             dataGridView1.Location = new Point(0, 0);
             dataGridView1.Name = "dataGridView1";
-            dataGridView1.Size = new Size(1067, 565);
+            dataGridView1.Size = new Size(1067, 180);
             dataGridView1.TabIndex = 0;
             // 
             // tableLayoutPanel3
@@ -276,7 +276,7 @@
             tableLayoutPanel3.RowCount = 2;
             tableLayoutPanel3.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
             tableLayoutPanel3.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
-            tableLayoutPanel3.Size = new Size(1067, 75);
+            tableLayoutPanel3.Size = new Size(1067, 87);
             tableLayoutPanel3.TabIndex = 6;
             // 
             // tableLayoutPanel1
