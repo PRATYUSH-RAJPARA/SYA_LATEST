@@ -57,6 +57,7 @@
             // 
             label8.Dock = DockStyle.Fill;
             label8.Font = new Font("Microsoft Sans Serif", 24F);
+            label8.ForeColor = Color.FromArgb(127, 85, 57);
             label8.Location = new Point(8, 0);
             label8.Name = "label8";
             label8.Size = new Size(1073, 43);
@@ -66,6 +67,7 @@
             // 
             // BUTTON_WEIGHT_OR_PRICE
             // 
+            BUTTON_WEIGHT_OR_PRICE.BackColor = Color.FromArgb(212, 163, 115);
             BUTTON_WEIGHT_OR_PRICE.Dock = DockStyle.Fill;
             BUTTON_WEIGHT_OR_PRICE.FlatStyle = FlatStyle.Flat;
             BUTTON_WEIGHT_OR_PRICE.Font = new Font("Microsoft Sans Serif", 14.25F);
@@ -74,7 +76,7 @@
             BUTTON_WEIGHT_OR_PRICE.Size = new Size(154, 48);
             BUTTON_WEIGHT_OR_PRICE.TabIndex = 0;
             BUTTON_WEIGHT_OR_PRICE.Text = "WEIGHT TAG";
-            BUTTON_WEIGHT_OR_PRICE.UseVisualStyleBackColor = true;
+            BUTTON_WEIGHT_OR_PRICE.UseVisualStyleBackColor = false;
             BUTTON_WEIGHT_OR_PRICE.Click += BUTTON_WEIGHT_OR_PRICE_Click;
             // 
             // BUTTON_LABOUR_CHANGE_ON_PRICE_CHANGE
@@ -92,7 +94,6 @@
             // 
             // tableLayoutPanel2
             // 
-            tableLayoutPanel2.BackColor = SystemColors.ActiveCaption;
             tableLayoutPanel2.ColumnCount = 1;
             tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
             tableLayoutPanel2.Controls.Add(LABEL_MESSAGE, 0, 2);
@@ -103,10 +104,10 @@
             tableLayoutPanel2.Location = new Point(8, 46);
             tableLayoutPanel2.Name = "tableLayoutPanel2";
             tableLayoutPanel2.RowCount = 4;
-            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 11.5873289F));
-            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 22.9432983F));
-            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 57.3582458F));
-            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 8.111127F));
+            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 10F));
+            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 74F));
+            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 8F));
+            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 8F));
             tableLayoutPanel2.Size = new Size(1073, 811);
             tableLayoutPanel2.TabIndex = 0;
             // 
@@ -114,9 +115,10 @@
             // 
             LABEL_MESSAGE.Dock = DockStyle.Fill;
             LABEL_MESSAGE.Font = new Font("Microsoft Sans Serif", 14.25F);
-            LABEL_MESSAGE.Location = new Point(3, 279);
+            LABEL_MESSAGE.ForeColor = Color.FromArgb(127, 85, 57);
+            LABEL_MESSAGE.Location = new Point(3, 681);
             LABEL_MESSAGE.Name = "LABEL_MESSAGE";
-            LABEL_MESSAGE.Size = new Size(1067, 465);
+            LABEL_MESSAGE.Size = new Size(1067, 64);
             LABEL_MESSAGE.TabIndex = 4;
             LABEL_MESSAGE.Text = "No Updates !";
             LABEL_MESSAGE.TextAlign = ContentAlignment.MiddleCenter;
@@ -145,17 +147,18 @@
             tableLayoutPanel4.Controls.Add(panel10, 2, 0);
             tableLayoutPanel4.Controls.Add(panel11, 2, 2);
             tableLayoutPanel4.Dock = DockStyle.Fill;
-            tableLayoutPanel4.Location = new Point(3, 747);
+            tableLayoutPanel4.Location = new Point(3, 748);
             tableLayoutPanel4.Name = "tableLayoutPanel4";
             tableLayoutPanel4.RowCount = 3;
             tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Percent, 5F));
             tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Percent, 90F));
             tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Percent, 5F));
-            tableLayoutPanel4.Size = new Size(1067, 61);
+            tableLayoutPanel4.Size = new Size(1067, 60);
             tableLayoutPanel4.TabIndex = 2;
             // 
             // label1
             // 
+            label1.BackColor = Color.FromArgb(212, 163, 115);
             label1.Dock = DockStyle.Fill;
             label1.Font = new Font("Microsoft Sans Serif", 14.25F);
             label1.Location = new Point(104, 3);
@@ -241,18 +244,19 @@
             panel1.Controls.Add(dataGridView2);
             panel1.Controls.Add(dataGridView1);
             panel1.Dock = DockStyle.Fill;
-            panel1.Location = new Point(3, 96);
+            panel1.Location = new Point(3, 84);
             panel1.Name = "panel1";
-            panel1.Size = new Size(1067, 180);
+            panel1.Size = new Size(1067, 594);
             panel1.TabIndex = 5;
             // 
             // dataGridView2
             // 
+            dataGridView2.BackgroundColor = Color.FromArgb(204, 213, 174);
             dataGridView2.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView2.Dock = DockStyle.Fill;
             dataGridView2.Location = new Point(0, 0);
             dataGridView2.Name = "dataGridView2";
-            dataGridView2.Size = new Size(1067, 180);
+            dataGridView2.Size = new Size(1067, 594);
             dataGridView2.TabIndex = 1;
             // 
             // dataGridView1
@@ -262,7 +266,7 @@
             dataGridView1.Dock = DockStyle.Fill;
             dataGridView1.Location = new Point(0, 0);
             dataGridView1.Name = "dataGridView1";
-            dataGridView1.Size = new Size(1067, 180);
+            dataGridView1.Size = new Size(1067, 594);
             dataGridView1.TabIndex = 0;
             // 
             // tableLayoutPanel3
@@ -276,7 +280,7 @@
             tableLayoutPanel3.RowCount = 2;
             tableLayoutPanel3.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
             tableLayoutPanel3.RowStyles.Add(new RowStyle(SizeType.Percent, 50F));
-            tableLayoutPanel3.Size = new Size(1067, 87);
+            tableLayoutPanel3.Size = new Size(1067, 75);
             tableLayoutPanel3.TabIndex = 6;
             // 
             // tableLayoutPanel1
@@ -301,6 +305,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.FromArgb(204, 213, 174);
             ClientSize = new Size(1090, 870);
             Controls.Add(tableLayoutPanel1);
             Name = "addItemNew";

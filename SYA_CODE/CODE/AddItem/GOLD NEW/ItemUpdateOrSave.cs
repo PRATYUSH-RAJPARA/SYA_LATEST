@@ -40,7 +40,7 @@ namespace SYA
         {
             try
             {
-                L.Text = $"{rowIndex} + {columnIndex} ";
+              //  L.Text = $"{rowIndex} + {columnIndex} ";
                 loadData();
                 decideUpdateOrDelete();
                 return message;
@@ -82,22 +82,22 @@ namespace SYA
             {
                 if (string.IsNullOrWhiteSpace(TAG_NO))
                 {
-                    L.Text += "\nInsert";
+                  //  L.Text += "\nInsert";
                     insert();
                 }
                 else
                 {
-                    L.Text += " Else";
+                   // L.Text += " Else";
                     string query = $"SELECT * FROM MAIN_DATA_NEW WHERE CO_YEAR = '{CO_YEAR}' AND TAG_NO = '{TAG_NO}'";
                     DataTable dt = helper.FetchDataTableFromSYADataBase(query);
                     if (dt.Rows.Count == 1)
                     {
-                        L.Text += "\nUpdate 1";
+                   //     L.Text += "\nUpdate 1";
                         update();
                     }
                     else if (dt.Rows.Count == 0)
                     {
-                        L.Text += "\nInsert 1";
+                      //  L.Text += "\nInsert 1";
                         insert();
                     }
                 }
@@ -115,6 +115,7 @@ namespace SYA
                     object result = helper.RunQueryWithoutParametersSYADataBase(updateQuery, "ExecuteNonQuery");
                     int affectedRows = Convert.ToInt32(result);
                     message = affectedRows.ToString();
+                    L.Text = ($"Updated successfully for TAG_NO :  ({message}).");
                 }
                 catch (Exception ex)
                 {
@@ -176,7 +177,6 @@ namespace SYA
                         {
                             string query = $"SELECT CAST(SUBSTR(TAG_NO, {prefix.Length + prCode.Length + PURITY.Length + 1}) AS INTEGER) FROM MAIN_DATA_NEW WHERE ITEM_TYPE = '{prCode}' AND PURITY = '{PURITY}'";
                             DataTable dt = helper.FetchDataTableFromSYADataBase(query);
-                            L.Text += " - Count: " + dt.Rows.Count;
                             List<int> soldTagNumbers = new List<int>();
                             foreach (DataRow row in dt.Rows)
                             {
@@ -215,7 +215,7 @@ namespace SYA
                         object result = helper.RunQueryWithoutParametersSYADataBase(insertQuery, "ExecuteNonQuery");
                         int affectedRows = Convert.ToInt32(result);
                         message = affectedRows.ToString();
-                        MessageBox.Show("Inserted successfully.");
+                        L.Text = ($"Inserted successfully ({message}).");
                     }
                     catch (Exception ex)
                     {
