@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data;
 using System.Data.SQLite;
-
 namespace SYA
 {
     public class ItemUpdateOrSave
@@ -35,7 +34,6 @@ namespace SYA
         string PRICE = "";
         string COMMENT = "";
         string message = "";
-
         public string update_or_save(int rowIndex, int columnIndex, DataGridView dg, Label L)
         {
             try
@@ -50,7 +48,6 @@ namespace SYA
                 L.Text += $"\nError: {ex.Message}";
                 return "Error";
             }
-
             void loadData()
             {
                 ID = "";
@@ -77,7 +74,6 @@ namespace SYA
                 PRICE = dg.Rows[rowIndex].Cells["PRICE"].Value?.ToString() ?? string.Empty;
                 COMMENT = dg.Rows[rowIndex].Cells["COMMENT"].Value?.ToString() ?? string.Empty;
             }
-
             void decideUpdateOrDelete()
             {
                 if (string.IsNullOrWhiteSpace(TAG_NO))
@@ -102,7 +98,6 @@ namespace SYA
                     }
                 }
             }
-
             void update()
             {
                 try
@@ -114,15 +109,14 @@ namespace SYA
                     ";
                     object result = helper.RunQueryWithoutParametersSYADataBase(updateQuery, "ExecuteNonQuery");
                     int affectedRows = Convert.ToInt32(result);
-                    message = affectedRows.ToString();
-                    L.Text = ($"Updated successfully for TAG_NO :  ({message}).");
+                    message = "update";
+                    L.Text = ($"Updated successfully for TAG_NO : {TAG_NO} : ({affectedRows.ToString()}).");
                 }
                 catch (Exception ex)
                 {
                     L.Text += $"\nUpdate Error: {ex.Message}";
                 }
             }
-
             void insert()
             {
                 try
@@ -139,7 +133,6 @@ namespace SYA
                 {
                     L.Text += $"\nInsert Error: {ex.Message}";
                 }
-
                 string GetPRCode(string itemName)
                 {
                     try
@@ -154,7 +147,6 @@ namespace SYA
                         return string.Empty;
                     }
                 }
-
                 void GetTagNo()
                 {
                     try
@@ -172,7 +164,6 @@ namespace SYA
                         {
                             throw new Exception("CARET or PR_CODE is empty. Cannot generate Tag No.");
                         }
-
                         int GetNextSequenceNumber()
                         {
                             string query = $"SELECT CAST(SUBSTR(TAG_NO, {prefix.Length + prCode.Length + PURITY.Length + 1}) AS INTEGER) FROM MAIN_DATA_NEW WHERE ITEM_TYPE = '{prCode}' AND PURITY = '{PURITY}'";
@@ -203,7 +194,6 @@ namespace SYA
                         L.Text += $"\nGetTagNo Error: {ex.Message}";
                     }
                 }
-
                 void insert_now()
                 {
                     try
@@ -214,8 +204,8 @@ namespace SYA
                         ";
                         object result = helper.RunQueryWithoutParametersSYADataBase(insertQuery, "ExecuteNonQuery");
                         int affectedRows = Convert.ToInt32(result);
-                        message = affectedRows.ToString();
-                        L.Text = ($"Inserted successfully ({message}).");
+                        message = "insert";
+                        L.Text = ($"Inserted successfully for TAG_NO : {TAG_NO} : ({affectedRows.ToString()}).");
                     }
                     catch (Exception ex)
                     {
@@ -224,7 +214,6 @@ namespace SYA
                 }
             }
         }
-
         public static string GetFinancialYear()
         {
             DateTime now = DateTime.Now;

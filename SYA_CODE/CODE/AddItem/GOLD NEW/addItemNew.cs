@@ -14,36 +14,10 @@ namespace SYA
         {
             InitializeComponent();
         }
-        private void SetButtonGradient(Button button, string state)
-        {
-            // Determine colors based on the state
-            Color startColor = state == "ON" ? Color.LightGreen : Color.Gray;
-            Color endColor = state == "ON" ? Color.Green : Color.DarkGray;
-            // Remove existing Paint event handler to prevent multiple handlers
-            button.Paint -= Button_Paint;
-            // Attach the updated Paint event handler
-            button.Paint += Button_Paint;
-            // Invalidate the button to trigger a repaint
-            button.Invalidate();
-            // Local function for handling the Paint event
-            void Button_Paint(object sender, PaintEventArgs e)
-            {
-                using (LinearGradientBrush brush = new LinearGradientBrush(button.ClientRectangle, startColor, endColor, LinearGradientMode.ForwardDiagonal))
-                {
-                    // Fill gradient background
-                    e.Graphics.FillRectangle(brush, button.ClientRectangle);
-                    // Draw button text
-                    TextRenderer.DrawText(e.Graphics, state, button.Font, button.ClientRectangle, button.ForeColor,
-                        TextFormatFlags.HorizontalCenter | TextFormatFlags.VerticalCenter);
-                }
-            }
-        }
+
         private void addItemNew_Load(object sender, EventArgs e)
         {
-            label1.Text = "Labour Changes On\nPrice Change";
             dataGridView2.Visible = false;
-            BUTTON_LABOUR_CHANGE_ON_PRICE_CHANGE.Text = "ON";
-            SetButtonGradient(BUTTON_LABOUR_CHANGE_ON_PRICE_CHANGE, BUTTON_LABOUR_CHANGE_ON_PRICE_CHANGE.Text);
             itemValidations.change_Labour_On_Price_Change = true;
             Attach_Event_Handlers();
             AddItemDataGridView_Setup.InitializeDataGridView(dataGridView1);
@@ -81,13 +55,24 @@ namespace SYA
                 is_Valid = itemValidations.Validate("G", columnIndex, rowIndex, LABEL_MESSAGE, dataGridView1, itemTypeCollection, purityCollection);
                 if (is_Valid)
                 {
+                    bool rowAddOrNot = false;
                     if (dataGridView1.Columns[columnIndex].Name.ToString() == "COMMENT")
                     {
-                        string RESULT =  ItemUpdateOrSave.update_or_save(rowIndex, columnIndex,dataGridView1,LABEL_MESSAGE);
-                        //if (RESULT == "0") { LABEL_MESSAGE.Text = "Changes Not Saved."; }
-                        //else if (RESULT == "1") { LABEL_MESSAGE.Text = $"{dataGridView1.Rows[rowIndex].Cells["TAG_NO"].Value.ToString()} Saved."; }
-                        //else { LABEL_MESSAGE.Text = $"Something went wrong with tag No : {dataGridView1.Rows[rowIndex].Cells["TAG_NO"].Value.ToString()} Saved."; }
-                    }if (dataGridView1.Columns[columnIndex].Name.ToString() == "GW")
+
+                        if (itemValidations.Validate_ALL("G", columnIndex, rowIndex, LABEL_MESSAGE, dataGridView1, itemTypeCollection, purityCollection))
+                        {
+                        ItemUpdateOrSave.update_or_save(rowIndex, columnIndex, dataGridView1, LABEL_MESSAGE);
+                        }
+                        string RESULT = "";
+                        if (RESULT == "update")
+                        {
+                        }
+                        else if (RESULT == "insert")
+                        {
+                            rowAddOrNot = true;
+                        }
+                    }
+                    if (dataGridView1.Columns[columnIndex].Name.ToString() == "GW")
                     {
                         LABEL_MESSAGE.Text = "";
                     }
@@ -97,7 +82,10 @@ namespace SYA
                     }
                     else
                     {
-                        dataGridView1.Rows.Add();
+                        if (rowAddOrNot)
+                        {
+                            dataGridView1.Rows.Add();
+                        }
                         if (rowIndex < dataGridView1.RowCount - 1)
                         {
                             dataGridView1.CurrentCell = dataGridView1.Rows[rowIndex + 1].Cells[0];
@@ -202,18 +190,17 @@ namespace SYA
         }
         private void BUTTON_LABOUR_CHANGE_ON_PRICE_CHANGE_Click(object sender, EventArgs e)
         {
-            if (BUTTON_LABOUR_CHANGE_ON_PRICE_CHANGE.Text == "ON")
-            {
-                BUTTON_LABOUR_CHANGE_ON_PRICE_CHANGE.Text = "OFF";
-                itemValidations.change_Labour_On_Price_Change = false;
-            }
-            else
-            {
-                BUTTON_LABOUR_CHANGE_ON_PRICE_CHANGE.Text = "ON";
-                itemValidations.change_Labour_On_Price_Change = true;
-            }
-            SetButtonGradient(BUTTON_LABOUR_CHANGE_ON_PRICE_CHANGE, BUTTON_LABOUR_CHANGE_ON_PRICE_CHANGE.Text);
-            SetButtonGradient(BUTTON_LABOUR_CHANGE_ON_PRICE_CHANGE, BUTTON_LABOUR_CHANGE_ON_PRICE_CHANGE.Text);
+            //if (BUTTON_LABOUR_CHANGE_ON_PRICE_CHANGE.Text == "ON")
+            //{
+            //    BUTTON_LABOUR_CHANGE_ON_PRICE_CHANGE.Text = "OFF";
+            //    itemValidations.change_Labour_On_Price_Change = false;
+            //}
+            //else
+            //{
+            //    BUTTON_LABOUR_CHANGE_ON_PRICE_CHANGE.Text = "ON";
+            //    itemValidations.change_Labour_On_Price_Change = true;
+            //}
+
         }
         private void BUTTON_WEIGHT_OR_PRICE_Click(object sender, EventArgs e)
         {
@@ -225,6 +212,16 @@ namespace SYA
             {
                 BUTTON_WEIGHT_OR_PRICE.Text = "WEIGHT TAG";
             }
+        }
+
+        private void tableLayoutPanel4_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void label8_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

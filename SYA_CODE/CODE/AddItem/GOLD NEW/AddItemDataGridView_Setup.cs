@@ -60,39 +60,23 @@ namespace SYA
         public void CustomizeDataGridView(DataGridView dataGridView1)
         {
             SetColumnStyles(dataGridView1);
-            dataGridView1.BackgroundColor = ColorTranslator.FromHtml("#FFE2E2");
+            dataGridView1.BackgroundColor = ColorTranslator.FromHtml("#E9CAC3");
             dataGridView1.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridView1.DefaultCellStyle.Font = new Font(dataGridView1.Font.FontFamily, (float)15);
+            dataGridView1.DefaultCellStyle.Font = new Font(dataGridView1.Font.FontFamily, (float)15, FontStyle.Bold);
             dataGridView1.RowHeadersVisible = false;
             AdjustColumnHeaderStyles(dataGridView1);
         }
         public void SetColumnStyles(DataGridView dataGridView1)
         {
-            dataGridView1.Columns["TAG_NO"].DefaultCellStyle.BackColor = ColorTranslator.FromHtml("#96B5FE"); // Jordy Blue-4
-            dataGridView1.Columns["ITEM_TYPE"].DefaultCellStyle.BackColor = ColorTranslator.FromHtml("#9EBBFE"); // Jordy Blue-6
-            dataGridView1.Columns["PURITY"].DefaultCellStyle.BackColor = ColorTranslator.FromHtml("#A3BEFE"); // Jordy Blue-7
-            //dataGridView1.Columns["GW"].DefaultCellStyle.BackColor = ColorTranslator.FromHtml("#A7C1FE"); // Jordy Blue-8
-            //dataGridView1.Columns["NW"].DefaultCellStyle.BackColor = ColorTranslator.FromHtml("#ABC4FE"); // Jordy Blue-9
-            //dataGridView1.Columns["LBR_RATE"].DefaultCellStyle.BackColor = ColorTranslator.FromHtml("#AFC7FE"); // Jordy Blue-10
-            //dataGridView1.Columns["OTH_AMT"].DefaultCellStyle.BackColor = ColorTranslator.FromHtml("#B4CAFE"); // Periwinkle
-            //dataGridView1.Columns["LBR_AMT"].DefaultCellStyle.BackColor = ColorTranslator.FromHtml("#B8CCFD"); // Periwinkle-2
-            //dataGridView1.Columns["HUID1"].DefaultCellStyle.BackColor = ColorTranslator.FromHtml("#BCCFFD"); // Periwinkle-3
-            //dataGridView1.Columns["HUID2"].DefaultCellStyle.BackColor = ColorTranslator.FromHtml("#C0D2FD"); // Periwinkle-4
-            //dataGridView1.Columns["HUID3"].DefaultCellStyle.BackColor = ColorTranslator.FromHtml("#C4D5FD"); // Periwinkle-5
-            //dataGridView1.Columns["SIZE"].DefaultCellStyle.BackColor = ColorTranslator.FromHtml("#C9D8FD"); // Periwinkle-6
-            //dataGridView1.Columns["PRICE"].DefaultCellStyle.BackColor = ColorTranslator.FromHtml("#CDDBFD"); // Periwinkle-7
-            //dataGridView1.Columns["COMMENT"].DefaultCellStyle.BackColor = ColorTranslator.FromHtml("#D1DEFD"); // Lavender Web
-            foreach (DataGridViewColumn column in dataGridView1.Columns)
-            {
-                column.DefaultCellStyle.ForeColor = ColorTranslator.FromHtml("#86A788");
-            }
+            dataGridView1.DefaultCellStyle.BackColor=ColorTranslator.FromHtml("#F4E1D9");
+           dataGridView1.DefaultCellStyle.ForeColor = ColorTranslator.FromHtml("#9E2B25");
         }
         public void AdjustColumnHeaderStyles(DataGridView dataGridView1)
         {
             dataGridView1.ColumnHeadersDefaultCellStyle.Font = new Font("Arial", 13, FontStyle.Bold);
             dataGridView1.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridView1.ColumnHeadersDefaultCellStyle.ForeColor = Color.White;
-            dataGridView1.ColumnHeadersDefaultCellStyle.BackColor = Color.Black;
+            dataGridView1.ColumnHeadersDefaultCellStyle.ForeColor = ColorTranslator.FromHtml("#F4E1D9"); 
+            dataGridView1.ColumnHeadersDefaultCellStyle.BackColor = ColorTranslator.FromHtml("#A9423C");
             dataGridView1.EnableHeadersVisualStyles = false;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
             dataGridView1.ColumnHeadersHeight = 50;

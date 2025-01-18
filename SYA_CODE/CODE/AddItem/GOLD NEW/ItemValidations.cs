@@ -8,6 +8,7 @@ using OfficeOpenXml;
 using OfficeOpenXml.Style;
 using System.Drawing;
 using System.IO;
+using System.Data.Common;
 namespace SYA
 {
     public class ItemValidations
@@ -79,6 +80,52 @@ namespace SYA
                 // Confirm export
                 MessageBox.Show($"Excel file generated successfully at:\n{filePath}", "Export Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
+        }
+        public bool Validate_ALL(string metalType, int columnIndex, int rowIndex, Label l, DataGridView dg, AutoCompleteStringCollection itemTypeCollection, AutoCompleteStringCollection purityCollection)
+        {
+            if(String.IsNullOrEmpty(dg.Rows[rowIndex].Cells["ITEM_TYPE"].Value?.ToString() ?? string.Empty))
+            {
+                dg.CurrentCell = dg.Rows[rowIndex].Cells["ITEM_TYPE"];
+                dg.BeginEdit(true);
+                return false;
+            }
+            if (String.IsNullOrEmpty(dg.Rows[rowIndex].Cells["PURITY"].Value?.ToString() ?? string.Empty))
+            {
+                dg.CurrentCell = dg.Rows[rowIndex].Cells["PURITY"];
+                dg.BeginEdit(true);
+                return false;
+            }
+            if (String.IsNullOrEmpty(dg.Rows[rowIndex].Cells["GW"].Value?.ToString() ?? string.Empty))
+            {
+                dg.CurrentCell = dg.Rows[rowIndex].Cells["GW"];
+                dg.BeginEdit(true);
+                return false;
+            }
+            if (String.IsNullOrEmpty(dg.Rows[rowIndex].Cells["NW"].Value?.ToString() ?? string.Empty))
+            {
+                dg.CurrentCell = dg.Rows[rowIndex].Cells["NW"];
+                dg.BeginEdit(true);
+                return false;
+            }
+            if (String.IsNullOrEmpty(dg.Rows[rowIndex].Cells["LBR_RATE"].Value?.ToString() ?? string.Empty))
+            {
+                dg.CurrentCell = dg.Rows[rowIndex].Cells["LBR_RATE"];
+                dg.BeginEdit(true);
+                return false;
+            }
+            if (String.IsNullOrEmpty(dg.Rows[rowIndex].Cells["OTH_AMT"].Value?.ToString() ?? string.Empty))
+            {
+                dg.CurrentCell = dg.Rows[rowIndex].Cells["OTH_AMT"];
+                dg.BeginEdit(true);
+                return false;
+            }
+            if (String.IsNullOrEmpty(dg.Rows[rowIndex].Cells["LBR_AMT"].Value?.ToString() ?? string.Empty))
+            {
+                dg.CurrentCell = dg.Rows[rowIndex].Cells["LBR_AMT"];
+                dg.BeginEdit(true);
+                return false;
+            }
+            return true;
         }
         public bool Validate(string metalType, int columnIndex, int rowIndex, Label l, DataGridView dg, AutoCompleteStringCollection itemTypeCollection, AutoCompleteStringCollection purityCollection)
         {
