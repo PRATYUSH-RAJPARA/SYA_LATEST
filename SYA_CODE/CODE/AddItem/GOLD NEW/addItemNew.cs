@@ -1,4 +1,5 @@
-﻿using System.Drawing.Drawing2D;
+﻿using OpenTK.Graphics.ES20;
+using System.Drawing.Drawing2D;
 namespace SYA
 {
     public partial class addItemNew : Form
@@ -7,22 +8,26 @@ namespace SYA
         AddItemDataGridView_Setup AddItemDataGridView_Setup = new AddItemDataGridView_Setup();
         ItemUpdateOrSave ItemUpdateOrSave = new ItemUpdateOrSave();
         bool is_Valid = true;
-        string WEIGHT_OR_PRICE = "WEIGHT TAG";
         public AutoCompleteStringCollection itemTypeCollection = new AutoCompleteStringCollection();
         public AutoCompleteStringCollection purityCollection = new AutoCompleteStringCollection();
         public addItemNew()
         {
             InitializeComponent();
         }
-
         private void addItemNew_Load(object sender, EventArgs e)
         {
             dataGridView2.Visible = false;
             itemValidations.change_Labour_On_Price_Change = true;
+            LoadAgain();
+            
+        }
+        private void LoadAgain() {
             Attach_Event_Handlers();
+            dataGridView1.Rows.Clear();
+            dataGridView1.Columns.Clear();
             AddItemDataGridView_Setup.InitializeDataGridView(dataGridView1);
             dataGridView1.Rows.Add();
-            AddItemDataGridView_Setup.InitializeAutoCompleteCollections(itemTypeCollection, purityCollection);
+            AddItemDataGridView_Setup.InitializeAutoCompleteCollections(itemTypeCollection, purityCollection, BUTTON_GOLD_OR_SILVER.Text);
             this.BeginInvoke(new Action(() =>
             {
                 if (dataGridView1.Rows.Count >= 0 && dataGridView1.Columns.Contains("ITEM_TYPE"))
@@ -58,12 +63,8 @@ namespace SYA
                     bool rowAddOrNot = false;
                     if (dataGridView1.Columns[columnIndex].Name.ToString() == "COMMENT")
                     {
-
-                        if (itemValidations.Validate_ALL("G", columnIndex, rowIndex, LABEL_MESSAGE, dataGridView1, itemTypeCollection, purityCollection))
-                        {
-                        ItemUpdateOrSave.update_or_save(rowIndex, columnIndex, dataGridView1, LABEL_MESSAGE);
-                        }
                         string RESULT = "";
+                        RESULT = ItemUpdateOrSave.update_or_save(rowIndex, columnIndex, dataGridView1, LABEL_MESSAGE,BUTTON_GOLD_OR_SILVER.Text);
                         if (RESULT == "update")
                         {
                         }
@@ -79,16 +80,19 @@ namespace SYA
                     if (columnIndex < dataGridView1.ColumnCount - 1)
                     {
                         dataGridView1.CurrentCell = dataGridView1.Rows[rowIndex].Cells[columnIndex + 1];
+                        dataGridView1.BeginEdit(true);
                     }
                     else
                     {
                         if (rowAddOrNot)
                         {
                             dataGridView1.Rows.Add();
+                            dataGridView1.Rows[rowIndex + 1].Cells["TAG_NO"].ReadOnly = true;
+
                         }
                         if (rowIndex < dataGridView1.RowCount - 1)
                         {
-                            dataGridView1.CurrentCell = dataGridView1.Rows[rowIndex + 1].Cells[0];
+                            dataGridView1.CurrentCell = dataGridView1.Rows[rowIndex + 1].Cells[1];
                         }
                     }
                 }
@@ -188,20 +192,7 @@ namespace SYA
                 }
             }
         }
-        private void BUTTON_LABOUR_CHANGE_ON_PRICE_CHANGE_Click(object sender, EventArgs e)
-        {
-            //if (BUTTON_LABOUR_CHANGE_ON_PRICE_CHANGE.Text == "ON")
-            //{
-            //    BUTTON_LABOUR_CHANGE_ON_PRICE_CHANGE.Text = "OFF";
-            //    itemValidations.change_Labour_On_Price_Change = false;
-            //}
-            //else
-            //{
-            //    BUTTON_LABOUR_CHANGE_ON_PRICE_CHANGE.Text = "ON";
-            //    itemValidations.change_Labour_On_Price_Change = true;
-            //}
 
-        }
         private void BUTTON_WEIGHT_OR_PRICE_Click(object sender, EventArgs e)
         {
             if (BUTTON_WEIGHT_OR_PRICE.Text == "WEIGHT TAG")
@@ -214,14 +205,27 @@ namespace SYA
             }
         }
 
-        private void tableLayoutPanel4_Paint(object sender, PaintEventArgs e)
-        {
 
+        private void BUTTON_SAVE_OR_PRINTandSAVE_Click(object sender, EventArgs e)
+        {
+            if (BUTTON_SAVE_OR_PRINTandSAVE.Text == "SAVE AND PRINT")
+            {
+                BUTTON_SAVE_OR_PRINTandSAVE.Text = "ONLY SAVE";
+            }
+            else
+            {
+                BUTTON_SAVE_OR_PRINTandSAVE.Text = "SAVE AND PRINT";
+            }
         }
 
-        private void label8_Click(object sender, EventArgs e)
+        private void BUTTON_GOLD_OR_SILVER_Click(object sender, EventArgs e)
         {
-
+            if (BUTTON_GOLD_OR_SILVER.Text == "GOLD")
+            {
+                BUTTON_GOLD_OR_SILVER.Text = "SILVER";
+                LoadAgain();
+            }
+            else { BUTTON_GOLD_OR_SILVER.Text = "GOLD";LoadAgain(); }
         }
     }
 }

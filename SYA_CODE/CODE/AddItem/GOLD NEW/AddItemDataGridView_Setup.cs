@@ -34,10 +34,19 @@ namespace SYA
             }
             CustomizeDataGridView(dataGridView1);
         }
-        public void InitializeAutoCompleteCollections(AutoCompleteStringCollection itemTypeCollection, AutoCompleteStringCollection purityCollection)
+        public void InitializeAutoCompleteCollections(AutoCompleteStringCollection itemTypeCollection, AutoCompleteStringCollection purityCollection,String GOLD_SILVER)
         {
-            LoadAutoCompleteValues("G", "IT_NAME", "IT_NAME", itemTypeCollection);
-            LoadAutoCompleteValues("GQ", "IT_NAME", "IT_NAME", purityCollection);
+            if (GOLD_SILVER == "GOLD")
+            {
+                LoadAutoCompleteValues("G", "IT_NAME", "IT_NAME", itemTypeCollection);
+                LoadAutoCompleteValues("GQ", "IT_NAME", "IT_NAME", purityCollection);
+            }
+            else if (GOLD_SILVER == "SILVER")
+            {
+                LoadAutoCompleteValues("S", "IT_NAME", "IT_NAME", itemTypeCollection);
+                LoadAutoCompleteValues("SQ", "IT_NAME", "IT_NAME", purityCollection);
+            }
+           
             void LoadAutoCompleteValues(string itemType, string columnName, string displayMember, AutoCompleteStringCollection collection)
             {
                 using (SQLiteDataReader reader = helper.FetchDataFromSYADataBase($"SELECT DISTINCT {columnName} FROM ITEM_MASTER WHERE IT_TYPE = '{itemType}'"))

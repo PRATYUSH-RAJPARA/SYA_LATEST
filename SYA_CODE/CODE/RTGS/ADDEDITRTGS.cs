@@ -5,8 +5,7 @@ namespace SYA
 {
     public partial class ADDEDITRTGS : Form
     {
-        private string selectedID;
-        List<string> RTGSDATA = new List<string>();
+
         string main_id = "";
         public ADDEDITRTGS()
         {
