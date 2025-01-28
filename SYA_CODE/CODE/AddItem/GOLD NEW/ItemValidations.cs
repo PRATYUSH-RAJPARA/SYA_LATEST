@@ -1,15 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using OfficeOpenXml;
+﻿using OfficeOpenXml;
 using OfficeOpenXml.Style;
-using System.Drawing;
-using System.IO;
-using System.Data.Common;
-using OpenTK.Graphics.ES10;
+
 namespace SYA
 {
     public class ItemValidations
@@ -138,7 +129,27 @@ namespace SYA
                 bool VALUE3 = GW();
                 bool VALUE4 = NW();
                 bool VALUE5 = LABOUR();
-                bool VALUE6 = OTHER() && OTHER_LBR_CHECK();
+                bool VALUE6 = OTHER();
+                bool VALUE12 = OTHER_LBR_CHECK();
+                bool OTHER_LBR_CHECK()
+                {
+                    string LBR_AMT = (get_CellValue(rowIndex, "LBR_AMT"));
+                    string OTH_AMT = (get_CellValue(rowIndex, "OTH_AMT"));
+                    string LBR_RATE = (get_CellValue(rowIndex, "LBR_RATE"));
+                    bool CHECK_IF_NULL_OR_0(string n)
+                    {
+                        if (string.IsNullOrEmpty(n) || n == "0") { return false; }
+                        return true;
+                    }
+                    if (CHECK_IF_NULL_OR_0(LBR_AMT) && CHECK_IF_NULL_OR_0(OTH_AMT) && CHECK_IF_NULL_OR_0(LBR_RATE))
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
                 bool VALUE7 = LABOUR_AMOUNT();
                 if (GOLD_SILVER == "GOLD")
                 {
@@ -156,12 +167,10 @@ namespace SYA
                 if (!VALUE4) { dg.CurrentCell = dg.Rows[rowIndex].Cells["NW"]; l.Text = "Error in NW !"; return false; }
                 if (!VALUE5) { dg.CurrentCell = dg.Rows[rowIndex].Cells["LABOUR"]; l.Text = "Error in LABOUR !"; return false; }
                 if (!VALUE6) { dg.CurrentCell = dg.Rows[rowIndex].Cells["OTHER"]; l.Text = "Error in OTHER !"; return false; }
+                if (!VALUE12) { dg.CurrentCell = dg.Rows[rowIndex].Cells["LABOUR"]; l.Text = "Error in LABOUR !"; return false; }
                 if (!VALUE7) { dg.CurrentCell = dg.Rows[rowIndex].Cells["LBR_AMT"]; l.Text = "Error in LABOUR_AMOUNT !"; return false; }
-                
                 if (!VALUE11) { dg.CurrentCell = dg.Rows[rowIndex].Cells["PRICE"]; l.Text = "Error in PRICE !"; return false; }
                 l.Text = "";
-                void OTHER_LBR_CHECK() { 
-                }
                 return true;
             }
             bool ITEM_TYPE()
@@ -261,8 +270,7 @@ namespace SYA
                 string NW = (get_CellValue(rowIndex, "NW"));
                 string LBR_AMT = (get_CellValue(rowIndex, "LBR_AMT"));
                 string OTH_AMT = (get_CellValue(rowIndex, "OTH_AMT"));
-                string  = (get_CellValue(rowIndex, "lbr_rate"));
-
+                string LBR_RATE = (get_CellValue(rowIndex, "LBR_RATE"));
                 decimal NEW_PRICE = CustomRound((ConvertToDecimal(NW) * RATE) + ConvertToDecimal(LBR_AMT) + ConvertToDecimal(OTH_AMT), 1);
                 string PRICE = get_CellValue(rowIndex, "PRICE");
                 if (string.IsNullOrEmpty(get_CellValue(rowIndex, "PRICE")))
@@ -273,7 +281,6 @@ namespace SYA
                 {
                     set_CellValue(rowIndex, "PRICE", NEW_PRICE.ToString());
                 }
-
                 l.Text = "";
                 return true;
             }

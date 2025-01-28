@@ -88,7 +88,6 @@ namespace SYA
                         {
                             dataGridView1.Rows.Add();
                             dataGridView1.Rows[rowIndex + 1].Cells["TAG_NO"].ReadOnly = true;
-                           
                         }
                         if (rowIndex < dataGridView1.RowCount - 1)
                         {

@@ -22,8 +22,6 @@ namespace SYA
                 dataGridView1.Columns.Add(CreateTextBoxColumn("HUID2", "HUID2"));
                 dataGridView1.Columns.Add(CreateTextBoxColumn("HUID3", "HUID3"));
             }
-         
-           
             dataGridView1.Columns.Add(CreateTextBoxColumn("SIZE", "Size"));
             dataGridView1.Columns.Add(CreateTextBoxColumn("PRICE", "Price"));
             dataGridView1.Columns.Add(CreateTextBoxColumn("COMMENT", "Comment"));
