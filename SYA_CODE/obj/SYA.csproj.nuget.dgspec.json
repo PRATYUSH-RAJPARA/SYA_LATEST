@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\SYA_LATEST\\SYA_CODE\\SYA.csproj": {}
+    "F:\\SYA_LATEST\\SYA_CODE\\SYA.csproj": {}
   },
   "projects": {
-    "C:\\SYA_LATEST\\SYA_CODE\\SYA.csproj": {
+    "F:\\SYA_LATEST\\SYA_CODE\\SYA.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\SYA_LATEST\\SYA_CODE\\SYA.csproj",
+        "projectUniqueName": "F:\\SYA_LATEST\\SYA_CODE\\SYA.csproj",
         "projectName": "SYA",
-        "projectPath": "C:\\SYA_LATEST\\SYA_CODE\\SYA.csproj",
-        "packagesPath": "C:\\Users\\pvraj\\.nuget\\packages\\",
-        "outputPath": "C:\\SYA_LATEST\\SYA_CODE\\obj\\",
+        "projectPath": "F:\\SYA_LATEST\\SYA_CODE\\SYA.csproj",
+        "packagesPath": "C:\\Users\\SYA\\.nuget\\packages\\",
+        "outputPath": "F:\\SYA_LATEST\\SYA_CODE\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Software\\VisualStudio\\Shared\\NuGetPackages"
+          "C:\\Installed Softwares\\Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\pvraj\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\SYA\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],

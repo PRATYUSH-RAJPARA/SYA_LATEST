@@ -5,7 +5,7 @@ namespace SYA
 {
     public class AddItemDataGridView_Setup
     {
-        public void InitializeDataGridView(DataGridView dataGridView1)
+        public void InitializeDataGridView(DataGridView dataGridView1,String GOLD_SILVER)
         {
             dataGridView1.Columns.Clear();
             dataGridView1.Columns.Add(CreateTextBoxColumn("TAG_NO", "Tag No"));
@@ -16,9 +16,14 @@ namespace SYA
             dataGridView1.Columns.Add(CreateTextBoxColumn("LBR_RATE", "Labour"));
             dataGridView1.Columns.Add(CreateTextBoxColumn("LBR_AMT", "Labour Amount"));
             dataGridView1.Columns.Add(CreateTextBoxColumn("OTH_AMT", "Other"));
-            dataGridView1.Columns.Add(CreateTextBoxColumn("HUID1", "HUID1"));
-            dataGridView1.Columns.Add(CreateTextBoxColumn("HUID2", "HUID2"));
-            dataGridView1.Columns.Add(CreateTextBoxColumn("HUID3", "HUID3"));
+            if(GOLD_SILVER== "GOLD")
+            {
+                dataGridView1.Columns.Add(CreateTextBoxColumn("HUID1", "HUID1"));
+                dataGridView1.Columns.Add(CreateTextBoxColumn("HUID2", "HUID2"));
+                dataGridView1.Columns.Add(CreateTextBoxColumn("HUID3", "HUID3"));
+            }
+         
+           
             dataGridView1.Columns.Add(CreateTextBoxColumn("SIZE", "Size"));
             dataGridView1.Columns.Add(CreateTextBoxColumn("PRICE", "Price"));
             dataGridView1.Columns.Add(CreateTextBoxColumn("COMMENT", "Comment"));
@@ -46,9 +51,9 @@ namespace SYA
                 LoadAutoCompleteValues("S", "IT_NAME", "IT_NAME", itemTypeCollection);
                 LoadAutoCompleteValues("SQ", "IT_NAME", "IT_NAME", purityCollection);
             }
-           
             void LoadAutoCompleteValues(string itemType, string columnName, string displayMember, AutoCompleteStringCollection collection)
             {
+                collection.Clear();
                 using (SQLiteDataReader reader = helper.FetchDataFromSYADataBase($"SELECT DISTINCT {columnName} FROM ITEM_MASTER WHERE IT_TYPE = '{itemType}'"))
                 {
                     while (reader.Read())
@@ -90,7 +95,7 @@ namespace SYA
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
             dataGridView1.ColumnHeadersHeight = 50;
         }
-        public void AdjustColumnWidths(DataGridView dataGridView)
+        public void AdjustColumnWidths(DataGridView dataGridView, String GOLD_SILVER)
         {
             if (dataGridView == null || dataGridView.Columns.Count == 0)
                 return;
@@ -103,9 +108,13 @@ namespace SYA
             dataGridView.Columns["LBR_RATE"].Width = (int)(totalWidth * 0.06);      // 8%
             dataGridView.Columns["LBR_AMT"].Width = (int)(totalWidth * 0.06);       // 8%
             dataGridView.Columns["OTH_AMT"].Width = (int)(totalWidth * 0.05);       // 7%
-            dataGridView.Columns["HUID1"].Width = (int)(totalWidth * 0.07);         // 5%
-            dataGridView.Columns["HUID2"].Width = (int)(totalWidth * 0.07);         // 5%
-            dataGridView.Columns["HUID3"].Width = (int)(totalWidth * 0.07);         // 5%
+            if(GOLD_SILVER == "GOLD")
+            {
+                dataGridView.Columns["HUID1"].Width = (int)(totalWidth * 0.07);         // 5%
+                dataGridView.Columns["HUID2"].Width = (int)(totalWidth * 0.07);         // 5%
+                dataGridView.Columns["HUID3"].Width = (int)(totalWidth * 0.07);         // 5%
+            }
+                    // 5%
             dataGridView.Columns["SIZE"].Width = (int)(totalWidth * 0.04);          // 5%
             dataGridView.Columns["PRICE"].Width = (int)(totalWidth * 0.05);         // 10%
             dataGridView.Columns["COMMENT"].Width = (int)(totalWidth * 0.09);

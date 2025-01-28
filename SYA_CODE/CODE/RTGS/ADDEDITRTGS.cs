@@ -5,7 +5,6 @@ namespace SYA
 {
     public partial class ADDEDITRTGS : Form
     {
-
         string main_id = "";
         public ADDEDITRTGS()
         {

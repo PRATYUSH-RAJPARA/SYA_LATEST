@@ -19,13 +19,13 @@ namespace SYA
             dataGridView2.Visible = false;
             itemValidations.change_Labour_On_Price_Change = true;
             LoadAgain();
-            
         }
-        private void LoadAgain() {
-            Attach_Event_Handlers();
+        private void LoadAgain()
+        {
             dataGridView1.Rows.Clear();
             dataGridView1.Columns.Clear();
-            AddItemDataGridView_Setup.InitializeDataGridView(dataGridView1);
+            AddItemDataGridView_Setup.InitializeDataGridView(dataGridView1,BUTTON_GOLD_OR_SILVER.Text);
+            Attach_Event_Handlers();
             dataGridView1.Rows.Add();
             AddItemDataGridView_Setup.InitializeAutoCompleteCollections(itemTypeCollection, purityCollection, BUTTON_GOLD_OR_SILVER.Text);
             this.BeginInvoke(new Action(() =>
@@ -35,6 +35,7 @@ namespace SYA
                     dataGridView1.CurrentCell = dataGridView1.Rows[0].Cells["ITEM_TYPE"];
                 }
             }));
+            AddItemDataGridView_Setup.AdjustColumnWidths(dataGridView1,BUTTON_GOLD_OR_SILVER.Text);
         }
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
         {
@@ -57,14 +58,13 @@ namespace SYA
                     }
                     dataGridView1.EndEdit();
                 }
-                is_Valid = itemValidations.Validate("G", columnIndex, rowIndex, LABEL_MESSAGE, dataGridView1, itemTypeCollection, purityCollection);
+                is_Valid = itemValidations.Validate("G", columnIndex, rowIndex, LABEL_MESSAGE, dataGridView1, itemTypeCollection, purityCollection,BUTTON_GOLD_OR_SILVER.Text);
                 if (is_Valid)
                 {
                     bool rowAddOrNot = false;
                     if (dataGridView1.Columns[columnIndex].Name.ToString() == "COMMENT")
                     {
-                        string RESULT = "";
-                        RESULT = ItemUpdateOrSave.update_or_save(rowIndex, columnIndex, dataGridView1, LABEL_MESSAGE,BUTTON_GOLD_OR_SILVER.Text);
+                        string RESULT = ItemUpdateOrSave.update_or_save(rowIndex, columnIndex, dataGridView1, LABEL_MESSAGE, BUTTON_GOLD_OR_SILVER.Text);
                         if (RESULT == "update")
                         {
                         }
@@ -88,11 +88,14 @@ namespace SYA
                         {
                             dataGridView1.Rows.Add();
                             dataGridView1.Rows[rowIndex + 1].Cells["TAG_NO"].ReadOnly = true;
-
+                           
                         }
                         if (rowIndex < dataGridView1.RowCount - 1)
                         {
                             dataGridView1.CurrentCell = dataGridView1.Rows[rowIndex + 1].Cells[1];
+                            dataGridView1.Rows[rowIndex + 1].Cells["ITEM_TYPE"].Value = dataGridView1.Rows[rowIndex].Cells["ITEM_TYPE"].Value.ToString();
+                            dataGridView1.Rows[rowIndex + 1].Cells["PURITY"].Value = dataGridView1.Rows[rowIndex].Cells["PURITY"].Value.ToString();
+                            dataGridView1.Rows[rowIndex + 1].Cells["LBR_RATE"].Value = dataGridView1.Rows[rowIndex].Cells["LBR_RATE"].Value.ToString();
                         }
                     }
                 }
@@ -106,15 +109,18 @@ namespace SYA
             datagridview();
             void others()
             {
+                this.SizeChanged -= Form1_SizeChanged;
                 this.SizeChanged += Form1_SizeChanged;
                 void Form1_SizeChanged(object sender, EventArgs e)
                 {
-                    AddItemDataGridView_Setup.AdjustColumnWidths(dataGridView1);
+                    AddItemDataGridView_Setup.AdjustColumnWidths(dataGridView1,BUTTON_GOLD_OR_SILVER.Text);
                 }
             }
             void datagridview()
             {
+                dataGridView1.RowsAdded -= DataGridView1_RowsAdded;
                 dataGridView1.RowsAdded += DataGridView1_RowsAdded;
+                dataGridView1.EditingControlShowing -= DataGridView1_EditingControlShowing;
                 dataGridView1.EditingControlShowing += DataGridView1_EditingControlShowing;
                 void DataGridView1_RowsAdded(object sender, DataGridViewRowsAddedEventArgs e)
                 {
@@ -192,7 +198,6 @@ namespace SYA
                 }
             }
         }
-
         private void BUTTON_WEIGHT_OR_PRICE_Click(object sender, EventArgs e)
         {
             if (BUTTON_WEIGHT_OR_PRICE.Text == "WEIGHT TAG")
@@ -204,8 +209,6 @@ namespace SYA
                 BUTTON_WEIGHT_OR_PRICE.Text = "WEIGHT TAG";
             }
         }
-
-
         private void BUTTON_SAVE_OR_PRINTandSAVE_Click(object sender, EventArgs e)
         {
             if (BUTTON_SAVE_OR_PRINTandSAVE.Text == "SAVE AND PRINT")
@@ -217,7 +220,6 @@ namespace SYA
                 BUTTON_SAVE_OR_PRINTandSAVE.Text = "SAVE AND PRINT";
             }
         }
-
         private void BUTTON_GOLD_OR_SILVER_Click(object sender, EventArgs e)
         {
             if (BUTTON_GOLD_OR_SILVER.Text == "GOLD")
@@ -225,7 +227,11 @@ namespace SYA
                 BUTTON_GOLD_OR_SILVER.Text = "SILVER";
                 LoadAgain();
             }
-            else { BUTTON_GOLD_OR_SILVER.Text = "GOLD";LoadAgain(); }
+            else
+            {
+                BUTTON_GOLD_OR_SILVER.Text = "GOLD";
+                LoadAgain();
+            }
         }
     }
 }

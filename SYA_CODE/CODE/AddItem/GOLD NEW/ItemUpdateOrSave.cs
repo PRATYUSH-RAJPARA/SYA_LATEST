@@ -27,7 +27,7 @@ namespace SYA
         string PRICE = "";
         string COMMENT = "";
         string message = "";
-        public string update_or_save(int rowIndex, int columnIndex, DataGridView dg, Label L,String GOLD_SILVER)
+        public string update_or_save(int rowIndex, int columnIndex, DataGridView dg, Label L, String GOLD_SILVER)
         {
             try
             {
@@ -48,12 +48,19 @@ namespace SYA
                 VCH_NO = "0";
                 VCH_DATE = DateTime.Now.ToString("yyyy-MM-dd");
                 PURITY = dg.Rows[rowIndex].Cells["PURITY"].Value?.ToString() ?? string.Empty;
-                METAL_TYPE = "G";
-                TAG_NO = dg.Rows[rowIndex].Cells["TAG_NO"].Value?.ToString() ?? string.Empty;
-                DESIGN = "";
+                if (GOLD_SILVER == "GOLD")
+                {
+                    METAL_TYPE = "G";
                 HUID1 = dg.Rows[rowIndex].Cells["HUID1"].Value?.ToString() ?? string.Empty;
                 HUID2 = dg.Rows[rowIndex].Cells["HUID2"].Value?.ToString() ?? string.Empty;
                 HUID3 = dg.Rows[rowIndex].Cells["HUID3"].Value?.ToString() ?? string.Empty;
+                }
+                else if (GOLD_SILVER == "SILVER")
+                {
+                    METAL_TYPE = "S";
+                }
+                TAG_NO = dg.Rows[rowIndex].Cells["TAG_NO"].Value?.ToString() ?? string.Empty;
+                DESIGN = "";
                 ITM_SIZE = "";
                 ITEM_TYPE = "";
                 ITM_PCS = "0";
@@ -128,11 +135,11 @@ namespace SYA
                         string query = "";
                         if (GOLD_SILVER == "GOLD")
                         {
-                             query = $"SELECT PR_CODE FROM ITEM_MASTER WHERE IT_NAME = '{itemName}' AND IT_TYPE = 'G'";
+                            query = $"SELECT PR_CODE FROM ITEM_MASTER WHERE IT_NAME = '{itemName}' AND IT_TYPE = 'G'";
                         }
                         else if (GOLD_SILVER == "SILVER")
                         {
-                             query = $"SELECT PR_CODE FROM ITEM_MASTER WHERE IT_NAME = '{itemName}' AND IT_TYPE = 'S'";
+                            query = $"SELECT PR_CODE FROM ITEM_MASTER WHERE IT_NAME = '{itemName}' AND IT_TYPE = 'S'";
                         }
                         DataTable dt = helper.FetchDataTableFromSYADataBase(query);
                         return dt.Rows.Count > 0 ? dt.Rows[0]["PR_CODE"].ToString() : string.Empty;

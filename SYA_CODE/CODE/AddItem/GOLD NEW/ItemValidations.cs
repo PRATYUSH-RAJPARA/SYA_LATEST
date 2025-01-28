@@ -82,7 +82,7 @@ namespace SYA
                 MessageBox.Show($"Excel file generated successfully at:\n{filePath}", "Export Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
-        public bool Validate(string metalType, int columnIndex, int rowIndex, Label l, DataGridView dg, AutoCompleteStringCollection itemTypeCollection, AutoCompleteStringCollection purityCollection)
+        public bool Validate(string metalType, int columnIndex, int rowIndex, Label l, DataGridView dg, AutoCompleteStringCollection itemTypeCollection, AutoCompleteStringCollection purityCollection, String GOLD_SILVER)
         {
             dg.Refresh();
             string cellValue = dg[columnIndex, rowIndex].Value?.ToString() ?? "";
@@ -138,11 +138,17 @@ namespace SYA
                 bool VALUE3 = GW();
                 bool VALUE4 = NW();
                 bool VALUE5 = LABOUR();
-                bool VALUE6 = OTHER();
+                bool VALUE6 = OTHER() && OTHER_LBR_CHECK();
                 bool VALUE7 = LABOUR_AMOUNT();
-                bool VALUE8 = HUID1();
-                bool VALUE9 = HUID2();
-                bool VALUE10 = HUID3();
+                if (GOLD_SILVER == "GOLD")
+                {
+                    bool VALUE8 = HUID1();
+                    bool VALUE9 = HUID2();
+                    bool VALUE10 = HUID3();
+                    if (!VALUE8) { dg.CurrentCell = dg.Rows[rowIndex].Cells["HUID1"]; l.Text = "Error in HUID1 !"; return false; }
+                    if (!VALUE9) { dg.CurrentCell = dg.Rows[rowIndex].Cells["HUID2"]; l.Text = "Error in HUID2 !"; return false; }
+                    if (!VALUE10) { dg.CurrentCell = dg.Rows[rowIndex].Cells["HUID3"]; l.Text = "Error in HUID3 !"; return false; }
+                }
                 bool VALUE11 = PRICE();
                 if (!VALUE1) { dg.CurrentCell = dg.Rows[rowIndex].Cells["ITEM_TYPE"]; l.Text = "Error in ITEM_TYPE !"; return false; }
                 if (!VALUE2) { dg.CurrentCell = dg.Rows[rowIndex].Cells["PURITY"]; l.Text = "Error in PURITY !"; return false; }
@@ -151,11 +157,11 @@ namespace SYA
                 if (!VALUE5) { dg.CurrentCell = dg.Rows[rowIndex].Cells["LABOUR"]; l.Text = "Error in LABOUR !"; return false; }
                 if (!VALUE6) { dg.CurrentCell = dg.Rows[rowIndex].Cells["OTHER"]; l.Text = "Error in OTHER !"; return false; }
                 if (!VALUE7) { dg.CurrentCell = dg.Rows[rowIndex].Cells["LBR_AMT"]; l.Text = "Error in LABOUR_AMOUNT !"; return false; }
-                if (!VALUE8) { dg.CurrentCell = dg.Rows[rowIndex].Cells["HUID1"]; l.Text = "Error in HUID1 !"; return false; }
-                if (!VALUE9) { dg.CurrentCell = dg.Rows[rowIndex].Cells["HUID2"]; l.Text = "Error in HUID2 !"; return false; }
-                if (!VALUE10) { dg.CurrentCell = dg.Rows[rowIndex].Cells["HUID3"]; l.Text = "Error in HUID3 !"; return false; }
+                
                 if (!VALUE11) { dg.CurrentCell = dg.Rows[rowIndex].Cells["PRICE"]; l.Text = "Error in PRICE !"; return false; }
                 l.Text = "";
+                void OTHER_LBR_CHECK() { 
+                }
                 return true;
             }
             bool ITEM_TYPE()
@@ -255,6 +261,8 @@ namespace SYA
                 string NW = (get_CellValue(rowIndex, "NW"));
                 string LBR_AMT = (get_CellValue(rowIndex, "LBR_AMT"));
                 string OTH_AMT = (get_CellValue(rowIndex, "OTH_AMT"));
+                string  = (get_CellValue(rowIndex, "lbr_rate"));
+
                 decimal NEW_PRICE = CustomRound((ConvertToDecimal(NW) * RATE) + ConvertToDecimal(LBR_AMT) + ConvertToDecimal(OTH_AMT), 1);
                 string PRICE = get_CellValue(rowIndex, "PRICE");
                 if (string.IsNullOrEmpty(get_CellValue(rowIndex, "PRICE")))
@@ -265,6 +273,7 @@ namespace SYA
                 {
                     set_CellValue(rowIndex, "PRICE", NEW_PRICE.ToString());
                 }
+
                 l.Text = "";
                 return true;
             }
