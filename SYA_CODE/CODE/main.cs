@@ -137,7 +137,7 @@ namespace SYA
         private void btnSearch_Click(object sender, EventArgs e)
         {
             panelsecond.Visible = false;
-        //    LoadForm(new Search());
+            //    LoadForm(new Search());
             LoadForm(new SearchNew());
         }
         private void btnSales_Click(object sender, EventArgs e)
@@ -204,7 +204,7 @@ namespace SYA
         private void button1_Click(object sender, EventArgs e)
         {
             panelsecond.Visible = false;
-          //  LoadForm(new addgold_WORKING());
+            //  LoadForm(new addgold_WORKING());
             LoadForm(new addItemNew());
         }
         // BUTTON DATACARE ADD
@@ -344,6 +344,16 @@ namespace SYA
             //    helper.RunQueryWithoutParametersDataCareDataBase(query, "ExecuteNonQuery");
             HelperFetchData1 obj = new HelperFetchData1();
             obj.ProcessData();
+        }
+
+        private void button14_Click(object sender, EventArgs e)
+        {
+            AddReparing AddReparing;
+            // Initialize NotifyForm
+
+            AddReparing = new AddReparing();
+            AddReparing.Show();
+            //LoadForm(new AddReparing());
         }
     }
     public class ApiResponseItem

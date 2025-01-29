@@ -31,7 +31,7 @@
             // 
             // label25
             // 
-            label25.Font = new Font("Arial", 20F, FontStyle.Bold, GraphicsUnit.Point);
+            label25.Font = new Font("Arial", 20F, FontStyle.Bold);
             label25.Location = new Point(0, 42);
             label25.Name = "label25";
             label25.Size = new Size(783, 60);
@@ -42,7 +42,7 @@
             // textBox1
             // 
             textBox1.Dock = DockStyle.Fill;
-            textBox1.Font = new Font("Arial Rounded MT Bold", 20.25F, FontStyle.Regular, GraphicsUnit.Point);
+            textBox1.Font = new Font("Arial Rounded MT Bold", 20.25F);
             textBox1.Location = new Point(0, 0);
             textBox1.Name = "textBox1";
             textBox1.Size = new Size(800, 39);

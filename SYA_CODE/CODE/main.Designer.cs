@@ -26,6 +26,7 @@
         private void InitializeComponent()
         {
             panelfirst = new Panel();
+            btnProcessData = new Button();
             btnDataCareData = new Button();
             btnDisplayPrice = new Button();
             button4 = new Button();
@@ -60,7 +61,7 @@
             button1 = new Button();
             panel1 = new Panel();
             panelChild = new Panel();
-            btnProcessData = new Button();
+            button14 = new Button();
             panelfirst.SuspendLayout();
             panelsecond.SuspendLayout();
             SuspendLayout();
@@ -68,6 +69,7 @@
             // panelfirst
             // 
             panelfirst.BackColor = Color.FromArgb(3, 63, 99);
+            panelfirst.Controls.Add(button14);
             panelfirst.Controls.Add(btnProcessData);
             panelfirst.Controls.Add(btnDataCareData);
             panelfirst.Controls.Add(btnDisplayPrice);
@@ -92,13 +94,30 @@
             panelfirst.Size = new Size(140, 1005);
             panelfirst.TabIndex = 5;
             // 
+            // btnProcessData
+            // 
+            btnProcessData.BackColor = Color.FromArgb(3, 63, 99);
+            btnProcessData.Dock = DockStyle.Top;
+            btnProcessData.FlatAppearance.BorderSize = 0;
+            btnProcessData.FlatStyle = FlatStyle.Flat;
+            btnProcessData.Font = new Font("Arial", 12F, FontStyle.Bold);
+            btnProcessData.ForeColor = Color.White;
+            btnProcessData.Location = new Point(0, 700);
+            btnProcessData.Margin = new Padding(0);
+            btnProcessData.Name = "btnProcessData";
+            btnProcessData.Size = new Size(140, 40);
+            btnProcessData.TabIndex = 21;
+            btnProcessData.Text = "process dara";
+            btnProcessData.UseVisualStyleBackColor = false;
+            btnProcessData.Click += btnProcessData_Click;
+            // 
             // btnDataCareData
             // 
             btnDataCareData.BackColor = Color.FromArgb(3, 63, 99);
             btnDataCareData.Dock = DockStyle.Top;
             btnDataCareData.FlatAppearance.BorderSize = 0;
             btnDataCareData.FlatStyle = FlatStyle.Flat;
-            btnDataCareData.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            btnDataCareData.Font = new Font("Arial", 12F, FontStyle.Bold);
             btnDataCareData.ForeColor = Color.White;
             btnDataCareData.Location = new Point(0, 660);
             btnDataCareData.Margin = new Padding(0);
@@ -115,7 +134,7 @@
             btnDisplayPrice.Dock = DockStyle.Top;
             btnDisplayPrice.FlatAppearance.BorderSize = 0;
             btnDisplayPrice.FlatStyle = FlatStyle.Flat;
-            btnDisplayPrice.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            btnDisplayPrice.Font = new Font("Arial", 12F, FontStyle.Bold);
             btnDisplayPrice.ForeColor = Color.White;
             btnDisplayPrice.Location = new Point(0, 620);
             btnDisplayPrice.Margin = new Padding(0);
@@ -132,7 +151,7 @@
             button4.Dock = DockStyle.Top;
             button4.FlatAppearance.BorderSize = 0;
             button4.FlatStyle = FlatStyle.Flat;
-            button4.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            button4.Font = new Font("Arial", 12F, FontStyle.Bold);
             button4.ForeColor = Color.White;
             button4.Location = new Point(0, 580);
             button4.Margin = new Padding(0);
@@ -149,7 +168,7 @@
             button22.Dock = DockStyle.Top;
             button22.FlatAppearance.BorderSize = 0;
             button22.FlatStyle = FlatStyle.Flat;
-            button22.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            button22.Font = new Font("Arial", 12F, FontStyle.Bold);
             button22.ForeColor = Color.White;
             button22.Location = new Point(0, 540);
             button22.Margin = new Padding(0);
@@ -166,7 +185,7 @@
             btnSortContact.Dock = DockStyle.Top;
             btnSortContact.FlatAppearance.BorderSize = 0;
             btnSortContact.FlatStyle = FlatStyle.Flat;
-            btnSortContact.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            btnSortContact.Font = new Font("Arial", 12F, FontStyle.Bold);
             btnSortContact.ForeColor = Color.White;
             btnSortContact.Location = new Point(0, 500);
             btnSortContact.Margin = new Padding(0);
@@ -183,7 +202,7 @@
             btnCustomer.Dock = DockStyle.Top;
             btnCustomer.FlatAppearance.BorderSize = 0;
             btnCustomer.FlatStyle = FlatStyle.Flat;
-            btnCustomer.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            btnCustomer.Font = new Font("Arial", 12F, FontStyle.Bold);
             btnCustomer.ForeColor = Color.White;
             btnCustomer.Location = new Point(0, 460);
             btnCustomer.Margin = new Padding(0);
@@ -199,7 +218,7 @@
             btnImportData.Dock = DockStyle.Top;
             btnImportData.FlatAppearance.BorderSize = 0;
             btnImportData.FlatStyle = FlatStyle.Flat;
-            btnImportData.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            btnImportData.Font = new Font("Arial", 12F, FontStyle.Bold);
             btnImportData.ForeColor = Color.White;
             btnImportData.Location = new Point(0, 420);
             btnImportData.Margin = new Padding(0);
@@ -216,7 +235,7 @@
             btnRtgs.Dock = DockStyle.Top;
             btnRtgs.FlatAppearance.BorderSize = 0;
             btnRtgs.FlatStyle = FlatStyle.Flat;
-            btnRtgs.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            btnRtgs.Font = new Font("Arial", 12F, FontStyle.Bold);
             btnRtgs.ForeColor = Color.White;
             btnRtgs.Location = new Point(0, 380);
             btnRtgs.Margin = new Padding(0);
@@ -233,7 +252,7 @@
             btnPrintTags.Dock = DockStyle.Top;
             btnPrintTags.FlatAppearance.BorderSize = 0;
             btnPrintTags.FlatStyle = FlatStyle.Flat;
-            btnPrintTags.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            btnPrintTags.Font = new Font("Arial", 12F, FontStyle.Bold);
             btnPrintTags.ForeColor = Color.White;
             btnPrintTags.Location = new Point(0, 340);
             btnPrintTags.Margin = new Padding(0);
@@ -250,7 +269,7 @@
             btnStocks.Dock = DockStyle.Top;
             btnStocks.FlatAppearance.BorderSize = 0;
             btnStocks.FlatStyle = FlatStyle.Flat;
-            btnStocks.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            btnStocks.Font = new Font("Arial", 12F, FontStyle.Bold);
             btnStocks.ForeColor = Color.White;
             btnStocks.Location = new Point(0, 300);
             btnStocks.Margin = new Padding(0);
@@ -267,7 +286,7 @@
             btnSales.Dock = DockStyle.Top;
             btnSales.FlatAppearance.BorderSize = 0;
             btnSales.FlatStyle = FlatStyle.Flat;
-            btnSales.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            btnSales.Font = new Font("Arial", 12F, FontStyle.Bold);
             btnSales.ForeColor = Color.White;
             btnSales.Location = new Point(0, 260);
             btnSales.Margin = new Padding(0);
@@ -284,7 +303,7 @@
             btnSearch.Dock = DockStyle.Top;
             btnSearch.FlatAppearance.BorderSize = 0;
             btnSearch.FlatStyle = FlatStyle.Flat;
-            btnSearch.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            btnSearch.Font = new Font("Arial", 12F, FontStyle.Bold);
             btnSearch.ForeColor = Color.White;
             btnSearch.Location = new Point(0, 220);
             btnSearch.Margin = new Padding(0);
@@ -301,7 +320,7 @@
             btnSellItem.Dock = DockStyle.Top;
             btnSellItem.FlatAppearance.BorderSize = 0;
             btnSellItem.FlatStyle = FlatStyle.Flat;
-            btnSellItem.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            btnSellItem.Font = new Font("Arial", 12F, FontStyle.Bold);
             btnSellItem.ForeColor = Color.White;
             btnSellItem.Location = new Point(0, 180);
             btnSellItem.Margin = new Padding(0);
@@ -318,7 +337,7 @@
             btnAddItem.Dock = DockStyle.Top;
             btnAddItem.FlatAppearance.BorderSize = 0;
             btnAddItem.FlatStyle = FlatStyle.Flat;
-            btnAddItem.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            btnAddItem.Font = new Font("Arial", 12F, FontStyle.Bold);
             btnAddItem.ForeColor = Color.White;
             btnAddItem.Location = new Point(0, 140);
             btnAddItem.Margin = new Padding(0);
@@ -373,7 +392,7 @@
             button9.Dock = DockStyle.Top;
             button9.FlatAppearance.BorderSize = 0;
             button9.FlatStyle = FlatStyle.Flat;
-            button9.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            button9.Font = new Font("Arial", 12F, FontStyle.Bold);
             button9.ForeColor = Color.FromArgb(3, 63, 99);
             button9.Location = new Point(0, 731);
             button9.Margin = new Padding(0);
@@ -390,7 +409,7 @@
             btnEditRTGS.Dock = DockStyle.Top;
             btnEditRTGS.FlatAppearance.BorderSize = 0;
             btnEditRTGS.FlatStyle = FlatStyle.Flat;
-            btnEditRTGS.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            btnEditRTGS.Font = new Font("Arial", 12F, FontStyle.Bold);
             btnEditRTGS.ForeColor = Color.FromArgb(3, 63, 99);
             btnEditRTGS.Location = new Point(0, 691);
             btnEditRTGS.Margin = new Padding(0);
@@ -407,7 +426,7 @@
             button8.Dock = DockStyle.Top;
             button8.FlatAppearance.BorderSize = 0;
             button8.FlatStyle = FlatStyle.Flat;
-            button8.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            button8.Font = new Font("Arial", 12F, FontStyle.Bold);
             button8.ForeColor = Color.FromArgb(3, 63, 99);
             button8.Location = new Point(0, 624);
             button8.Margin = new Padding(0);
@@ -424,7 +443,7 @@
             button5.Dock = DockStyle.Top;
             button5.FlatAppearance.BorderSize = 0;
             button5.FlatStyle = FlatStyle.Flat;
-            button5.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            button5.Font = new Font("Arial", 12F, FontStyle.Bold);
             button5.ForeColor = Color.FromArgb(3, 63, 99);
             button5.Location = new Point(0, 573);
             button5.Margin = new Padding(0);
@@ -441,7 +460,7 @@
             button3.Dock = DockStyle.Top;
             button3.FlatAppearance.BorderSize = 0;
             button3.FlatStyle = FlatStyle.Flat;
-            button3.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            button3.Font = new Font("Arial", 12F, FontStyle.Bold);
             button3.ForeColor = Color.FromArgb(3, 63, 99);
             button3.Location = new Point(0, 533);
             button3.Margin = new Padding(0);
@@ -458,7 +477,7 @@
             button7.Dock = DockStyle.Top;
             button7.FlatAppearance.BorderSize = 0;
             button7.FlatStyle = FlatStyle.Flat;
-            button7.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            button7.Font = new Font("Arial", 12F, FontStyle.Bold);
             button7.ForeColor = Color.FromArgb(3, 63, 99);
             button7.Location = new Point(0, 465);
             button7.Margin = new Padding(0);
@@ -475,7 +494,7 @@
             button23.Dock = DockStyle.Top;
             button23.FlatAppearance.BorderSize = 0;
             button23.FlatStyle = FlatStyle.Flat;
-            button23.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            button23.Font = new Font("Arial", 12F, FontStyle.Bold);
             button23.ForeColor = Color.FromArgb(3, 63, 99);
             button23.Location = new Point(0, 400);
             button23.Margin = new Padding(0);
@@ -492,7 +511,7 @@
             button20.Dock = DockStyle.Top;
             button20.FlatAppearance.BorderSize = 0;
             button20.FlatStyle = FlatStyle.Flat;
-            button20.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            button20.Font = new Font("Arial", 12F, FontStyle.Bold);
             button20.ForeColor = Color.FromArgb(3, 63, 99);
             button20.Location = new Point(0, 342);
             button20.Margin = new Padding(0);
@@ -509,7 +528,7 @@
             button17.Dock = DockStyle.Top;
             button17.FlatAppearance.BorderSize = 0;
             button17.FlatStyle = FlatStyle.Flat;
-            button17.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            button17.Font = new Font("Arial", 12F, FontStyle.Bold);
             button17.ForeColor = Color.FromArgb(3, 63, 99);
             button17.Location = new Point(0, 302);
             button17.Margin = new Padding(0);
@@ -526,7 +545,7 @@
             button12.Dock = DockStyle.Top;
             button12.FlatAppearance.BorderSize = 0;
             button12.FlatStyle = FlatStyle.Flat;
-            button12.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            button12.Font = new Font("Arial", 12F, FontStyle.Bold);
             button12.ForeColor = Color.FromArgb(3, 63, 99);
             button12.Location = new Point(0, 249);
             button12.Margin = new Padding(0);
@@ -543,7 +562,7 @@
             button13.Dock = DockStyle.Top;
             button13.FlatAppearance.BorderSize = 0;
             button13.FlatStyle = FlatStyle.Flat;
-            button13.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            button13.Font = new Font("Arial", 12F, FontStyle.Bold);
             button13.ForeColor = Color.FromArgb(3, 63, 99);
             button13.Location = new Point(0, 209);
             button13.Margin = new Padding(0);
@@ -560,7 +579,7 @@
             button11.Dock = DockStyle.Top;
             button11.FlatAppearance.BorderSize = 0;
             button11.FlatStyle = FlatStyle.Flat;
-            button11.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            button11.Font = new Font("Arial", 12F, FontStyle.Bold);
             button11.ForeColor = Color.FromArgb(3, 63, 99);
             button11.Location = new Point(0, 160);
             button11.Margin = new Padding(0);
@@ -577,7 +596,7 @@
             button10.Dock = DockStyle.Top;
             button10.FlatAppearance.BorderSize = 0;
             button10.FlatStyle = FlatStyle.Flat;
-            button10.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            button10.Font = new Font("Arial", 12F, FontStyle.Bold);
             button10.ForeColor = Color.FromArgb(3, 63, 99);
             button10.Location = new Point(0, 120);
             button10.Margin = new Padding(0);
@@ -594,7 +613,7 @@
             button6.Dock = DockStyle.Top;
             button6.FlatAppearance.BorderSize = 0;
             button6.FlatStyle = FlatStyle.Flat;
-            button6.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            button6.Font = new Font("Arial", 12F, FontStyle.Bold);
             button6.ForeColor = Color.FromArgb(3, 63, 99);
             button6.Location = new Point(0, 80);
             button6.Margin = new Padding(0);
@@ -611,7 +630,7 @@
             button2.Dock = DockStyle.Top;
             button2.FlatAppearance.BorderSize = 0;
             button2.FlatStyle = FlatStyle.Flat;
-            button2.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            button2.Font = new Font("Arial", 12F, FontStyle.Bold);
             button2.ForeColor = Color.FromArgb(3, 63, 99);
             button2.Location = new Point(0, 40);
             button2.Margin = new Padding(0);
@@ -628,7 +647,7 @@
             button1.Dock = DockStyle.Top;
             button1.FlatAppearance.BorderSize = 0;
             button1.FlatStyle = FlatStyle.Flat;
-            button1.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            button1.Font = new Font("Arial", 12F, FontStyle.Bold);
             button1.ForeColor = Color.FromArgb(3, 63, 99);
             button1.Location = new Point(0, 0);
             button1.Margin = new Padding(0);
@@ -659,22 +678,22 @@
             panelChild.Size = new Size(1004, 995);
             panelChild.TabIndex = 1;
             // 
-            // btnProcessData
+            // button14
             // 
-            btnProcessData.BackColor = Color.FromArgb(3, 63, 99);
-            btnProcessData.Dock = DockStyle.Top;
-            btnProcessData.FlatAppearance.BorderSize = 0;
-            btnProcessData.FlatStyle = FlatStyle.Flat;
-            btnProcessData.Font = new Font("Arial", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            btnProcessData.ForeColor = Color.White;
-            btnProcessData.Location = new Point(0, 700);
-            btnProcessData.Margin = new Padding(0);
-            btnProcessData.Name = "btnProcessData";
-            btnProcessData.Size = new Size(140, 40);
-            btnProcessData.TabIndex = 21;
-            btnProcessData.Text = "process dara";
-            btnProcessData.UseVisualStyleBackColor = false;
-            btnProcessData.Click += btnProcessData_Click;
+            button14.BackColor = Color.FromArgb(3, 63, 99);
+            button14.Dock = DockStyle.Top;
+            button14.FlatAppearance.BorderSize = 0;
+            button14.FlatStyle = FlatStyle.Flat;
+            button14.Font = new Font("Arial", 12F, FontStyle.Bold);
+            button14.ForeColor = Color.White;
+            button14.Location = new Point(0, 740);
+            button14.Margin = new Padding(0);
+            button14.Name = "button14";
+            button14.Size = new Size(140, 40);
+            button14.TabIndex = 22;
+            button14.Text = "Reparing";
+            button14.UseVisualStyleBackColor = false;
+            button14.Click += button14_Click;
             // 
             // main
             // 
@@ -732,5 +751,6 @@
         private Button btnDisplayPrice;
         private Button btnDataCareData;
         private Button btnProcessData;
+        private Button button14;
     }
 }
