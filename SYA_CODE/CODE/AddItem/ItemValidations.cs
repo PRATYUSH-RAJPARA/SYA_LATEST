@@ -1,6 +1,5 @@
 ﻿using OfficeOpenXml;
 using OfficeOpenXml.Style;
-
 namespace SYA
 {
     public class ItemValidations
@@ -140,7 +139,6 @@ namespace SYA
                     {
                         return !(string.IsNullOrEmpty(n) || n == "0");
                     }
-
                     if (CHECK_IF_NULL_OR_0(LBR_AMT) || CHECK_IF_NULL_OR_0(OTH_AMT) || CHECK_IF_NULL_OR_0(LBR_RATE))
                     {
                         return true;  // At least one has a non-zero, non-null value
@@ -149,7 +147,6 @@ namespace SYA
                     {
                         return false; // All are either null or "0"
                     }
-
                 }
                 bool VALUE7 = LABOUR_AMOUNT();
                 if (GOLD_SILVER == "GOLD")

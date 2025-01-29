@@ -345,12 +345,10 @@ namespace SYA
             HelperFetchData1 obj = new HelperFetchData1();
             obj.ProcessData();
         }
-
         private void button14_Click(object sender, EventArgs e)
         {
             AddReparing AddReparing;
             // Initialize NotifyForm
-
             AddReparing = new AddReparing();
             AddReparing.Show();
             //LoadForm(new AddReparing());
