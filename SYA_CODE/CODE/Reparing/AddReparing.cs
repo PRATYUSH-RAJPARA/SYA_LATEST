@@ -17,18 +17,47 @@ namespace SYA
         private void AddReparing_Load(object sender, EventArgs e)
         {
             this.KeyPreview = true; // Ensures the form captures key events
+
             LoadComboBoxData(cbType, "TYPE");
             LoadComboBoxData(cbSubType, "SUB_TYPE");
             LoadComboBoxData(cbCreatedBy, "USER");
             LoadComboBoxData(cbPriority, "PRIORITY");
+
             txtWeight.KeyPress += AllowOnlyNumeric;
             txtNumber.KeyPress += AllowOnlyNumeric;
             txtEstimate.KeyPress += AllowOnlyNumeric;
+
             txtWeight.Leave += FormatDecimal;
             txtNumber.Leave += FormatDecimal;
             txtEstimate.Leave += FormatDecimal;
-            // Attach KeyDown event to all textboxes
+
+            // Attach KeyPress event to all TextBoxes (excluding RichTextBox)
+            AttachKeyPressEvent(this);
         }
+
+        // Recursively attach KeyPress event to all TextBox controls
+        private void AttachKeyPressEvent(Control parent)
+        {
+            foreach (Control ctrl in parent.Controls)
+            {
+                if (ctrl is TextBox txtBox) // Exclude RichTextBox
+                {
+                    txtBox.KeyPress += EditingControl_KeyPress;
+                }
+                else if (ctrl.HasChildren) // Check inside panels, group boxes, etc.
+                {
+                    AttachKeyPressEvent(ctrl);
+                }
+            }
+        }
+        private void EditingControl_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (char.IsLetter(e.KeyChar)) // If it's a letter
+            {
+                e.KeyChar = char.ToUpper(e.KeyChar); // Convert to uppercase
+            }
+        }
+
         private void AllowOnlyNumeric(object sender, KeyPressEventArgs e)
         {
             TextBox txtBox = sender as TextBox;
@@ -102,14 +131,22 @@ namespace SYA
         {
             if (keyData == Keys.Enter)
             {
-                // Check if Shift is pressed (to go backward like Shift+Tab)
-                bool forward = !ModifierKeys.HasFlag(Keys.Shift);
-                // Move to the next control based on TabIndex order
-                this.SelectNextControl(this.ActiveControl, forward, true, true, true);
-                return true; // Prevent default Enter key behavior (like beeping)
+                // If the active control is the Save button, trigger save action
+                if (this.ActiveControl == buttonSave)
+                {
+                    buttonSave.PerformClick(); // Simulate button click
+                    return true; // Prevent default Enter key behavior
+                }
+                else
+                {
+                    // Move to the next control in tab order
+                    this.SelectNextControl(this.ActiveControl, true, true, true, true);
+                    return true; // Prevent system default behavior
+                }
             }
             return base.ProcessCmdKey(ref msg, keyData);
         }
+
         private void LoadAutoCompleteNames()
         {
             try
