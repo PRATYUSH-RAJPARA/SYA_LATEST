@@ -5,8 +5,8 @@
     <Nullable>enable</Nullable>
     <UseWindowsForms>true</UseWindowsForms>
     <ImplicitUsings>enable</ImplicitUsings>
-	<ApplicationHighDpiMode>SystemAware</ApplicationHighDpiMode>
-	<ForceDesignerDpiUnaware>true</ForceDesignerDpiUnaware>
+	<!--<ApplicationHighDpiMode>SystemAware</ApplicationHighDpiMode>
+	<ForceDesignerDpiUnaware>true</ForceDesignerDpiUnaware>-->
     <SupportedOSPlatformVersion>7.0</SupportedOSPlatformVersion>
     <StartupObject>SYA.Program</StartupObject>
     <UseWPF>False</UseWPF>

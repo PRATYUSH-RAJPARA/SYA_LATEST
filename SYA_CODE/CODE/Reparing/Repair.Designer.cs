@@ -1,4 +1,4 @@
-﻿namespace SYA.CODE.Reparing
+﻿namespace SYA
 {
     partial class Repair
     {
@@ -52,6 +52,7 @@
             // 
             // flowLayoutPanel1
             // 
+            flowLayoutPanel1.AutoScroll = true;
             flowLayoutPanel1.Dock = DockStyle.Fill;
             flowLayoutPanel1.Location = new Point(83, 48);
             flowLayoutPanel1.Name = "flowLayoutPanel1";
@@ -66,6 +67,7 @@
             Controls.Add(tableLayoutPanel1);
             Name = "Repair";
             Text = "Repair";
+            Load += Repair_Load;
             tableLayoutPanel1.ResumeLayout(false);
             ResumeLayout(false);
         }
