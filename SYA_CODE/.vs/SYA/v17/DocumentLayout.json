@@ -3,20 +3,28 @@
   "WorkspaceRootPath": "F:\\SYA_LATEST\\SYA_CODE\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{F4E7395C-6436-4F9A-A0E3-A889008539AF}|SYA.csproj|f:\\sya_latest\\sya_code\\code\\reparing\\repair.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F4E7395C-6436-4F9A-A0E3-A889008539AF}|SYA.csproj|solutionrelative:code\\reparing\\repair.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{F4E7395C-6436-4F9A-A0E3-A889008539AF}|SYA.csproj|f:\\sya_latest\\sya_code\\code\\reparing\\repaircard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F4E7395C-6436-4F9A-A0E3-A889008539AF}|SYA.csproj|solutionrelative:code\\reparing\\repaircard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F4E7395C-6436-4F9A-A0E3-A889008539AF}|SYA.csproj|F:\\SYA_LATEST\\SYA_CODE\\code\\reparing\\repair.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{F4E7395C-6436-4F9A-A0E3-A889008539AF}|SYA.csproj|solutionrelative:code\\reparing\\repair.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F4E7395C-6436-4F9A-A0E3-A889008539AF}|SYA.csproj|F:\\SYA_LATEST\\SYA_CODE\\code\\reparing\\addreparing.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{F4E7395C-6436-4F9A-A0E3-A889008539AF}|SYA.csproj|solutionrelative:code\\reparing\\addreparing.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
       "AbsoluteMoniker": "D:0:0:{F4E7395C-6436-4F9A-A0E3-A889008539AF}|SYA.csproj|f:\\sya_latest\\sya_code\\code\\reparing\\repaircard.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F4E7395C-6436-4F9A-A0E3-A889008539AF}|SYA.csproj|solutionrelative:code\\reparing\\repaircard.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F4E7395C-6436-4F9A-A0E3-A889008539AF}|SYA.csproj|f:\\sya_latest\\sya_code\\code\\reparing\\repaircard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "AbsoluteMoniker": "D:0:0:{F4E7395C-6436-4F9A-A0E3-A889008539AF}|SYA.csproj|F:\\SYA_LATEST\\SYA_CODE\\code\\reparing\\repaircard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{F4E7395C-6436-4F9A-A0E3-A889008539AF}|SYA.csproj|solutionrelative:code\\reparing\\repaircard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F4E7395C-6436-4F9A-A0E3-A889008539AF}|SYA.csproj|f:\\sya_latest\\sya_code\\code\\reparing\\repair.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F4E7395C-6436-4F9A-A0E3-A889008539AF}|SYA.csproj|solutionrelative:code\\reparing\\repair.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{F4E7395C-6436-4F9A-A0E3-A889008539AF}|SYA.csproj|f:\\sya_latest\\sya_code\\code\\main.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -27,16 +35,8 @@
       "RelativeMoniker": "D:0:0:{F4E7395C-6436-4F9A-A0E3-A889008539AF}|SYA.csproj|solutionrelative:code\\helper\\helper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F4E7395C-6436-4F9A-A0E3-A889008539AF}|SYA.csproj|F:\\SYA_LATEST\\SYA_CODE\\code\\reparing\\repair.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{F4E7395C-6436-4F9A-A0E3-A889008539AF}|SYA.csproj|solutionrelative:code\\reparing\\repair.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{F4E7395C-6436-4F9A-A0E3-A889008539AF}|SYA.csproj|f:\\sya_latest\\sya_code\\code\\additem\\additemdatagridview_setup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F4E7395C-6436-4F9A-A0E3-A889008539AF}|SYA.csproj|solutionrelative:code\\additem\\additemdatagridview_setup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F4E7395C-6436-4F9A-A0E3-A889008539AF}|SYA.csproj|F:\\SYA_LATEST\\SYA_CODE\\code\\reparing\\addreparing.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{F4E7395C-6436-4F9A-A0E3-A889008539AF}|SYA.csproj|solutionrelative:code\\reparing\\addreparing.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
       "AbsoluteMoniker": "D:0:0:{F4E7395C-6436-4F9A-A0E3-A889008539AF}|SYA.csproj|f:\\sya_latest\\sya_code\\code\\reparing\\repair.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -66,7 +66,7 @@
       "DocumentGroups": [
         {
           "DockedHeight": 200,
-          "SelectedChildIndex": 5,
+          "SelectedChildIndex": 7,
           "Children": [
             {
               "$type": "Bookmark",
@@ -96,7 +96,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 3,
               "Title": "AddReparing.cs [Design]",
               "DocumentMoniker": "F:\\SYA_LATEST\\SYA_CODE\\CODE\\Reparing\\AddReparing.cs",
               "RelativeDocumentMoniker": "CODE\\Reparing\\AddReparing.cs",
@@ -104,17 +104,18 @@
               "RelativeToolTip": "CODE\\Reparing\\AddReparing.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-01-30T13:08:48.051Z",
-              "IsPinned": true
+              "IsPinned": true,
+              "EditorCaption": " [Design]"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "RepairCard.cs",
               "DocumentMoniker": "F:\\SYA_LATEST\\SYA_CODE\\CODE\\Reparing\\RepairCard.cs",
               "RelativeDocumentMoniker": "CODE\\Reparing\\RepairCard.cs",
               "ToolTip": "F:\\SYA_LATEST\\SYA_CODE\\CODE\\Reparing\\RepairCard.cs*",
               "RelativeToolTip": "CODE\\Reparing\\RepairCard.cs*",
-              "ViewState": "AgIAACoAAAAAAAAAAAAmwFUAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAABsAAAAAAAAAAAAowBgAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-01-30T11:40:51.906Z",
               "IsPinned": true,
@@ -122,12 +123,12 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 2,
               "Title": "Repair.cs [Design]",
               "DocumentMoniker": "F:\\SYA_LATEST\\SYA_CODE\\CODE\\Reparing\\Repair.cs",
               "RelativeDocumentMoniker": "CODE\\Reparing\\Repair.cs",
-              "ToolTip": "F:\\SYA_LATEST\\SYA_CODE\\CODE\\Reparing\\Repair.cs [Design]",
-              "RelativeToolTip": "CODE\\Reparing\\Repair.cs [Design]",
+              "ToolTip": "F:\\SYA_LATEST\\SYA_CODE\\CODE\\Reparing\\Repair.cs [Design]*",
+              "RelativeToolTip": "CODE\\Reparing\\Repair.cs [Design]*",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-01-30T07:10:36.212Z",
               "IsPinned": true,
@@ -135,13 +136,13 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 0,
               "Title": "Repair.cs",
               "DocumentMoniker": "F:\\SYA_LATEST\\SYA_CODE\\CODE\\Reparing\\Repair.cs",
               "RelativeDocumentMoniker": "CODE\\Reparing\\Repair.cs",
-              "ToolTip": "F:\\SYA_LATEST\\SYA_CODE\\CODE\\Reparing\\Repair.cs",
-              "RelativeToolTip": "CODE\\Reparing\\Repair.cs",
-              "ViewState": "AgIAAAkAAAAAAAAAAAAAABcAAAAEAAAAAAAAAA==",
+              "ToolTip": "F:\\SYA_LATEST\\SYA_CODE\\CODE\\Reparing\\Repair.cs*",
+              "RelativeToolTip": "CODE\\Reparing\\Repair.cs*",
+              "ViewState": "AgIAABEAAAAAAAAAAAAQwCAAAAA+AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-01-30T14:36:27.644Z",
               "IsPinned": true,
@@ -149,19 +150,18 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 5,
               "Title": "RepairCard.cs [Design]",
               "DocumentMoniker": "F:\\SYA_LATEST\\SYA_CODE\\CODE\\Reparing\\RepairCard.cs",
               "RelativeDocumentMoniker": "CODE\\Reparing\\RepairCard.cs",
-              "ToolTip": "F:\\SYA_LATEST\\SYA_CODE\\CODE\\Reparing\\RepairCard.cs [Design]*",
-              "RelativeToolTip": "CODE\\Reparing\\RepairCard.cs [Design]*",
+              "ToolTip": "F:\\SYA_LATEST\\SYA_CODE\\CODE\\Reparing\\RepairCard.cs [Design]",
+              "RelativeToolTip": "CODE\\Reparing\\RepairCard.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-31T12:55:17.228Z",
-              "EditorCaption": " [Design]"
+              "WhenOpened": "2025-01-31T12:55:17.228Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 8,
               "Title": "AddItemDataGridView_Setup.cs",
               "DocumentMoniker": "F:\\SYA_LATEST\\SYA_CODE\\CODE\\AddItem\\AddItemDataGridView_Setup.cs",
               "RelativeDocumentMoniker": "CODE\\AddItem\\AddItemDataGridView_Setup.cs",
@@ -186,7 +186,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 4,
               "Title": "RepairCard.Designer.cs",
               "DocumentMoniker": "F:\\SYA_LATEST\\SYA_CODE\\CODE\\Reparing\\RepairCard.Designer.cs",
               "RelativeDocumentMoniker": "CODE\\Reparing\\RepairCard.Designer.cs",
@@ -194,12 +194,11 @@
               "RelativeToolTip": "CODE\\Reparing\\RepairCard.Designer.cs",
               "ViewState": "AgIAADIAAAAAAAAAAAAUwEkAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-30T14:30:22.206Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-01-30T14:30:22.206Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 6,
               "Title": "main.cs",
               "DocumentMoniker": "F:\\SYA_LATEST\\SYA_CODE\\CODE\\main.cs",
               "RelativeDocumentMoniker": "CODE\\main.cs",
@@ -224,7 +223,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 7,
               "Title": "helper.cs",
               "DocumentMoniker": "F:\\SYA_LATEST\\SYA_CODE\\CODE\\Helper\\helper.cs",
               "RelativeDocumentMoniker": "CODE\\Helper\\helper.cs",
@@ -232,8 +231,7 @@
               "RelativeToolTip": "CODE\\Helper\\helper.cs",
               "ViewState": "AgIAABMAAAAAAAAAAAAgwBEAAAAoAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-30T05:10:43.127Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-01-30T05:10:43.127Z"
             },
             {
               "$type": "Document",

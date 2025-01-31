@@ -21,7 +21,7 @@ namespace SYA
             AttachEventHandlers(); // Attach button click events
         }
 
-        public void SetRepairDetails(string name, string date, string cost, string status)
+        public void SetRepairDetails(string name, string date, string status)
         {
             NAME.Text = name;
             TYPE_DATE.Text = date;
@@ -51,19 +51,19 @@ namespace SYA
             {
                 case "New":
                     btnTypeNew.BackColor = statusColors["New"];
-                    btnTypeNew.ForeColor = Color.White;
+                    btnTypeNew.ForeColor = Color.Black;
                     break;
                 case "In Progress":
                     btnTypeInProgress.BackColor = statusColors["In Progress"];
-                    btnTypeInProgress.ForeColor = Color.White;
+                    btnTypeInProgress.ForeColor = Color.Black;
                     break;
                 case "Completed":
                     btnTypeCompleted.BackColor = statusColors["Completed"];
-                    btnTypeCompleted.ForeColor = Color.White;
+                    btnTypeCompleted.ForeColor = Color.Black;
                     break;
                 case "Unable to Complete":
                     btnTypeUnableToComplete.BackColor = statusColors["Unable to Complete"];
-                    btnTypeUnableToComplete.ForeColor = Color.White;
+                    btnTypeUnableToComplete.ForeColor = Color.Black;
                     break;
             }
         }
