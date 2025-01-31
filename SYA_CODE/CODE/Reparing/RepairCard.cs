@@ -8,12 +8,14 @@ namespace SYA
     public partial class RepairCard : UserControl
     {
         private Dictionary<string, Color> statusColors = new Dictionary<string, Color>
-        {
-            { "New", ColorTranslator.FromHtml("#90e0ef") },
-            { "In Progress", ColorTranslator.FromHtml("#ffe94e") },
-            { "Completed", ColorTranslator.FromHtml("#a1ef7a") },
-            { "Unable to Complete", ColorTranslator.FromHtml("#ec8385") }
-        };
+    {
+        { "New", ColorTranslator.FromHtml("#90e0ef") },
+        { "In Progress", ColorTranslator.FromHtml("#ffe94e") },
+        { "Completed", ColorTranslator.FromHtml("#a1ef7a") },
+        { "Unable to Complete", ColorTranslator.FromHtml("#ec8385") }
+    };
+
+        private int repairId; // To store the ID of the repair item
 
         public RepairCard()
         {
@@ -21,8 +23,9 @@ namespace SYA
             AttachEventHandlers(); // Attach button click events
         }
 
-        public void SetRepairDetails(string name, string date, string status)
+        public void SetRepairDetails(int id, string name, string date, string status)
         {
+            repairId = id; // Store the ID
             NAME.Text = name;
             TYPE_DATE.Text = date;
             STATUS.Text = status;
@@ -74,12 +77,58 @@ namespace SYA
             btnTypeInProgress.Click += (s, e) => ChangeStatus("In Progress");
             btnTypeCompleted.Click += (s, e) => ChangeStatus("Completed");
             btnTypeUnableToComplete.Click += (s, e) => ChangeStatus("Unable to Complete");
+            btnDelete.Click += (s, e) => DeleteRepairItem(); // Attach the Delete event
         }
 
         private void ChangeStatus(string newStatus)
         {
             STATUS.Text = newStatus; // Update label
             UpdateStatusUI(newStatus); // Refresh colors
+
+            // Update the status in the database
+            string query = $"UPDATE RepairingData SET STATUS = '{newStatus}' WHERE ID = {repairId}";
+            object affectedRows = helper.RunQueryWithoutParametersSYADataBase(query, "ExecuteNonQuery");
+
+            if (affectedRows == null || Convert.ToInt32(affectedRows) <= 0)
+            {
+                MessageBox.Show("Failed to update the status in the database.", "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else
+            {
+                // Proceed with any additional logic if the update is successful
+            }
+
         }
+
+        private void DeleteRepairItem()
+        {
+            // Ask for confirmation
+            DialogResult result = MessageBox.Show(
+                "Are you sure you want to delete this repair item?",
+                "Confirm Deletion",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Warning);
+
+            if (result == DialogResult.Yes)
+            {
+                // Delete from database
+                string query = $"DELETE FROM RepairingData WHERE ID = {repairId}";
+                object affectedRows = helper.RunQueryWithoutParametersSYADataBase(query, "ExecuteNonQuery");
+
+                // Check if the result is valid and the affected rows count is greater than 0
+                if (affectedRows != null && Convert.ToInt32(affectedRows) > 0)
+                {
+                    // If successful (i.e., at least one row was affected), remove the card from the UI
+                    this.Parent.Controls.Remove(this);
+                }
+                else
+                {
+                    MessageBox.Show("Failed to delete the repair item from the database or no rows were affected.", "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+
     }
+
+
 }

@@ -23,18 +23,19 @@ namespace SYA
             flowLayoutPanel1.Controls.Clear();
 
             // Fetch repair data from SQLite
-            DataTable dt = helper.FetchDataTableFromSYADataBase("SELECT NAME, BOOK_DATE, STATUS FROM RepairingData");
+            DataTable dt = helper.FetchDataTableFromSYADataBase("SELECT ID, NAME, BOOK_DATE, STATUS FROM RepairingData");
 
             if (dt != null)
             {
                 foreach (DataRow row in dt.Rows)
                 {
+                    int id = Convert.ToInt32(row["ID"]);  // Get the repair ID
                     string name = row["NAME"].ToString();
                     string date = row["BOOK_DATE"].ToString();
                     string status = row["STATUS"].ToString();
 
                     RepairCard card = new RepairCard();
-                    card.SetRepairDetails(name, date, status); // Cost is ignored as per your request
+                    card.SetRepairDetails(id, name, date, status); // Pass the ID to the card
                     flowLayoutPanel1.Controls.Add(card);
                 }
             }
@@ -43,5 +44,6 @@ namespace SYA
                 MessageBox.Show("Error loading repair data.", "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
     }
 }
