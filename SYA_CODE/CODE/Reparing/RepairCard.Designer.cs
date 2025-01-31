@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(RepairCard));
             tableLayoutPanel1 = new TableLayoutPanel();
+            tableLayoutPanel6 = new TableLayoutPanel();
             tableLayoutPanel2 = new TableLayoutPanel();
             tableLayoutPanel5 = new TableLayoutPanel();
             btnDelete = new Button();
@@ -44,6 +45,7 @@
             btnTypeNew = new Button();
             btnTypeInProgress = new Button();
             tableLayoutPanel1.SuspendLayout();
+            tableLayoutPanel6.SuspendLayout();
             tableLayoutPanel2.SuspendLayout();
             tableLayoutPanel5.SuspendLayout();
             tableLayoutPanel4.SuspendLayout();
@@ -53,20 +55,41 @@
             // 
             // tableLayoutPanel1
             // 
+            tableLayoutPanel1.BackColor = Color.Transparent;
             tableLayoutPanel1.ColumnCount = 3;
-            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 3F));
-            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 94F));
-            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 3F));
-            tableLayoutPanel1.Controls.Add(tableLayoutPanel2, 1, 1);
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 10F));
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
+            tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 10F));
+            tableLayoutPanel1.Controls.Add(tableLayoutPanel6, 1, 1);
             tableLayoutPanel1.Dock = DockStyle.Fill;
             tableLayoutPanel1.Location = new Point(0, 0);
+            tableLayoutPanel1.Margin = new Padding(1);
             tableLayoutPanel1.Name = "tableLayoutPanel1";
             tableLayoutPanel1.RowCount = 3;
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 3F));
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 94F));
-            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 3F));
-            tableLayoutPanel1.Size = new Size(400, 400);
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 10F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
+            tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 10F));
+            tableLayoutPanel1.Size = new Size(450, 450);
             tableLayoutPanel1.TabIndex = 1;
+            // 
+            // tableLayoutPanel6
+            // 
+            tableLayoutPanel6.BackColor = Color.White;
+            tableLayoutPanel6.ColumnCount = 3;
+            tableLayoutPanel6.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 10F));
+            tableLayoutPanel6.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
+            tableLayoutPanel6.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 10F));
+            tableLayoutPanel6.Controls.Add(tableLayoutPanel2, 1, 1);
+            tableLayoutPanel6.Dock = DockStyle.Fill;
+            tableLayoutPanel6.Location = new Point(11, 11);
+            tableLayoutPanel6.Margin = new Padding(1);
+            tableLayoutPanel6.Name = "tableLayoutPanel6";
+            tableLayoutPanel6.RowCount = 3;
+            tableLayoutPanel6.RowStyles.Add(new RowStyle(SizeType.Absolute, 10F));
+            tableLayoutPanel6.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
+            tableLayoutPanel6.RowStyles.Add(new RowStyle(SizeType.Absolute, 10F));
+            tableLayoutPanel6.Size = new Size(428, 428);
+            tableLayoutPanel6.TabIndex = 1;
             // 
             // tableLayoutPanel2
             // 
@@ -80,7 +103,8 @@
             tableLayoutPanel2.Controls.Add(PICTURE, 0, 1);
             tableLayoutPanel2.Controls.Add(tableLayoutPanel3, 0, 4);
             tableLayoutPanel2.Dock = DockStyle.Fill;
-            tableLayoutPanel2.Location = new Point(15, 15);
+            tableLayoutPanel2.Location = new Point(11, 11);
+            tableLayoutPanel2.Margin = new Padding(1);
             tableLayoutPanel2.Name = "tableLayoutPanel2";
             tableLayoutPanel2.RowCount = 7;
             tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 8.849558F));
@@ -91,7 +115,7 @@
             tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 8.849558F));
             tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 8.849558F));
             tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
-            tableLayoutPanel2.Size = new Size(370, 370);
+            tableLayoutPanel2.Size = new Size(406, 406);
             tableLayoutPanel2.TabIndex = 0;
             // 
             // tableLayoutPanel5
@@ -102,21 +126,23 @@
             tableLayoutPanel5.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 25F));
             tableLayoutPanel5.Controls.Add(btnDelete, 1, 0);
             tableLayoutPanel5.Dock = DockStyle.Fill;
-            tableLayoutPanel5.Location = new Point(3, 336);
+            tableLayoutPanel5.Location = new Point(1, 366);
+            tableLayoutPanel5.Margin = new Padding(1);
             tableLayoutPanel5.Name = "tableLayoutPanel5";
             tableLayoutPanel5.RowCount = 1;
             tableLayoutPanel5.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tableLayoutPanel5.Size = new Size(364, 31);
+            tableLayoutPanel5.Size = new Size(404, 39);
             tableLayoutPanel5.TabIndex = 11;
             // 
             // btnDelete
             // 
             btnDelete.Dock = DockStyle.Fill;
             btnDelete.FlatStyle = FlatStyle.Popup;
-            btnDelete.Font = new Font("Arial Rounded MT Bold", 8.5F);
-            btnDelete.Location = new Point(94, 3);
+            btnDelete.Font = new Font("Arial Black", 12F, FontStyle.Bold);
+            btnDelete.Location = new Point(102, 1);
+            btnDelete.Margin = new Padding(1);
             btnDelete.Name = "btnDelete";
-            btnDelete.Size = new Size(176, 25);
+            btnDelete.Size = new Size(200, 37);
             btnDelete.TabIndex = 0;
             btnDelete.Text = "DELETE";
             btnDelete.UseVisualStyleBackColor = true;
@@ -129,22 +155,24 @@
             tableLayoutPanel4.Controls.Add(btnTypeCompleted, 0, 0);
             tableLayoutPanel4.Controls.Add(btnTypeUnableToComplete, 1, 0);
             tableLayoutPanel4.Dock = DockStyle.Fill;
-            tableLayoutPanel4.Location = new Point(3, 304);
+            tableLayoutPanel4.Location = new Point(1, 331);
+            tableLayoutPanel4.Margin = new Padding(1);
             tableLayoutPanel4.Name = "tableLayoutPanel4";
             tableLayoutPanel4.RowCount = 1;
             tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
             tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
-            tableLayoutPanel4.Size = new Size(364, 26);
+            tableLayoutPanel4.Size = new Size(404, 33);
             tableLayoutPanel4.TabIndex = 10;
             // 
             // btnTypeCompleted
             // 
             btnTypeCompleted.Dock = DockStyle.Fill;
             btnTypeCompleted.FlatStyle = FlatStyle.Popup;
-            btnTypeCompleted.Font = new Font("Arial Rounded MT Bold", 8.5F);
-            btnTypeCompleted.Location = new Point(3, 3);
+            btnTypeCompleted.Font = new Font("Arial Black", 12F, FontStyle.Bold);
+            btnTypeCompleted.Location = new Point(1, 1);
+            btnTypeCompleted.Margin = new Padding(1);
             btnTypeCompleted.Name = "btnTypeCompleted";
-            btnTypeCompleted.Size = new Size(176, 20);
+            btnTypeCompleted.Size = new Size(200, 31);
             btnTypeCompleted.TabIndex = 0;
             btnTypeCompleted.Text = "COMPLETED";
             btnTypeCompleted.UseVisualStyleBackColor = true;
@@ -153,22 +181,24 @@
             // 
             btnTypeUnableToComplete.Dock = DockStyle.Fill;
             btnTypeUnableToComplete.FlatStyle = FlatStyle.Popup;
-            btnTypeUnableToComplete.Font = new Font("Arial Rounded MT Bold", 8.5F);
-            btnTypeUnableToComplete.Location = new Point(185, 3);
+            btnTypeUnableToComplete.Font = new Font("Arial Black", 10F, FontStyle.Bold);
+            btnTypeUnableToComplete.Location = new Point(203, 1);
+            btnTypeUnableToComplete.Margin = new Padding(1);
             btnTypeUnableToComplete.Name = "btnTypeUnableToComplete";
-            btnTypeUnableToComplete.Size = new Size(176, 20);
+            btnTypeUnableToComplete.Size = new Size(200, 31);
             btnTypeUnableToComplete.TabIndex = 1;
-            btnTypeUnableToComplete.Text = "UNABLE TO COMPLET";
+            btnTypeUnableToComplete.Text = "UNABLE TO COMPLETE";
             btnTypeUnableToComplete.UseVisualStyleBackColor = true;
             // 
             // NAME
             // 
             NAME.AutoSize = true;
             NAME.Dock = DockStyle.Fill;
-            NAME.Font = new Font("Arial Rounded MT Bold", 12F);
-            NAME.Location = new Point(3, 0);
+            NAME.Font = new Font("Arial Black", 15F, FontStyle.Bold);
+            NAME.Location = new Point(1, 1);
+            NAME.Margin = new Padding(1);
             NAME.Name = "NAME";
-            NAME.Size = new Size(364, 32);
+            NAME.Size = new Size(404, 33);
             NAME.TabIndex = 8;
             NAME.Text = "Name";
             NAME.TextAlign = ContentAlignment.MiddleCenter;
@@ -177,10 +207,11 @@
             // 
             TYPE_DATE.AutoSize = true;
             TYPE_DATE.Dock = DockStyle.Fill;
-            TYPE_DATE.Font = new Font("Arial Rounded MT Bold", 12F);
-            TYPE_DATE.Location = new Point(3, 237);
+            TYPE_DATE.Font = new Font("Arial Black", 15F, FontStyle.Bold);
+            TYPE_DATE.Location = new Point(1, 261);
+            TYPE_DATE.Margin = new Padding(1);
             TYPE_DATE.Name = "TYPE_DATE";
-            TYPE_DATE.Size = new Size(364, 32);
+            TYPE_DATE.Size = new Size(404, 33);
             TYPE_DATE.TabIndex = 4;
             TYPE_DATE.Text = "Name";
             TYPE_DATE.TextAlign = ContentAlignment.MiddleCenter;
@@ -189,10 +220,11 @@
             // 
             STATUS.AutoSize = true;
             STATUS.Dock = DockStyle.Fill;
-            STATUS.Font = new Font("Arial Rounded MT Bold", 12F);
-            STATUS.Location = new Point(3, 205);
+            STATUS.Font = new Font("Arial Black", 15F, FontStyle.Bold);
+            STATUS.Location = new Point(1, 226);
+            STATUS.Margin = new Padding(1);
             STATUS.Name = "STATUS";
-            STATUS.Size = new Size(364, 32);
+            STATUS.Size = new Size(404, 33);
             STATUS.TabIndex = 3;
             STATUS.Text = "Name";
             STATUS.TextAlign = ContentAlignment.MiddleCenter;
@@ -201,9 +233,10 @@
             // 
             PICTURE.Dock = DockStyle.Fill;
             PICTURE.Image = (Image)resources.GetObject("PICTURE.Image");
-            PICTURE.Location = new Point(3, 35);
+            PICTURE.Location = new Point(1, 36);
+            PICTURE.Margin = new Padding(1);
             PICTURE.Name = "PICTURE";
-            PICTURE.Size = new Size(364, 167);
+            PICTURE.Size = new Size(404, 188);
             PICTURE.SizeMode = PictureBoxSizeMode.Zoom;
             PICTURE.TabIndex = 0;
             PICTURE.TabStop = false;
@@ -216,22 +249,24 @@
             tableLayoutPanel3.Controls.Add(btnTypeNew, 0, 0);
             tableLayoutPanel3.Controls.Add(btnTypeInProgress, 1, 0);
             tableLayoutPanel3.Dock = DockStyle.Fill;
-            tableLayoutPanel3.Location = new Point(3, 272);
+            tableLayoutPanel3.Location = new Point(1, 296);
+            tableLayoutPanel3.Margin = new Padding(1);
             tableLayoutPanel3.Name = "tableLayoutPanel3";
             tableLayoutPanel3.RowCount = 1;
             tableLayoutPanel3.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
             tableLayoutPanel3.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
-            tableLayoutPanel3.Size = new Size(364, 26);
+            tableLayoutPanel3.Size = new Size(404, 33);
             tableLayoutPanel3.TabIndex = 9;
             // 
             // btnTypeNew
             // 
             btnTypeNew.Dock = DockStyle.Fill;
             btnTypeNew.FlatStyle = FlatStyle.Popup;
-            btnTypeNew.Font = new Font("Arial Rounded MT Bold", 8.5F);
-            btnTypeNew.Location = new Point(3, 3);
+            btnTypeNew.Font = new Font("Arial Black", 12F, FontStyle.Bold);
+            btnTypeNew.Location = new Point(1, 1);
+            btnTypeNew.Margin = new Padding(1);
             btnTypeNew.Name = "btnTypeNew";
-            btnTypeNew.Size = new Size(176, 20);
+            btnTypeNew.Size = new Size(200, 31);
             btnTypeNew.TabIndex = 0;
             btnTypeNew.Text = "NEW";
             btnTypeNew.UseVisualStyleBackColor = true;
@@ -240,10 +275,11 @@
             // 
             btnTypeInProgress.Dock = DockStyle.Fill;
             btnTypeInProgress.FlatStyle = FlatStyle.Popup;
-            btnTypeInProgress.Font = new Font("Arial Rounded MT Bold", 8.5F);
-            btnTypeInProgress.Location = new Point(185, 3);
+            btnTypeInProgress.Font = new Font("Arial Black", 12F, FontStyle.Bold);
+            btnTypeInProgress.Location = new Point(203, 1);
+            btnTypeInProgress.Margin = new Padding(1);
             btnTypeInProgress.Name = "btnTypeInProgress";
-            btnTypeInProgress.Size = new Size(176, 20);
+            btnTypeInProgress.Size = new Size(200, 31);
             btnTypeInProgress.TabIndex = 1;
             btnTypeInProgress.Text = "IN PROGRESS";
             btnTypeInProgress.UseVisualStyleBackColor = true;
@@ -254,8 +290,9 @@
             AutoScaleMode = AutoScaleMode.Font;
             Controls.Add(tableLayoutPanel1);
             Name = "RepairCard";
-            Size = new Size(400, 400);
+            Size = new Size(450, 450);
             tableLayoutPanel1.ResumeLayout(false);
+            tableLayoutPanel6.ResumeLayout(false);
             tableLayoutPanel2.ResumeLayout(false);
             tableLayoutPanel2.PerformLayout();
             tableLayoutPanel5.ResumeLayout(false);
@@ -281,5 +318,6 @@
         private TableLayoutPanel tableLayoutPanel3;
         private Button btnTypeNew;
         private Button btnTypeInProgress;
+        private TableLayoutPanel tableLayoutPanel6;
     }
 }

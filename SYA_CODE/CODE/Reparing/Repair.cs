@@ -28,6 +28,8 @@ namespace SYA
             string[,] repairs =
             {
         { "Ring Repair", "2024-02-01", "500", "New" },
+        { "Necklace Polish", "2024-01-25", "750", "Unable to Complete" },
+        { "Ring Repair", "2024-02-01", "500", "Completed" },
         { "Necklace Polish", "2024-01-25", "750", "In Progress" },
         { "Ring Repair", "2024-02-01", "500", "New" },
         { "Necklace Polish", "2024-01-25", "750", "In Progress" },

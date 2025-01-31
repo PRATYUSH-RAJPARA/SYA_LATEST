@@ -28,16 +28,16 @@ namespace SYA
             switch (status)
             {
                 case "New":
-                    STATUS.ForeColor = Color.Blue;
+                    tableLayoutPanel6.BackColor = ColorTranslator.FromHtml("#90e0ef");
                     break;
                 case "In Progress":
-                    STATUS.ForeColor = Color.Orange;
+                    tableLayoutPanel6.BackColor = ColorTranslator.FromHtml("#ffe94e");
                     break;
                 case "Completed":
-                    STATUS.ForeColor = Color.Green;
+                    tableLayoutPanel6.BackColor = ColorTranslator.FromHtml("#a1ef7a");
                     break;
                 case "Unable to Complete":
-                    STATUS.ForeColor = Color.Red;
+                    tableLayoutPanel6.BackColor = ColorTranslator.FromHtml("#ec8385");
                     break;
             }
         }
