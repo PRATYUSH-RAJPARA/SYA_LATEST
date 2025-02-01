@@ -26,6 +26,7 @@
         private void InitializeComponent()
         {
             panelfirst = new Panel();
+            button14 = new Button();
             btnProcessData = new Button();
             btnDataCareData = new Button();
             btnDisplayPrice = new Button();
@@ -61,7 +62,7 @@
             button1 = new Button();
             panel1 = new Panel();
             panelChild = new Panel();
-            button14 = new Button();
+            btnAddRepair = new Button();
             panelfirst.SuspendLayout();
             panelsecond.SuspendLayout();
             SuspendLayout();
@@ -69,6 +70,7 @@
             // panelfirst
             // 
             panelfirst.BackColor = Color.FromArgb(3, 63, 99);
+            panelfirst.Controls.Add(btnAddRepair);
             panelfirst.Controls.Add(button14);
             panelfirst.Controls.Add(btnProcessData);
             panelfirst.Controls.Add(btnDataCareData);
@@ -93,6 +95,23 @@
             panelfirst.Name = "panelfirst";
             panelfirst.Size = new Size(140, 1005);
             panelfirst.TabIndex = 5;
+            // 
+            // button14
+            // 
+            button14.BackColor = Color.FromArgb(3, 63, 99);
+            button14.Dock = DockStyle.Top;
+            button14.FlatAppearance.BorderSize = 0;
+            button14.FlatStyle = FlatStyle.Flat;
+            button14.Font = new Font("Arial", 12F, FontStyle.Bold);
+            button14.ForeColor = Color.White;
+            button14.Location = new Point(0, 740);
+            button14.Margin = new Padding(0);
+            button14.Name = "button14";
+            button14.Size = new Size(140, 40);
+            button14.TabIndex = 22;
+            button14.Text = "Reparing";
+            button14.UseVisualStyleBackColor = false;
+            button14.Click += button14_Click;
             // 
             // btnProcessData
             // 
@@ -678,22 +697,22 @@
             panelChild.Size = new Size(1004, 995);
             panelChild.TabIndex = 1;
             // 
-            // button14
+            // btnAddRepair
             // 
-            button14.BackColor = Color.FromArgb(3, 63, 99);
-            button14.Dock = DockStyle.Top;
-            button14.FlatAppearance.BorderSize = 0;
-            button14.FlatStyle = FlatStyle.Flat;
-            button14.Font = new Font("Arial", 12F, FontStyle.Bold);
-            button14.ForeColor = Color.White;
-            button14.Location = new Point(0, 740);
-            button14.Margin = new Padding(0);
-            button14.Name = "button14";
-            button14.Size = new Size(140, 40);
-            button14.TabIndex = 22;
-            button14.Text = "Reparing";
-            button14.UseVisualStyleBackColor = false;
-            button14.Click += button14_Click;
+            btnAddRepair.BackColor = Color.FromArgb(3, 63, 99);
+            btnAddRepair.Dock = DockStyle.Top;
+            btnAddRepair.FlatAppearance.BorderSize = 0;
+            btnAddRepair.FlatStyle = FlatStyle.Flat;
+            btnAddRepair.Font = new Font("Arial", 12F, FontStyle.Bold);
+            btnAddRepair.ForeColor = Color.White;
+            btnAddRepair.Location = new Point(0, 780);
+            btnAddRepair.Margin = new Padding(0);
+            btnAddRepair.Name = "btnAddRepair";
+            btnAddRepair.Size = new Size(140, 40);
+            btnAddRepair.TabIndex = 23;
+            btnAddRepair.Text = "Add Repair";
+            btnAddRepair.UseVisualStyleBackColor = false;
+            btnAddRepair.Click += btnAddRepair_Click;
             // 
             // main
             // 
@@ -752,5 +771,6 @@
         private Button btnDataCareData;
         private Button btnProcessData;
         private Button button14;
+        private Button btnAddRepair;
     }
 }

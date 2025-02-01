@@ -1,4 +1,4 @@
-﻿namespace SYA.CODE.Reparing
+﻿namespace SYA
 {
     partial class RepairDetails
     {
@@ -34,59 +34,59 @@
             tableLayoutPanel3 = new TableLayoutPanel();
             pictureBox1 = new PictureBox();
             tableLayoutPanel4 = new TableLayoutPanel();
+            tableLayoutPanel6 = new TableLayoutPanel();
+            comboBox1 = new ComboBox();
+            label13 = new Label();
+            label14 = new Label();
+            label15 = new Label();
             tableLayoutPanel8 = new TableLayoutPanel();
-            label1 = new Label();
-            label2 = new Label();
-            lblID = new Label();
-            cbCreatedBy = new ComboBox();
             label3 = new Label();
+            cbCreatedBy = new ComboBox();
+            lblID = new Label();
+            label2 = new Label();
             tableLayoutPanel9 = new TableLayoutPanel();
+            label7 = new Label();
             label4 = new Label();
             label5 = new Label();
             label6 = new Label();
-            label7 = new Label();
             tableLayoutPanel10 = new TableLayoutPanel();
-            btnTypeNew = new Button();
-            btnTypeInProgress = new Button();
-            btnTypeCompleted = new Button();
-            btnTypeUnableToComplete = new Button();
             label8 = new Label();
+            btnTypeUnableToComplete = new Button();
+            btnTypeCompleted = new Button();
+            btnTypeInProgress = new Button();
+            btnTypeNew = new Button();
             tableLayoutPanel11 = new TableLayoutPanel();
             tableLayoutPanel7 = new TableLayoutPanel();
             button1 = new Button();
             button2 = new Button();
-            tableLayoutPanel6 = new TableLayoutPanel();
-            label13 = new Label();
-            label14 = new Label();
-            label15 = new Label();
-            comboBox1 = new ComboBox();
             tableLayoutPanel5 = new TableLayoutPanel();
-            label9 = new Label();
-            label10 = new Label();
-            label11 = new Label();
-            label12 = new Label();
-            tableLayoutPanel12 = new TableLayoutPanel();
-            label16 = new Label();
-            label17 = new Label();
-            tableLayoutPanel13 = new TableLayoutPanel();
-            richTextBox1 = new RichTextBox();
-            comboBox4 = new ComboBox();
-            comboBox5 = new ComboBox();
-            textBox1 = new TextBox();
-            textBox2 = new TextBox();
-            textBox3 = new TextBox();
             textBox4 = new TextBox();
+            textBox3 = new TextBox();
+            comboBox5 = new ComboBox();
+            comboBox4 = new ComboBox();
+            label12 = new Label();
+            label11 = new Label();
+            label10 = new Label();
+            label9 = new Label();
+            tableLayoutPanel12 = new TableLayoutPanel();
+            textBox2 = new TextBox();
+            label17 = new Label();
+            label16 = new Label();
+            textBox1 = new TextBox();
+            tableLayoutPanel13 = new TableLayoutPanel();
+            label1 = new Label();
+            richTextBox1 = new RichTextBox();
             tableLayoutPanel1.SuspendLayout();
             tableLayoutPanel2.SuspendLayout();
             tableLayoutPanel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             tableLayoutPanel4.SuspendLayout();
+            tableLayoutPanel6.SuspendLayout();
             tableLayoutPanel8.SuspendLayout();
             tableLayoutPanel9.SuspendLayout();
             tableLayoutPanel10.SuspendLayout();
             tableLayoutPanel11.SuspendLayout();
             tableLayoutPanel7.SuspendLayout();
-            tableLayoutPanel6.SuspendLayout();
             tableLayoutPanel5.SuspendLayout();
             tableLayoutPanel12.SuspendLayout();
             tableLayoutPanel13.SuspendLayout();
@@ -109,6 +109,7 @@
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 10F));
             tableLayoutPanel1.Size = new Size(1000, 750);
             tableLayoutPanel1.TabIndex = 0;
+            tableLayoutPanel1.Paint += tableLayoutPanel1_Paint;
             // 
             // tableLayoutPanel2
             // 
@@ -185,6 +186,72 @@
             tableLayoutPanel4.Size = new Size(291, 425);
             tableLayoutPanel4.TabIndex = 2;
             // 
+            // tableLayoutPanel6
+            // 
+            tableLayoutPanel6.ColumnCount = 2;
+            tableLayoutPanel6.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+            tableLayoutPanel6.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+            tableLayoutPanel6.Controls.Add(comboBox1, 1, 1);
+            tableLayoutPanel6.Controls.Add(label13, 1, 0);
+            tableLayoutPanel6.Controls.Add(label14, 0, 1);
+            tableLayoutPanel6.Controls.Add(label15, 0, 0);
+            tableLayoutPanel6.Dock = DockStyle.Fill;
+            tableLayoutPanel6.Location = new Point(1, 259);
+            tableLayoutPanel6.Margin = new Padding(1);
+            tableLayoutPanel6.Name = "tableLayoutPanel6";
+            tableLayoutPanel6.RowCount = 2;
+            tableLayoutPanel6.RowStyles.Add(new RowStyle(SizeType.Percent, 40F));
+            tableLayoutPanel6.RowStyles.Add(new RowStyle(SizeType.Percent, 60F));
+            tableLayoutPanel6.Size = new Size(289, 107);
+            tableLayoutPanel6.TabIndex = 17;
+            // 
+            // comboBox1
+            // 
+            comboBox1.Dock = DockStyle.Fill;
+            comboBox1.Font = new Font("Arial Black", 12.5F, FontStyle.Bold);
+            comboBox1.FormattingEnabled = true;
+            comboBox1.Location = new Point(145, 43);
+            comboBox1.Margin = new Padding(1);
+            comboBox1.Name = "comboBox1";
+            comboBox1.Size = new Size(143, 32);
+            comboBox1.TabIndex = 11;
+            // 
+            // label13
+            // 
+            label13.Dock = DockStyle.Fill;
+            label13.Font = new Font("Arial", 12.75F, FontStyle.Bold);
+            label13.Location = new Point(145, 1);
+            label13.Margin = new Padding(1);
+            label13.Name = "label13";
+            label13.Size = new Size(143, 40);
+            label13.TabIndex = 10;
+            label13.Text = "Priority";
+            label13.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // label14
+            // 
+            label14.Dock = DockStyle.Fill;
+            label14.Font = new Font("Arial Black", 12.5F, FontStyle.Bold);
+            label14.Location = new Point(1, 43);
+            label14.Margin = new Padding(1);
+            label14.Name = "label14";
+            label14.Size = new Size(142, 63);
+            label14.TabIndex = 2;
+            label14.Text = "2025-01-29 23:42:55";
+            label14.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // label15
+            // 
+            label15.Dock = DockStyle.Fill;
+            label15.Font = new Font("Arial", 12.75F, FontStyle.Bold);
+            label15.Location = new Point(1, 1);
+            label15.Margin = new Padding(1);
+            label15.Name = "label15";
+            label15.Size = new Size(142, 40);
+            label15.TabIndex = 2;
+            label15.Text = "Delivery Date";
+            label15.TextAlign = ContentAlignment.MiddleLeft;
+            // 
             // tableLayoutPanel8
             // 
             tableLayoutPanel8.ColumnCount = 2;
@@ -204,29 +271,28 @@
             tableLayoutPanel8.Size = new Size(289, 107);
             tableLayoutPanel8.TabIndex = 13;
             // 
-            // label1
+            // label3
             // 
-            label1.Dock = DockStyle.Fill;
-            label1.Font = new Font("Arial Black", 10F, FontStyle.Bold);
-            label1.Location = new Point(1, 1);
-            label1.Margin = new Padding(1);
-            label1.Name = "label1";
-            label1.Size = new Size(193, 61);
-            label1.TabIndex = 0;
-            label1.Text = "Comment : ";
-            label1.TextAlign = ContentAlignment.MiddleCenter;
+            label3.Dock = DockStyle.Fill;
+            label3.Font = new Font("Arial", 12.75F, FontStyle.Bold);
+            label3.Location = new Point(87, 1);
+            label3.Margin = new Padding(1);
+            label3.Name = "label3";
+            label3.Size = new Size(201, 40);
+            label3.TabIndex = 10;
+            label3.Text = "Created By User :";
+            label3.TextAlign = ContentAlignment.MiddleLeft;
             // 
-            // label2
+            // cbCreatedBy
             // 
-            label2.Dock = DockStyle.Fill;
-            label2.Font = new Font("Arial", 12.75F, FontStyle.Bold);
-            label2.Location = new Point(1, 1);
-            label2.Margin = new Padding(1);
-            label2.Name = "label2";
-            label2.Size = new Size(84, 40);
-            label2.TabIndex = 2;
-            label2.Text = "ID";
-            label2.TextAlign = ContentAlignment.MiddleLeft;
+            cbCreatedBy.Dock = DockStyle.Fill;
+            cbCreatedBy.Font = new Font("Arial Black", 12.5F, FontStyle.Bold);
+            cbCreatedBy.FormattingEnabled = true;
+            cbCreatedBy.Location = new Point(87, 43);
+            cbCreatedBy.Margin = new Padding(1);
+            cbCreatedBy.Name = "cbCreatedBy";
+            cbCreatedBy.Size = new Size(201, 32);
+            cbCreatedBy.TabIndex = 9;
             // 
             // lblID
             // 
@@ -240,28 +306,17 @@
             lblID.Text = "78526";
             lblID.TextAlign = ContentAlignment.MiddleLeft;
             // 
-            // cbCreatedBy
+            // label2
             // 
-            cbCreatedBy.Dock = DockStyle.Fill;
-            cbCreatedBy.Font = new Font("Arial Black", 12.5F, FontStyle.Bold);
-            cbCreatedBy.FormattingEnabled = true;
-            cbCreatedBy.Location = new Point(87, 43);
-            cbCreatedBy.Margin = new Padding(1);
-            cbCreatedBy.Name = "cbCreatedBy";
-            cbCreatedBy.Size = new Size(201, 32);
-            cbCreatedBy.TabIndex = 9;
-            // 
-            // label3
-            // 
-            label3.Dock = DockStyle.Fill;
-            label3.Font = new Font("Arial", 12.75F, FontStyle.Bold);
-            label3.Location = new Point(87, 1);
-            label3.Margin = new Padding(1);
-            label3.Name = "label3";
-            label3.Size = new Size(201, 40);
-            label3.TabIndex = 10;
-            label3.Text = "Created By User :";
-            label3.TextAlign = ContentAlignment.MiddleLeft;
+            label2.Dock = DockStyle.Fill;
+            label2.Font = new Font("Arial", 12.75F, FontStyle.Bold);
+            label2.Location = new Point(1, 1);
+            label2.Margin = new Padding(1);
+            label2.Name = "label2";
+            label2.Size = new Size(84, 40);
+            label2.TabIndex = 2;
+            label2.Text = "ID";
+            label2.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // tableLayoutPanel9
             // 
@@ -281,6 +336,18 @@
             tableLayoutPanel9.RowStyles.Add(new RowStyle(SizeType.Percent, 60F));
             tableLayoutPanel9.Size = new Size(289, 107);
             tableLayoutPanel9.TabIndex = 14;
+            // 
+            // label7
+            // 
+            label7.Dock = DockStyle.Fill;
+            label7.Font = new Font("Arial Black", 12.5F, FontStyle.Bold);
+            label7.Location = new Point(145, 43);
+            label7.Margin = new Padding(1);
+            label7.Name = "label7";
+            label7.Size = new Size(143, 63);
+            label7.TabIndex = 11;
+            label7.Text = "2025-01-29 23:42:55";
+            label7.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // label4
             // 
@@ -318,18 +385,6 @@
             label6.Text = "Booking Date";
             label6.TextAlign = ContentAlignment.MiddleLeft;
             // 
-            // label7
-            // 
-            label7.Dock = DockStyle.Fill;
-            label7.Font = new Font("Arial Black", 12.5F, FontStyle.Bold);
-            label7.Location = new Point(145, 43);
-            label7.Margin = new Padding(1);
-            label7.Name = "label7";
-            label7.Size = new Size(143, 63);
-            label7.TabIndex = 11;
-            label7.Text = "2025-01-29 23:42:55";
-            label7.TextAlign = ContentAlignment.MiddleLeft;
-            // 
             // tableLayoutPanel10
             // 
             tableLayoutPanel10.ColumnCount = 5;
@@ -352,44 +407,17 @@
             tableLayoutPanel10.Size = new Size(976, 48);
             tableLayoutPanel10.TabIndex = 2;
             // 
-            // btnTypeNew
+            // label8
             // 
-            btnTypeNew.Dock = DockStyle.Fill;
-            btnTypeNew.FlatStyle = FlatStyle.Popup;
-            btnTypeNew.Font = new Font("Arial Black", 10F, FontStyle.Bold);
-            btnTypeNew.Location = new Point(196, 1);
-            btnTypeNew.Margin = new Padding(1);
-            btnTypeNew.Name = "btnTypeNew";
-            btnTypeNew.Size = new Size(193, 46);
-            btnTypeNew.TabIndex = 1;
-            btnTypeNew.Text = "NEW";
-            btnTypeNew.UseVisualStyleBackColor = true;
-            // 
-            // btnTypeInProgress
-            // 
-            btnTypeInProgress.Dock = DockStyle.Fill;
-            btnTypeInProgress.FlatStyle = FlatStyle.Popup;
-            btnTypeInProgress.Font = new Font("Arial Black", 10F, FontStyle.Bold);
-            btnTypeInProgress.Location = new Point(391, 1);
-            btnTypeInProgress.Margin = new Padding(1);
-            btnTypeInProgress.Name = "btnTypeInProgress";
-            btnTypeInProgress.Size = new Size(193, 46);
-            btnTypeInProgress.TabIndex = 2;
-            btnTypeInProgress.Text = "IN PROGRESS";
-            btnTypeInProgress.UseVisualStyleBackColor = true;
-            // 
-            // btnTypeCompleted
-            // 
-            btnTypeCompleted.Dock = DockStyle.Fill;
-            btnTypeCompleted.FlatStyle = FlatStyle.Popup;
-            btnTypeCompleted.Font = new Font("Arial Black", 10F, FontStyle.Bold);
-            btnTypeCompleted.Location = new Point(586, 1);
-            btnTypeCompleted.Margin = new Padding(1);
-            btnTypeCompleted.Name = "btnTypeCompleted";
-            btnTypeCompleted.Size = new Size(193, 46);
-            btnTypeCompleted.TabIndex = 3;
-            btnTypeCompleted.Text = "COMPLETED";
-            btnTypeCompleted.UseVisualStyleBackColor = true;
+            label8.Dock = DockStyle.Fill;
+            label8.Font = new Font("Arial Black", 10F, FontStyle.Bold);
+            label8.Location = new Point(1, 1);
+            label8.Margin = new Padding(1);
+            label8.Name = "label8";
+            label8.Size = new Size(193, 46);
+            label8.TabIndex = 5;
+            label8.Text = "STATUS :";
+            label8.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // btnTypeUnableToComplete
             // 
@@ -404,17 +432,44 @@
             btnTypeUnableToComplete.Text = "UNABLE TO COMPLETE";
             btnTypeUnableToComplete.UseVisualStyleBackColor = true;
             // 
-            // label8
+            // btnTypeCompleted
             // 
-            label8.Dock = DockStyle.Fill;
-            label8.Font = new Font("Arial Black", 10F, FontStyle.Bold);
-            label8.Location = new Point(1, 1);
-            label8.Margin = new Padding(1);
-            label8.Name = "label8";
-            label8.Size = new Size(193, 46);
-            label8.TabIndex = 5;
-            label8.Text = "STATUS :";
-            label8.TextAlign = ContentAlignment.MiddleCenter;
+            btnTypeCompleted.Dock = DockStyle.Fill;
+            btnTypeCompleted.FlatStyle = FlatStyle.Popup;
+            btnTypeCompleted.Font = new Font("Arial Black", 10F, FontStyle.Bold);
+            btnTypeCompleted.Location = new Point(586, 1);
+            btnTypeCompleted.Margin = new Padding(1);
+            btnTypeCompleted.Name = "btnTypeCompleted";
+            btnTypeCompleted.Size = new Size(193, 46);
+            btnTypeCompleted.TabIndex = 3;
+            btnTypeCompleted.Text = "COMPLETED";
+            btnTypeCompleted.UseVisualStyleBackColor = true;
+            // 
+            // btnTypeInProgress
+            // 
+            btnTypeInProgress.Dock = DockStyle.Fill;
+            btnTypeInProgress.FlatStyle = FlatStyle.Popup;
+            btnTypeInProgress.Font = new Font("Arial Black", 10F, FontStyle.Bold);
+            btnTypeInProgress.Location = new Point(391, 1);
+            btnTypeInProgress.Margin = new Padding(1);
+            btnTypeInProgress.Name = "btnTypeInProgress";
+            btnTypeInProgress.Size = new Size(193, 46);
+            btnTypeInProgress.TabIndex = 2;
+            btnTypeInProgress.Text = "IN PROGRESS";
+            btnTypeInProgress.UseVisualStyleBackColor = true;
+            // 
+            // btnTypeNew
+            // 
+            btnTypeNew.Dock = DockStyle.Fill;
+            btnTypeNew.FlatStyle = FlatStyle.Popup;
+            btnTypeNew.Font = new Font("Arial Black", 10F, FontStyle.Bold);
+            btnTypeNew.Location = new Point(196, 1);
+            btnTypeNew.Margin = new Padding(1);
+            btnTypeNew.Name = "btnTypeNew";
+            btnTypeNew.Size = new Size(193, 46);
+            btnTypeNew.TabIndex = 1;
+            btnTypeNew.Text = "NEW";
+            btnTypeNew.UseVisualStyleBackColor = true;
             // 
             // tableLayoutPanel11
             // 
@@ -461,7 +516,6 @@
             button1.TabIndex = 0;
             button1.Text = "UPDATE";
             button1.UseVisualStyleBackColor = true;
-            button1.Click += button1_Click;
             // 
             // button2
             // 
@@ -475,73 +529,6 @@
             button2.TabIndex = 1;
             button2.Text = "DELETE";
             button2.UseVisualStyleBackColor = true;
-            // 
-            // tableLayoutPanel6
-            // 
-            tableLayoutPanel6.ColumnCount = 2;
-            tableLayoutPanel6.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
-            tableLayoutPanel6.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
-            tableLayoutPanel6.Controls.Add(comboBox1, 1, 1);
-            tableLayoutPanel6.Controls.Add(label13, 1, 0);
-            tableLayoutPanel6.Controls.Add(label14, 0, 1);
-            tableLayoutPanel6.Controls.Add(label15, 0, 0);
-            tableLayoutPanel6.Dock = DockStyle.Fill;
-            tableLayoutPanel6.Location = new Point(1, 259);
-            tableLayoutPanel6.Margin = new Padding(1);
-            tableLayoutPanel6.Name = "tableLayoutPanel6";
-            tableLayoutPanel6.RowCount = 2;
-            tableLayoutPanel6.RowStyles.Add(new RowStyle(SizeType.Percent, 40F));
-            tableLayoutPanel6.RowStyles.Add(new RowStyle(SizeType.Percent, 60F));
-            tableLayoutPanel6.Size = new Size(289, 107);
-            tableLayoutPanel6.TabIndex = 17;
-            // 
-            // label13
-            // 
-            label13.Dock = DockStyle.Fill;
-            label13.Font = new Font("Arial", 12.75F, FontStyle.Bold);
-            label13.Location = new Point(145, 1);
-            label13.Margin = new Padding(1);
-            label13.Name = "label13";
-            label13.Size = new Size(143, 40);
-            label13.TabIndex = 10;
-            label13.Text = "Priority";
-            label13.TextAlign = ContentAlignment.MiddleLeft;
-            label13.Click += label13_Click;
-            // 
-            // label14
-            // 
-            label14.Dock = DockStyle.Fill;
-            label14.Font = new Font("Arial Black", 12.5F, FontStyle.Bold);
-            label14.Location = new Point(1, 43);
-            label14.Margin = new Padding(1);
-            label14.Name = "label14";
-            label14.Size = new Size(142, 63);
-            label14.TabIndex = 2;
-            label14.Text = "2025-01-29 23:42:55";
-            label14.TextAlign = ContentAlignment.MiddleLeft;
-            // 
-            // label15
-            // 
-            label15.Dock = DockStyle.Fill;
-            label15.Font = new Font("Arial", 12.75F, FontStyle.Bold);
-            label15.Location = new Point(1, 1);
-            label15.Margin = new Padding(1);
-            label15.Name = "label15";
-            label15.Size = new Size(142, 40);
-            label15.TabIndex = 2;
-            label15.Text = "Delivery Date";
-            label15.TextAlign = ContentAlignment.MiddleLeft;
-            // 
-            // comboBox1
-            // 
-            comboBox1.Dock = DockStyle.Fill;
-            comboBox1.Font = new Font("Arial Black", 12.5F, FontStyle.Bold);
-            comboBox1.FormattingEnabled = true;
-            comboBox1.Location = new Point(145, 43);
-            comboBox1.Margin = new Padding(1);
-            comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(143, 32);
-            comboBox1.TabIndex = 11;
             // 
             // tableLayoutPanel5
             // 
@@ -568,29 +555,59 @@
             tableLayoutPanel5.Size = new Size(976, 63);
             tableLayoutPanel5.TabIndex = 4;
             // 
-            // label9
+            // textBox4
             // 
-            label9.Dock = DockStyle.Fill;
-            label9.Font = new Font("Arial Black", 10F, FontStyle.Bold);
-            label9.Location = new Point(1, 1);
-            label9.Margin = new Padding(1);
-            label9.Name = "label9";
-            label9.Size = new Size(242, 23);
-            label9.TabIndex = 1;
-            label9.Text = "Weight";
-            label9.TextAlign = ContentAlignment.MiddleCenter;
+            textBox4.Dock = DockStyle.Fill;
+            textBox4.Font = new Font("Arial Black", 12.5F, FontStyle.Bold);
+            textBox4.Location = new Point(245, 26);
+            textBox4.Margin = new Padding(1);
+            textBox4.Name = "textBox4";
+            textBox4.Size = new Size(242, 31);
+            textBox4.TabIndex = 17;
             // 
-            // label10
+            // textBox3
             // 
-            label10.Dock = DockStyle.Fill;
-            label10.Font = new Font("Arial Black", 10F, FontStyle.Bold);
-            label10.Location = new Point(245, 1);
-            label10.Margin = new Padding(1);
-            label10.Name = "label10";
-            label10.Size = new Size(242, 23);
-            label10.TabIndex = 2;
-            label10.Text = "Estimate Cost";
-            label10.TextAlign = ContentAlignment.MiddleCenter;
+            textBox3.Dock = DockStyle.Fill;
+            textBox3.Font = new Font("Arial Black", 12.5F, FontStyle.Bold);
+            textBox3.Location = new Point(1, 26);
+            textBox3.Margin = new Padding(1);
+            textBox3.Name = "textBox3";
+            textBox3.Size = new Size(242, 31);
+            textBox3.TabIndex = 16;
+            // 
+            // comboBox5
+            // 
+            comboBox5.Dock = DockStyle.Fill;
+            comboBox5.Font = new Font("Arial Black", 12.5F, FontStyle.Bold);
+            comboBox5.FormattingEnabled = true;
+            comboBox5.Location = new Point(733, 26);
+            comboBox5.Margin = new Padding(1);
+            comboBox5.Name = "comboBox5";
+            comboBox5.Size = new Size(242, 32);
+            comboBox5.TabIndex = 15;
+            // 
+            // comboBox4
+            // 
+            comboBox4.Dock = DockStyle.Fill;
+            comboBox4.Font = new Font("Arial Black", 12.5F, FontStyle.Bold);
+            comboBox4.FormattingEnabled = true;
+            comboBox4.Location = new Point(489, 26);
+            comboBox4.Margin = new Padding(1);
+            comboBox4.Name = "comboBox4";
+            comboBox4.Size = new Size(242, 32);
+            comboBox4.TabIndex = 14;
+            // 
+            // label12
+            // 
+            label12.Dock = DockStyle.Fill;
+            label12.Font = new Font("Arial Black", 10F, FontStyle.Bold);
+            label12.Location = new Point(733, 1);
+            label12.Margin = new Padding(1);
+            label12.Name = "label12";
+            label12.Size = new Size(242, 23);
+            label12.TabIndex = 4;
+            label12.Text = "Sub-Type";
+            label12.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // label11
             // 
@@ -604,17 +621,29 @@
             label11.Text = "Type";
             label11.TextAlign = ContentAlignment.MiddleCenter;
             // 
-            // label12
+            // label10
             // 
-            label12.Dock = DockStyle.Fill;
-            label12.Font = new Font("Arial Black", 10F, FontStyle.Bold);
-            label12.Location = new Point(733, 1);
-            label12.Margin = new Padding(1);
-            label12.Name = "label12";
-            label12.Size = new Size(242, 23);
-            label12.TabIndex = 4;
-            label12.Text = "Sub-Type";
-            label12.TextAlign = ContentAlignment.MiddleCenter;
+            label10.Dock = DockStyle.Fill;
+            label10.Font = new Font("Arial Black", 10F, FontStyle.Bold);
+            label10.Location = new Point(245, 1);
+            label10.Margin = new Padding(1);
+            label10.Name = "label10";
+            label10.Size = new Size(242, 23);
+            label10.TabIndex = 2;
+            label10.Text = "Estimate Cost";
+            label10.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // label9
+            // 
+            label9.Dock = DockStyle.Fill;
+            label9.Font = new Font("Arial Black", 10F, FontStyle.Bold);
+            label9.Location = new Point(1, 1);
+            label9.Margin = new Padding(1);
+            label9.Name = "label9";
+            label9.Size = new Size(242, 23);
+            label9.TabIndex = 1;
+            label9.Text = "Weight";
+            label9.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // tableLayoutPanel12
             // 
@@ -635,17 +664,15 @@
             tableLayoutPanel12.Size = new Size(976, 63);
             tableLayoutPanel12.TabIndex = 5;
             // 
-            // label16
+            // textBox2
             // 
-            label16.Dock = DockStyle.Fill;
-            label16.Font = new Font("Arial Black", 10F, FontStyle.Bold);
-            label16.Location = new Point(1, 1);
-            label16.Margin = new Padding(1);
-            label16.Name = "label16";
-            label16.Size = new Size(730, 23);
-            label16.TabIndex = 2;
-            label16.Text = "Name";
-            label16.TextAlign = ContentAlignment.MiddleCenter;
+            textBox2.Dock = DockStyle.Fill;
+            textBox2.Font = new Font("Arial Black", 12.5F, FontStyle.Bold);
+            textBox2.Location = new Point(733, 26);
+            textBox2.Margin = new Padding(1);
+            textBox2.Name = "textBox2";
+            textBox2.Size = new Size(242, 31);
+            textBox2.TabIndex = 5;
             // 
             // label17
             // 
@@ -658,6 +685,28 @@
             label17.TabIndex = 3;
             label17.Text = "Number";
             label17.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // label16
+            // 
+            label16.Dock = DockStyle.Fill;
+            label16.Font = new Font("Arial Black", 10F, FontStyle.Bold);
+            label16.Location = new Point(1, 1);
+            label16.Margin = new Padding(1);
+            label16.Name = "label16";
+            label16.Size = new Size(730, 23);
+            label16.TabIndex = 2;
+            label16.Text = "Name";
+            label16.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // textBox1
+            // 
+            textBox1.Dock = DockStyle.Fill;
+            textBox1.Font = new Font("Arial Black", 12.5F, FontStyle.Bold);
+            textBox1.Location = new Point(1, 26);
+            textBox1.Margin = new Padding(1);
+            textBox1.Name = "textBox1";
+            textBox1.Size = new Size(730, 31);
+            textBox1.TabIndex = 4;
             // 
             // tableLayoutPanel13
             // 
@@ -675,6 +724,18 @@
             tableLayoutPanel13.Size = new Size(976, 63);
             tableLayoutPanel13.TabIndex = 6;
             // 
+            // label1
+            // 
+            label1.Dock = DockStyle.Fill;
+            label1.Font = new Font("Arial Black", 10F, FontStyle.Bold);
+            label1.Location = new Point(1, 1);
+            label1.Margin = new Padding(1);
+            label1.Name = "label1";
+            label1.Size = new Size(193, 61);
+            label1.TabIndex = 0;
+            label1.Text = "Comment : ";
+            label1.TextAlign = ContentAlignment.MiddleCenter;
+            // 
             // richTextBox1
             // 
             richTextBox1.Dock = DockStyle.Fill;
@@ -685,68 +746,6 @@
             richTextBox1.Size = new Size(779, 61);
             richTextBox1.TabIndex = 1;
             richTextBox1.Text = "";
-            // 
-            // comboBox4
-            // 
-            comboBox4.Dock = DockStyle.Fill;
-            comboBox4.Font = new Font("Arial Black", 12.5F, FontStyle.Bold);
-            comboBox4.FormattingEnabled = true;
-            comboBox4.Location = new Point(489, 26);
-            comboBox4.Margin = new Padding(1);
-            comboBox4.Name = "comboBox4";
-            comboBox4.Size = new Size(242, 32);
-            comboBox4.TabIndex = 14;
-            // 
-            // comboBox5
-            // 
-            comboBox5.Dock = DockStyle.Fill;
-            comboBox5.Font = new Font("Arial Black", 12.5F, FontStyle.Bold);
-            comboBox5.FormattingEnabled = true;
-            comboBox5.Location = new Point(733, 26);
-            comboBox5.Margin = new Padding(1);
-            comboBox5.Name = "comboBox5";
-            comboBox5.Size = new Size(242, 32);
-            comboBox5.TabIndex = 15;
-            // 
-            // textBox1
-            // 
-            textBox1.Dock = DockStyle.Fill;
-            textBox1.Font = new Font("Arial Black", 12.5F, FontStyle.Bold);
-            textBox1.Location = new Point(1, 26);
-            textBox1.Margin = new Padding(1);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(730, 31);
-            textBox1.TabIndex = 4;
-            // 
-            // textBox2
-            // 
-            textBox2.Dock = DockStyle.Fill;
-            textBox2.Font = new Font("Arial Black", 12.5F, FontStyle.Bold);
-            textBox2.Location = new Point(733, 26);
-            textBox2.Margin = new Padding(1);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(242, 31);
-            textBox2.TabIndex = 5;
-            // 
-            // textBox3
-            // 
-            textBox3.Dock = DockStyle.Fill;
-            textBox3.Font = new Font("Arial Black", 12.5F, FontStyle.Bold);
-            textBox3.Location = new Point(1, 26);
-            textBox3.Margin = new Padding(1);
-            textBox3.Name = "textBox3";
-            textBox3.Size = new Size(242, 31);
-            textBox3.TabIndex = 16;
-            // 
-            // textBox4
-            // 
-            textBox4.Dock = DockStyle.Fill;
-            textBox4.Font = new Font("Arial Black", 12.5F, FontStyle.Bold);
-            textBox4.Location = new Point(245, 26);
-            textBox4.Margin = new Padding(1);
-            textBox4.Name = "textBox4";
-            textBox4.Size = new Size(242, 31);
-            textBox4.TabIndex = 17;
             // 
             // RepairDetails
             // 
@@ -760,12 +759,12 @@
             tableLayoutPanel3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             tableLayoutPanel4.ResumeLayout(false);
+            tableLayoutPanel6.ResumeLayout(false);
             tableLayoutPanel8.ResumeLayout(false);
             tableLayoutPanel9.ResumeLayout(false);
             tableLayoutPanel10.ResumeLayout(false);
             tableLayoutPanel11.ResumeLayout(false);
             tableLayoutPanel7.ResumeLayout(false);
-            tableLayoutPanel6.ResumeLayout(false);
             tableLayoutPanel5.ResumeLayout(false);
             tableLayoutPanel5.PerformLayout();
             tableLayoutPanel12.ResumeLayout(false);

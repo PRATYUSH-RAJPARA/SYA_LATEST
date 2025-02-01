@@ -128,6 +128,12 @@ namespace SYA
             }
         }
 
+        private void PICTURE_Click(object sender, EventArgs e)
+        {
+             // Replace with the actual repair ID you want to load.
+            RepairDetailsForm detailsForm = new RepairDetailsForm(repairId);
+            detailsForm.Show();  // Opens the form centered on the screen (as set in the designer)
+        }
     }
 
 

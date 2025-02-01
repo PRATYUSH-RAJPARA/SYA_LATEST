@@ -347,13 +347,22 @@ namespace SYA
         }
         private void button14_Click(object sender, EventArgs e)
         {
-           // Repair AddReparing;
+            // Repair AddReparing;
             // Initialize NotifyForm
-              LoadForm(new Repair());
-            //  AddReparing AddReparing;
-            //AddReparing = new AddReparing();
-            
-            //AddReparing.Show();
+
+            LoadForm(new Repair());
+            //    RepairDetailsForm AddReparing;
+            //    AddReparing = new RepairDetailsForm();
+
+            //    AddReparing.Show();
+        }
+
+        private void btnAddRepair_Click(object sender, EventArgs e)
+        {
+                AddReparing AddReparing;
+                AddReparing = new AddReparing();
+
+                AddReparing.Show();
         }
     }
     public class ApiResponseItem
