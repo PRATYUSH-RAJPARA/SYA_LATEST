@@ -378,10 +378,10 @@
             // dtDeliveryDate
             // 
             dtDeliveryDate.Dock = DockStyle.Fill;
-            dtDeliveryDate.Font = new Font("Microsoft Sans Serif", 15F);
+            dtDeliveryDate.Font = new Font("Arial Black", 15F, FontStyle.Bold);
             dtDeliveryDate.Location = new Point(425, 33);
             dtDeliveryDate.Name = "dtDeliveryDate";
-            dtDeliveryDate.Size = new Size(384, 30);
+            dtDeliveryDate.Size = new Size(384, 36);
             dtDeliveryDate.TabIndex = 7;
             // 
             // tableLayoutPanel9

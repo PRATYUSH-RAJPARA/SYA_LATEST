@@ -43,6 +43,9 @@
     <Compile Update="CODE\Reparing\RepairCard.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Update="CODE\Reparing\RepairDetails.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Update="CODE\RTGS\PrintRTGS.cs">
       <SubType>Form</SubType>
     </Compile>

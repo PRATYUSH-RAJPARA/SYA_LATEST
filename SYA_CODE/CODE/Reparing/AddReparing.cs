@@ -206,7 +206,7 @@ namespace SYA
         }
         private void update_insert()
         {
-        
+
             string NAME = txtName.Text.Trim();
             string NUMBER = string.IsNullOrWhiteSpace(txtNumber.Text) ? "NULL" : txtNumber.Text.Trim();
             string WEIGHT = string.IsNullOrWhiteSpace(txtWeight.Text) ? "NULL" : txtWeight.Text.Trim();
@@ -231,6 +231,11 @@ namespace SYA
         {
             update_insert();
             this.Close();
+        }
+
+        private void dtDeliveryDate_ValueChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
