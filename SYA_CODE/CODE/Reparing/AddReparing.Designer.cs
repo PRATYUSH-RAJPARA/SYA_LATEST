@@ -161,6 +161,7 @@
             buttonCaptureIamge.TabIndex = 0;
             buttonCaptureIamge.Text = "Capture\r\nImage";
             buttonCaptureIamge.UseVisualStyleBackColor = true;
+            buttonCaptureIamge.Click += buttonCaptureIamge_Click;
             // 
             // tableLayoutPanel4
             // 

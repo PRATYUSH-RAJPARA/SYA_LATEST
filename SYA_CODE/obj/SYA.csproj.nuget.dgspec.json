@@ -51,6 +51,10 @@
         "net8.0-windows8.0": {
           "targetAlias": "net8.0-windows8.0",
           "dependencies": {
+            "AForge.Video.DirectShow": {
+              "target": "Package",
+              "version": "[2.2.5, )"
+            },
             "EPPlus": {
               "target": "Package",
               "version": "[7.5.2, )"

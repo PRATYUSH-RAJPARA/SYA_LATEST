@@ -13,7 +13,62 @@ namespace SYA
     public partial class RepairDetailsForm : Form
     {
         private int repairId;  // Store the repair ID
+        private string currentStatus;
+        private Dictionary<string, Color> statusColors = new Dictionary<string, Color>
+{
+    { "New", ColorTranslator.FromHtml("#90e0ef") },
+    { "In Progress", ColorTranslator.FromHtml("#ffe94e") },
+    { "Completed", ColorTranslator.FromHtml("#a1ef7a") },
+    { "Unable to Complete", ColorTranslator.FromHtml("#ec8385") }
+};
+        public event EventHandler RecordUpdated;
 
+        private void UpdateStatusUI(string status)
+        {
+            // Optionally, update a status label if available. For example:
+            // lblStatus.Text = status; 
+
+            // Reset all button colors
+            btnTypeNew.BackColor = SystemColors.Control;
+            btnTypeNew.ForeColor = Color.Black;
+            btnTypeInProgress.BackColor = SystemColors.Control;
+            btnTypeInProgress.ForeColor = Color.Black;
+            btnTypeCompleted.BackColor = SystemColors.Control;
+            btnTypeCompleted.ForeColor = Color.Black;
+            btnTypeUnableToComplete.BackColor = SystemColors.Control;
+            btnTypeUnableToComplete.ForeColor = Color.Black;
+
+            // Highlight the selected status button
+            switch (status)
+            {
+                case "New":
+                    btnTypeNew.BackColor = statusColors["New"];
+                    break;
+                case "In Progress":
+                    btnTypeInProgress.BackColor = statusColors["In Progress"];
+                    break;
+                case "Completed":
+                    btnTypeCompleted.BackColor = statusColors["Completed"];
+                    break;
+                case "Unable to Complete":
+                    btnTypeUnableToComplete.BackColor = statusColors["Unable to Complete"];
+                    break;
+            }
+        }
+        private void AttachStatusEventHandlers()
+        {
+            btnTypeNew.Click += (s, e) => OnStatusButtonClicked("New");
+            btnTypeInProgress.Click += (s, e) => OnStatusButtonClicked("In Progress");
+            btnTypeCompleted.Click += (s, e) => OnStatusButtonClicked("Completed");
+            btnTypeUnableToComplete.Click += (s, e) => OnStatusButtonClicked("Unable to Complete");
+        }
+        private void OnStatusButtonClicked(string newStatus)
+        {
+            // Update the UI (color changes)
+            UpdateStatusUI(newStatus);
+            // Store the new status for later saving
+            currentStatus = newStatus;
+        }
         public RepairDetailsForm(int repairId)
         {
             InitializeComponent();
@@ -29,25 +84,26 @@ namespace SYA
         private void RepairDetailsForm_Load(object sender, EventArgs e)
         {
             // Load record details (as shown earlier)
+            // Existing code to load details and initialize other controls
             LoadDetails();
-
-            // Initialize ComboBox data
             LoadComboBoxData(cbType, "TYPE");
             LoadComboBoxData(cbSubType, "SUB_TYPE");
             LoadComboBoxData(cbCreatedBy, "USER");
             LoadComboBoxData(cbPriority, "PRIORITY");
-
-            // Attach numeric validations
             txtWeight.KeyPress += AllowOnlyNumeric;
             txtNumber.KeyPress += AllowOnlyNumeric;
-            txtCost.KeyPress += AllowOnlyNumeric; // Assuming txtCost is similar to txtEstimate in AddReparing
-
+            txtCost.KeyPress += AllowOnlyNumeric;
             txtWeight.Leave += FormatDecimal;
             txtNumber.Leave += FormatDecimal;
             txtCost.Leave += FormatDecimal;
-
-            // Attach key press for automatic uppercasing (if needed)
             AttachKeyPressEvent(this);
+
+            // Attach status button events
+            AttachStatusEventHandlers();
+
+            // (Optionally) Set the initial status from the loaded data
+
+            UpdateStatusUI(currentStatus);
         }
         private void LoadComboBoxData(ComboBox comboBox, string groupType)
         {
@@ -150,24 +206,22 @@ namespace SYA
                 txtCost.Text = row["ESTIMATE_COST"].ToString();
                 rtxtComment.Text = row["COMMENT"].ToString();
 
-                // For ComboBoxes, you might need to ensure the item exists or set the Text property:
+                // Populate ComboBoxes (ensure the text matches one of the items)
                 cbType.Text = row["TYPE"].ToString();
                 cbSubType.Text = row["SUB_TYPE"].ToString();
                 cbCreatedBy.Text = row["CREATED_BY"].ToString();
                 cbPriority.Text = row["PRIORITY"].ToString();
 
-                // Set date controls – assuming your database stores dates in a valid format
+                // Set date controls
                 lblBookingDate.Text = row["BOOK_DATE"].ToString();
                 lblUpdateDate.Text = row["UPDATE_TIME"].ToString();
-
-                // Set the DateTimePicker for the delivery date if available
                 DateTime deliveryDate;
                 if (DateTime.TryParse(row["DELIVERY_DATE"].ToString(), out deliveryDate))
                 {
                     lblDeliveryDate.Value = deliveryDate;
                 }
 
-                // Optionally load an image into the PictureBox if you have an IMAGE_PATH column
+                // Optionally load an image if available
                 if (row.Table.Columns.Contains("IMAGE_PATH"))
                 {
                     string imagePath = row["IMAGE_PATH"].ToString();
@@ -177,10 +231,18 @@ namespace SYA
                     }
                     else
                     {
-                        // Optionally, set a default image or clear the picture box
                         pictureBox1.Image = null;
                     }
                 }
+
+                // **NEW CODE**: Retrieve the status from the database and update UI accordingly.
+                string loadedStatus = row["STATUS"].ToString();
+                if (string.IsNullOrEmpty(loadedStatus))
+                {
+                    loadedStatus = "New"; // or another default if desired
+                }
+                currentStatus = loadedStatus;
+                UpdateStatusUI(currentStatus);
             }
             else
             {
@@ -195,21 +257,22 @@ namespace SYA
 
         private void UpdateRepairRecord()
         {
-            // Gather values from the form fields. Use appropriate conversion and validations as needed.
+            // Gather values from form controls
             string NAME = txtName.Text.Trim();
             string NUMBER = string.IsNullOrWhiteSpace(txtNumber.Text) ? "NULL" : $"'{txtNumber.Text.Trim()}'";
             string WEIGHT = string.IsNullOrWhiteSpace(txtWeight.Text) ? "NULL" : txtWeight.Text.Trim();
             string ESTIMATE_COST = string.IsNullOrWhiteSpace(txtCost.Text) ? "NULL" : txtCost.Text.Trim();
-            // Assume BOOK_DATE is not updated – it remains the original booking date, which you may have stored or displayed.
             string DELIVERY_DATE = lblDeliveryDate.Value.ToString("yyyy-MM-dd");
             string UPDATE_TIME = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
             string TYPE = string.IsNullOrEmpty(cbType.Text) ? "''" : $"'{cbType.Text.Trim()}'";
             string SUB_TYPE = string.IsNullOrEmpty(cbSubType.Text) ? "''" : $"'{cbSubType.Text.Trim()}'";
             string CREATED_BY = string.IsNullOrEmpty(cbCreatedBy.Text) ? "''" : $"'{cbCreatedBy.Text.Trim()}'";
             string PRIORITY = string.IsNullOrEmpty(cbPriority.Text) ? "''" : $"'{cbPriority.Text.Trim()}'";
-            string COMMENT = $"'{rtxtComment.Text.Trim()}'"; // Enclose in quotes
+            string COMMENT = $"'{rtxtComment.Text.Trim()}'";
+            // Use currentStatus as set by the status buttons; default to 'NEW' if not set.
+            string STATUS = string.IsNullOrEmpty(currentStatus) ? "'NEW'" : $"'{currentStatus}'";
 
-            // Build your UPDATE query. Adjust field names as required.
+            // Build the UPDATE query – note the addition of STATUS in the query.
             string updateQuery = $@"
         UPDATE RepairingData SET 
             NAME = '{NAME}',
@@ -222,19 +285,29 @@ namespace SYA
             SUB_TYPE = {SUB_TYPE},
             CREATED_BY = {CREATED_BY},
             PRIORITY = {PRIORITY},
-            COMMENT = {COMMENT}
-        WHERE ID = {repairId}";  // repairId should have been set when the form was constructed
+            COMMENT = {COMMENT},
+            STATUS = {STATUS}
+        WHERE ID = {repairId}";
 
-            // Execute the query using your helper method and check affected rows.
             object affectedRows = helper.RunQueryWithoutParametersSYADataBase(updateQuery, "ExecuteNonQuery");
             if (affectedRows != null && Convert.ToInt32(affectedRows) > 0)
             {
-                MessageBox.Show("Record updated successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                // Remove the success message box:
+                // MessageBox.Show("Record updated successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                // Fire the RecordUpdated event to notify subscribers.
+                RecordUpdated?.Invoke(this, EventArgs.Empty);
+
+                // Close the details form after update.
+                this.DialogResult = DialogResult.OK;
+                this.Close();
             }
             else
             {
                 MessageBox.Show("Update failed. Please try again.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+
     }
 }

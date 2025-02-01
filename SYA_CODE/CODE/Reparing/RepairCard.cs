@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Drawing;
 using System.Windows.Forms;
 
@@ -23,13 +24,31 @@ namespace SYA
             AttachEventHandlers(); // Attach button click events
         }
 
-        public void SetRepairDetails(int id, string name, string date, string status)
+        public void SetRepairDetails(int id, string name, string date, string status, string imagePath)
         {
-            repairId = id; // Store the ID
+            repairId = id;
             NAME.Text = name;
             TYPE_DATE.Text = date;
             STATUS.Text = status;
             UpdateStatusUI(status);
+
+            // ✅ Load and set image if file exists
+            if (!string.IsNullOrEmpty(imagePath) && File.Exists(imagePath))
+            {
+                try
+                {
+                    PICTURE.Image?.Dispose(); // ✅ Dispose of previous image to avoid memory leaks
+                    PICTURE.Image = new Bitmap(imagePath);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error loading image: " + ex.Message, "Image Load Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            else
+            {
+               // PICTURE.Image = Properties.Resources.DefaultImage; // Use a default image if not found
+            }
         }
 
         private void UpdateStatusUI(string status)
@@ -130,10 +149,28 @@ namespace SYA
 
         private void PICTURE_Click(object sender, EventArgs e)
         {
-             // Replace with the actual repair ID you want to load.
+            // 'this' is the current RepairCard, which holds repairId and some display info.
             RepairDetailsForm detailsForm = new RepairDetailsForm(repairId);
-            detailsForm.Show();  // Opens the form centered on the screen (as set in the designer)
+            // Subscribe to the RecordUpdated event.
+            detailsForm.RecordUpdated += (s, args) =>
+            {
+                // Option 1: Directly update this card if you have new details (you might need to query again).
+                // For example, you might re-query this specific record:
+                DataTable dt = helper.FetchDataTableFromSYADataBase($"SELECT NAME,IMAGE_PATH, BOOK_DATE, STATUS FROM RepairingData WHERE ID = {repairId}");
+                if (dt != null && dt.Rows.Count > 0)
+                {
+                    DataRow row = dt.Rows[0];
+                    string name = row["NAME"].ToString();
+                    string date = row["BOOK_DATE"].ToString();
+                    string status = row["STATUS"].ToString();
+                    string imagePath = row["IMAGE_PATH"].ToString();
+                    this.SetRepairDetails(repairId, name, date, status,imagePath);
+                }
+            };
+
+            detailsForm.ShowDialog();  // Opens the form modally.
         }
+
     }
 
 

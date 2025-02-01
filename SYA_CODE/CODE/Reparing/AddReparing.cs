@@ -2,12 +2,22 @@
 using System.Data;
 using System.Windows.Forms;
 using System.Xml.Linq;
+using AForge.Video;
+using AForge.Video.DirectShow;
+using System.Drawing;
+using System.IO;
+
 namespace SYA
 {
     public partial class AddReparing : Form
     {
         private AutoCompleteStringCollection nameCollection = new AutoCompleteStringCollection();
         private HashSet<string> nameSet = new HashSet<string>(); // To quickly check if a name exists
+        private FilterInfoCollection videoDevices; // List of available cameras
+        private VideoCaptureDevice videoSource; // The selected camera
+        private Bitmap capturedImage; // Store captured image
+        private string imagePath; // Store image path
+
         public AddReparing()
         {
             InitializeComponent();
@@ -16,7 +26,7 @@ namespace SYA
         }
         private void AddReparing_Load(object sender, EventArgs e)
         {
-            this.KeyPreview = true; // Ensures the form captures key events
+            this.KeyPreview = true;
 
             LoadComboBoxData(cbType, "TYPE");
             LoadComboBoxData(cbSubType, "SUB_TYPE");
@@ -31,8 +41,47 @@ namespace SYA
             txtNumber.Leave += FormatDecimal;
             txtEstimate.Leave += FormatDecimal;
 
-            // Attach KeyPress event to all TextBoxes (excluding RichTextBox)
             AttachKeyPressEvent(this);
+
+            // Start Camera
+            StartCamera();
+        }
+        private void StartCamera()
+        {
+            try
+            {
+                videoDevices = new FilterInfoCollection(FilterCategory.VideoInputDevice);
+                if (videoDevices.Count > 0)
+                {
+                    videoSource = new VideoCaptureDevice(videoDevices[0].MonikerString);
+                    videoSource.NewFrame += new NewFrameEventHandler(VideoSource_NewFrame);
+                    videoSource.Start();
+                }
+                else
+                {
+                    MessageBox.Show("No camera found.");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error initializing camera: " + ex.Message);
+            }
+        }
+        private void VideoSource_NewFrame(object sender, NewFrameEventArgs eventArgs)
+        {
+            if (pictureBox1.InvokeRequired)
+            {
+                pictureBox1.Invoke(new MethodInvoker(delegate
+                {
+                    pictureBox1.Image?.Dispose(); // ✅ Dispose of the old image
+                    pictureBox1.Image = (Bitmap)eventArgs.Frame.Clone();
+                }));
+            }
+            else
+            {
+                pictureBox1.Image?.Dispose(); // ✅ Dispose of the old image
+                pictureBox1.Image = (Bitmap)eventArgs.Frame.Clone();
+            }
         }
 
         // Recursively attach KeyPress event to all TextBox controls
@@ -206,27 +255,29 @@ namespace SYA
         }
         private void update_insert()
         {
-
             string NAME = txtName.Text.Trim();
             string NUMBER = string.IsNullOrWhiteSpace(txtNumber.Text) ? "NULL" : txtNumber.Text.Trim();
             string WEIGHT = string.IsNullOrWhiteSpace(txtWeight.Text) ? "NULL" : txtWeight.Text.Trim();
             string ESTIMATE_COST = string.IsNullOrWhiteSpace(txtEstimate.Text) ? "NULL" : txtEstimate.Text.Trim();
-            string BOOK_DATE = DateTime.Today.ToString("yyyy-MM-dd"); // Current date only
+            string BOOK_DATE = DateTime.Today.ToString("yyyy-MM-dd");
             string DELIVERY_DATE = dtDeliveryDate.Value.ToString("yyyy-MM-dd");
             string BOOK_TIME = DateTime.Now.ToString("HH:mm:ss");
             string UPDATE_TIME = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
-            string TYPE = cbType.Text.ToString() ?? "";
-            string SUB_TYPE = cbSubType.Text.ToString() ?? "";
-            string CREATED_BY = cbCreatedBy.Text.ToString() ?? "";
-            string PRIORITY = cbPriority.Text.ToString() ?? "";
-            string IMAGE_PATH = "";
+            string TYPE = cbType.Text ?? "";
+            string SUB_TYPE = cbSubType.Text ?? "";
+            string CREATED_BY = cbCreatedBy.Text ?? "";
+            string PRIORITY = cbPriority.Text ?? "";
+            string IMAGE_PATH = string.IsNullOrEmpty(imagePath) ? "" : imagePath; // Assign captured image path
             string COMMENT = rtComment.Text.Trim();
-            string STATUS = "NEW";
+            string STATUS = "New";
+
             string insertQuery = "INSERT INTO RepairingData (NAME, NUMBER, WEIGHT, ESTIMATE_COST, BOOK_DATE, DELIVERY_DATE, BOOK_TIME, UPDATE_TIME, TYPE, SUB_TYPE, CREATED_BY, PRIORITY, IMAGE_PATH, COMMENT, STATUS) " +
-                     "VALUES ('" + NAME + "', " + NUMBER + ", " + WEIGHT + ", " + ESTIMATE_COST + ", '" + BOOK_DATE + "', '" + DELIVERY_DATE + "', '" + BOOK_TIME + "', '" + UPDATE_TIME + "', " +
-                     "'" + TYPE + "', '" + SUB_TYPE + "', '" + CREATED_BY + "', '" + PRIORITY + "', '" + IMAGE_PATH + "', '" + COMMENT + "', '" + STATUS + "')";
+                                 "VALUES ('" + NAME + "', " + NUMBER + ", " + WEIGHT + ", " + ESTIMATE_COST + ", '" + BOOK_DATE + "', '" + DELIVERY_DATE + "', '" + BOOK_TIME + "', '" + UPDATE_TIME + "', " +
+                                 "'" + TYPE + "', '" + SUB_TYPE + "', '" + CREATED_BY + "', '" + PRIORITY + "', '" + IMAGE_PATH + "', '" + COMMENT + "', '" + STATUS + "')";
+
             helper.RunQueryWithoutParametersSYADataBase(insertQuery, "ExecuteNonQuery");
         }
+
         private void buttonSave_Click(object sender, EventArgs e)
         {
             update_insert();
@@ -236,6 +287,40 @@ namespace SYA
         private void dtDeliveryDate_ValueChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void buttonCaptureIamge_Click(object sender, EventArgs e)
+        {
+            if (pictureBox1.Image != null)
+            {
+                string folderPath = @"F:\SYA_APP\Images"; // Adjust as needed
+                if (!Directory.Exists(folderPath))
+                {
+                    Directory.CreateDirectory(folderPath);
+                }
+
+                string fileName = "Repair_" + DateTime.Now.ToString("yyyyMMdd_HHmmss") + ".jpg";
+                imagePath = Path.Combine(folderPath, fileName);
+
+                pictureBox1.Image.Save(imagePath, System.Drawing.Imaging.ImageFormat.Jpeg);
+                MessageBox.Show("Image Captured Successfully.");
+
+                // ✅ Stop the camera after capturing the image
+                StopCamera();
+            }
+        }
+        private void StopCamera()
+        {
+            if (videoSource != null && videoSource.IsRunning)
+            {
+                videoSource.SignalToStop();
+                videoSource.WaitForStop();
+                videoSource = null; // Release reference
+            }
+        }
+        private void AddReparing_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            StopCamera(); // Ensure camera is stopped
         }
     }
 }
