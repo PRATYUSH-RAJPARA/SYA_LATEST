@@ -95,12 +95,12 @@
             // 
             btnTypeUnableToComplete.Dock = DockStyle.Fill;
             btnTypeUnableToComplete.FlatStyle = FlatStyle.Popup;
-            btnTypeUnableToComplete.Font = new Font("Arial Black", 10F, FontStyle.Bold);
+            btnTypeUnableToComplete.Font = new Font("Arial Black", 9.5F, FontStyle.Bold);
             btnTypeUnableToComplete.Location = new Point(768, 1);
             btnTypeUnableToComplete.Margin = new Padding(1);
             btnTypeUnableToComplete.Name = "btnTypeUnableToComplete";
             btnTypeUnableToComplete.Size = new Size(191, 44);
-            btnTypeUnableToComplete.TabIndex = 4;
+            btnTypeUnableToComplete.TabIndex = 13;
             btnTypeUnableToComplete.Text = "UNABLE TO COMPLETE";
             btnTypeUnableToComplete.UseVisualStyleBackColor = true;
             // 
@@ -158,7 +158,7 @@
             btnUpdate.Margin = new Padding(1);
             btnUpdate.Name = "btnUpdate";
             btnUpdate.Size = new Size(156, 43);
-            btnUpdate.TabIndex = 0;
+            btnUpdate.TabIndex = 14;
             btnUpdate.Text = "UPDATE";
             btnUpdate.UseVisualStyleBackColor = true;
             btnUpdate.Click += btnUpdate_Click;
@@ -172,9 +172,10 @@
             btnDelete.Margin = new Padding(1);
             btnDelete.Name = "btnDelete";
             btnDelete.Size = new Size(157, 43);
-            btnDelete.TabIndex = 1;
+            btnDelete.TabIndex = 15;
             btnDelete.Text = "DELETE";
             btnDelete.UseVisualStyleBackColor = true;
+            btnDelete.Click += btnDelete_Click;
             // 
             // tableLayoutPanel5
             // 
@@ -210,7 +211,7 @@
             txtCost.Margin = new Padding(1);
             txtCost.Name = "txtCost";
             txtCost.Size = new Size(238, 31);
-            txtCost.TabIndex = 17;
+            txtCost.TabIndex = 6;
             txtCost.TextAlign = HorizontalAlignment.Center;
             // 
             // txtWeight
@@ -222,7 +223,7 @@
             txtWeight.Margin = new Padding(1);
             txtWeight.Name = "txtWeight";
             txtWeight.Size = new Size(238, 31);
-            txtWeight.TabIndex = 16;
+            txtWeight.TabIndex = 5;
             txtWeight.TextAlign = HorizontalAlignment.Center;
             // 
             // cbSubType
@@ -235,7 +236,7 @@
             cbSubType.Margin = new Padding(1);
             cbSubType.Name = "cbSubType";
             cbSubType.Size = new Size(238, 32);
-            cbSubType.TabIndex = 15;
+            cbSubType.TabIndex = 8;
             // 
             // cbType
             // 
@@ -247,7 +248,7 @@
             cbType.Margin = new Padding(1);
             cbType.Name = "cbType";
             cbType.Size = new Size(238, 32);
-            cbType.TabIndex = 14;
+            cbType.TabIndex = 7;
             // 
             // label12
             // 
@@ -337,7 +338,7 @@
             txtNumber.Margin = new Padding(1);
             txtNumber.Name = "txtNumber";
             txtNumber.Size = new Size(238, 31);
-            txtNumber.TabIndex = 5;
+            txtNumber.TabIndex = 4;
             // 
             // label17
             // 
@@ -373,7 +374,7 @@
             txtName.Margin = new Padding(1);
             txtName.Name = "txtName";
             txtName.Size = new Size(718, 31);
-            txtName.TabIndex = 4;
+            txtName.TabIndex = 3;
             txtName.TextAlign = HorizontalAlignment.Center;
             // 
             // tableLayoutPanel13
@@ -401,7 +402,7 @@
             rtxtComment.Margin = new Padding(1);
             rtxtComment.Name = "rtxtComment";
             rtxtComment.Size = new Size(766, 58);
-            rtxtComment.TabIndex = 1;
+            rtxtComment.TabIndex = 9;
             rtxtComment.Text = "";
             // 
             // btnTypeCompleted
@@ -413,7 +414,7 @@
             btnTypeCompleted.Margin = new Padding(1);
             btnTypeCompleted.Name = "btnTypeCompleted";
             btnTypeCompleted.Size = new Size(190, 44);
-            btnTypeCompleted.TabIndex = 3;
+            btnTypeCompleted.TabIndex = 12;
             btnTypeCompleted.Text = "COMPLETED";
             btnTypeCompleted.UseVisualStyleBackColor = true;
             // 
@@ -539,7 +540,7 @@
             cbPriority.Margin = new Padding(1);
             cbPriority.Name = "cbPriority";
             cbPriority.Size = new Size(140, 32);
-            cbPriority.TabIndex = 11;
+            cbPriority.TabIndex = 2;
             // 
             // label13
             // 
@@ -573,7 +574,7 @@
             lblDeliveryDate.Location = new Point(3, 43);
             lblDeliveryDate.Name = "lblDeliveryDate";
             lblDeliveryDate.Size = new Size(136, 29);
-            lblDeliveryDate.TabIndex = 12;
+            lblDeliveryDate.TabIndex = 1;
             // 
             // tableLayoutPanel8
             // 
@@ -616,7 +617,7 @@
             cbCreatedBy.Margin = new Padding(1);
             cbCreatedBy.Name = "cbCreatedBy";
             cbCreatedBy.Size = new Size(197, 32);
-            cbCreatedBy.TabIndex = 9;
+            cbCreatedBy.TabIndex = 0;
             // 
             // lblID
             // 
@@ -743,7 +744,7 @@
             btnTypeInProgress.Margin = new Padding(1);
             btnTypeInProgress.Name = "btnTypeInProgress";
             btnTypeInProgress.Size = new Size(190, 44);
-            btnTypeInProgress.TabIndex = 2;
+            btnTypeInProgress.TabIndex = 11;
             btnTypeInProgress.Text = "IN PROGRESS";
             btnTypeInProgress.UseVisualStyleBackColor = true;
             // 
@@ -756,7 +757,7 @@
             btnTypeNew.Margin = new Padding(1);
             btnTypeNew.Name = "btnTypeNew";
             btnTypeNew.Size = new Size(190, 44);
-            btnTypeNew.TabIndex = 1;
+            btnTypeNew.TabIndex = 10;
             btnTypeNew.Text = "NEW";
             btnTypeNew.UseVisualStyleBackColor = true;
             // 

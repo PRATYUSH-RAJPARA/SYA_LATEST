@@ -293,7 +293,7 @@ namespace SYA
         {
             if (pictureBox1.Image != null)
             {
-                string folderPath = @"F:\SYA_APP\Images"; // Adjust as needed
+                string folderPath = @"C:\SYA_APP\Images"; // Adjust as needed
                 if (!Directory.Exists(folderPath))
                 {
                     Directory.CreateDirectory(folderPath);
