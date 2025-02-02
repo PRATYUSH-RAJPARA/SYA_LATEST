@@ -2,7 +2,6 @@
 using System.Data;
 using System.Drawing;
 using System.Windows.Forms;
-
 namespace SYA
 {
     public partial class Repair : Form
@@ -11,20 +10,16 @@ namespace SYA
         {
             InitializeComponent();
         }
-
         private void Repair_Load(object sender, EventArgs e)
         {
             LoadRepairItems();
         }
-
         private void LoadRepairItems()
         {
             // Clear existing cards
             flowLayoutPanel1.Controls.Clear();
-
             // Fetch repair data from SQLite
             DataTable dt = helper.FetchDataTableFromSYADataBase("SELECT ID, NAME, BOOK_DATE, STATUS, IMAGE_PATH FROM RepairingData");
-
             if (dt != null && dt.Rows.Count > 0)
             {
                 foreach (DataRow row in dt.Rows)
@@ -34,7 +29,6 @@ namespace SYA
                     string date = row["BOOK_DATE"].ToString();
                     string status = row["STATUS"].ToString();
                     string imagePath = row["IMAGE_PATH"].ToString(); // Image path stored in DB
-
                     RepairCard card = new RepairCard();
                     card.SetRepairDetails(id, name, date, status, imagePath);
                     flowLayoutPanel1.Controls.Add(card);
@@ -45,6 +39,5 @@ namespace SYA
                // MessageBox.Show("Error loading repair data.", "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
     }
 }

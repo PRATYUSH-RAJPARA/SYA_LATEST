@@ -349,19 +349,15 @@ namespace SYA
         {
             // Repair AddReparing;
             // Initialize NotifyForm
-
             LoadForm(new Repair());
             //    RepairDetailsForm AddReparing;
             //    AddReparing = new RepairDetailsForm();
-
             //    AddReparing.Show();
         }
-
         private void btnAddRepair_Click(object sender, EventArgs e)
         {
                 AddReparing AddReparing;
                 AddReparing = new AddReparing();
-
                 AddReparing.Show();
         }
     }

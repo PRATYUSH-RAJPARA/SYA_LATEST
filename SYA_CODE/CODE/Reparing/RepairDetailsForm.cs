@@ -7,7 +7,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
 namespace SYA
 {
     public partial class RepairDetailsForm : Form
@@ -21,10 +20,8 @@ namespace SYA
             { "Completed", ColorTranslator.FromHtml("#a1ef7a") },
             { "Unable to Complete", ColorTranslator.FromHtml("#ec8385") }
         };
-
         // Event to notify that the record has been updated or deleted
         public event EventHandler RecordUpdated;
-
         // -----------------------------
         // UI update methods
         // -----------------------------
@@ -39,7 +36,6 @@ namespace SYA
             btnTypeCompleted.ForeColor = Color.Black;
             btnTypeUnableToComplete.BackColor = SystemColors.Control;
             btnTypeUnableToComplete.ForeColor = Color.Black;
-
             // Highlight the selected status button
             switch (status)
             {
@@ -57,7 +53,6 @@ namespace SYA
                     break;
             }
         }
-
         private void AttachStatusEventHandlers()
         {
             btnTypeNew.Click += (s, e) => OnStatusButtonClicked("New");
@@ -65,14 +60,12 @@ namespace SYA
             btnTypeCompleted.Click += (s, e) => OnStatusButtonClicked("Completed");
             btnTypeUnableToComplete.Click += (s, e) => OnStatusButtonClicked("Unable to Complete");
         }
-
         private void OnStatusButtonClicked(string newStatus)
         {
             // Update UI and store new status for saving
             UpdateStatusUI(newStatus);
             currentStatus = newStatus;
         }
-
         // -----------------------------
         // Constructors
         // -----------------------------
@@ -81,13 +74,11 @@ namespace SYA
             InitializeComponent();
             this.repairId = repairId;
         }
-
         // Default constructor if needed
         public RepairDetailsForm()
         {
             InitializeComponent();
         }
-
         // -----------------------------
         // Form Load and Control Initialization
         // -----------------------------
@@ -99,7 +90,6 @@ namespace SYA
             LoadComboBoxData(cbSubType, "SUB_TYPE");
             LoadComboBoxData(cbCreatedBy, "USER");
             LoadComboBoxData(cbPriority, "PRIORITY");
-
             txtWeight.KeyPress += AllowOnlyNumeric;
             txtNumber.KeyPress += AllowOnlyNumeric;
             txtCost.KeyPress += AllowOnlyNumeric;
@@ -107,31 +97,25 @@ namespace SYA
             txtNumber.Leave += FormatDecimal;
             txtCost.Leave += FormatDecimal;
             AttachKeyPressEvent(this);
-
             // Attach status button events
             AttachStatusEventHandlers();
-
             // Set the initial status based on loaded data (if currentStatus is not set, UpdateStatusUI will use its value)
             UpdateStatusUI(currentStatus);
         }
-
         private void LoadComboBoxData(ComboBox comboBox, string groupType)
         {
             try
             {
                 string query = $"SELECT NAME FROM RepairingHelper WHERE [GROUP] = '{groupType}'";
                 DataTable dt = helper.FetchDataTableFromSYADataBase(query);
-
                 comboBox.Items.Clear(); // Clear existing items
                 AutoCompleteStringCollection autoCompleteCollection = new AutoCompleteStringCollection();
-
                 foreach (DataRow row in dt.Rows)
                 {
                     string name = row["NAME"].ToString();
                     comboBox.Items.Add(name);
                     autoCompleteCollection.Add(name);
                 }
-
                 // Enable AutoComplete
                 comboBox.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
                 comboBox.AutoCompleteSource = AutoCompleteSource.CustomSource;
@@ -143,7 +127,6 @@ namespace SYA
                 MessageBox.Show($"Error loading {groupType}: {ex.Message}");
             }
         }
-
         private void AllowOnlyNumeric(object sender, KeyPressEventArgs e)
         {
             TextBox txtBox = sender as TextBox;
@@ -156,7 +139,6 @@ namespace SYA
                 e.Handled = true;
             }
         }
-
         private void FormatDecimal(object sender, EventArgs e)
         {
             TextBox txtBox = sender as TextBox;
@@ -172,7 +154,6 @@ namespace SYA
                 txtBox.Text = "0";
             }
         }
-
         private void AttachKeyPressEvent(Control parent)
         {
             foreach (Control ctrl in parent.Controls)
@@ -187,7 +168,6 @@ namespace SYA
                 }
             }
         }
-
         private void EditingControl_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (char.IsLetter(e.KeyChar))
@@ -195,7 +175,6 @@ namespace SYA
                 e.KeyChar = char.ToUpper(e.KeyChar);
             }
         }
-
         // -----------------------------
         // Data Loading
         // -----------------------------
@@ -203,29 +182,24 @@ namespace SYA
         {
             string query = $"SELECT * FROM RepairingData WHERE ID = {repairId}";
             DataTable dt = helper.FetchDataTableFromSYADataBase(query);
-
             if (dt != null && dt.Rows.Count > 0)
             {
                 DataRow row = dt.Rows[0];
-
                 txtName.Text = row["NAME"].ToString();
                 txtNumber.Text = row["NUMBER"].ToString();
                 txtWeight.Text = row["WEIGHT"].ToString();
                 txtCost.Text = row["ESTIMATE_COST"].ToString();
                 rtxtComment.Text = row["COMMENT"].ToString();
-
                 cbType.Text = row["TYPE"].ToString();
                 cbSubType.Text = row["SUB_TYPE"].ToString();
                 cbCreatedBy.Text = row["CREATED_BY"].ToString();
                 cbPriority.Text = row["PRIORITY"].ToString();
-
                 lblBookingDate.Text = row["BOOK_DATE"].ToString();
                 lblUpdateDate.Text = row["UPDATE_TIME"].ToString();
                 if (DateTime.TryParse(row["DELIVERY_DATE"].ToString(), out DateTime deliveryDate))
                 {
                     lblDeliveryDate.Value = deliveryDate;
                 }
-
                 // Load image if available
                 if (row.Table.Columns.Contains("IMAGE_PATH"))
                 {
@@ -239,7 +213,6 @@ namespace SYA
                         pictureBox1.Image = null;
                     }
                 }
-
                 // Load and update status
                 string loadedStatus = row["STATUS"].ToString();
                 if (string.IsNullOrEmpty(loadedStatus))
@@ -254,7 +227,6 @@ namespace SYA
                 MessageBox.Show("No details found for the selected repair item.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
         // -----------------------------
         // Update Functionality
         // -----------------------------
@@ -262,7 +234,6 @@ namespace SYA
         {
             UpdateRepairRecord();
         }
-
         private void UpdateRepairRecord()
         {
             string NAME = txtName.Text.Trim();
@@ -277,7 +248,6 @@ namespace SYA
             string PRIORITY = string.IsNullOrEmpty(cbPriority.Text) ? "''" : $"'{cbPriority.Text.Trim()}'";
             string COMMENT = $"'{rtxtComment.Text.Trim()}'";
             string STATUS = string.IsNullOrEmpty(currentStatus) ? "'NEW'" : $"'{currentStatus}'";
-
             string updateQuery = $@"
                 UPDATE RepairingData SET 
                     NAME = '{NAME}',
@@ -293,7 +263,6 @@ namespace SYA
                     COMMENT = {COMMENT},
                     STATUS = {STATUS}
                 WHERE ID = {repairId}";
-
             object affectedRows = helper.RunQueryWithoutParametersSYADataBase(updateQuery, "ExecuteNonQuery");
             if (affectedRows != null && Convert.ToInt32(affectedRows) > 0)
             {
@@ -307,7 +276,6 @@ namespace SYA
                 MessageBox.Show("Update failed. Please try again.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
         // -----------------------------
         // Delete Functionality
         // -----------------------------
@@ -330,7 +298,6 @@ namespace SYA
                 }
             }
         }
-
         private void btnDelete_Click(object sender, EventArgs e)
         {
             DeleteRepairRecord();

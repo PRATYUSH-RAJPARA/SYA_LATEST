@@ -7,7 +7,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
 namespace SYA
 {
     public partial class RepairDetails : UserControl
@@ -16,10 +15,8 @@ namespace SYA
         {
             InitializeComponent();
         }
-
         private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
         {
-
         }
     }
 }

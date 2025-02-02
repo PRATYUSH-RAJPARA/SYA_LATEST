@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "fN+e5dwZnUs=",
+  "dgSpecHash": "1h+ee9xiXcw=",
   "success": true,
   "projectFilePath": "C:\\SYA_LATEST\\SYA_CODE\\SYA.csproj",
   "expectedPackageFiles": [
@@ -69,6 +69,7 @@
     "C:\\Users\\pvraj\\.nuget\\packages\\livechartscore\\2.0.0-rc4.5\\livechartscore.2.0.0-rc4.5.nupkg.sha512",
     "C:\\Users\\pvraj\\.nuget\\packages\\livechartscore.skiasharpview\\2.0.0-rc4.5\\livechartscore.skiasharpview.2.0.0-rc4.5.nupkg.sha512",
     "C:\\Users\\pvraj\\.nuget\\packages\\livechartscore.skiasharpview.winforms\\2.0.0-rc4.5\\livechartscore.skiasharpview.winforms.2.0.0-rc4.5.nupkg.sha512",
+    "C:\\Users\\pvraj\\.nuget\\packages\\materialskin\\0.2.1\\materialskin.0.2.1.nupkg.sha512",
     "C:\\Users\\pvraj\\.nuget\\packages\\microsoft.aspnet.webapi.client\\6.0.0\\microsoft.aspnet.webapi.client.6.0.0.nupkg.sha512",
     "C:\\Users\\pvraj\\.nuget\\packages\\microsoft.aspnet.webapi.core\\5.3.0\\microsoft.aspnet.webapi.core.5.3.0.nupkg.sha512",
     "C:\\Users\\pvraj\\.nuget\\packages\\microsoft.bcl.asyncinterfaces\\9.0.0\\microsoft.bcl.asyncinterfaces.9.0.0.nupkg.sha512",
@@ -169,6 +170,16 @@
       "warningLevel": 1,
       "message": "Package 'AForge.Video.DirectShow 2.2.5' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' instead of the project target framework 'net8.0-windows8.0'. This package may not be fully compatible with your project.",
       "libraryId": "AForge.Video.DirectShow",
+      "targetGraphs": [
+        "net8.0-windows8.0"
+      ]
+    },
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Package 'MaterialSkin 0.2.1' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' instead of the project target framework 'net8.0-windows8.0'. This package may not be fully compatible with your project.",
+      "libraryId": "MaterialSkin",
       "targetGraphs": [
         "net8.0-windows8.0"
       ]

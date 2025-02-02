@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
 using System.Windows.Forms;
-
-
 namespace SYA
 {
     public partial class RepairCard : UserControl
@@ -16,15 +14,12 @@ namespace SYA
         { "Completed", ColorTranslator.FromHtml("#a1ef7a") },
         { "Unable to Complete", ColorTranslator.FromHtml("#ec8385") }
     };
-
         private int repairId; // To store the ID of the repair item
-
         public RepairCard()
         {
             InitializeComponent();
             AttachEventHandlers(); // Attach button click events
         }
-
         public void SetRepairDetails(int id, string name, string date, string status, string imagePath)
         {
             repairId = id;
@@ -32,7 +27,6 @@ namespace SYA
             TYPE_DATE.Text = date;
             STATUS.Text = status;
             UpdateStatusUI(status);
-
             // ✅ Load and set image if file exists
             if (!string.IsNullOrEmpty(imagePath) && File.Exists(imagePath))
             {
@@ -51,14 +45,12 @@ namespace SYA
                // PICTURE.Image = Properties.Resources.DefaultImage; // Use a default image if not found
             }
         }
-
         private void UpdateStatusUI(string status)
         {
             if (statusColors.ContainsKey(status))
             {
                 tableLayoutPanel6.BackColor = statusColors[status]; // Update panel color
             }
-
             // Reset all button colors
             btnTypeNew.BackColor = SystemColors.Control;
             btnTypeNew.ForeColor = Color.Black;
@@ -68,7 +60,6 @@ namespace SYA
             btnTypeCompleted.ForeColor = Color.Black;
             btnTypeUnableToComplete.BackColor = SystemColors.Control;
             btnTypeUnableToComplete.ForeColor = Color.Black;
-
             // Highlight the selected status button
             switch (status)
             {
@@ -90,7 +81,6 @@ namespace SYA
                     break;
             }
         }
-
         private void AttachEventHandlers()
         {
             btnTypeNew.Click += (s, e) => ChangeStatus("New");
@@ -99,16 +89,13 @@ namespace SYA
             btnTypeUnableToComplete.Click += (s, e) => ChangeStatus("Unable to Complete");
             btnDelete.Click += (s, e) => DeleteRepairItem(); // Attach the Delete event
         }
-
         private void ChangeStatus(string newStatus)
         {
             STATUS.Text = newStatus; // Update label
             UpdateStatusUI(newStatus); // Refresh colors
-
             // Update the status in the database
             string query = $"UPDATE RepairingData SET STATUS = '{newStatus}' WHERE ID = {repairId}";
             object affectedRows = helper.RunQueryWithoutParametersSYADataBase(query, "ExecuteNonQuery");
-
             if (affectedRows == null || Convert.ToInt32(affectedRows) <= 0)
             {
                 MessageBox.Show("Failed to update the status in the database.", "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -117,9 +104,7 @@ namespace SYA
             {
                 // Proceed with any additional logic if the update is successful
             }
-
         }
-
         private void DeleteRepairItem()
         {
             // Ask for confirmation
@@ -128,13 +113,11 @@ namespace SYA
                 "Confirm Deletion",
                 MessageBoxButtons.YesNo,
                 MessageBoxIcon.Warning);
-
             if (result == DialogResult.Yes)
             {
                 // Delete from database
                 string query = $"DELETE FROM RepairingData WHERE ID = {repairId}";
                 object affectedRows = helper.RunQueryWithoutParametersSYADataBase(query, "ExecuteNonQuery");
-
                 // Check if the result is valid and the affected rows count is greater than 0
                 if (affectedRows != null && Convert.ToInt32(affectedRows) > 0)
                 {
@@ -147,7 +130,6 @@ namespace SYA
                 }
             }
         }
-
         private void PICTURE_Click(object sender, EventArgs e)
         {
             // 'this' is the current RepairCard, which holds repairId and some display info.
@@ -168,11 +150,7 @@ namespace SYA
                     this.SetRepairDetails(repairId, name, date, status,imagePath);
                 }
             };
-
             detailsForm.ShowDialog();  // Opens the form modally.
         }
-
     }
-
-
 }
