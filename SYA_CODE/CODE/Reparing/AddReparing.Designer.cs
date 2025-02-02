@@ -31,8 +31,8 @@
             buttonSave = new Button();
             tableLayoutPanel15 = new TableLayoutPanel();
             label10 = new Label();
-            panel3 = new Panel();
-            panel4 = new Panel();
+            panel = new Panel();
+            panelCheck = new Panel();
             tableLayoutPanel17 = new TableLayoutPanel();
             checkBox16 = new CheckBox();
             checkBox15 = new CheckBox();
@@ -50,6 +50,7 @@
             checkBox3 = new CheckBox();
             checkBox2 = new CheckBox();
             checkBox1 = new CheckBox();
+            panelRadio = new Panel();
             tableLayoutPanel16 = new TableLayoutPanel();
             radioButton30 = new RadioButton();
             radioButton29 = new RadioButton();
@@ -88,12 +89,15 @@
             buttonReCapture = new Button();
             tableLayoutPanel9 = new TableLayoutPanel();
             label2 = new Label();
+            panelPriority = new Panel();
             tableLayoutPanel12 = new TableLayoutPanel();
             rbPriority4 = new RadioButton();
             rbPriority3 = new RadioButton();
             rbPriority2 = new RadioButton();
             rbPriority1 = new RadioButton();
             tableLayoutPanel8 = new TableLayoutPanel();
+            label1 = new Label();
+            panelUser = new Panel();
             tableLayoutPanel11 = new TableLayoutPanel();
             rbUser6 = new RadioButton();
             rbUser5 = new RadioButton();
@@ -101,21 +105,24 @@
             rbUser3 = new RadioButton();
             rbUser2 = new RadioButton();
             rbUser1 = new RadioButton();
-            label1 = new Label();
+            panel2 = new Panel();
             pictureBox1 = new PictureBox();
             tableLayoutPanel13 = new TableLayoutPanel();
+            label9 = new Label();
+            panelType = new Panel();
+            tableLayoutPanel18 = new TableLayoutPanel();
             radioButton14 = new RadioButton();
+            radioButton11 = new RadioButton();
             radioButton13 = new RadioButton();
             radioButton12 = new RadioButton();
-            radioButton11 = new RadioButton();
-            label9 = new Label();
             tableLayoutPanel1.SuspendLayout();
             tableLayoutPanel2.SuspendLayout();
             tableLayoutPanel3.SuspendLayout();
             tableLayoutPanel15.SuspendLayout();
-            panel3.SuspendLayout();
-            panel4.SuspendLayout();
+            panel.SuspendLayout();
+            panelCheck.SuspendLayout();
             tableLayoutPanel17.SuspendLayout();
+            panelRadio.SuspendLayout();
             tableLayoutPanel16.SuspendLayout();
             tableLayoutPanel14.SuspendLayout();
             tableLayoutPanel6.SuspendLayout();
@@ -124,11 +131,16 @@
             tableLayoutPanel7.SuspendLayout();
             tableLayoutPanel10.SuspendLayout();
             tableLayoutPanel9.SuspendLayout();
+            panelPriority.SuspendLayout();
             tableLayoutPanel12.SuspendLayout();
             tableLayoutPanel8.SuspendLayout();
+            panelUser.SuspendLayout();
             tableLayoutPanel11.SuspendLayout();
+            panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             tableLayoutPanel13.SuspendLayout();
+            panelType.SuspendLayout();
+            tableLayoutPanel18.SuspendLayout();
             SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -183,23 +195,23 @@
             tableLayoutPanel3.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 35F));
             tableLayoutPanel3.Controls.Add(buttonSave, 1, 0);
             tableLayoutPanel3.Dock = DockStyle.Fill;
-            tableLayoutPanel3.Location = new Point(10, 843);
-            tableLayoutPanel3.Margin = new Padding(10);
+            tableLayoutPanel3.Location = new Point(1, 834);
+            tableLayoutPanel3.Margin = new Padding(1);
             tableLayoutPanel3.Name = "tableLayoutPanel3";
             tableLayoutPanel3.RowCount = 1;
             tableLayoutPanel3.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
             tableLayoutPanel3.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
-            tableLayoutPanel3.Size = new Size(1019, 68);
+            tableLayoutPanel3.Size = new Size(1037, 86);
             tableLayoutPanel3.TabIndex = 7;
             // 
             // buttonSave
             // 
             buttonSave.Dock = DockStyle.Fill;
             buttonSave.Font = new Font("Microsoft Sans Serif", 14F);
-            buttonSave.Location = new Point(357, 1);
+            buttonSave.Location = new Point(363, 1);
             buttonSave.Margin = new Padding(1);
             buttonSave.Name = "buttonSave";
-            buttonSave.Size = new Size(303, 66);
+            buttonSave.Size = new Size(309, 84);
             buttonSave.TabIndex = 12;
             buttonSave.Text = "Re-Capture Image";
             buttonSave.UseVisualStyleBackColor = true;
@@ -214,7 +226,7 @@
             tableLayoutPanel15.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 20F));
             tableLayoutPanel15.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 20F));
             tableLayoutPanel15.Controls.Add(label10, 0, 0);
-            tableLayoutPanel15.Controls.Add(panel3, 1, 0);
+            tableLayoutPanel15.Controls.Add(panel, 1, 0);
             tableLayoutPanel15.Dock = DockStyle.Fill;
             tableLayoutPanel15.Location = new Point(1, 684);
             tableLayoutPanel15.Margin = new Padding(1);
@@ -236,25 +248,24 @@
             label10.Text = "Sub Type :";
             label10.TextAlign = ContentAlignment.MiddleCenter;
             // 
-            // panel3
+            // panel
             // 
-            panel3.Controls.Add(panel4);
-            panel3.Location = new Point(208, 1);
-            panel3.Margin = new Padding(1);
-            panel3.Name = "panel3";
-            panel3.Size = new Size(824, 142);
-            panel3.TabIndex = 5;
+            panel.Controls.Add(panelCheck);
+            panel.Controls.Add(panelRadio);
+            panel.Dock = DockStyle.Fill;
+            panel.Location = new Point(210, 3);
+            panel.Name = "panel";
+            panel.Size = new Size(824, 142);
+            panel.TabIndex = 5;
             // 
-            // panel4
+            // panelCheck
             // 
-            panel4.Controls.Add(tableLayoutPanel17);
-            panel4.Controls.Add(tableLayoutPanel16);
-            panel4.Dock = DockStyle.Fill;
-            panel4.Location = new Point(0, 0);
-            panel4.Margin = new Padding(1);
-            panel4.Name = "panel4";
-            panel4.Size = new Size(824, 142);
-            panel4.TabIndex = 0;
+            panelCheck.Controls.Add(tableLayoutPanel17);
+            panelCheck.Dock = DockStyle.Top;
+            panelCheck.Location = new Point(0, 53);
+            panelCheck.Name = "panelCheck";
+            panelCheck.Size = new Size(824, 58);
+            panelCheck.TabIndex = 1;
             // 
             // tableLayoutPanel17
             // 
@@ -279,8 +290,8 @@
             tableLayoutPanel17.Controls.Add(checkBox3, 2, 0);
             tableLayoutPanel17.Controls.Add(checkBox2, 1, 0);
             tableLayoutPanel17.Controls.Add(checkBox1, 0, 0);
-            tableLayoutPanel17.Dock = DockStyle.Bottom;
-            tableLayoutPanel17.Location = new Point(0, 72);
+            tableLayoutPanel17.Dock = DockStyle.Fill;
+            tableLayoutPanel17.Location = new Point(0, 0);
             tableLayoutPanel17.Margin = new Padding(1);
             tableLayoutPanel17.Name = "tableLayoutPanel17";
             tableLayoutPanel17.RowCount = 4;
@@ -288,9 +299,8 @@
             tableLayoutPanel17.RowStyles.Add(new RowStyle(SizeType.Percent, 25F));
             tableLayoutPanel17.RowStyles.Add(new RowStyle(SizeType.Percent, 25F));
             tableLayoutPanel17.RowStyles.Add(new RowStyle(SizeType.Percent, 25F));
-            tableLayoutPanel17.Size = new Size(824, 70);
+            tableLayoutPanel17.Size = new Size(824, 58);
             tableLayoutPanel17.TabIndex = 6;
-            tableLayoutPanel17.Visible = false;
             // 
             // checkBox16
             // 
@@ -298,10 +308,10 @@
             checkBox16.Dock = DockStyle.Fill;
             checkBox16.FlatStyle = FlatStyle.Popup;
             checkBox16.Font = new Font("Microsoft Sans Serif", 14F);
-            checkBox16.Location = new Point(619, 52);
+            checkBox16.Location = new Point(619, 43);
             checkBox16.Margin = new Padding(1);
             checkBox16.Name = "checkBox16";
-            checkBox16.Size = new Size(204, 17);
+            checkBox16.Size = new Size(204, 14);
             checkBox16.TabIndex = 20;
             checkBox16.Text = "checkBox16";
             checkBox16.TextAlign = ContentAlignment.MiddleCenter;
@@ -313,10 +323,10 @@
             checkBox15.Dock = DockStyle.Fill;
             checkBox15.FlatStyle = FlatStyle.Popup;
             checkBox15.Font = new Font("Microsoft Sans Serif", 14F);
-            checkBox15.Location = new Point(413, 52);
+            checkBox15.Location = new Point(413, 43);
             checkBox15.Margin = new Padding(1);
             checkBox15.Name = "checkBox15";
-            checkBox15.Size = new Size(204, 17);
+            checkBox15.Size = new Size(204, 14);
             checkBox15.TabIndex = 19;
             checkBox15.Text = "checkBox15";
             checkBox15.TextAlign = ContentAlignment.MiddleCenter;
@@ -328,10 +338,10 @@
             checkBox14.Dock = DockStyle.Fill;
             checkBox14.FlatStyle = FlatStyle.Popup;
             checkBox14.Font = new Font("Microsoft Sans Serif", 14F);
-            checkBox14.Location = new Point(207, 52);
+            checkBox14.Location = new Point(207, 43);
             checkBox14.Margin = new Padding(1);
             checkBox14.Name = "checkBox14";
-            checkBox14.Size = new Size(204, 17);
+            checkBox14.Size = new Size(204, 14);
             checkBox14.TabIndex = 18;
             checkBox14.Text = "checkBox14";
             checkBox14.TextAlign = ContentAlignment.MiddleCenter;
@@ -343,10 +353,10 @@
             checkBox13.Dock = DockStyle.Fill;
             checkBox13.FlatStyle = FlatStyle.Popup;
             checkBox13.Font = new Font("Microsoft Sans Serif", 14F);
-            checkBox13.Location = new Point(1, 52);
+            checkBox13.Location = new Point(1, 43);
             checkBox13.Margin = new Padding(1);
             checkBox13.Name = "checkBox13";
-            checkBox13.Size = new Size(204, 17);
+            checkBox13.Size = new Size(204, 14);
             checkBox13.TabIndex = 17;
             checkBox13.Text = "checkBox13";
             checkBox13.TextAlign = ContentAlignment.MiddleCenter;
@@ -358,10 +368,10 @@
             checkBox12.Dock = DockStyle.Fill;
             checkBox12.FlatStyle = FlatStyle.Popup;
             checkBox12.Font = new Font("Microsoft Sans Serif", 14F);
-            checkBox12.Location = new Point(619, 35);
+            checkBox12.Location = new Point(619, 29);
             checkBox12.Margin = new Padding(1);
             checkBox12.Name = "checkBox12";
-            checkBox12.Size = new Size(204, 15);
+            checkBox12.Size = new Size(204, 12);
             checkBox12.TabIndex = 16;
             checkBox12.Text = "checkBox12";
             checkBox12.TextAlign = ContentAlignment.MiddleCenter;
@@ -373,10 +383,10 @@
             checkBox11.Dock = DockStyle.Fill;
             checkBox11.FlatStyle = FlatStyle.Popup;
             checkBox11.Font = new Font("Microsoft Sans Serif", 14F);
-            checkBox11.Location = new Point(413, 35);
+            checkBox11.Location = new Point(413, 29);
             checkBox11.Margin = new Padding(1);
             checkBox11.Name = "checkBox11";
-            checkBox11.Size = new Size(204, 15);
+            checkBox11.Size = new Size(204, 12);
             checkBox11.TabIndex = 15;
             checkBox11.Text = "checkBox11";
             checkBox11.TextAlign = ContentAlignment.MiddleCenter;
@@ -388,10 +398,10 @@
             checkBox10.Dock = DockStyle.Fill;
             checkBox10.FlatStyle = FlatStyle.Popup;
             checkBox10.Font = new Font("Microsoft Sans Serif", 14F);
-            checkBox10.Location = new Point(207, 35);
+            checkBox10.Location = new Point(207, 29);
             checkBox10.Margin = new Padding(1);
             checkBox10.Name = "checkBox10";
-            checkBox10.Size = new Size(204, 15);
+            checkBox10.Size = new Size(204, 12);
             checkBox10.TabIndex = 14;
             checkBox10.Text = "checkBox10";
             checkBox10.TextAlign = ContentAlignment.MiddleCenter;
@@ -403,10 +413,10 @@
             checkBox9.Dock = DockStyle.Fill;
             checkBox9.FlatStyle = FlatStyle.Popup;
             checkBox9.Font = new Font("Microsoft Sans Serif", 14F);
-            checkBox9.Location = new Point(1, 35);
+            checkBox9.Location = new Point(1, 29);
             checkBox9.Margin = new Padding(1);
             checkBox9.Name = "checkBox9";
-            checkBox9.Size = new Size(204, 15);
+            checkBox9.Size = new Size(204, 12);
             checkBox9.TabIndex = 13;
             checkBox9.Text = "checkBox9";
             checkBox9.TextAlign = ContentAlignment.MiddleCenter;
@@ -418,10 +428,10 @@
             checkBox8.Dock = DockStyle.Fill;
             checkBox8.FlatStyle = FlatStyle.Popup;
             checkBox8.Font = new Font("Microsoft Sans Serif", 14F);
-            checkBox8.Location = new Point(619, 18);
+            checkBox8.Location = new Point(619, 15);
             checkBox8.Margin = new Padding(1);
             checkBox8.Name = "checkBox8";
-            checkBox8.Size = new Size(204, 15);
+            checkBox8.Size = new Size(204, 12);
             checkBox8.TabIndex = 12;
             checkBox8.Text = "checkBox8";
             checkBox8.TextAlign = ContentAlignment.MiddleCenter;
@@ -433,10 +443,10 @@
             checkBox7.Dock = DockStyle.Fill;
             checkBox7.FlatStyle = FlatStyle.Popup;
             checkBox7.Font = new Font("Microsoft Sans Serif", 14F);
-            checkBox7.Location = new Point(413, 18);
+            checkBox7.Location = new Point(413, 15);
             checkBox7.Margin = new Padding(1);
             checkBox7.Name = "checkBox7";
-            checkBox7.Size = new Size(204, 15);
+            checkBox7.Size = new Size(204, 12);
             checkBox7.TabIndex = 11;
             checkBox7.Text = "checkBox7";
             checkBox7.TextAlign = ContentAlignment.MiddleCenter;
@@ -448,10 +458,10 @@
             checkBox6.Dock = DockStyle.Fill;
             checkBox6.FlatStyle = FlatStyle.Popup;
             checkBox6.Font = new Font("Microsoft Sans Serif", 14F);
-            checkBox6.Location = new Point(207, 18);
+            checkBox6.Location = new Point(207, 15);
             checkBox6.Margin = new Padding(1);
             checkBox6.Name = "checkBox6";
-            checkBox6.Size = new Size(204, 15);
+            checkBox6.Size = new Size(204, 12);
             checkBox6.TabIndex = 10;
             checkBox6.Text = "checkBox6";
             checkBox6.TextAlign = ContentAlignment.MiddleCenter;
@@ -463,10 +473,10 @@
             checkBox5.Dock = DockStyle.Fill;
             checkBox5.FlatStyle = FlatStyle.Popup;
             checkBox5.Font = new Font("Microsoft Sans Serif", 14F);
-            checkBox5.Location = new Point(1, 18);
+            checkBox5.Location = new Point(1, 15);
             checkBox5.Margin = new Padding(1);
             checkBox5.Name = "checkBox5";
-            checkBox5.Size = new Size(204, 15);
+            checkBox5.Size = new Size(204, 12);
             checkBox5.TabIndex = 9;
             checkBox5.Text = "checkBox5";
             checkBox5.TextAlign = ContentAlignment.MiddleCenter;
@@ -481,7 +491,7 @@
             checkBox4.Location = new Point(619, 1);
             checkBox4.Margin = new Padding(1);
             checkBox4.Name = "checkBox4";
-            checkBox4.Size = new Size(204, 15);
+            checkBox4.Size = new Size(204, 12);
             checkBox4.TabIndex = 8;
             checkBox4.Text = "checkBox4";
             checkBox4.TextAlign = ContentAlignment.MiddleCenter;
@@ -496,7 +506,7 @@
             checkBox3.Location = new Point(413, 1);
             checkBox3.Margin = new Padding(1);
             checkBox3.Name = "checkBox3";
-            checkBox3.Size = new Size(204, 15);
+            checkBox3.Size = new Size(204, 12);
             checkBox3.TabIndex = 7;
             checkBox3.Text = "checkBox3";
             checkBox3.TextAlign = ContentAlignment.MiddleCenter;
@@ -511,7 +521,7 @@
             checkBox2.Location = new Point(207, 1);
             checkBox2.Margin = new Padding(1);
             checkBox2.Name = "checkBox2";
-            checkBox2.Size = new Size(204, 15);
+            checkBox2.Size = new Size(204, 12);
             checkBox2.TabIndex = 6;
             checkBox2.Text = "checkBox2";
             checkBox2.TextAlign = ContentAlignment.MiddleCenter;
@@ -526,11 +536,20 @@
             checkBox1.Location = new Point(1, 1);
             checkBox1.Margin = new Padding(1);
             checkBox1.Name = "checkBox1";
-            checkBox1.Size = new Size(204, 15);
+            checkBox1.Size = new Size(204, 12);
             checkBox1.TabIndex = 5;
             checkBox1.Text = "checkBox1";
             checkBox1.TextAlign = ContentAlignment.MiddleCenter;
             checkBox1.UseVisualStyleBackColor = true;
+            // 
+            // panelRadio
+            // 
+            panelRadio.Controls.Add(tableLayoutPanel16);
+            panelRadio.Dock = DockStyle.Top;
+            panelRadio.Location = new Point(0, 0);
+            panelRadio.Name = "panelRadio";
+            panelRadio.Size = new Size(824, 53);
+            panelRadio.TabIndex = 0;
             // 
             // tableLayoutPanel16
             // 
@@ -555,7 +574,7 @@
             tableLayoutPanel16.Controls.Add(radioButton17, 2, 0);
             tableLayoutPanel16.Controls.Add(radioButton16, 1, 0);
             tableLayoutPanel16.Controls.Add(radioButton15, 0, 0);
-            tableLayoutPanel16.Dock = DockStyle.Top;
+            tableLayoutPanel16.Dock = DockStyle.Fill;
             tableLayoutPanel16.Location = new Point(0, 0);
             tableLayoutPanel16.Margin = new Padding(1);
             tableLayoutPanel16.Name = "tableLayoutPanel16";
@@ -564,7 +583,7 @@
             tableLayoutPanel16.RowStyles.Add(new RowStyle(SizeType.Percent, 25F));
             tableLayoutPanel16.RowStyles.Add(new RowStyle(SizeType.Percent, 25F));
             tableLayoutPanel16.RowStyles.Add(new RowStyle(SizeType.Percent, 25F));
-            tableLayoutPanel16.Size = new Size(824, 70);
+            tableLayoutPanel16.Size = new Size(824, 53);
             tableLayoutPanel16.TabIndex = 5;
             // 
             // radioButton30
@@ -573,10 +592,10 @@
             radioButton30.Dock = DockStyle.Fill;
             radioButton30.FlatStyle = FlatStyle.Popup;
             radioButton30.Font = new Font("Microsoft Sans Serif", 14F);
-            radioButton30.Location = new Point(619, 52);
+            radioButton30.Location = new Point(619, 40);
             radioButton30.Margin = new Padding(1);
             radioButton30.Name = "radioButton30";
-            radioButton30.Size = new Size(204, 17);
+            radioButton30.Size = new Size(204, 12);
             radioButton30.TabIndex = 21;
             radioButton30.TabStop = true;
             radioButton30.Text = "radioButton30";
@@ -589,10 +608,10 @@
             radioButton29.Dock = DockStyle.Fill;
             radioButton29.FlatStyle = FlatStyle.Popup;
             radioButton29.Font = new Font("Microsoft Sans Serif", 14F);
-            radioButton29.Location = new Point(413, 52);
+            radioButton29.Location = new Point(413, 40);
             radioButton29.Margin = new Padding(1);
             radioButton29.Name = "radioButton29";
-            radioButton29.Size = new Size(204, 17);
+            radioButton29.Size = new Size(204, 12);
             radioButton29.TabIndex = 20;
             radioButton29.TabStop = true;
             radioButton29.Text = "radioButton29";
@@ -605,10 +624,10 @@
             radioButton28.Dock = DockStyle.Fill;
             radioButton28.FlatStyle = FlatStyle.Popup;
             radioButton28.Font = new Font("Microsoft Sans Serif", 14F);
-            radioButton28.Location = new Point(207, 52);
+            radioButton28.Location = new Point(207, 40);
             radioButton28.Margin = new Padding(1);
             radioButton28.Name = "radioButton28";
-            radioButton28.Size = new Size(204, 17);
+            radioButton28.Size = new Size(204, 12);
             radioButton28.TabIndex = 19;
             radioButton28.TabStop = true;
             radioButton28.Text = "radioButton28";
@@ -621,10 +640,10 @@
             radioButton27.Dock = DockStyle.Fill;
             radioButton27.FlatStyle = FlatStyle.Popup;
             radioButton27.Font = new Font("Microsoft Sans Serif", 14F);
-            radioButton27.Location = new Point(1, 52);
+            radioButton27.Location = new Point(1, 40);
             radioButton27.Margin = new Padding(1);
             radioButton27.Name = "radioButton27";
-            radioButton27.Size = new Size(204, 17);
+            radioButton27.Size = new Size(204, 12);
             radioButton27.TabIndex = 18;
             radioButton27.TabStop = true;
             radioButton27.Text = "radioButton27";
@@ -637,10 +656,10 @@
             radioButton26.Dock = DockStyle.Fill;
             radioButton26.FlatStyle = FlatStyle.Popup;
             radioButton26.Font = new Font("Microsoft Sans Serif", 14F);
-            radioButton26.Location = new Point(619, 35);
+            radioButton26.Location = new Point(619, 27);
             radioButton26.Margin = new Padding(1);
             radioButton26.Name = "radioButton26";
-            radioButton26.Size = new Size(204, 15);
+            radioButton26.Size = new Size(204, 11);
             radioButton26.TabIndex = 17;
             radioButton26.TabStop = true;
             radioButton26.Text = "radioButton26";
@@ -653,10 +672,10 @@
             radioButton25.Dock = DockStyle.Fill;
             radioButton25.FlatStyle = FlatStyle.Popup;
             radioButton25.Font = new Font("Microsoft Sans Serif", 14F);
-            radioButton25.Location = new Point(413, 35);
+            radioButton25.Location = new Point(413, 27);
             radioButton25.Margin = new Padding(1);
             radioButton25.Name = "radioButton25";
-            radioButton25.Size = new Size(204, 15);
+            radioButton25.Size = new Size(204, 11);
             radioButton25.TabIndex = 16;
             radioButton25.TabStop = true;
             radioButton25.Text = "radioButton25";
@@ -669,10 +688,10 @@
             radioButton24.Dock = DockStyle.Fill;
             radioButton24.FlatStyle = FlatStyle.Popup;
             radioButton24.Font = new Font("Microsoft Sans Serif", 14F);
-            radioButton24.Location = new Point(207, 35);
+            radioButton24.Location = new Point(207, 27);
             radioButton24.Margin = new Padding(1);
             radioButton24.Name = "radioButton24";
-            radioButton24.Size = new Size(204, 15);
+            radioButton24.Size = new Size(204, 11);
             radioButton24.TabIndex = 15;
             radioButton24.TabStop = true;
             radioButton24.Text = "radioButton24";
@@ -685,10 +704,10 @@
             radioButton23.Dock = DockStyle.Fill;
             radioButton23.FlatStyle = FlatStyle.Popup;
             radioButton23.Font = new Font("Microsoft Sans Serif", 14F);
-            radioButton23.Location = new Point(1, 35);
+            radioButton23.Location = new Point(1, 27);
             radioButton23.Margin = new Padding(1);
             radioButton23.Name = "radioButton23";
-            radioButton23.Size = new Size(204, 15);
+            radioButton23.Size = new Size(204, 11);
             radioButton23.TabIndex = 14;
             radioButton23.TabStop = true;
             radioButton23.Text = "radioButton23";
@@ -701,10 +720,10 @@
             radioButton22.Dock = DockStyle.Fill;
             radioButton22.FlatStyle = FlatStyle.Popup;
             radioButton22.Font = new Font("Microsoft Sans Serif", 14F);
-            radioButton22.Location = new Point(619, 18);
+            radioButton22.Location = new Point(619, 14);
             radioButton22.Margin = new Padding(1);
             radioButton22.Name = "radioButton22";
-            radioButton22.Size = new Size(204, 15);
+            radioButton22.Size = new Size(204, 11);
             radioButton22.TabIndex = 13;
             radioButton22.TabStop = true;
             radioButton22.Text = "radioButton22";
@@ -717,10 +736,10 @@
             radioButton21.Dock = DockStyle.Fill;
             radioButton21.FlatStyle = FlatStyle.Popup;
             radioButton21.Font = new Font("Microsoft Sans Serif", 14F);
-            radioButton21.Location = new Point(413, 18);
+            radioButton21.Location = new Point(413, 14);
             radioButton21.Margin = new Padding(1);
             radioButton21.Name = "radioButton21";
-            radioButton21.Size = new Size(204, 15);
+            radioButton21.Size = new Size(204, 11);
             radioButton21.TabIndex = 12;
             radioButton21.TabStop = true;
             radioButton21.Text = "radioButton21";
@@ -733,10 +752,10 @@
             radioButton20.Dock = DockStyle.Fill;
             radioButton20.FlatStyle = FlatStyle.Popup;
             radioButton20.Font = new Font("Microsoft Sans Serif", 14F);
-            radioButton20.Location = new Point(207, 18);
+            radioButton20.Location = new Point(207, 14);
             radioButton20.Margin = new Padding(1);
             radioButton20.Name = "radioButton20";
-            radioButton20.Size = new Size(204, 15);
+            radioButton20.Size = new Size(204, 11);
             radioButton20.TabIndex = 11;
             radioButton20.TabStop = true;
             radioButton20.Text = "radioButton20";
@@ -749,10 +768,10 @@
             radioButton19.Dock = DockStyle.Fill;
             radioButton19.FlatStyle = FlatStyle.Popup;
             radioButton19.Font = new Font("Microsoft Sans Serif", 14F);
-            radioButton19.Location = new Point(1, 18);
+            radioButton19.Location = new Point(1, 14);
             radioButton19.Margin = new Padding(1);
             radioButton19.Name = "radioButton19";
-            radioButton19.Size = new Size(204, 15);
+            radioButton19.Size = new Size(204, 11);
             radioButton19.TabIndex = 10;
             radioButton19.TabStop = true;
             radioButton19.Text = "radioButton19";
@@ -768,7 +787,7 @@
             radioButton18.Location = new Point(619, 1);
             radioButton18.Margin = new Padding(1);
             radioButton18.Name = "radioButton18";
-            radioButton18.Size = new Size(204, 15);
+            radioButton18.Size = new Size(204, 11);
             radioButton18.TabIndex = 9;
             radioButton18.TabStop = true;
             radioButton18.Text = "radioButton18";
@@ -784,7 +803,7 @@
             radioButton17.Location = new Point(413, 1);
             radioButton17.Margin = new Padding(1);
             radioButton17.Name = "radioButton17";
-            radioButton17.Size = new Size(204, 15);
+            radioButton17.Size = new Size(204, 11);
             radioButton17.TabIndex = 8;
             radioButton17.TabStop = true;
             radioButton17.Text = "radioButton17";
@@ -800,7 +819,7 @@
             radioButton16.Location = new Point(207, 1);
             radioButton16.Margin = new Padding(1);
             radioButton16.Name = "radioButton16";
-            radioButton16.Size = new Size(204, 15);
+            radioButton16.Size = new Size(204, 11);
             radioButton16.TabIndex = 7;
             radioButton16.TabStop = true;
             radioButton16.Text = "radioButton16";
@@ -816,7 +835,7 @@
             radioButton15.Location = new Point(1, 1);
             radioButton15.Margin = new Padding(1);
             radioButton15.Name = "radioButton15";
-            radioButton15.Size = new Size(204, 15);
+            radioButton15.Size = new Size(204, 11);
             radioButton15.TabIndex = 6;
             radioButton15.TabStop = true;
             radioButton15.Text = "radioButton15";
@@ -1026,7 +1045,7 @@
             tableLayoutPanel4.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 40F));
             tableLayoutPanel4.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 60F));
             tableLayoutPanel4.Controls.Add(tableLayoutPanel7, 1, 0);
-            tableLayoutPanel4.Controls.Add(pictureBox1, 0, 0);
+            tableLayoutPanel4.Controls.Add(panel2, 0, 0);
             tableLayoutPanel4.Dock = DockStyle.Fill;
             tableLayoutPanel4.Location = new Point(1, 1);
             tableLayoutPanel4.Margin = new Padding(1);
@@ -1090,7 +1109,7 @@
             tableLayoutPanel9.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 30F));
             tableLayoutPanel9.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 70F));
             tableLayoutPanel9.Controls.Add(label2, 0, 0);
-            tableLayoutPanel9.Controls.Add(tableLayoutPanel12, 1, 0);
+            tableLayoutPanel9.Controls.Add(panelPriority, 1, 0);
             tableLayoutPanel9.Dock = DockStyle.Fill;
             tableLayoutPanel9.Location = new Point(1, 133);
             tableLayoutPanel9.Margin = new Padding(1);
@@ -1112,6 +1131,16 @@
             label2.Text = "Priority :";
             label2.TextAlign = ContentAlignment.MiddleCenter;
             // 
+            // panelPriority
+            // 
+            panelPriority.Controls.Add(tableLayoutPanel12);
+            panelPriority.Dock = DockStyle.Fill;
+            panelPriority.Location = new Point(186, 1);
+            panelPriority.Margin = new Padding(1);
+            panelPriority.Name = "panelPriority";
+            panelPriority.Size = new Size(432, 128);
+            panelPriority.TabIndex = 3;
+            // 
             // tableLayoutPanel12
             // 
             tableLayoutPanel12.ColumnCount = 2;
@@ -1122,7 +1151,7 @@
             tableLayoutPanel12.Controls.Add(rbPriority2, 1, 0);
             tableLayoutPanel12.Controls.Add(rbPriority1, 0, 0);
             tableLayoutPanel12.Dock = DockStyle.Fill;
-            tableLayoutPanel12.Location = new Point(186, 1);
+            tableLayoutPanel12.Location = new Point(0, 0);
             tableLayoutPanel12.Margin = new Padding(1);
             tableLayoutPanel12.Name = "tableLayoutPanel12";
             tableLayoutPanel12.RowCount = 2;
@@ -1196,8 +1225,8 @@
             tableLayoutPanel8.ColumnCount = 2;
             tableLayoutPanel8.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 30F));
             tableLayoutPanel8.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 70F));
-            tableLayoutPanel8.Controls.Add(tableLayoutPanel11, 1, 0);
             tableLayoutPanel8.Controls.Add(label1, 0, 0);
+            tableLayoutPanel8.Controls.Add(panelUser, 1, 0);
             tableLayoutPanel8.Dock = DockStyle.Fill;
             tableLayoutPanel8.Location = new Point(1, 1);
             tableLayoutPanel8.Margin = new Padding(1);
@@ -1206,6 +1235,28 @@
             tableLayoutPanel8.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
             tableLayoutPanel8.Size = new Size(619, 130);
             tableLayoutPanel8.TabIndex = 0;
+            // 
+            // label1
+            // 
+            label1.Dock = DockStyle.Fill;
+            label1.Font = new Font("Microsoft Sans Serif", 19F);
+            label1.Location = new Point(1, 1);
+            label1.Margin = new Padding(1);
+            label1.Name = "label1";
+            label1.Size = new Size(183, 128);
+            label1.TabIndex = 1;
+            label1.Text = "User :";
+            label1.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // panelUser
+            // 
+            panelUser.Controls.Add(tableLayoutPanel11);
+            panelUser.Dock = DockStyle.Fill;
+            panelUser.Location = new Point(186, 1);
+            panelUser.Margin = new Padding(1);
+            panelUser.Name = "panelUser";
+            panelUser.Size = new Size(432, 128);
+            panelUser.TabIndex = 2;
             // 
             // tableLayoutPanel11
             // 
@@ -1219,7 +1270,7 @@
             tableLayoutPanel11.Controls.Add(rbUser2, 1, 0);
             tableLayoutPanel11.Controls.Add(rbUser1, 0, 0);
             tableLayoutPanel11.Dock = DockStyle.Fill;
-            tableLayoutPanel11.Location = new Point(186, 1);
+            tableLayoutPanel11.Location = new Point(0, 0);
             tableLayoutPanel11.Margin = new Padding(1);
             tableLayoutPanel11.Name = "tableLayoutPanel11";
             tableLayoutPanel11.RowCount = 3;
@@ -1319,24 +1370,20 @@
             rbUser1.Text = "radioButton1";
             rbUser1.UseVisualStyleBackColor = true;
             // 
-            // label1
+            // panel2
             // 
-            label1.Dock = DockStyle.Fill;
-            label1.Font = new Font("Microsoft Sans Serif", 19F);
-            label1.Location = new Point(1, 1);
-            label1.Margin = new Padding(1);
-            label1.Name = "label1";
-            label1.Size = new Size(183, 128);
-            label1.TabIndex = 1;
-            label1.Text = "User :";
-            label1.TextAlign = ContentAlignment.MiddleCenter;
+            panel2.Controls.Add(pictureBox1);
+            panel2.Dock = DockStyle.Fill;
+            panel2.Location = new Point(1, 1);
+            panel2.Margin = new Padding(1);
+            panel2.Name = "panel2";
+            panel2.Size = new Size(412, 330);
+            panel2.TabIndex = 2;
             // 
             // pictureBox1
             // 
-            pictureBox1.BackColor = Color.White;
             pictureBox1.Dock = DockStyle.Fill;
-            pictureBox1.Location = new Point(1, 1);
-            pictureBox1.Margin = new Padding(1);
+            pictureBox1.Location = new Point(0, 0);
             pictureBox1.Name = "pictureBox1";
             pictureBox1.Size = new Size(412, 330);
             pictureBox1.TabIndex = 0;
@@ -1344,17 +1391,14 @@
             // 
             // tableLayoutPanel13
             // 
-            tableLayoutPanel13.ColumnCount = 5;
+            tableLayoutPanel13.ColumnCount = 2;
             tableLayoutPanel13.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 20F));
-            tableLayoutPanel13.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 20F));
-            tableLayoutPanel13.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 20F));
-            tableLayoutPanel13.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 20F));
-            tableLayoutPanel13.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 20F));
-            tableLayoutPanel13.Controls.Add(radioButton14, 4, 0);
-            tableLayoutPanel13.Controls.Add(radioButton13, 3, 0);
-            tableLayoutPanel13.Controls.Add(radioButton12, 2, 0);
-            tableLayoutPanel13.Controls.Add(radioButton11, 1, 0);
+            tableLayoutPanel13.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 80F));
+            tableLayoutPanel13.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 20F));
+            tableLayoutPanel13.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 20F));
+            tableLayoutPanel13.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 20F));
             tableLayoutPanel13.Controls.Add(label9, 0, 0);
+            tableLayoutPanel13.Controls.Add(panelType, 1, 0);
             tableLayoutPanel13.Dock = DockStyle.Fill;
             tableLayoutPanel13.Location = new Point(1, 601);
             tableLayoutPanel13.Margin = new Padding(1);
@@ -1363,66 +1407,6 @@
             tableLayoutPanel13.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
             tableLayoutPanel13.Size = new Size(1037, 81);
             tableLayoutPanel13.TabIndex = 4;
-            // 
-            // radioButton14
-            // 
-            radioButton14.Appearance = Appearance.Button;
-            radioButton14.Dock = DockStyle.Fill;
-            radioButton14.FlatStyle = FlatStyle.Popup;
-            radioButton14.Font = new Font("Microsoft Sans Serif", 14F);
-            radioButton14.Location = new Point(829, 1);
-            radioButton14.Margin = new Padding(1);
-            radioButton14.Name = "radioButton14";
-            radioButton14.Size = new Size(207, 79);
-            radioButton14.TabIndex = 8;
-            radioButton14.TabStop = true;
-            radioButton14.Text = "radioButton14";
-            radioButton14.UseVisualStyleBackColor = true;
-            // 
-            // radioButton13
-            // 
-            radioButton13.Appearance = Appearance.Button;
-            radioButton13.Dock = DockStyle.Fill;
-            radioButton13.FlatStyle = FlatStyle.Popup;
-            radioButton13.Font = new Font("Microsoft Sans Serif", 14F);
-            radioButton13.Location = new Point(622, 1);
-            radioButton13.Margin = new Padding(1);
-            radioButton13.Name = "radioButton13";
-            radioButton13.Size = new Size(205, 79);
-            radioButton13.TabIndex = 7;
-            radioButton13.TabStop = true;
-            radioButton13.Text = "radioButton13";
-            radioButton13.UseVisualStyleBackColor = true;
-            // 
-            // radioButton12
-            // 
-            radioButton12.Appearance = Appearance.Button;
-            radioButton12.Dock = DockStyle.Fill;
-            radioButton12.FlatStyle = FlatStyle.Popup;
-            radioButton12.Font = new Font("Microsoft Sans Serif", 14F);
-            radioButton12.Location = new Point(415, 1);
-            radioButton12.Margin = new Padding(1);
-            radioButton12.Name = "radioButton12";
-            radioButton12.Size = new Size(205, 79);
-            radioButton12.TabIndex = 6;
-            radioButton12.TabStop = true;
-            radioButton12.Text = "radioButton12";
-            radioButton12.UseVisualStyleBackColor = true;
-            // 
-            // radioButton11
-            // 
-            radioButton11.Appearance = Appearance.Button;
-            radioButton11.Dock = DockStyle.Fill;
-            radioButton11.FlatStyle = FlatStyle.Popup;
-            radioButton11.Font = new Font("Microsoft Sans Serif", 14F);
-            radioButton11.Location = new Point(208, 1);
-            radioButton11.Margin = new Padding(1);
-            radioButton11.Name = "radioButton11";
-            radioButton11.Size = new Size(205, 79);
-            radioButton11.TabIndex = 5;
-            radioButton11.TabStop = true;
-            radioButton11.Text = "radioButton11";
-            radioButton11.UseVisualStyleBackColor = true;
             // 
             // label9
             // 
@@ -1435,6 +1419,97 @@
             label9.TabIndex = 4;
             label9.Text = "Type :";
             label9.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // panelType
+            // 
+            panelType.Controls.Add(tableLayoutPanel18);
+            panelType.Dock = DockStyle.Fill;
+            panelType.Location = new Point(208, 1);
+            panelType.Margin = new Padding(1);
+            panelType.Name = "panelType";
+            panelType.Size = new Size(828, 79);
+            panelType.TabIndex = 5;
+            // 
+            // tableLayoutPanel18
+            // 
+            tableLayoutPanel18.ColumnCount = 4;
+            tableLayoutPanel18.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 25F));
+            tableLayoutPanel18.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 25F));
+            tableLayoutPanel18.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 25F));
+            tableLayoutPanel18.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 25F));
+            tableLayoutPanel18.Controls.Add(radioButton14, 3, 0);
+            tableLayoutPanel18.Controls.Add(radioButton11, 0, 0);
+            tableLayoutPanel18.Controls.Add(radioButton13, 2, 0);
+            tableLayoutPanel18.Controls.Add(radioButton12, 1, 0);
+            tableLayoutPanel18.Dock = DockStyle.Fill;
+            tableLayoutPanel18.Location = new Point(0, 0);
+            tableLayoutPanel18.Margin = new Padding(1);
+            tableLayoutPanel18.Name = "tableLayoutPanel18";
+            tableLayoutPanel18.RowCount = 1;
+            tableLayoutPanel18.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
+            tableLayoutPanel18.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
+            tableLayoutPanel18.Size = new Size(828, 79);
+            tableLayoutPanel18.TabIndex = 0;
+            // 
+            // radioButton14
+            // 
+            radioButton14.Appearance = Appearance.Button;
+            radioButton14.Dock = DockStyle.Fill;
+            radioButton14.FlatStyle = FlatStyle.Popup;
+            radioButton14.Font = new Font("Microsoft Sans Serif", 14F);
+            radioButton14.Location = new Point(622, 1);
+            radioButton14.Margin = new Padding(1);
+            radioButton14.Name = "radioButton14";
+            radioButton14.Size = new Size(205, 77);
+            radioButton14.TabIndex = 8;
+            radioButton14.TabStop = true;
+            radioButton14.Text = "radioButton14";
+            radioButton14.UseVisualStyleBackColor = true;
+            // 
+            // radioButton11
+            // 
+            radioButton11.Appearance = Appearance.Button;
+            radioButton11.Dock = DockStyle.Fill;
+            radioButton11.FlatStyle = FlatStyle.Popup;
+            radioButton11.Font = new Font("Microsoft Sans Serif", 14F);
+            radioButton11.Location = new Point(1, 1);
+            radioButton11.Margin = new Padding(1);
+            radioButton11.Name = "radioButton11";
+            radioButton11.Size = new Size(205, 77);
+            radioButton11.TabIndex = 5;
+            radioButton11.TabStop = true;
+            radioButton11.Text = "radioButton11";
+            radioButton11.UseVisualStyleBackColor = true;
+            // 
+            // radioButton13
+            // 
+            radioButton13.Appearance = Appearance.Button;
+            radioButton13.Dock = DockStyle.Fill;
+            radioButton13.FlatStyle = FlatStyle.Popup;
+            radioButton13.Font = new Font("Microsoft Sans Serif", 14F);
+            radioButton13.Location = new Point(415, 1);
+            radioButton13.Margin = new Padding(1);
+            radioButton13.Name = "radioButton13";
+            radioButton13.Size = new Size(205, 77);
+            radioButton13.TabIndex = 7;
+            radioButton13.TabStop = true;
+            radioButton13.Text = "radioButton13";
+            radioButton13.UseVisualStyleBackColor = true;
+            // 
+            // radioButton12
+            // 
+            radioButton12.Appearance = Appearance.Button;
+            radioButton12.Dock = DockStyle.Fill;
+            radioButton12.FlatStyle = FlatStyle.Popup;
+            radioButton12.Font = new Font("Microsoft Sans Serif", 14F);
+            radioButton12.Location = new Point(208, 1);
+            radioButton12.Margin = new Padding(1);
+            radioButton12.Name = "radioButton12";
+            radioButton12.Size = new Size(205, 77);
+            radioButton12.TabIndex = 6;
+            radioButton12.TabStop = true;
+            radioButton12.Text = "radioButton12";
+            radioButton12.UseVisualStyleBackColor = true;
             // 
             // AddReparing
             // 
@@ -1455,9 +1530,10 @@
             tableLayoutPanel2.ResumeLayout(false);
             tableLayoutPanel3.ResumeLayout(false);
             tableLayoutPanel15.ResumeLayout(false);
-            panel3.ResumeLayout(false);
-            panel4.ResumeLayout(false);
+            panel.ResumeLayout(false);
+            panelCheck.ResumeLayout(false);
             tableLayoutPanel17.ResumeLayout(false);
+            panelRadio.ResumeLayout(false);
             tableLayoutPanel16.ResumeLayout(false);
             tableLayoutPanel14.ResumeLayout(false);
             tableLayoutPanel6.ResumeLayout(false);
@@ -1468,11 +1544,16 @@
             tableLayoutPanel7.ResumeLayout(false);
             tableLayoutPanel10.ResumeLayout(false);
             tableLayoutPanel9.ResumeLayout(false);
+            panelPriority.ResumeLayout(false);
             tableLayoutPanel12.ResumeLayout(false);
             tableLayoutPanel8.ResumeLayout(false);
+            panelUser.ResumeLayout(false);
             tableLayoutPanel11.ResumeLayout(false);
+            panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             tableLayoutPanel13.ResumeLayout(false);
+            panelType.ResumeLayout(false);
+            tableLayoutPanel18.ResumeLayout(false);
             ResumeLayout(false);
         }
         #endregion
@@ -1486,9 +1567,8 @@
         private Button buttonCaptureIamge;
         private RichTextBox rtComment;
         private DateTimePicker dtDeliveryDate;
-        private Panel panel1;
-        private Panel panel2;
-        private PictureBox pictureBox1;
+        private Panel panelUser;
+        private Panel panelPriority;
         private TableLayoutPanel tableLayoutPanel4;
         private TableLayoutPanel tableLayoutPanel5;
         private TableLayoutPanel tableLayoutPanel7;
@@ -1543,8 +1623,6 @@
         private RadioButton radioButton17;
         private RadioButton radioButton16;
         private RadioButton radioButton15;
-        private Panel panel3;
-        private Panel panel4;
         private TableLayoutPanel tableLayoutPanel17;
         private CheckBox checkBox1;
         private CheckBox checkBox16;
@@ -1565,5 +1643,12 @@
         private RichTextBox richTextBox1;
         private DateTimePicker dateTimePicker1;
         private Button buttonSave;
+        private Panel panel2;
+        private Panel panelType;
+        private TableLayoutPanel tableLayoutPanel18;
+        private Panel panel;
+        private Panel panelRadio;
+        private Panel panelCheck;
+        private PictureBox pictureBox1;
     }
 }

@@ -28,13 +28,10 @@ namespace SYA
         }
         #endregion
         #region Form Initialization & Load
+        #region Form Initialization & Load
         private void AddReparing_Load(object sender, EventArgs e)
         {
             this.KeyPreview = true;
-            //LoadComboBoxData(cbSubType, "TYPE");
-            //LoadComboBoxData(cbSubType, "SUB_TYPE");
-            //LoadComboBoxData(cbCreatedBy, "USER");
-            //LoadComboBoxData(cbPriority, "PRIORITY");
             txtWeight.KeyPress += AllowOnlyNumeric;
             txtNumber.KeyPress += AllowOnlyNumeric;
             txtEstimate.KeyPress += AllowOnlyNumeric;
@@ -42,55 +39,149 @@ namespace SYA
             txtNumber.Leave += FormatDecimal;
             txtEstimate.Leave += FormatDecimal;
             AttachKeyPressEvent(this);
+
             // Start Camera
             StartCamera();
+
+            // Load Data
             LoadTypeRadioButtons();
             LoadUserRadioButtons();
             LoadPriorityRadioButtons();
+
+            // Initially Hide Panels
+            tableLayoutPanel15.Visible = false;
+
+            // Attach events to all radio buttons and checkboxes
+            AttachSelectionEvents();
         }
 
+        // Attach events to radio buttons and checkboxes
+        private void AttachSelectionEvents()
+        {
+            foreach (var rb in new List<RadioButton>
+    {
+        radioButton11, radioButton12, radioButton13, radioButton14,
+        radioButton15, radioButton16, radioButton17, radioButton18,
+        radioButton19, radioButton20, radioButton21, radioButton22,
+        radioButton23, radioButton24, radioButton25, radioButton26,
+        radioButton27, radioButton28, radioButton29, radioButton30,
+        rbUser1, rbUser2, rbUser3, rbUser4, rbUser5, rbUser6,
+        rbPriority1, rbPriority2, rbPriority3, rbPriority4
+    })
+            {
+                rb.CheckedChanged += RadioButton_CheckedChanged;
+            }
+
+            foreach (var cb in new List<CheckBox>
+    {
+        checkBox1, checkBox2, checkBox3, checkBox4, checkBox5, checkBox6,
+        checkBox7, checkBox8, checkBox9, checkBox10, checkBox11, checkBox12,
+        checkBox13, checkBox14, checkBox15, checkBox16
+    })
+            {
+                cb.CheckedChanged += CheckBox_CheckedChanged;
+            }
+        }
+        #endregion
+        private void RadioButton_CheckedChanged(object sender, EventArgs e)
+        {
+            RadioButton selectedRadioButton = sender as RadioButton;
+            if (selectedRadioButton != null)
+            {
+                // Get the parent container of the selected radio button (User, Priority, or Type)
+                Control parentContainer = selectedRadioButton.Parent;
+
+                // Reset only the radio buttons inside the same container
+                foreach (Control ctrl in parentContainer.Controls)
+                {
+                    if (ctrl is RadioButton rb)
+                    {
+                        rb.BackColor = Color.Transparent; // Reset background color
+                    }
+                }
+
+                // Highlight the selected radio button
+                if (selectedRadioButton.Checked)
+                {
+                    selectedRadioButton.BackColor = Color.LightBlue; // Highlight selected radio button
+                }
+            }
+        }
+
+        // **Reset Background Color of All Radio Buttons**
+        private void ResetRadioButtonColors()
+        {
+            foreach (var rb in new List<RadioButton>
+    {
+        radioButton11, radioButton12, radioButton13, radioButton14,
+        radioButton15, radioButton16, radioButton17, radioButton18,
+        radioButton19, radioButton20, radioButton21, radioButton22,
+        radioButton23, radioButton24, radioButton25, radioButton26,
+        radioButton27, radioButton28, radioButton29, radioButton30,
+        rbUser1, rbUser2, rbUser3, rbUser4, rbUser5, rbUser6,
+        rbPriority1, rbPriority2, rbPriority3, rbPriority4
+    })
+            {
+                rb.BackColor = Color.Transparent; // Reset background color
+            }
+        }
+        private void CheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            CheckBox selectedCheckBox = sender as CheckBox;
+            if (selectedCheckBox != null)
+            {
+                // Highlight checked checkbox
+                if (selectedCheckBox.Checked)
+                {
+                    selectedCheckBox.BackColor = Color.LightGreen; // Highlight checkbox
+                }
+                else
+                {
+                    selectedCheckBox.BackColor = Color.Transparent; // Reset color when unchecked
+                }
+            }
+        }
+
+        #region SubType Data Loading
         private void LoadSubTypeData(string subGroup)
         {
             try
             {
-                // Query the RepairingHelper table based on subGroup (REPAIR or KARIGAR)
                 string query = $"SELECT NAME FROM RepairingHelper WHERE [GROUP] = 'SUB_TYPE' AND [SUB_GROUP] = '{subGroup}'";
                 DataTable dt = helper.FetchDataTableFromSYADataBase(query);
 
-                // Create lists of the radio buttons and checkboxes
-                List<RadioButton> radioButtons = new List<RadioButton>()
+                // Debug: Check if data is available
+                if (dt.Rows.Count == 0)
+                {
+                    MessageBox.Show($"No data found for {subGroup}");
+                    return;
+                }
+
+                // Checkbox and Radio lists
+                List<RadioButton> radioButtons = new List<RadioButton>
         {
             radioButton15, radioButton16, radioButton17, radioButton18, radioButton19, radioButton20,
             radioButton21, radioButton22, radioButton23, radioButton24, radioButton25, radioButton26,
             radioButton27, radioButton28, radioButton29, radioButton30
         };
-                List<CheckBox> checkBoxes = new List<CheckBox>()
+
+                List<CheckBox> checkBoxes = new List<CheckBox>
         {
             checkBox1, checkBox2, checkBox3, checkBox4, checkBox5, checkBox6,
             checkBox7, checkBox8, checkBox9, checkBox10, checkBox11, checkBox12,
             checkBox13, checkBox14, checkBox15, checkBox16
         };
 
-                // First, hide all radio buttons and checkboxes
-                foreach (var rb in radioButtons)
-                {
-                    rb.Visible = false;
-                }
-                foreach (var cb in checkBoxes)
-                {
-                    cb.Visible = false;
-                }
+                // Hide all
+                foreach (var rb in radioButtons) rb.Visible = false;
+                foreach (var cb in checkBoxes) cb.Visible = false;
 
-                // Loop through the fetched data and assign values to radio buttons and checkboxes
+                // Assign values
                 for (int i = 0; i < dt.Rows.Count && i < radioButtons.Count; i++)
                 {
                     string name = dt.Rows[i]["NAME"].ToString();
-
-                    // Set radio button text
                     radioButtons[i].Text = name;
                     radioButtons[i].Visible = true;
-
-                    // Set checkbox text
                     checkBoxes[i].Text = name;
                     checkBoxes[i].Visible = true;
                 }
@@ -101,33 +192,112 @@ namespace SYA
             }
         }
 
+        #endregion
+
+        #region Type Radio Buttons Handling
         private void TypeRadioButton_CheckedChanged(object sender, EventArgs e)
         {
-            // Check which type is selected (Repair or Karigar)
-            if (rbRepair.Checked) // Assuming you have a radio button for Repair
+            RadioButton selectedRadioButton = sender as RadioButton;
+            if (selectedRadioButton != null && selectedRadioButton.Checked)
             {
-                tableLayoutPanel15.Visible = true; // Show the table containing subtypes and checkboxes
-                tableLayoutPanel16.Visible = true; // Show the table with the radio buttons
+                string selectedType = selectedRadioButton.Text;
 
-                // Load Repair subtypes
-                LoadSubTypeData("REPAIR");
-            }
-            else if (rbKarigar.Checked) // Assuming you have a radio button for Karigar
-            {
-                tableLayoutPanel15.Visible = true; // Show the table containing subtypes and checkboxes
-                tableLayoutPanel16.Visible = true; // Show the table with the radio buttons
+                ResetSubTypeSelections();
+                HighlightRadioButton(selectedRadioButton);
 
-                // Load Karigar subtypes
-                LoadSubTypeData("KARIGAR");
-            }
-            else
-            {
-                tableLayoutPanel15.Visible = false; // Hide if no valid type is selected
-                tableLayoutPanel16.Visible = false; // Hide if no valid type is selected
+                if (selectedType == "REPAIR")
+                {
+                    tableLayoutPanel15.Visible = true;
+                    panelRadio.Visible = false;
+                    panelCheck.Visible = true;
+
+                    panelRadio.Dock = DockStyle.None;
+                    panelCheck.Dock = DockStyle.Fill;
+
+                    LoadSubTypeData("REPAIR");
+
+                    // ✅ Force refresh to ensure visibility
+                    panelCheck.Refresh();
+                    tableLayoutPanel15.Refresh();
+                }
+                else if (selectedType == "KARIGAR")
+                {
+                    tableLayoutPanel15.Visible = true;
+                    panelRadio.Visible = true;
+                    panelCheck.Visible = false;
+
+                    panelCheck.Dock = DockStyle.None;
+                    panelRadio.Dock = DockStyle.Fill;
+
+                    LoadSubTypeData("KARIGAR");
+
+                    // ✅ Force refresh
+                    panelRadio.Refresh();
+                    tableLayoutPanel15.Refresh();
+                }
+                else
+                {
+                    tableLayoutPanel15.Visible = false;
+                    panelRadio.Visible = false;
+                    panelCheck.Visible = false;
+                }
             }
         }
 
+        private void ResetSubTypeSelections()
+        {
+            // Reset the radio buttons and checkboxes visual feedback
+            foreach (RadioButton rb in new List<RadioButton> { radioButton15, radioButton16, radioButton17, radioButton18, radioButton19, radioButton20,
+                                                             radioButton21, radioButton22, radioButton23, radioButton24, radioButton25, radioButton26,
+                                                             radioButton27, radioButton28, radioButton29, radioButton30 })
+            {
+                rb.Checked = false; // Uncheck the radio buttons
+                rb.BackColor = Color.Transparent; // Reset background color
+            }
 
+            foreach (CheckBox cb in new List<CheckBox> { checkBox1, checkBox2, checkBox3, checkBox4, checkBox5, checkBox6,
+                                                        checkBox7, checkBox8, checkBox9, checkBox10, checkBox11, checkBox12,
+                                                        checkBox13, checkBox14, checkBox15, checkBox16 })
+            {
+                cb.Checked = false; // Uncheck the checkboxes
+                cb.BackColor = Color.Transparent; // Reset background color
+            }
+        }
+        #endregion
+
+        #region Highlighting Visual Feedback for Radio Button
+        private void HighlightRadioButton(RadioButton selectedRadioButton)
+        {
+            // Reset the background color for all radio buttons
+            foreach (var rb in new List<RadioButton> { radioButton11, radioButton12, radioButton13, radioButton14 })
+            {
+                rb.BackColor = Color.Transparent; // Reset background color
+            }
+
+            // Highlight the selected radio button
+            selectedRadioButton.BackColor = Color.LightBlue; // Change to a highlighted color (e.g., light blue)
+        }
+        #endregion
+
+        #region Checkbox Highlighting
+
+        // Highlight selected checkbox
+        private void HighlightCheckBox(CheckBox selectedCheckBox)
+        {
+            // Reset the background color for all checkboxes
+            foreach (var cb in new List<CheckBox> { checkBox1, checkBox2, checkBox3, checkBox4, checkBox5, checkBox6,
+                                                    checkBox7, checkBox8, checkBox9, checkBox10, checkBox11, checkBox12,
+                                                    checkBox13, checkBox14, checkBox15, checkBox16 })
+            {
+                cb.BackColor = Color.Transparent; // Reset background color
+            }
+
+            // Highlight the selected checkbox
+            selectedCheckBox.BackColor = Color.LightGreen; // Change to a highlighted color (e.g., light green)
+        }
+        #endregion
+
+        #region Priority Radio Buttons Handling
         private void LoadPriorityRadioButtons()
         {
             try
@@ -135,16 +305,19 @@ namespace SYA
                 // Fetch priority names from RepairingHelper where [GROUP] = 'PRIORITY'
                 string query = "SELECT NAME FROM RepairingHelper WHERE [GROUP] = 'PRIORITY' ORDER BY ID";
                 DataTable dt = helper.FetchDataTableFromSYADataBase(query);
+
                 // Create a list of your radio buttons in the order you want to display them.
                 List<RadioButton> priorityRadios = new List<RadioButton>()
-        {
-            rbPriority1, rbPriority2, rbPriority3, rbPriority4
-        };
+                {
+                    rbPriority1, rbPriority2, rbPriority3, rbPriority4
+                };
+
                 // First, hide all the radio buttons.
                 foreach (RadioButton rb in priorityRadios)
                 {
                     rb.Visible = false;
                 }
+
                 // Loop through the fetched rows and assign names to radio buttons.
                 for (int i = 0; i < dt.Rows.Count && i < priorityRadios.Count; i++)
                 {
@@ -157,6 +330,9 @@ namespace SYA
                 MessageBox.Show("Error loading priorities: " + ex.Message);
             }
         }
+        #endregion
+
+        #region Type Radio Buttons Loading
         private void LoadTypeRadioButtons()
         {
             try
@@ -164,21 +340,26 @@ namespace SYA
                 // Fetch type names from RepairingHelper where [GROUP] = 'TYPE'
                 string query = "SELECT NAME FROM RepairingHelper WHERE [GROUP] = 'TYPE' ORDER BY ID";
                 DataTable dt = helper.FetchDataTableFromSYADataBase(query);
+
                 // Create a list of your type radio buttons in the order you want to display them.
                 List<RadioButton> typeRadios = new List<RadioButton>()
-        {
+                {
                     radioButton11, radioButton12, radioButton13, radioButton14
-        };
+                };
+
                 // First, hide all the radio buttons.
                 foreach (RadioButton rb in typeRadios)
                 {
                     rb.Visible = false;
                 }
+
                 // Loop through the fetched rows and assign names to radio buttons.
                 for (int i = 0; i < dt.Rows.Count && i < typeRadios.Count; i++)
                 {
                     typeRadios[i].Text = dt.Rows[i]["NAME"].ToString();
                     typeRadios[i].Visible = true;
+                    // Add CheckedChanged event dynamically to each radio button
+                    typeRadios[i].CheckedChanged += TypeRadioButton_CheckedChanged;
                 }
             }
             catch (Exception ex)
@@ -186,6 +367,9 @@ namespace SYA
                 MessageBox.Show("Error loading types: " + ex.Message);
             }
         }
+        #endregion
+
+        #region User Radio Buttons Handling
         private void LoadUserRadioButtons()
         {
             try
@@ -193,16 +377,19 @@ namespace SYA
                 // Fetch the user names from RepairingHelper table where [GROUP] = 'USER'
                 string query = "SELECT NAME FROM RepairingHelper WHERE [GROUP] = 'USER' ORDER BY ID";
                 DataTable dt = helper.FetchDataTableFromSYADataBase(query);
+
                 // Create a list of radio buttons in the desired order.
                 List<RadioButton> userRadios = new List<RadioButton>()
-        {
-            rbUser1, rbUser2, rbUser3, rbUser4, rbUser5, rbUser6
-        };
+                {
+                    rbUser1, rbUser2, rbUser3, rbUser4, rbUser5, rbUser6
+                };
+
                 // First hide all radio buttons.
                 foreach (RadioButton rb in userRadios)
                 {
                     rb.Visible = false;
                 }
+
                 // Loop through the fetched users and assign their names to the radio buttons.
                 for (int i = 0; i < dt.Rows.Count && i < userRadios.Count; i++)
                 {
@@ -215,6 +402,9 @@ namespace SYA
                 MessageBox.Show("Error loading users: " + ex.Message);
             }
         }
+     
+        #endregion
+
         #endregion
         #region Camera Functions
         private void StartCamera()
@@ -341,40 +531,6 @@ namespace SYA
         }
         #endregion
         #region Database & AutoComplete
-        private void LoadComboBoxData(ComboBox comboBox, string groupType)
-        {
-            try
-            {
-                string query = $"SELECT NAME FROM RepairingHelper WHERE [GROUP] = '{groupType}'";
-                DataTable dt = helper.FetchDataTableFromSYADataBase(query);
-                comboBox.Items.Clear(); // Clear existing items
-                AutoCompleteStringCollection autoCompleteCollection = new AutoCompleteStringCollection();
-                List<string> itemsList = new List<string>();
-                foreach (DataRow row in dt.Rows)
-                {
-                    string name = row["NAME"].ToString();
-                    itemsList.Add(name); // Add to List
-                    autoCompleteCollection.Add(name); // Add to AutoComplete
-                }
-                // Sort items before adding to ComboBox
-                itemsList.Sort();
-                comboBox.Items.AddRange(itemsList.ToArray());
-                // Enable AutoComplete
-                comboBox.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
-                comboBox.AutoCompleteSource = AutoCompleteSource.CustomSource;
-                comboBox.AutoCompleteCustomSource = autoCompleteCollection;
-                comboBox.DropDownStyle = ComboBoxStyle.DropDown; // Allows user input
-                // Set the first item as default (if available)
-                if (comboBox.Items.Count > 0)
-                {
-                    comboBox.SelectedIndex = 0;
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Error loading {groupType}: {ex.Message}");
-            }
-        }
         private void LoadAutoCompleteNames()
         {
             try
@@ -460,21 +616,50 @@ namespace SYA
             string WEIGHT = string.IsNullOrWhiteSpace(txtWeight.Text) ? "NULL" : txtWeight.Text.Trim();
             string ESTIMATE_COST = string.IsNullOrWhiteSpace(txtEstimate.Text) ? "NULL" : txtEstimate.Text.Trim();
             string BOOK_DATE = DateTime.Today.ToString("yyyy-MM-dd");
-            string DELIVERY_DATE = dtDeliveryDate.Value.ToString("yyyy-MM-dd");
+            string DELIVERY_DATE = dateTimePicker1.Value.ToString("yyyy-MM-dd");
             string BOOK_TIME = DateTime.Now.ToString("HH:mm:ss");
             string UPDATE_TIME = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
-            string TYPE = "";
-            string SUB_TYPE = "";
-            string CREATED_BY = "";
-            string PRIORITY = "";
+            // ✅ Get Selected Radio Button Values
+            string TYPE = GetSelectedRadioButton(panelType);
+            string PRIORITY = GetSelectedRadioButton(panelPriority);
+            string CREATED_BY = GetSelectedRadioButton(panelUser);
+
+            // ✅ Get Selected Checkboxes as a Comma-Separated String
+            string SUB_TYPE = GetSelectedCheckBoxes(panelCheck);
             string IMAGE_PATH = string.IsNullOrEmpty(imagePath) ? "" : imagePath; // Assign captured image path
-            string COMMENT = rtComment.Text.Trim();
+            string COMMENT = richTextBox1.Text.Trim();
             string STATUS = "New";
             string insertQuery = "INSERT INTO RepairingData (NAME, NUMBER, WEIGHT, ESTIMATE_COST, BOOK_DATE, DELIVERY_DATE, BOOK_TIME, UPDATE_TIME, TYPE, SUB_TYPE, CREATED_BY, PRIORITY, IMAGE_PATH, COMMENT, STATUS) " +
                                  "VALUES ('" + NAME + "', " + NUMBER + ", " + WEIGHT + ", " + ESTIMATE_COST + ", '" + BOOK_DATE + "', '" + DELIVERY_DATE + "', '" + BOOK_TIME + "', '" + UPDATE_TIME + "', " +
                                  "'" + TYPE + "', '" + SUB_TYPE + "', '" + CREATED_BY + "', '" + PRIORITY + "', '" + IMAGE_PATH + "', '" + COMMENT + "', '" + STATUS + "')";
             helper.RunQueryWithoutParametersSYADataBase(insertQuery, "ExecuteNonQuery");
         }
+        private string GetSelectedRadioButton(Control parent)
+        {
+            foreach (Control ctrl in parent.Controls)
+            {
+                if (ctrl is RadioButton rb && rb.Checked)
+                {
+                    return rb.Text; // Return the text of the selected radio button
+                }
+            }
+            return ""; // Return empty if no radio button is selected
+        }
+        private string GetSelectedCheckBoxes(Control parent)
+        {
+            List<string> selectedValues = new List<string>();
+
+            foreach (Control ctrl in parent.Controls)
+            {
+                if (ctrl is CheckBox cb && cb.Checked)
+                {
+                    selectedValues.Add(cb.Text); // Add selected checkbox text to the list
+                }
+            }
+
+            return string.Join(", ", selectedValues); // Combine into a comma-separated string
+        }
+
         private void buttonSave_Click(object sender, EventArgs e)
         {
             update_insert();
