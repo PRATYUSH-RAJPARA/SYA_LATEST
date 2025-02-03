@@ -141,7 +141,7 @@ namespace SYA
                     return;
                 }
 
-                // Checkbox and Radio lists
+                // Lists of radio buttons and checkboxes.
                 List<RadioButton> radioButtons = new List<RadioButton>
         {
             radioButton15, radioButton16, radioButton17, radioButton18, radioButton19, radioButton20,
@@ -156,18 +156,44 @@ namespace SYA
             checkBox13, checkBox14, checkBox15, checkBox16
         };
 
-                // Hide all
-                foreach (var rb in radioButtons) rb.Visible = false;
-                foreach (var cb in checkBoxes) cb.Visible = false;
+                // Hide and reset all controls.
+                foreach (var rb in radioButtons)
+                {
+                    rb.Visible = false;
+                    rb.Checked = false;
+                    rb.BackColor = Color.Transparent;
+                }
+                foreach (var cb in checkBoxes)
+                {
+                    cb.Visible = false;
+                    cb.Checked = false;
+                    cb.BackColor = Color.Transparent;
+                }
 
-                // Assign values
+                // Assign names from the database to radio buttons and checkboxes.
                 for (int i = 0; i < dt.Rows.Count && i < radioButtons.Count; i++)
                 {
                     string name = dt.Rows[i]["NAME"].ToString();
                     radioButtons[i].Text = name;
                     radioButtons[i].Visible = true;
+
+                    // Also assign text to checkboxes (used for REPAIR)
                     checkBoxes[i].Text = name;
                     checkBoxes[i].Visible = true;
+                }
+
+                // For KARIGAR subtypes, auto-select the first available radio button and style it.
+                if (subGroup == "KARIGAR")
+                {
+                    foreach (var rb in radioButtons)
+                    {
+                        if (rb.Visible)
+                        {
+                            rb.Checked = true;  // Automatically select the first visible radio button.
+                            UpdateRadioButtonStyle(rb, true); // Manually update its styling.
+                            break;
+                        }
+                    }
                 }
             }
             catch (Exception ex)
@@ -355,9 +381,7 @@ namespace SYA
         }
         #endregion        #endregion
 
-        #region User Radio Buttons Handling
-        #region User Radio Buttons Handling
-        #region User Radio Buttons Handling
+       
         private void LoadUserRadioButtons()
         {
             try
@@ -445,10 +469,7 @@ namespace SYA
                 StyleUserRadioButton(rb);
             }
         }
-        #endregion
-        #endregion
-
-        #endregion
+       
 
         #endregion
         #region Camera Functions
