@@ -88,23 +88,7 @@ namespace SYA
             RadioButton selectedRadioButton = sender as RadioButton;
             if (selectedRadioButton != null)
             {
-                // Get the parent container of the selected radio button (User, Priority, or Type)
-                Control parentContainer = selectedRadioButton.Parent;
-
-                // Reset only the radio buttons inside the same container
-                foreach (Control ctrl in parentContainer.Controls)
-                {
-                    if (ctrl is RadioButton rb)
-                    {
-                        rb.BackColor = Color.Transparent; // Reset background color
-                    }
-                }
-
-                // Highlight the selected radio button
-                if (selectedRadioButton.Checked)
-                {
-                    selectedRadioButton.BackColor = Color.LightBlue; // Highlight selected radio button
-                }
+                UpdateRadioButtonStyle(selectedRadioButton, selectedRadioButton.Checked);
             }
         }
 
@@ -302,27 +286,31 @@ namespace SYA
         {
             try
             {
-                // Fetch priority names from RepairingHelper where [GROUP] = 'PRIORITY'
                 string query = "SELECT NAME FROM RepairingHelper WHERE [GROUP] = 'PRIORITY' ORDER BY ID";
                 DataTable dt = helper.FetchDataTableFromSYADataBase(query);
 
-                // Create a list of your radio buttons in the order you want to display them.
                 List<RadioButton> priorityRadios = new List<RadioButton>()
-                {
-                    rbPriority1, rbPriority2, rbPriority3, rbPriority4
-                };
+        {
+            rbPriority1, rbPriority2, rbPriority3, rbPriority4
+        };
 
-                // First, hide all the radio buttons.
                 foreach (RadioButton rb in priorityRadios)
                 {
                     rb.Visible = false;
                 }
 
-                // Loop through the fetched rows and assign names to radio buttons.
                 for (int i = 0; i < dt.Rows.Count && i < priorityRadios.Count; i++)
                 {
                     priorityRadios[i].Text = dt.Rows[i]["NAME"].ToString();
                     priorityRadios[i].Visible = true;
+
+                    // Select the first radio button
+                    if (i == 0)
+                    {
+                        priorityRadios[i].Checked = true;
+                        // Manually trigger styling
+                        UpdateRadioButtonStyle(priorityRadios[i], true);
+                    }
                 }
             }
             catch (Exception ex)
@@ -330,36 +318,34 @@ namespace SYA
                 MessageBox.Show("Error loading priorities: " + ex.Message);
             }
         }
-        #endregion
+        #endregion        #endregion
 
         #region Type Radio Buttons Loading
         private void LoadTypeRadioButtons()
         {
             try
             {
-                // Fetch type names from RepairingHelper where [GROUP] = 'TYPE'
                 string query = "SELECT NAME FROM RepairingHelper WHERE [GROUP] = 'TYPE' ORDER BY ID";
                 DataTable dt = helper.FetchDataTableFromSYADataBase(query);
 
-                // Create a list of your type radio buttons in the order you want to display them.
                 List<RadioButton> typeRadios = new List<RadioButton>()
-                {
-                    radioButton11, radioButton12, radioButton13, radioButton14
-                };
+        {
+            radioButton11, radioButton12, radioButton13, radioButton14
+        };
 
-                // First, hide all the radio buttons.
                 foreach (RadioButton rb in typeRadios)
                 {
                     rb.Visible = false;
                 }
 
-                // Loop through the fetched rows and assign names to radio buttons.
                 for (int i = 0; i < dt.Rows.Count && i < typeRadios.Count; i++)
                 {
                     typeRadios[i].Text = dt.Rows[i]["NAME"].ToString();
                     typeRadios[i].Visible = true;
-                    // Add CheckedChanged event dynamically to each radio button
-                    typeRadios[i].CheckedChanged += TypeRadioButton_CheckedChanged;
+                    typeRadios[i].CheckedChanged += TypeRadioButton_CheckedChanged; // Attach event
+
+                    // Select the first radio button
+                  
                 }
             }
             catch (Exception ex)
@@ -367,34 +353,40 @@ namespace SYA
                 MessageBox.Show("Error loading types: " + ex.Message);
             }
         }
-        #endregion
+        #endregion        #endregion
 
+        #region User Radio Buttons Handling
+        #region User Radio Buttons Handling
         #region User Radio Buttons Handling
         private void LoadUserRadioButtons()
         {
             try
             {
-                // Fetch the user names from RepairingHelper table where [GROUP] = 'USER'
                 string query = "SELECT NAME FROM RepairingHelper WHERE [GROUP] = 'USER' ORDER BY ID";
                 DataTable dt = helper.FetchDataTableFromSYADataBase(query);
 
-                // Create a list of radio buttons in the desired order.
                 List<RadioButton> userRadios = new List<RadioButton>()
-                {
-                    rbUser1, rbUser2, rbUser3, rbUser4, rbUser5, rbUser6
-                };
+        {
+            rbUser1, rbUser2, rbUser3, rbUser4, rbUser5, rbUser6
+        };
 
-                // First hide all radio buttons.
                 foreach (RadioButton rb in userRadios)
                 {
                     rb.Visible = false;
                 }
 
-                // Loop through the fetched users and assign their names to the radio buttons.
                 for (int i = 0; i < dt.Rows.Count && i < userRadios.Count; i++)
                 {
                     userRadios[i].Text = dt.Rows[i]["NAME"].ToString();
                     userRadios[i].Visible = true;
+
+                    // Select the first radio button
+                    if (i == 0)
+                    {
+                        userRadios[i].Checked = true;
+                        // Manually trigger styling since CheckedChanged won't fire programmatically
+                        UpdateRadioButtonStyle(userRadios[i], true);
+                    }
                 }
             }
             catch (Exception ex)
@@ -402,7 +394,60 @@ namespace SYA
                 MessageBox.Show("Error loading users: " + ex.Message);
             }
         }
-     
+        private void UpdateRadioButtonStyle(RadioButton radioButton, bool isChecked)
+        {
+            if (isChecked)
+            {
+                // Reset all radio buttons in the same container
+                foreach (Control ctrl in radioButton.Parent.Controls)
+                {
+                    if (ctrl is RadioButton rb)
+                    {
+                        rb.BackColor = Color.Transparent;
+                    }
+                }
+                // Highlight the selected radio button
+                radioButton.BackColor = Color.LightBlue;
+            }
+            else
+            {
+                radioButton.BackColor = Color.Transparent;
+            }
+        }
+        /// <summary>
+        /// Applies the user-specific styling to the selected radio button.
+        /// It resets the background for all user radio buttons and highlights the selected one.
+        /// </summary>
+        private void StyleUserRadioButton(RadioButton selectedRadioButton)
+        {
+            // List all user radio buttons.
+            List<RadioButton> userRadios = new List<RadioButton>()
+    {
+        rbUser1, rbUser2, rbUser3, rbUser4, rbUser5, rbUser6
+    };
+
+            // Reset styling for all radio buttons in the user group.
+            foreach (RadioButton rb in userRadios)
+            {
+                rb.BackColor = Color.Transparent;
+            }
+
+            // Apply the highlight to the selected radio button.
+            selectedRadioButton.BackColor = Color.LightBlue;
+        }
+
+        // Optionally, if you want the styling to update when the user selects a different option:
+        private void UserRadioButton_CheckedChanged(object sender, EventArgs e)
+        {
+            RadioButton rb = sender as RadioButton;
+            if (rb != null && rb.Checked)
+            {
+                StyleUserRadioButton(rb);
+            }
+        }
+        #endregion
+        #endregion
+
         #endregion
 
         #endregion
