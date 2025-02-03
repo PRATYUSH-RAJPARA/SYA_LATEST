@@ -98,10 +98,10 @@ namespace SYA
                 {
                     if (ctrl is RadioButton rb)
                     {
-                        rb.BackColor = Color.Transparent;
+                        rb.BackColor = Color.FromArgb(244, 244, 213);
                     }
                 }
-                radioButton.BackColor = Color.LightBlue;
+                radioButton.BackColor = Color.FromArgb(212, 163, 115);
             }
             else
             {
@@ -113,11 +113,11 @@ namespace SYA
         {
             if (cb.Checked)
             {
-                cb.BackColor = Color.LightCoral; // Distinct color for checked repair checkboxes
+                cb.BackColor = Color.FromArgb(212, 163, 115); // Distinct color for checked repair checkboxes
             }
             else
             {
-                cb.BackColor = Color.Transparent;
+                cb.BackColor = Color.FromArgb(244, 244, 213);
             }
         }
         // --- Data Loading Methods ---
@@ -150,13 +150,13 @@ namespace SYA
                 {
                     rb.Visible = false;
                     rb.Checked = false;
-                    rb.BackColor = Color.Transparent;
+                    rb.BackColor = Color.FromArgb(244, 244, 213);
                 }
                 foreach (var cb in checkBoxes)
                 {
                     cb.Visible = false;
                     cb.Checked = false;
-                    cb.BackColor = Color.Transparent;
+                    cb.BackColor = Color.FromArgb(244, 244, 213);
                 }
                 // Populate controls with data
                 for (int i = 0; i < dt.Rows.Count && i < radioButtons.Count; i++)
@@ -614,6 +614,11 @@ namespace SYA
         private void AddReparing_FormClosed(object sender, FormClosedEventArgs e)
         {
             StopCamera();
+        }
+
+        private void radioButton17_CheckedChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

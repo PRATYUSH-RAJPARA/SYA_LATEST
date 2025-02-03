@@ -302,5 +302,25 @@ namespace SYA
         {
             DeleteRepairRecord();
         }
+
+        private void label16_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnTypeCompleted_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

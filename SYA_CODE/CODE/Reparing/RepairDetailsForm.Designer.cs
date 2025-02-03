@@ -90,19 +90,21 @@
             // 
             // btnTypeUnableToComplete
             // 
+            btnTypeUnableToComplete.BackColor = Color.FromArgb(244, 244, 213);
             btnTypeUnableToComplete.Dock = DockStyle.Fill;
             btnTypeUnableToComplete.FlatStyle = FlatStyle.Popup;
             btnTypeUnableToComplete.Font = new Font("Arial Black", 9.5F, FontStyle.Bold);
             btnTypeUnableToComplete.Location = new Point(768, 1);
             btnTypeUnableToComplete.Margin = new Padding(1);
             btnTypeUnableToComplete.Name = "btnTypeUnableToComplete";
-            btnTypeUnableToComplete.Size = new Size(191, 44);
+            btnTypeUnableToComplete.Size = new Size(191, 40);
             btnTypeUnableToComplete.TabIndex = 13;
             btnTypeUnableToComplete.Text = "UNABLE TO COMPLETE";
-            btnTypeUnableToComplete.UseVisualStyleBackColor = true;
+            btnTypeUnableToComplete.UseVisualStyleBackColor = false;
             // 
             // label1
             // 
+            label1.BackColor = Color.FromArgb(204, 213, 174);
             label1.Dock = DockStyle.Fill;
             label1.Font = new Font("Arial Black", 10F, FontStyle.Bold);
             label1.Location = new Point(1, 1);
@@ -112,6 +114,7 @@
             label1.TabIndex = 0;
             label1.Text = "Comment : ";
             label1.TextAlign = ContentAlignment.MiddleCenter;
+            label1.Click += label1_Click;
             // 
             // tableLayoutPanel11
             // 
@@ -148,6 +151,7 @@
             // 
             // btnUpdate
             // 
+            btnUpdate.BackColor = Color.FromArgb(204, 213, 174);
             btnUpdate.Dock = DockStyle.Fill;
             btnUpdate.FlatStyle = FlatStyle.Popup;
             btnUpdate.Font = new Font("Arial Black", 10F, FontStyle.Bold);
@@ -157,11 +161,12 @@
             btnUpdate.Size = new Size(156, 43);
             btnUpdate.TabIndex = 14;
             btnUpdate.Text = "UPDATE";
-            btnUpdate.UseVisualStyleBackColor = true;
+            btnUpdate.UseVisualStyleBackColor = false;
             btnUpdate.Click += btnUpdate_Click;
             // 
             // btnDelete
             // 
+            btnDelete.BackColor = Color.FromArgb(204, 213, 174);
             btnDelete.Dock = DockStyle.Fill;
             btnDelete.FlatStyle = FlatStyle.Popup;
             btnDelete.Font = new Font("Arial Black", 10F, FontStyle.Bold);
@@ -171,7 +176,7 @@
             btnDelete.Size = new Size(157, 43);
             btnDelete.TabIndex = 15;
             btnDelete.Text = "DELETE";
-            btnDelete.UseVisualStyleBackColor = true;
+            btnDelete.UseVisualStyleBackColor = false;
             btnDelete.Click += btnDelete_Click;
             // 
             // tableLayoutPanel5
@@ -201,7 +206,7 @@
             // 
             // txtCost
             // 
-            txtCost.BackColor = Color.Silver;
+            txtCost.BackColor = Color.FromArgb(244, 244, 213);
             txtCost.Dock = DockStyle.Fill;
             txtCost.Font = new Font("Arial Black", 12.5F, FontStyle.Bold);
             txtCost.Location = new Point(241, 25);
@@ -213,7 +218,7 @@
             // 
             // txtWeight
             // 
-            txtWeight.BackColor = Color.Silver;
+            txtWeight.BackColor = Color.FromArgb(244, 244, 213);
             txtWeight.Dock = DockStyle.Fill;
             txtWeight.Font = new Font("Arial Black", 12.5F, FontStyle.Bold);
             txtWeight.Location = new Point(1, 25);
@@ -225,7 +230,7 @@
             // 
             // cbSubType
             // 
-            cbSubType.BackColor = Color.Silver;
+            cbSubType.BackColor = Color.FromArgb(244, 244, 213);
             cbSubType.Dock = DockStyle.Fill;
             cbSubType.Font = new Font("Arial Black", 12.5F, FontStyle.Bold);
             cbSubType.FormattingEnabled = true;
@@ -237,7 +242,7 @@
             // 
             // cbType
             // 
-            cbType.BackColor = Color.Silver;
+            cbType.BackColor = Color.FromArgb(244, 244, 213);
             cbType.Dock = DockStyle.Fill;
             cbType.Font = new Font("Arial Black", 12.5F, FontStyle.Bold);
             cbType.FormattingEnabled = true;
@@ -249,6 +254,7 @@
             // 
             // label12
             // 
+            label12.BackColor = Color.FromArgb(204, 213, 174);
             label12.Dock = DockStyle.Fill;
             label12.Font = new Font("Arial Black", 10F, FontStyle.Bold);
             label12.Location = new Point(721, 1);
@@ -261,6 +267,7 @@
             // 
             // label11
             // 
+            label11.BackColor = Color.FromArgb(204, 213, 174);
             label11.Dock = DockStyle.Fill;
             label11.Font = new Font("Arial Black", 10F, FontStyle.Bold);
             label11.Location = new Point(481, 1);
@@ -273,6 +280,7 @@
             // 
             // label10
             // 
+            label10.BackColor = Color.FromArgb(204, 213, 174);
             label10.Dock = DockStyle.Fill;
             label10.Font = new Font("Arial Black", 10F, FontStyle.Bold);
             label10.Location = new Point(241, 1);
@@ -285,6 +293,7 @@
             // 
             // label9
             // 
+            label9.BackColor = Color.FromArgb(204, 213, 174);
             label9.Dock = DockStyle.Fill;
             label9.Font = new Font("Arial Black", 10F, FontStyle.Bold);
             label9.Location = new Point(1, 1);
@@ -297,12 +306,13 @@
             // 
             // label8
             // 
+            label8.BackColor = Color.FromArgb(204, 213, 174);
             label8.Dock = DockStyle.Fill;
             label8.Font = new Font("Arial Black", 10F, FontStyle.Bold);
             label8.Location = new Point(1, 1);
             label8.Margin = new Padding(1);
             label8.Name = "label8";
-            label8.Size = new Size(189, 44);
+            label8.Size = new Size(189, 40);
             label8.TabIndex = 5;
             label8.Text = "STATUS :";
             label8.TextAlign = ContentAlignment.MiddleCenter;
@@ -328,7 +338,7 @@
             // 
             // txtNumber
             // 
-            txtNumber.BackColor = Color.Silver;
+            txtNumber.BackColor = Color.FromArgb(244, 244, 213);
             txtNumber.Dock = DockStyle.Fill;
             txtNumber.Font = new Font("Arial Black", 12.5F, FontStyle.Bold);
             txtNumber.Location = new Point(721, 25);
@@ -339,6 +349,7 @@
             // 
             // label17
             // 
+            label17.BackColor = Color.FromArgb(204, 213, 174);
             label17.Dock = DockStyle.Fill;
             label17.Font = new Font("Arial Black", 10F, FontStyle.Bold);
             label17.Location = new Point(721, 1);
@@ -351,6 +362,7 @@
             // 
             // label16
             // 
+            label16.BackColor = Color.FromArgb(204, 213, 174);
             label16.Dock = DockStyle.Fill;
             label16.Font = new Font("Arial Black", 10F, FontStyle.Bold);
             label16.Location = new Point(1, 1);
@@ -363,7 +375,7 @@
             // 
             // txtName
             // 
-            txtName.BackColor = Color.Silver;
+            txtName.BackColor = Color.FromArgb(244, 244, 213);
             txtName.Dock = DockStyle.Fill;
             txtName.Font = new Font("Arial Black", 12.5F, FontStyle.Bold);
             txtName.ForeColor = SystemColors.WindowText;
@@ -392,7 +404,7 @@
             // 
             // rtxtComment
             // 
-            rtxtComment.BackColor = Color.Silver;
+            rtxtComment.BackColor = Color.FromArgb(244, 244, 213);
             rtxtComment.Dock = DockStyle.Fill;
             rtxtComment.Font = new Font("Arial Black", 12.5F, FontStyle.Bold);
             rtxtComment.Location = new Point(193, 1);
@@ -404,20 +416,21 @@
             // 
             // btnTypeCompleted
             // 
+            btnTypeCompleted.BackColor = Color.FromArgb(244, 244, 213);
             btnTypeCompleted.Dock = DockStyle.Fill;
             btnTypeCompleted.FlatStyle = FlatStyle.Popup;
             btnTypeCompleted.Font = new Font("Arial Black", 10F, FontStyle.Bold);
             btnTypeCompleted.Location = new Point(576, 1);
             btnTypeCompleted.Margin = new Padding(1);
             btnTypeCompleted.Name = "btnTypeCompleted";
-            btnTypeCompleted.Size = new Size(190, 44);
+            btnTypeCompleted.Size = new Size(190, 40);
             btnTypeCompleted.TabIndex = 12;
             btnTypeCompleted.Text = "COMPLETED";
-            btnTypeCompleted.UseVisualStyleBackColor = true;
+            btnTypeCompleted.UseVisualStyleBackColor = false;
             // 
             // tableLayoutPanel1
             // 
-            tableLayoutPanel1.BackColor = Color.WhiteSmoke;
+            tableLayoutPanel1.BackColor = Color.FromArgb(127, 85, 57);
             tableLayoutPanel1.ColumnCount = 3;
             tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 10F));
             tableLayoutPanel1.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
@@ -436,6 +449,7 @@
             // 
             // tableLayoutPanel2
             // 
+            tableLayoutPanel2.BackColor = Color.FromArgb(231, 200, 160);
             tableLayoutPanel2.ColumnCount = 1;
             tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
             tableLayoutPanel2.Controls.Add(tableLayoutPanel3, 0, 0);
@@ -461,6 +475,7 @@
             // 
             // tableLayoutPanel3
             // 
+            tableLayoutPanel3.BackColor = Color.FromArgb(231, 200, 160);
             tableLayoutPanel3.ColumnCount = 2;
             tableLayoutPanel3.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 70F));
             tableLayoutPanel3.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 30F));
@@ -529,7 +544,7 @@
             // 
             // cbPriority
             // 
-            cbPriority.BackColor = Color.Silver;
+            cbPriority.BackColor = Color.FromArgb(244, 244, 213);
             cbPriority.Dock = DockStyle.Fill;
             cbPriority.Font = new Font("Arial Black", 12.5F, FontStyle.Bold);
             cbPriority.FormattingEnabled = true;
@@ -541,6 +556,7 @@
             // 
             // label13
             // 
+            label13.BackColor = Color.FromArgb(204, 213, 174);
             label13.Dock = DockStyle.Fill;
             label13.Font = new Font("Arial", 12.75F, FontStyle.Bold);
             label13.Location = new Point(143, 1);
@@ -553,6 +569,7 @@
             // 
             // label15
             // 
+            label15.BackColor = Color.FromArgb(204, 213, 174);
             label15.Dock = DockStyle.Fill;
             label15.Font = new Font("Arial", 12.75F, FontStyle.Bold);
             label15.Location = new Point(1, 1);
@@ -568,9 +585,10 @@
             lblDeliveryDate.Dock = DockStyle.Fill;
             lblDeliveryDate.Font = new Font("Arial Black", 11.5F, FontStyle.Bold);
             lblDeliveryDate.Format = DateTimePickerFormat.Short;
-            lblDeliveryDate.Location = new Point(3, 43);
+            lblDeliveryDate.Location = new Point(1, 41);
+            lblDeliveryDate.Margin = new Padding(1);
             lblDeliveryDate.Name = "lblDeliveryDate";
-            lblDeliveryDate.Size = new Size(136, 29);
+            lblDeliveryDate.Size = new Size(140, 29);
             lblDeliveryDate.TabIndex = 1;
             // 
             // tableLayoutPanel8
@@ -594,6 +612,7 @@
             // 
             // label3
             // 
+            label3.BackColor = Color.FromArgb(204, 213, 174);
             label3.Dock = DockStyle.Fill;
             label3.Font = new Font("Arial", 12.75F, FontStyle.Bold);
             label3.Location = new Point(86, 1);
@@ -606,7 +625,7 @@
             // 
             // cbCreatedBy
             // 
-            cbCreatedBy.BackColor = Color.Silver;
+            cbCreatedBy.BackColor = Color.FromArgb(244, 244, 213);
             cbCreatedBy.Dock = DockStyle.Fill;
             cbCreatedBy.Font = new Font("Arial Black", 12.5F, FontStyle.Bold);
             cbCreatedBy.FormattingEnabled = true;
@@ -618,7 +637,7 @@
             // 
             // lblID
             // 
-            lblID.BackColor = Color.Silver;
+            lblID.BackColor = Color.FromArgb(244, 244, 213);
             lblID.Dock = DockStyle.Fill;
             lblID.Font = new Font("Arial Black", 12.5F, FontStyle.Bold);
             lblID.Location = new Point(1, 41);
@@ -631,6 +650,7 @@
             // 
             // label2
             // 
+            label2.BackColor = Color.FromArgb(204, 213, 174);
             label2.Dock = DockStyle.Fill;
             label2.Font = new Font("Arial", 12.75F, FontStyle.Bold);
             label2.Location = new Point(1, 1);
@@ -640,6 +660,7 @@
             label2.TabIndex = 2;
             label2.Text = "ID";
             label2.TextAlign = ContentAlignment.MiddleLeft;
+            label2.Click += label2_Click;
             // 
             // tableLayoutPanel9
             // 
@@ -662,7 +683,7 @@
             // 
             // lblUpdateDate
             // 
-            lblUpdateDate.BackColor = Color.Silver;
+            lblUpdateDate.BackColor = Color.FromArgb(244, 244, 213);
             lblUpdateDate.Dock = DockStyle.Fill;
             lblUpdateDate.Font = new Font("Arial Black", 12.5F, FontStyle.Bold);
             lblUpdateDate.Location = new Point(143, 41);
@@ -675,6 +696,7 @@
             // 
             // label4
             // 
+            label4.BackColor = Color.FromArgb(204, 213, 174);
             label4.Dock = DockStyle.Fill;
             label4.Font = new Font("Arial", 12.75F, FontStyle.Bold);
             label4.Location = new Point(143, 1);
@@ -687,7 +709,7 @@
             // 
             // lblBookingDate
             // 
-            lblBookingDate.BackColor = Color.Silver;
+            lblBookingDate.BackColor = Color.FromArgb(244, 244, 213);
             lblBookingDate.Dock = DockStyle.Fill;
             lblBookingDate.Font = new Font("Arial Black", 12.5F, FontStyle.Bold);
             lblBookingDate.Location = new Point(1, 41);
@@ -700,6 +722,7 @@
             // 
             // label6
             // 
+            label6.BackColor = Color.FromArgb(204, 213, 174);
             label6.Dock = DockStyle.Fill;
             label6.Font = new Font("Arial", 12.75F, FontStyle.Bold);
             label6.Location = new Point(1, 1);
@@ -724,39 +747,41 @@
             tableLayoutPanel10.Controls.Add(btnTypeInProgress, 2, 0);
             tableLayoutPanel10.Controls.Add(btnTypeNew, 1, 0);
             tableLayoutPanel10.Dock = DockStyle.Fill;
-            tableLayoutPanel10.Location = new Point(1, 593);
-            tableLayoutPanel10.Margin = new Padding(1);
+            tableLayoutPanel10.Location = new Point(1, 597);
+            tableLayoutPanel10.Margin = new Padding(1, 5, 1, 1);
             tableLayoutPanel10.Name = "tableLayoutPanel10";
             tableLayoutPanel10.RowCount = 1;
             tableLayoutPanel10.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
-            tableLayoutPanel10.Size = new Size(960, 46);
+            tableLayoutPanel10.Size = new Size(960, 42);
             tableLayoutPanel10.TabIndex = 2;
             // 
             // btnTypeInProgress
             // 
+            btnTypeInProgress.BackColor = Color.FromArgb(244, 244, 213);
             btnTypeInProgress.Dock = DockStyle.Fill;
             btnTypeInProgress.FlatStyle = FlatStyle.Popup;
             btnTypeInProgress.Font = new Font("Arial Black", 10F, FontStyle.Bold);
             btnTypeInProgress.Location = new Point(384, 1);
             btnTypeInProgress.Margin = new Padding(1);
             btnTypeInProgress.Name = "btnTypeInProgress";
-            btnTypeInProgress.Size = new Size(190, 44);
+            btnTypeInProgress.Size = new Size(190, 40);
             btnTypeInProgress.TabIndex = 11;
             btnTypeInProgress.Text = "IN PROGRESS";
-            btnTypeInProgress.UseVisualStyleBackColor = true;
+            btnTypeInProgress.UseVisualStyleBackColor = false;
             // 
             // btnTypeNew
             // 
+            btnTypeNew.BackColor = Color.FromArgb(244, 244, 213);
             btnTypeNew.Dock = DockStyle.Fill;
             btnTypeNew.FlatStyle = FlatStyle.Popup;
             btnTypeNew.Font = new Font("Arial Black", 10F, FontStyle.Bold);
             btnTypeNew.Location = new Point(192, 1);
             btnTypeNew.Margin = new Padding(1);
             btnTypeNew.Name = "btnTypeNew";
-            btnTypeNew.Size = new Size(190, 44);
+            btnTypeNew.Size = new Size(190, 40);
             btnTypeNew.TabIndex = 10;
             btnTypeNew.Text = "NEW";
-            btnTypeNew.UseVisualStyleBackColor = true;
+            btnTypeNew.UseVisualStyleBackColor = false;
             // 
             // RepairDetailsForm
             // 
