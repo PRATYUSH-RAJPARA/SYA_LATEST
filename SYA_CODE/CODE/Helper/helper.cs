@@ -15,7 +15,7 @@ namespace SYA
                 if (_configuration == null)
                 {
                     _configuration = new ConfigurationBuilder()
-                        .SetBasePath(@"F:\\SYA_LATEST\\DATABASE\\SYA_DATA_NEW\\config")
+                        .SetBasePath(@"C:\\SYA_LATEST\\DATABASE\\SYA_DATA_NEW\\config")
                         .AddJsonFile("appsettings.json")
                         .Build();
                 }
@@ -31,6 +31,7 @@ namespace SYA
         public static string LogsFolder;
         public static string TagPrinterName;
         public static string NormalPrinterName;
+        public static string EverycomPrinterName;
         public static string DataVerificationOldTable;
         public static string DataVerificationNewTable;
         public static string GoldPerGramLabour;
@@ -88,6 +89,7 @@ namespace SYA
                 LogsFolder = row["Logs"].ToString();
                 TagPrinterName = row["TagPrinterName"].ToString();
                 NormalPrinterName = row["NormalPrinterName"].ToString();
+                EverycomPrinterName = row["EverycomPrinterName"].ToString();
                 DataVerificationOldTable = row["DataVerificationOldTable"].ToString();
                 DataVerificationNewTable = row["DataVerificationNewTable"].ToString();
                 GoldPerGramLabour = row["GoldPerGramLabour"].ToString();

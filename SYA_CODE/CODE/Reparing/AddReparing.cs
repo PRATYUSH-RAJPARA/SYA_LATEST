@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Printing;
 using System.IO;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -535,6 +536,30 @@ namespace SYA
                                  "VALUES ('" + NAME + "', " + NUMBER + ", " + WEIGHT + ", " + ESTIMATE_COST + ", '" + BOOK_DATE + "', '" + DELIVERY_DATE + "', '" + BOOK_TIME + "', '" + UPDATE_TIME + "', " +
                                  "'" + TYPE + "', '" + SUB_TYPE + "', '" + CREATED_BY + "', '" + PRIORITY + "', '" + IMAGE_PATH + "', '" + COMMENT + "', '" + STATUS + "')";
             helper.RunQueryWithoutParametersSYADataBase(insertQuery, "ExecuteNonQuery");
+            print();
+        }
+        private void print()
+        {
+            List<string> repairData = new List<string>
+    {
+        txtName.Text.Trim(),
+        string.IsNullOrWhiteSpace(txtNumber.Text) ? "NULL" : txtNumber.Text.Trim(),
+        string.IsNullOrWhiteSpace(txtWeight.Text) ? "NULL" : txtWeight.Text.Trim(),
+        string.IsNullOrWhiteSpace(txtEstimate.Text) ? "NULL" : txtEstimate.Text.Trim(),
+        DateTime.Today.ToString("yyyy-MM-dd"),
+        dateTimePicker1.Value.ToString("yyyy-MM-dd"),
+        DateTime.Now.ToString("HH:mm:ss"),
+        DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"),
+        GetSelectedRadioButton(panelType),
+        GetSelectedRadioButton(panelPriority),
+        GetSelectedRadioButton(panelUser),
+        GetSelectedCheckBoxes(panelCheck),
+        string.IsNullOrEmpty(imagePath) ? "" : imagePath,
+        richTextBox1.Text.Trim(),
+        "New"
+    };
+            ThermalPrinter printer = new ThermalPrinter();
+            printer.PrintReceipt(repairData);
         }
         private string GetSelectedRadioButton(Control parent)
         {
@@ -620,5 +645,52 @@ namespace SYA
         {
 
         }
+        public void PrintReceipt()
+        {
+            string printerName = helper.EverycomPrinterName;
+
+            // ESC/POS Command for a simple receipt
+            string receipt = "\x1B\x40"; // Initialize printer
+            receipt += "Shree Yamuna Abhushan\n";  // Store name
+            receipt += "-------------------------\n";
+            receipt += "Item: Gold Ring  \n";
+            receipt += "Price: ₹12,500\n";
+            receipt += "-------------------------\n";
+            receipt += "Thank you for shopping!\n";
+            receipt += "\x1D\x56\x41"; // Cut paper
+
+            bool result = RawPrinterHelper.SendStringToPrinter(printerName, receipt);
+
+            if (!result)
+            {
+                MessageBox.Show("Failed to print receipt." + printerName);
+            }
+        }
+
+
+        private void PrintLabels()
+        {
+            try
+            {
+                PrintDocument pd = new PrintDocument();
+                pd.PrinterSettings.PrinterName = helper.EverycomPrinterName;
+                pd.PrintPage += new PrintPageEventHandler(Print);
+                //PrintPreviewDialog printPreviewDialog = new PrintPreviewDialog();
+                //printPreviewDialog.Document = pd;
+                //printPreviewDialog.WindowState = FormWindowState.Maximized;
+                //printPreviewDialog.PrintPreviewControl.Zoom = 1.0;
+                //printPreviewDialog.ShowDialog();
+                pd.Print();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error printing labels: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        private void Print(object sender, PrintPageEventArgs e)
+        {
+            PrintHelper.PrintLabel(sender, e, "hi0", "hi1", "hi3");
+        }
+
     }
 }

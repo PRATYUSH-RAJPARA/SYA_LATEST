@@ -1,0 +1,71 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Drawing;
+using System.Drawing.Printing;
+using System.Windows.Forms;
+
+public class ThermalPrinter
+{
+    private List<string> repairData;
+
+    public void PrintReceipt(List<string> data)
+    {
+        repairData = data;
+        try
+        {
+            PrintDocument printDoc = new PrintDocument();
+            printDoc.PrinterSettings.PrinterName = "Everycom-58-Series";
+            printDoc.PrintPage += new PrintPageEventHandler(PrintPage);
+            printDoc.Print();
+        }
+        catch (Exception ex)
+        {
+            MessageBox.Show("Error printing: " + ex.Message);
+        }
+    }
+
+    private void PrintPage(object sender, PrintPageEventArgs e)
+    {
+        float width = 184;   // Print area width
+        float height = 98;   // Print area height
+        float x = 2;         // Left margin
+        float y = 2;         // Top margin
+
+        Pen blackPen = new Pen(Color.Black, 2);
+        e.Graphics.DrawRectangle(blackPen, x, y, width, height);
+
+        // Set font
+        Font font = new Font("Arial", 9, FontStyle.Regular);
+        float textY = y + 5;
+        float textX = x + 5;
+
+        // Wrap text function
+        void DrawWrappedText(Graphics g, string text, Font font, float x, ref float y, float maxWidth)
+        {
+            SizeF textSize = g.MeasureString(text, font);
+            if (textSize.Width > maxWidth)
+            {
+                // If too wide, wrap within maxWidth
+                RectangleF layoutRectangle = new RectangleF(x, y, maxWidth, textSize.Height * 2);
+                g.DrawString(text, font, Brushes.Black, layoutRectangle);
+                y += textSize.Height * 2; // Move cursor to next line
+            }
+            else
+            {
+                // Print normally
+                g.DrawString(text, font, Brushes.Black, x, y);
+                y += textSize.Height;
+            }
+        }
+
+        // Print Name - Number (Wrap if too long)
+        string nameNumber = $"{repairData[0]} - {repairData[1]}";
+        DrawWrappedText(e.Graphics, nameNumber, font, textX, ref textY, width - 10);
+
+        // Print other fields
+        e.Graphics.DrawString($"Weight: {repairData[2]}", font, Brushes.Black, textX, textY); textY += 15;
+        e.Graphics.DrawString($"Estimate: {repairData[3]}", font, Brushes.Black, textX, textY); textY += 15;
+        e.Graphics.DrawString($"Book Date: {repairData[4]}", font, Brushes.Black, textX, textY); textY += 15;
+        e.Graphics.DrawString($"Delivery: {repairData[5]}", font, Brushes.Black, textX, textY);
+    }
+}
