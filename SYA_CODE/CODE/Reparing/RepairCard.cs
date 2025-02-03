@@ -42,7 +42,7 @@ namespace SYA
             }
             else
             {
-               // PICTURE.Image = Properties.Resources.DefaultImage; // Use a default image if not found
+                // PICTURE.Image = Properties.Resources.DefaultImage; // Use a default image if not found
             }
         }
         private void UpdateStatusUI(string status)
@@ -147,10 +147,25 @@ namespace SYA
                     string date = row["BOOK_DATE"].ToString();
                     string status = row["STATUS"].ToString();
                     string imagePath = row["IMAGE_PATH"].ToString();
-                    this.SetRepairDetails(repairId, name, date, status,imagePath);
+                    this.SetRepairDetails(repairId, name, date, status, imagePath);
                 }
             };
             detailsForm.ShowDialog();  // Opens the form modally.
+        }
+
+        private void STATUS_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnTypeCompleted_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }

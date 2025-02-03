@@ -1058,7 +1058,7 @@
             txtName.Margin = new Padding(1);
             txtName.Name = "txtName";
             txtName.Size = new Size(589, 36);
-            txtName.TabIndex = 1;
+            txtName.TabIndex = 0;
             // 
             // label4
             // 
@@ -1082,7 +1082,7 @@
             txtNumber.Margin = new Padding(1);
             txtNumber.Name = "txtNumber";
             txtNumber.Size = new Size(252, 36);
-            txtNumber.TabIndex = 2;
+            txtNumber.TabIndex = 1;
             txtNumber.TextAlign = HorizontalAlignment.Center;
             // 
             // tableLayoutPanel21
@@ -1204,7 +1204,7 @@
             panelPriority.Margin = new Padding(1);
             panelPriority.Name = "panelPriority";
             panelPriority.Size = new Size(351, 96);
-            panelPriority.TabIndex = 3;
+            panelPriority.TabIndex = 1;
             // 
             // tableLayoutPanel12
             // 
@@ -1370,7 +1370,7 @@
             panelUser.Margin = new Padding(1);
             panelUser.Name = "panelUser";
             panelUser.Size = new Size(351, 96);
-            panelUser.TabIndex = 2;
+            panelUser.TabIndex = 0;
             // 
             // tableLayoutPanel11
             // 
@@ -1645,7 +1645,6 @@
             ShowInTaskbar = false;
             StartPosition = FormStartPosition.CenterScreen;
             Text = "AddReparing";
-            TopMost = true;
             FormClosed += AddReparing_FormClosed;
             Load += AddReparing_Load;
             tableLayoutPanel1.ResumeLayout(false);
