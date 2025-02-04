@@ -209,7 +209,7 @@
             tableLayoutPanel3.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
             tableLayoutPanel3.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
             tableLayoutPanel3.Size = new Size(845, 47);
-            tableLayoutPanel3.TabIndex = 7;
+            tableLayoutPanel3.TabIndex = 6;
             // 
             // buttonSave
             // 
@@ -222,7 +222,7 @@
             buttonSave.Name = "buttonSave";
             buttonSave.Size = new Size(251, 45);
             buttonSave.TabIndex = 12;
-            buttonSave.Text = "Re-Capture Image";
+            buttonSave.Text = "Save";
             buttonSave.UseVisualStyleBackColor = false;
             buttonSave.Click += buttonSave_Click;
             // 
@@ -243,7 +243,8 @@
             tableLayoutPanel15.RowCount = 1;
             tableLayoutPanel15.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
             tableLayoutPanel15.Size = new Size(845, 146);
-            tableLayoutPanel15.TabIndex = 6;
+            tableLayoutPanel15.TabIndex = 5;
+            tableLayoutPanel15.TabStop = true;
             // 
             // label10
             // 
@@ -267,6 +268,7 @@
             panel.Name = "panel";
             panel.Size = new Size(674, 144);
             panel.TabIndex = 5;
+            panel.TabStop = true;
             // 
             // panelCheck
             // 
@@ -904,7 +906,7 @@
             tableLayoutPanel14.RowCount = 1;
             tableLayoutPanel14.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
             tableLayoutPanel14.Size = new Size(845, 80);
-            tableLayoutPanel14.TabIndex = 5;
+            tableLayoutPanel14.TabIndex = 3;
             // 
             // label8
             // 
@@ -951,7 +953,7 @@
             tableLayoutPanel6.RowStyles.Add(new RowStyle(SizeType.Percent, 40F));
             tableLayoutPanel6.RowStyles.Add(new RowStyle(SizeType.Percent, 60F));
             tableLayoutPanel6.Size = new Size(845, 113);
-            tableLayoutPanel6.TabIndex = 3;
+            tableLayoutPanel6.TabIndex = 2;
             // 
             // txtWeight
             // 
@@ -1047,7 +1049,7 @@
             tableLayoutPanel5.RowStyles.Add(new RowStyle(SizeType.Percent, 40F));
             tableLayoutPanel5.RowStyles.Add(new RowStyle(SizeType.Percent, 60F));
             tableLayoutPanel5.Size = new Size(845, 113);
-            tableLayoutPanel5.TabIndex = 2;
+            tableLayoutPanel5.TabIndex = 1;
             // 
             // txtName
             // 
@@ -1128,7 +1130,7 @@
             tableLayoutPanel4.RowCount = 1;
             tableLayoutPanel4.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
             tableLayoutPanel4.Size = new Size(845, 253);
-            tableLayoutPanel4.TabIndex = 1;
+            tableLayoutPanel4.TabIndex = 0;
             // 
             // tableLayoutPanel7
             // 
@@ -1148,7 +1150,7 @@
             tableLayoutPanel7.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
             tableLayoutPanel7.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
             tableLayoutPanel7.Size = new Size(505, 251);
-            tableLayoutPanel7.TabIndex = 1;
+            tableLayoutPanel7.TabIndex = 0;
             // 
             // tableLayoutPanel10
             // 
@@ -1176,6 +1178,7 @@
             buttonReCapture.Name = "buttonReCapture";
             buttonReCapture.Size = new Size(199, 47);
             buttonReCapture.TabIndex = 12;
+            buttonReCapture.TabStop = false;
             buttonReCapture.Text = "Re-Capture Image";
             buttonReCapture.UseVisualStyleBackColor = false;
             buttonReCapture.Click += buttonReCapture_Click;
@@ -1571,7 +1574,7 @@
             tableLayoutPanel18.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
             tableLayoutPanel18.RowStyles.Add(new RowStyle(SizeType.Absolute, 20F));
             tableLayoutPanel18.Size = new Size(674, 57);
-            tableLayoutPanel18.TabIndex = 0;
+            tableLayoutPanel18.TabIndex = 4;
             // 
             // radioButton14
             // 

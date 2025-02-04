@@ -68,7 +68,6 @@
             tableLayoutPanel1.RowStyles.Add(new RowStyle(SizeType.Absolute, 2.5F));
             tableLayoutPanel1.Size = new Size(450, 450);
             tableLayoutPanel1.TabIndex = 1;
-            tableLayoutPanel1.Paint += tableLayoutPanel1_Paint;
             // 
             // tableLayoutPanel6
             // 
@@ -178,7 +177,6 @@
             btnTypeCompleted.TabIndex = 0;
             btnTypeCompleted.Text = "COMPLETED";
             btnTypeCompleted.UseVisualStyleBackColor = true;
-            btnTypeCompleted.Click += btnTypeCompleted_Click;
             // 
             // btnTypeUnableToComplete
             // 
@@ -234,7 +232,6 @@
             STATUS.TabIndex = 3;
             STATUS.Text = "Name";
             STATUS.TextAlign = ContentAlignment.MiddleCenter;
-            STATUS.Click += STATUS_Click;
             // 
             // PICTURE
             // 

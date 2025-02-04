@@ -27,7 +27,7 @@ namespace SYA
             txtName.TextChanged += TxtName_TextChanged; // Detect changes in txtName
         }
         // Form Load & Initialization
-        private void AddReparing_Load(object sender, EventArgs e)
+        private async void AddReparing_Load(object sender, EventArgs e)
         {
             this.KeyPreview = true;
             txtWeight.KeyPress += AllowOnlyNumeric;
@@ -38,7 +38,6 @@ namespace SYA
             txtEstimate.Leave += FormatDecimal;
             AttachKeyPressEvent(this);
             StartCamera();
-            // Load initial data
             LoadTypeRadioButtons();
             LoadUserRadioButtons();
             LoadPriorityRadioButtons();
@@ -46,7 +45,27 @@ namespace SYA
             tableLayoutPanel15.Visible = false;
             // Attach common events for radio buttons and checkboxes
             AttachSelectionEvents();
+            // Start auto capture after 3 seconds
+            await Task.Delay(3000);
+            AutoCaptureImage();
         }
+        private void AutoCaptureImage()
+        {
+            if (pictureBox1.Image != null)
+            {
+                string folderPath = @"C:\SYA_APP\Images";
+                if (!Directory.Exists(folderPath))
+                {
+                    Directory.CreateDirectory(folderPath);
+                }
+
+                string fileName = "Repair_" + DateTime.Now.ToString("yyyyMMdd_HHmmss") + ".jpg";
+                imagePath = Path.Combine(folderPath, fileName);
+                pictureBox1.Image.Save(imagePath, System.Drawing.Imaging.ImageFormat.Jpeg);
+                StopCamera();
+            }
+        }
+
         // --- Event Wiring Methods ---
         private void AttachSelectionEvents()
         {
@@ -482,6 +501,11 @@ namespace SYA
                     buttonReCapture.PerformClick();
                     return true;
                 }
+                else if (this.ActiveControl == buttonSave)
+                {
+                    buttonSave.PerformClick(); // Ensure Enter triggers button click on Save
+                    return true;
+                }
                 else
                 {
                     this.SelectNextControl(this.ActiveControl, true, true, true, true);
@@ -490,6 +514,7 @@ namespace SYA
             }
             return base.ProcessCmdKey(ref msg, keyData);
         }
+
         private void TxtName_TextChanged(object sender, EventArgs e)
         {
             if (nameSet.Contains(txtName.Text))
@@ -543,7 +568,7 @@ namespace SYA
                 // When TYPE is KARIGAR, sub type is selected via radio buttons.
                 SUB_TYPE = GetSelectedRadioButton(panelRadio);
             }
-
+            MessageBox.Show(imagePath);
             string IMAGE_PATH = string.IsNullOrEmpty(imagePath) ? "" : imagePath;
             string COMMENT = richTextBox1.Text.Trim();
             string STATUS = "New";
@@ -646,20 +671,37 @@ namespace SYA
         }
         private void buttonReCapture_Click(object sender, EventArgs e)
         {
-            if (pictureBox1.Image != null)
+            // Delete previous image
+            if (!string.IsNullOrEmpty(imagePath) && File.Exists(imagePath))
             {
-                string folderPath = @"C:\SYA_APP\Images";
-                if (!Directory.Exists(folderPath))
-                {
-                    Directory.CreateDirectory(folderPath);
-                }
-                string fileName = "Repair_" + DateTime.Now.ToString("yyyyMMdd_HHmmss") + ".jpg";
-                imagePath = Path.Combine(folderPath, fileName);
-                pictureBox1.Image.Save(imagePath, System.Drawing.Imaging.ImageFormat.Jpeg);
-                MessageBox.Show("Image Captured Successfully.");
-                StopCamera();
+                File.Delete(imagePath);
             }
+
+            // Restart the camera and capture a new image
+            StartCamera();
+
+            Task.Delay(1000).ContinueWith(t =>
+            {
+                if (pictureBox1.Image != null)
+                {
+                    string folderPath = @"C:\SYA_APP\Images";
+                    if (!Directory.Exists(folderPath))
+                    {
+                        Directory.CreateDirectory(folderPath);
+                    }
+
+                    string fileName = "Repair_" + DateTime.Now.ToString("yyyyMMdd_HHmmss") + ".jpg";
+                    imagePath = Path.Combine(folderPath, fileName);
+
+                    pictureBox1.Invoke(new Action(() =>
+                    {
+                        pictureBox1.Image.Save(imagePath, System.Drawing.Imaging.ImageFormat.Jpeg);
+                        StopCamera();
+                    }));
+                }
+            });
         }
+
         private void AddReparing_FormClosed(object sender, FormClosedEventArgs e)
         {
             StopCamera();
