@@ -516,6 +516,7 @@ namespace SYA
         }
         private void update_insert()
         {
+            // Gather common data from input controls
             string NAME = txtName.Text.Trim();
             string NUMBER = string.IsNullOrWhiteSpace(txtNumber.Text) ? "NULL" : txtNumber.Text.Trim();
             string WEIGHT = string.IsNullOrWhiteSpace(txtWeight.Text) ? "NULL" : txtWeight.Text.Trim();
@@ -524,43 +525,81 @@ namespace SYA
             string DELIVERY_DATE = dateTimePicker1.Value.ToString("yyyy-MM-dd");
             string BOOK_TIME = DateTime.Now.ToString("HH:mm:ss");
             string UPDATE_TIME = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
-            // Get selected radio button values
+
+            // Get selected values from the panels
             string TYPE = GetSelectedRadioButton(panelType);
             string PRIORITY = GetSelectedRadioButton(panelPriority);
             string CREATED_BY = GetSelectedRadioButton(panelUser);
-            string SUB_TYPE = GetSelectedCheckBoxes(panelCheck);
+
+            // Determine the SUB_TYPE based on TYPE:
+            string SUB_TYPE = "";
+            if (TYPE == "REPAIR")
+            {
+                // When TYPE is REPAIR, sub type is selected via checkboxes.
+                SUB_TYPE = GetSelectedCheckBoxes(panelCheck);
+            }
+            else if (TYPE == "KARIGAR")
+            {
+                // When TYPE is KARIGAR, sub type is selected via radio buttons.
+                SUB_TYPE = GetSelectedRadioButton(panelRadio);
+            }
+
             string IMAGE_PATH = string.IsNullOrEmpty(imagePath) ? "" : imagePath;
             string COMMENT = richTextBox1.Text.Trim();
             string STATUS = "New";
+
+            // Build the INSERT query
             string insertQuery = "INSERT INTO RepairingData (NAME, NUMBER, WEIGHT, ESTIMATE_COST, BOOK_DATE, DELIVERY_DATE, BOOK_TIME, UPDATE_TIME, TYPE, SUB_TYPE, CREATED_BY, PRIORITY, IMAGE_PATH, COMMENT, STATUS) " +
                                  "VALUES ('" + NAME + "', " + NUMBER + ", " + WEIGHT + ", " + ESTIMATE_COST + ", '" + BOOK_DATE + "', '" + DELIVERY_DATE + "', '" + BOOK_TIME + "', '" + UPDATE_TIME + "', " +
                                  "'" + TYPE + "', '" + SUB_TYPE + "', '" + CREATED_BY + "', '" + PRIORITY + "', '" + IMAGE_PATH + "', '" + COMMENT + "', '" + STATUS + "')";
+
             helper.RunQueryWithoutParametersSYADataBase(insertQuery, "ExecuteNonQuery");
+
+            // Optionally, call the print function
             print();
         }
+
         private void print()
         {
+            // Determine the type and sub type accordingly.
+            string type = GetSelectedRadioButton(panelType);
+            string subType = "";
+
+            if (type == "REPAIR")
+            {
+                // For REPAIR, sub type comes from checkboxes.
+                subType = GetSelectedCheckBoxes(panelCheck);
+            }
+            else if (type == "KARIGAR")
+            {
+                // For KARIGAR, sub type comes from radio buttons (assumed to be in panelRadio).
+                subType = GetSelectedRadioButton(panelRadio);
+            }
+            // Otherwise, subType remains an empty string.
+
             List<string> repairData = new List<string>
     {
         txtName.Text.Trim(),
-        string.IsNullOrWhiteSpace(txtNumber.Text) ? "NULL" : txtNumber.Text.Trim(),
-        string.IsNullOrWhiteSpace(txtWeight.Text) ? "NULL" : txtWeight.Text.Trim(),
-        string.IsNullOrWhiteSpace(txtEstimate.Text) ? "NULL" : txtEstimate.Text.Trim(),
+        string.IsNullOrWhiteSpace(txtNumber.Text) ? "" : txtNumber.Text.Trim(),
+        string.IsNullOrWhiteSpace(txtWeight.Text) ? "" : txtWeight.Text.Trim(),
+        string.IsNullOrWhiteSpace(txtEstimate.Text) ? "" : txtEstimate.Text.Trim(),
         DateTime.Today.ToString("yyyy-MM-dd"),
         dateTimePicker1.Value.ToString("yyyy-MM-dd"),
         DateTime.Now.ToString("HH:mm:ss"),
         DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"),
-        GetSelectedRadioButton(panelType),
-        GetSelectedRadioButton(panelPriority),
-        GetSelectedRadioButton(panelUser),
-        GetSelectedCheckBoxes(panelCheck),
+        type,                                         // TYPE from panelType
+        GetSelectedRadioButton(panelPriority),        // PRIORITY
+        GetSelectedRadioButton(panelUser),            // CREATED_BY
+        subType,                                      // SUB_TYPE (based on TYPE)
         string.IsNullOrEmpty(imagePath) ? "" : imagePath,
         richTextBox1.Text.Trim(),
         "New"
     };
+
             ThermalPrinter printer = new ThermalPrinter();
             printer.PrintReceipt(repairData);
         }
+
         private string GetSelectedRadioButton(Control parent)
         {
             foreach (Control ctrl in parent.Controls)
@@ -621,21 +660,6 @@ namespace SYA
                 StopCamera();
             }
         }
-        private void change_visiable(object sender, EventArgs e)
-        {
-            if (tableLayoutPanel16.Visible)
-            {
-                tableLayoutPanel16.Visible = false;
-                tableLayoutPanel17.Visible = true;
-                tableLayoutPanel17.Dock = DockStyle.Fill;
-            }
-            else
-            {
-                tableLayoutPanel16.Visible = true;
-                tableLayoutPanel17.Visible = false;
-                tableLayoutPanel16.Dock = DockStyle.Fill;
-            }
-        }
         private void AddReparing_FormClosed(object sender, FormClosedEventArgs e)
         {
             StopCamera();
@@ -645,48 +669,8 @@ namespace SYA
         {
 
         }
-        public void PrintReceipt()
-        {
-            string printerName = helper.EverycomPrinterName;
-
-            // ESC/POS Command for a simple receipt
-            string receipt = "\x1B\x40"; // Initialize printer
-            receipt += "Shree Yamuna Abhushan\n";  // Store name
-            receipt += "-------------------------\n";
-            receipt += "Item: Gold Ring  \n";
-            receipt += "Price: ₹12,500\n";
-            receipt += "-------------------------\n";
-            receipt += "Thank you for shopping!\n";
-            receipt += "\x1D\x56\x41"; // Cut paper
-
-            bool result = RawPrinterHelper.SendStringToPrinter(printerName, receipt);
-
-            if (!result)
-            {
-                MessageBox.Show("Failed to print receipt." + printerName);
-            }
-        }
 
 
-        private void PrintLabels()
-        {
-            try
-            {
-                PrintDocument pd = new PrintDocument();
-                pd.PrinterSettings.PrinterName = helper.EverycomPrinterName;
-                pd.PrintPage += new PrintPageEventHandler(Print);
-                //PrintPreviewDialog printPreviewDialog = new PrintPreviewDialog();
-                //printPreviewDialog.Document = pd;
-                //printPreviewDialog.WindowState = FormWindowState.Maximized;
-                //printPreviewDialog.PrintPreviewControl.Zoom = 1.0;
-                //printPreviewDialog.ShowDialog();
-                pd.Print();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Error printing labels: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
         private void Print(object sender, PrintPageEventArgs e)
         {
             PrintHelper.PrintLabel(sender, e, "hi0", "hi1", "hi3");

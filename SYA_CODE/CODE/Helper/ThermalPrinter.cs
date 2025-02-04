@@ -32,12 +32,12 @@ public class ThermalPrinter
         float y = 2;         // Top margin
 
         Pen blackPen = new Pen(Color.Black, 2);
-        e.Graphics.DrawRectangle(blackPen, x, y, width, height);
+       // e.Graphics.DrawRectangle(blackPen, x, y, width, height);
 
         // Set font
-        Font font = new Font("Arial", 9, FontStyle.Regular);
-        float textY = y + 5;
-        float textX = x + 5;
+        Font font = new Font("Arial", 10, FontStyle.Regular);
+        float textY = y ;
+        float textX = x ;
 
         // Wrap text function
         void DrawWrappedText(Graphics g, string text, Font font, float x, ref float y, float maxWidth)
@@ -59,12 +59,25 @@ public class ThermalPrinter
         }
 
         // Print Name - Number (Wrap if too long)
-        string nameNumber = $"{repairData[1]} - {repairData[0]}";
-        DrawWrappedText(e.Graphics, nameNumber, font, textX, ref textY, width);
+        DrawWrappedText(e.Graphics, $"{repairData[0]}", font, textX, ref textY, width);
+       e.Graphics.DrawLine(blackPen, x, textY , x + width, textY );
+        textY += 5;
+
+        e.Graphics.DrawString($"{repairData[1]} - {repairData[5]}", font, Brushes.Black, textX, textY); textY += 20;
+        e.Graphics.DrawLine(blackPen, x, textY, x + width, textY);
+        textY += 5;
+        DrawWrappedText(e.Graphics, $"( {repairData[8]} ) - {repairData[11]}", font, textX, ref textY, width);
+        DrawWrappedText(e.Graphics, $"RS : ₹ {repairData[3]}", font, textX, ref textY, width);
+        DrawWrappedText(e.Graphics, $"Wt. : {repairData[2]}", font, textX, ref textY, width);
+
+        e.Graphics.DrawLine(blackPen, x, textY, x + width, textY);
 
         // Print other fields
-        e.Graphics.DrawString($"{repairData[8]} - {repairData[11]}", font, Brushes.Black, textX, textY); textY += 15;
-        e.Graphics.DrawString($"{repairData[5]} - \u20B9"+$" {repairData[3]} - {repairData[2]}", font, Brushes.Black, textX, textY); textY += 15;
+        //  e.Graphics.DrawString($"{repairData[8]} - {repairData[11]}", font, Brushes.Black, textX, textY); textY += 15;
+        //  e.Graphics.DrawString($"{repairData[5]} - \u20B9"+$" {repairData[3]} - {repairData[2]}", font, Brushes.Black, textX, textY); textY += 15;
+        textY += 5;
         DrawWrappedText(e.Graphics, $"Note: {repairData[13]}", font, textX, ref textY, width);
+        e.Graphics.DrawLine(blackPen, x, textY, x + width, textY);
+
     }
 }
