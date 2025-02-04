@@ -59,13 +59,12 @@ public class ThermalPrinter
         }
 
         // Print Name - Number (Wrap if too long)
-        string nameNumber = $"{repairData[0]} - {repairData[1]}";
-        DrawWrappedText(e.Graphics, nameNumber, font, textX, ref textY, width - 10);
+        string nameNumber = $"{repairData[1]} - {repairData[0]}";
+        DrawWrappedText(e.Graphics, nameNumber, font, textX, ref textY, width);
 
         // Print other fields
-        e.Graphics.DrawString($"Weight: {repairData[2]}", font, Brushes.Black, textX, textY); textY += 15;
-        e.Graphics.DrawString($"Estimate: {repairData[3]}", font, Brushes.Black, textX, textY); textY += 15;
-        e.Graphics.DrawString($"Book Date: {repairData[4]}", font, Brushes.Black, textX, textY); textY += 15;
-        e.Graphics.DrawString($"Delivery: {repairData[5]}", font, Brushes.Black, textX, textY);
+        e.Graphics.DrawString($"{repairData[8]} - {repairData[11]}", font, Brushes.Black, textX, textY); textY += 15;
+        e.Graphics.DrawString($"{repairData[5]} - \u20B9"+$" {repairData[3]} - {repairData[2]}", font, Brushes.Black, textX, textY); textY += 15;
+        DrawWrappedText(e.Graphics, $"Note: {repairData[13]}", font, textX, ref textY, width);
     }
 }

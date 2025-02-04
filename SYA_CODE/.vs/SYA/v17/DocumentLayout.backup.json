@@ -3,12 +3,12 @@
   "WorkspaceRootPath": "C:\\SYA_LATEST\\SYA_CODE\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{F4E7395C-6436-4F9A-A0E3-A889008539AF}|SYA.csproj|c:\\sya_latest\\sya_code\\code\\reparing\\addreparing.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F4E7395C-6436-4F9A-A0E3-A889008539AF}|SYA.csproj|solutionrelative:code\\reparing\\addreparing.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{F4E7395C-6436-4F9A-A0E3-A889008539AF}|SYA.csproj|c:\\sya_latest\\sya_code\\code\\helper\\thermalprinter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F4E7395C-6436-4F9A-A0E3-A889008539AF}|SYA.csproj|solutionrelative:code\\helper\\thermalprinter.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F4E7395C-6436-4F9A-A0E3-A889008539AF}|SYA.csproj|c:\\sya_latest\\sya_code\\code\\reparing\\addreparing.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F4E7395C-6436-4F9A-A0E3-A889008539AF}|SYA.csproj|solutionrelative:code\\reparing\\addreparing.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{F4E7395C-6436-4F9A-A0E3-A889008539AF}|SYA.csproj|c:\\sya_latest\\sya_code\\code\\helper\\rawprinterhelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -27,11 +27,11 @@
       "RelativeMoniker": "D:0:0:{F4E7395C-6436-4F9A-A0E3-A889008539AF}|SYA.csproj|solutionrelative:code\\rtgs\\printrtgs.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F4E7395C-6436-4F9A-A0E3-A889008539AF}|SYA.csproj|c:\\sya_latest\\sya_code\\code\\rtgs\\printrtgs.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "AbsoluteMoniker": "D:0:0:{F4E7395C-6436-4F9A-A0E3-A889008539AF}|SYA.csproj|C:\\SYA_LATEST\\SYA_CODE\\code\\rtgs\\printrtgs.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{F4E7395C-6436-4F9A-A0E3-A889008539AF}|SYA.csproj|solutionrelative:code\\rtgs\\printrtgs.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F4E7395C-6436-4F9A-A0E3-A889008539AF}|SYA.csproj|c:\\sya_latest\\sya_code\\code\\reparing\\addreparing.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "AbsoluteMoniker": "D:0:0:{F4E7395C-6436-4F9A-A0E3-A889008539AF}|SYA.csproj|C:\\SYA_LATEST\\SYA_CODE\\code\\reparing\\addreparing.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{F4E7395C-6436-4F9A-A0E3-A889008539AF}|SYA.csproj|solutionrelative:code\\reparing\\addreparing.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
@@ -90,17 +90,17 @@
       "DocumentGroups": [
         {
           "DockedWidth": 170,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 7,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "AddReparing.cs",
               "DocumentMoniker": "C:\\SYA_LATEST\\SYA_CODE\\CODE\\Reparing\\AddReparing.cs",
               "RelativeDocumentMoniker": "CODE\\Reparing\\AddReparing.cs",
-              "ToolTip": "C:\\SYA_LATEST\\SYA_CODE\\CODE\\Reparing\\AddReparing.cs*",
-              "RelativeToolTip": "CODE\\Reparing\\AddReparing.cs*",
-              "ViewState": "AgIAABMCAAAAAAAAAAAkwDECAAAtAAAAAAAAAA==",
+              "ToolTip": "C:\\SYA_LATEST\\SYA_CODE\\CODE\\Reparing\\AddReparing.cs",
+              "RelativeToolTip": "CODE\\Reparing\\AddReparing.cs",
+              "ViewState": "AgIAABICAAAAAAAAAAAAwCgCAAAVAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-01-29T11:57:09.834Z",
               "IsPinned": true,
@@ -165,8 +165,7 @@
               "RelativeToolTip": "CODE\\Reparing\\AddReparing.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-02-02T08:58:03.916Z",
-              "IsPinned": true,
-              "EditorCaption": " [Design]"
+              "IsPinned": true
             },
             {
               "$type": "Document",
@@ -179,18 +178,17 @@
               "ViewState": "AgIAAAAAAAAAAAAAAAAAACMAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-02-01T16:29:00.988Z",
-              "IsPinned": true,
-              "EditorCaption": ""
+              "IsPinned": true
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
               "Title": "ThermalPrinter.cs",
               "DocumentMoniker": "C:\\SYA_LATEST\\SYA_CODE\\CODE\\Helper\\ThermalPrinter.cs",
               "RelativeDocumentMoniker": "CODE\\Helper\\ThermalPrinter.cs",
-              "ToolTip": "C:\\SYA_LATEST\\SYA_CODE\\CODE\\Helper\\ThermalPrinter.cs",
-              "RelativeToolTip": "CODE\\Helper\\ThermalPrinter.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABsAAAATAAAAAAAAAA==",
+              "ToolTip": "C:\\SYA_LATEST\\SYA_CODE\\CODE\\Helper\\ThermalPrinter.cs*",
+              "RelativeToolTip": "CODE\\Helper\\ThermalPrinter.cs*",
+              "ViewState": "AgIAACcAAAAAAAAAAAAowEEAAAAgAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-02-03T16:52:19.5Z",
               "IsPinned": true,
@@ -205,10 +203,6 @@
               "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
             },
             {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{e5c86464-96be-4d7c-9a8b-abcb3bbf5f92}"
-            },
-            {
               "$type": "Document",
               "DocumentIndex": 2,
               "Title": "RawPrinterHelper.cs",
@@ -218,8 +212,7 @@
               "RelativeToolTip": "CODE\\Helper\\RawPrinterHelper.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAB0AAAAbAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-03T16:47:07.834Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-02-03T16:47:07.834Z"
             },
             {
               "$type": "Document",
@@ -236,18 +229,6 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "PrintRTGS.cs [Design]",
-              "DocumentMoniker": "C:\\SYA_LATEST\\SYA_CODE\\CODE\\RTGS\\PrintRTGS.cs",
-              "RelativeDocumentMoniker": "CODE\\RTGS\\PrintRTGS.cs",
-              "ToolTip": "C:\\SYA_LATEST\\SYA_CODE\\CODE\\RTGS\\PrintRTGS.cs [Design]",
-              "RelativeToolTip": "CODE\\RTGS\\PrintRTGS.cs [Design]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-03T16:37:45.42Z",
-              "EditorCaption": " [Design]"
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 4,
               "Title": "helper.cs",
               "DocumentMoniker": "C:\\SYA_LATEST\\SYA_CODE\\CODE\\Helper\\helper.cs",
@@ -256,8 +237,7 @@
               "RelativeToolTip": "CODE\\Helper\\helper.cs",
               "ViewState": "AgIAACwAAAAAAAAAAAAlwCEAAAAjAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-02-01T16:14:45.483Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-02-01T16:14:45.483Z"
             },
             {
               "$type": "Document",
@@ -331,6 +311,21 @@
               "ViewState": "AgIAABQAAAAAAAAAAAApwBQAAAAIAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-02-01T11:03:56.051Z"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{e5c86464-96be-4d7c-9a8b-abcb3bbf5f92}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "PrintRTGS.cs [Design]",
+              "DocumentMoniker": "C:\\SYA_LATEST\\SYA_CODE\\CODE\\RTGS\\PrintRTGS.cs",
+              "RelativeDocumentMoniker": "CODE\\RTGS\\PrintRTGS.cs",
+              "ToolTip": "C:\\SYA_LATEST\\SYA_CODE\\CODE\\RTGS\\PrintRTGS.cs [Design]",
+              "RelativeToolTip": "CODE\\RTGS\\PrintRTGS.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-03T16:37:45.42Z"
             },
             {
               "$type": "Document",
