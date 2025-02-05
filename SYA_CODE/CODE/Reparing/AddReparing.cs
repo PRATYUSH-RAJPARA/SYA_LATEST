@@ -383,7 +383,7 @@ namespace SYA
                 {
                     pictureBox1.Image?.Dispose();
                     Bitmap frame = (Bitmap)eventArgs.Frame.Clone();
-                    frame.RotateFlip(RotateFlipType.RotateNoneFlipX); // Correct mirror effect
+                    //   frame.RotateFlip(RotateFlipType.RotateNoneFlipX); // Correct mirror effect
                     pictureBox1.Image = frame;
                 }));
             }
@@ -568,7 +568,6 @@ namespace SYA
                 // When TYPE is KARIGAR, sub type is selected via radio buttons.
                 SUB_TYPE = GetSelectedRadioButton(panelRadio);
             }
-            MessageBox.Show(imagePath);
             string IMAGE_PATH = string.IsNullOrEmpty(imagePath) ? "" : imagePath;
             string COMMENT = richTextBox1.Text.Trim();
             string STATUS = "New";
